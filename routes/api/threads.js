@@ -11,6 +11,12 @@ router.get('/event/:event_id', (req, res) => {
     .catch(err => res.status(404).json({ nothreadfound: 'No thread found from that event' }))
 });
 
+router.get('/:id', (req, res) => {
+  Thread.findById(req.params.id)
+    .then(thread => res.json(thread))
+    .catch(err => res.status(404).json({ nothreadfound: 'No thread found with that ID' }))
+});
+
 router.post('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
