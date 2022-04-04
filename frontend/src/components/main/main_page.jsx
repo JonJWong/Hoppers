@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 class Splash extends React.Component {
   constructor(props) {
@@ -13,10 +13,10 @@ class Splash extends React.Component {
           <div id="splash-contents">
           </div>
         </div>
-        
+          
         <div id="splash-block"></div>
       </div>
-    )
+    );
   }
 }
 
