@@ -9,7 +9,7 @@ class Map extends React.Component{
     };
 
     // wrap this.mapNode in a Google Map
-    this.map = new google.maps.Map(this.mapNode, mapOptions);
+    // this.map = new google.maps.Map(this.mapNode, mapOptions);
   }
 
   render(){
