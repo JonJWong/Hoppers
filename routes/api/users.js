@@ -18,7 +18,7 @@ router.get('/current',
   (req, res) => {
     res.json({
       id: req.user.id,
-      handle: req.user.handle,
+      username: req.user.username,
       email: req.user.email
     });
   }
@@ -32,13 +32,13 @@ router.post("/register", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  User.findOne({ handle: req.body.handle }).then(user => {
+  User.findOne({ username: req.body.username }).then(user => {
     if (user) {
-      errors.handle = "User already exists";
+      errors.username = "User already exists";
       return res.status(400).json(errors);
     } else {
       const newUser = new User({
-        handle: req.body.handle,
+        username: req.body.username,
         email: req.body.email,
         password: req.body.password
       });
@@ -50,7 +50,7 @@ router.post("/register", (req, res) => {
           newUser
             .save()
             .then(user => {
-              const payload = { id: user.id, handle: user.handle };
+              const payload = { id: user.id, username: user.username };
 
               jwt.sign(payload, keys.secretOrKey, { expiresIn: 3600 }, (err, token) => {
                 res.json({
@@ -74,18 +74,18 @@ router.post("/login", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  const email = req.body.email;
+  const username = req.body.username;
   const password = req.body.password;
 
-  User.findOne({ email }).then(user => {
+  User.findOne({ username }).then(user => {
     if (!user) {
-      errors.email = "This user does not exist";
+      errors.username = "This user does not exist";
       return res.status(400).json(errors);
     }
 
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
-        const payload = { id: user.id, email: user.email };
+        const payload = { id: user.id, username: user.username };
 
         // the user(the payload) is encoded into the jwt. The frontend will decode it
         // to get the user object upon page refresh
