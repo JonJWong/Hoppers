@@ -5,19 +5,13 @@ const passport = require('passport');
 const Thread = require('../../models/Thread');
 const validateThreadInput = require('../../validation/thread')
 
-router.get('/', (req, res) => {
-  Thread.find()
-    .then(threads => res.json(threads))
-    .catch(err => res.status(404).json({ nothreadsfound: 'No threads found' }))
-});
-
-router.get('/:id', (req, res) => {
-  Thread.findById(req.params.id)
+router.get('/event/:event_id', (req, res) => {
+  Thread.find({ event: req.params.event_id })
     .then(thread => res.json(thread))
-    .catch(err => res.status(404).json({ nothreadfound: 'No thread found with that ID' }))
+    .catch(err => res.status(404).json({ nothreadfound: 'No thread found from that event' }))
 });
 
-router.post('/',
+router.post('/event',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validateThreadInput(req.body);
