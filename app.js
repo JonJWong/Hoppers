@@ -3,10 +3,11 @@ const app = express();
 const mongoose = require('mongoose');
 const db = require('./config/keys').mongoURI;
 const bodyParser = require('body-parser');
-const passport = require('passport') 
+const passport = require('passport');
 
-const users = require('./routes/api/users')
-const events = require('./routes/api/events')
+const users = require('./routes/api/users');
+const events = require('./routes/api/events');
+const threads = require('./routes/api/threads');
 
 // app.get("/", (req, res) => {
 //   res.send("I am the js app server message :)")
@@ -28,6 +29,7 @@ app.use(bodyParser.json());
 
 app.use("/api/users", users);
 app.use("/api/events", events);
+app.use("/api/threads", threads);
   
 const port = process.env.PORT || 8080;
 // app.listen(port, () => console.log(`Server is running on port ${port}`) , (err) => console.log(err));
