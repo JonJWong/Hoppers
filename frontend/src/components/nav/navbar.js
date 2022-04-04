@@ -17,7 +17,7 @@ class NavBar extends React.Component {
   getLinks() {
       if (this.props.loggedIn) {
         return (
-            <div>
+            <div id="nav-button-container">
                 <Link
                   to={'/profile'}>
                     My Profile
@@ -31,7 +31,7 @@ class NavBar extends React.Component {
         );
       } else {
         return (
-            <div>
+            <div id="nav-button-container">
                 <Link
                   to={'/signup'}>
                     <button
@@ -55,8 +55,8 @@ class NavBar extends React.Component {
       return (
         <div id="nav-bar-wrapper">
           <div id="nav-bar-container">
-            <button>
-              Font Awesome Hamburger here
+            <button id="nav-bar-burger">
+              <i className="fa-solid fa-bars"></i>
             </button>
             { this.getLinks() }
           </div>
