@@ -28,6 +28,7 @@ router.post('/',
 
     const newThread = new Thread({
       name: req.body.name,
+      user: req.user.id
     })
 
     newThread.save().then(thread => res.json(thread));
