@@ -11,6 +11,7 @@ class Splash extends React.Component {
         <div id="splash-container">
             <h1>Welcome to Hoppers!</h1>
           <div id="splash-contents">
+            Whether it be 
           </div>
         </div>
           
