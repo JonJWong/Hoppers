@@ -74,18 +74,18 @@ router.post("/login", (req, res) => {
     return res.status(400).json(errors);
   }
 
-  const email = req.body.email;
+  const username = req.body.username;
   const password = req.body.password;
 
-  User.findOne({ email }).then(user => {
+  User.findOne({ username }).then(user => {
     if (!user) {
-      errors.email = "This user does not exist";
+      errors.username = "This user does not exist";
       return res.status(400).json(errors);
     }
 
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
-        const payload = { id: user.id, email: user.email };
+        const payload = { id: user.id, username: user.username };
 
         // the user(the payload) is encoded into the jwt. The frontend will decode it
         // to get the user object upon page refresh
