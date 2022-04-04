@@ -11,8 +11,15 @@ class Splash extends React.Component {
         <div id="splash-container">
             <h1>Welcome to Hoppers!</h1>
           <div id="splash-contents">
-            Whether it be 
+            Whether it be a great night out with friends, or a journey to meet new people, Hopper has you covered!
+            <div id="splash-subcontent">
+              Our app allows you to create new events, plan out a route and timeframe (itinerary), and invite friends along the way!
+              You can also make the event public, in which other users can see the event and choose to tag along if the route interests them.
+              Participants can also comment and participate in the selection of points of interest along the way, making the experience much more whole and welcoming to all!
+            </div>
           </div>
+
+          <button>Try Hoppers Today!</button>
         </div>
           
         <div id="splash-block"></div>
