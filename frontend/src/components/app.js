@@ -7,7 +7,8 @@ import MainPage from './main/main_page.jsx';
 import LoginFormContainer from './session/login_form_container';
 import SignupFormContainer from './session/signup_form_container';
 import ProfileContainer from './profile/profile_container';
-import Map from './map/map';
+import MapContainer from './map/map_container';
+import EventIndexContainer from './event_index/event_index_container';
 
 const App = () => (
   <div>
@@ -18,7 +19,8 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
 
       <ProtectedRoute exact path="/profile" component={ProfileContainer} />
-      {/* <ProtectedRoute path="/" component={Map}/> */}
+      {/* <ProtectedRoute path="/" component={MapContainer}/> */}
+      <ProtectedRoute exact path="/events" component={EventIndexContainer} />
     </Switch>
   </div>
 );
