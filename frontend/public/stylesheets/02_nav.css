@@ -1,8 +1,5 @@
 #nav-bar-wrapper {
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 0;
+  height: 98px;
   bottom: 90%;
   background-color: #537895;
   z-index: 1;
