@@ -18,15 +18,34 @@ class NavBar extends React.Component {
       if (this.props.loggedIn) {
         return (
             <div>
-                <Link to={'/profile'}>My Profile</Link>
-                <button onClick={this.logoutUser}>Log Out</button>
+                <Link
+                  to={'/profile'}>
+                    My Profile
+                </Link>
+                <button
+                  id="nav-bar-logout"
+                  onClick={this.logoutUser}>
+                    Log Out
+                </button>
             </div>
         );
       } else {
         return (
             <div>
-                <Link to={'/signup'}>Sign Up</Link>
-                <Link to={'/login'}>Log In</Link>
+                <Link
+                  to={'/signup'}>
+                    <button
+                      id="nav-bar-signup">
+                      Sign Up
+                    </button>
+                </Link>
+                <Link
+                  to={'/login'}>
+                    <button
+                      id="nav-bar-login">
+                      Log In
+                    </button>
+                </Link>
             </div>
         );
       }
@@ -34,8 +53,13 @@ class NavBar extends React.Component {
 
   render() {
       return (
-        <div>
+        <div id="nav-bar-wrapper">
+          <div id="nav-bar-container">
+            <button>
+              Font Awesome Hamburger here
+            </button>
             { this.getLinks() }
+          </div>
         </div>
       );
   }
