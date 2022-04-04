@@ -1,7 +1,7 @@
 {
-  "name": "twitter",
+  "name": "Hoppers",
   "version": "1.0.0",
-  "description": "mern twitter",
+  "description": "MERN Hoppers",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/njpietrow/MERN-Twitter.git"
+    "url": "git+https://github.com/JonJWong/Hoppers.git"
   },
   "author": "njpietrow",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/njpietrow/MERN-Twitter/issues"
+    "url": "https://github.com/JonJWong/Hoppers/issues"
   },
-  "homepage": "https://github.com/njpietrow/MERN-Twitter#readme",
+  "homepage": "https://github.com/JonJWong/Hoppers#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.2",
