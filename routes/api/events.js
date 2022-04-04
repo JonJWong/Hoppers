@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 
 const Event = require('../../models/Event');
-// const validateEventInput = require('../../validation/events')
+const validateEventInput = require('../../validation/events')
 
 
 router.get('/', (req, res) => {
@@ -21,11 +21,11 @@ router.get('/:id', (req, res) => {
 router.post('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    // const { errors, isValid } = validateEventInput(req.body);
+    const { errors, isValid } = validateEventInput(req.body);
 
-    // if (!isValid) {
-    //   return res.status(400).json(errors);
-    // }
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
 
     const newEvent = new Event({
       name: req.body.name,
@@ -45,18 +45,6 @@ router.delete('/:id',
     .then(event => event.delete())
     .then(res.json("Event deleted"))
 })
-
-// router.put('/:id',
-//   passport.authenticate('jwt', { session: false }),
-//   (req, res) => {
-//     const currentEvent = Event.findById(req.params.id)
-
-//     currentEvent.name = req.body.name
-//     currentEvent.startTime = req.body.startTime
-//     currentEvent.endTime = req.body.endTime
-
-//     currentEvent.update().then(event => res.json(event));
-//   });
 
 module.exports = router;
 
