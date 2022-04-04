@@ -14,7 +14,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Event.findById(req.params.id)
     .then(event => res.json(event))
-    .catch(err => restatus(404).json({ noeventfound: 'No event found with that ID' }))
+    .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 });
 
 router.post('/',
@@ -28,6 +28,7 @@ router.post('/',
 
     const newEvent = new Event({
       name: req.body.name,
+      description: req.body.description,
       startTime: req.body.startTime,
       endTime: req.body.endTime,
       user: req.user.id,
