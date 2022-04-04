@@ -31,7 +31,7 @@ router.post('/',
       description: req.body.description,
       startTime: req.body.startTime,
       endTime: req.body.endTime,
-      user: req.user.id,
+      owner: req.user.id,
     })
 
     newEvent.save().then(event => res.json(event));
