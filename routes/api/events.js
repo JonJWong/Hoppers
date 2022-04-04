@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 
 const Event = require('../../models/Event');
-// const validateEventInput = require('../../validation/events')
+const validateEventInput = require('../../validation/events')
 
 router.get('/', (req, res) => {
   Event.find()
