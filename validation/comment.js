@@ -6,6 +6,8 @@ module.exports = function validateCommentInput(data) {
 
   data.body = validText(data.body) ? data.body : '';
 
+  // Validate body
+  
   if (Validator.isEmpty(data.body)) {
     errors.body = 'Body field is required'; 
   }
