@@ -20,10 +20,6 @@ class LoginForm extends React.Component {
   // componentwillreceiveprops has been deprecated and should be changed to a 
   // diff lifecycle method
   componentWillReceiveProps(nextProps) {
-    if (nextProps.currentUser === true) {
-      this.props.history.push('/tweets');
-    }
-
     // Set or clear errors
     // TODO: this should be a assigned within component did update
     this.setState({errors: nextProps.errors})
