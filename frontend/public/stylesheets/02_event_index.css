@@ -1,9 +1,17 @@
 .event-index-container{
-  width: 80%;
   border: 1px solid blue;
+  display: flex;
+  justify-content: center;
+}
+
+.event-list{
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
 }
 
 .event-index-item{
-  margin: 10px;
+  padding: 10px;
   border: 1px solid red;
 }

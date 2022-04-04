@@ -1,4 +1,5 @@
 import React from "react";
+import MapContainer from "../map/map_container";
 
 class EventIndex extends React.Component{
   // constructor(props){
@@ -16,12 +17,11 @@ class EventIndex extends React.Component{
     return(
       <ul className="event-list">
         {Object.values(this.props.allEvents)?.map(event => (
-          <div key={event.id} className="event-index-item">
-            <div>I am an event index item</div>
+          <li key={event._id} className="event-index-item">
             <div>Name: {event.name}</div>
             <div>Description: {event.description}</div>
             <div>Start Time: {event.startTime}</div>
-          </div>
+          </li>
         ))}
       </ul>
     )
