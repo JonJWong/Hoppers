@@ -1,0 +1,100 @@
+#signup-form-header, #login-form-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  text-align: center;
+  padding: 20px;
+}
+
+#login-form-inputs, #signup-form-inputs {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#signup-form-inputs > input {
+  font-size: 16px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+#login-form-inputs > input {
+  font-size: 16px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+#demo-signup-container, #demo-login-container {
+  padding-top: 30px;
+  margin: 0 auto;
+  width: 60%;
+  text-align: center;
+}
+
+#demo-signup-header, #demo-login-header {
+  font-size: 18px;
+  padding-bottom: 20px;
+}
+
+#demo-signup-buttons, #demo-login-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+#login-demo-login-button, #login-bottom-signup-button,
+#signup-demo-login-button, #signup-bottom-login-button {
+  padding: 5px;
+  font-size: 16px;
+}
+
+#login-page-header, #signup-page-header {
+  width: auto;
+  padding: 20px;
+  padding-top: 40px;
+  font-size: 36px;
+  text-align: center;
+}
+
+#login-page-inputs, #signup-page-inputs {
+  margin: 0 auto;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+#login-page-inputs > input {
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+#signup-page-inputs > input {
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+#login-page-buttons, #signup-page-buttons {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+#login-page-demo-login-button, #login-page-bottom-signup-button,
+#signup-page-demo-login-button, #signup-page-bottom-login-button {
+  padding: 5px;
+  font-size: 20px;
+}

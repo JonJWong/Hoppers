@@ -1,7 +1,7 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 
-class LoginForm extends React.Component {
+class LoginPage extends React.Component {
   constructor(props) {
     super(props);
 
@@ -38,6 +38,15 @@ class LoginForm extends React.Component {
     this.props.login(user); 
   }
 
+  demoLogin() {
+    const demo = {
+      username: "coolguy123",
+      password: "hoppers123"
+    }
+
+    this.props.login(demo)
+  }
+
   // Render the session errors if there are any
   renderErrors() {
     return(
@@ -53,10 +62,10 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div id="login-form-wrapper">
-        <h2 id="login-form-header">Log In</h2>
+      <div id="login-page-wrapper">
+        <h2 id="login-page-header">Log In</h2>
         <form onSubmit={this.handleSubmit}>
-          <div id="login-form-inputs">
+          <div id="login-page-inputs">
               <input type="text"
                 value={this.state.username}
                 onChange={this.update('username')}
@@ -75,17 +84,19 @@ class LoginForm extends React.Component {
 
         <div id="demo-login-container">
           <h4 id="demo-login-header">Don't want to Log In?</h4>
-          <div id="demo-login-buttons">
+          <div id="login-page-buttons">
             <button
-              id="login-demo-login-button"
-              onClick={() => this.props.demoLogin()}>
+              id="login-page-demo-login-button"
+              onClick={() => this.demoLogin()}>
               Demo Login
             </button>
-            <button
-              id="login-bottom-signup-button"
-              onClick={() => this.props.change("signup")}>
-                Sign Up
-            </button>
+            <Link
+              to="/signup">
+              <button
+                id="login-page-bottom-signup-button">
+                  Sign Up
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -93,4 +104,4 @@ class LoginForm extends React.Component {
   }
 }
 
-export default withRouter(LoginForm);
+export default withRouter(LoginPage);
