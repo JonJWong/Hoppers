@@ -17,7 +17,6 @@ class ThreadIndex extends React.Component{
   }
 
   render(){
-    const {threads} = this.props;
     return(
       <div className="thread-index">
         <h3>Conversation Threads</h3>
