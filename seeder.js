@@ -22,13 +22,6 @@ seeder.connect(db, function(){
   });
 });
 
-// Produces what I want but does not return properly.
-const encryptPassword = function(password){
-    return bcrypt.genSalt(10, function(err, salt) {
-      return bcrypt.hash(newUser.password, salt, function(err, hash){
-          return hash})})
-}
-
 const data = [
   {
     'model': 'User',
