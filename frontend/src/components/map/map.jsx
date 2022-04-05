@@ -1,48 +1,6 @@
 import React from "react";
 
-class Map extends React.Component{
-  constructor(props){
-    super(props)
-    this.state = {
-      style: "default"
-    }
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e){
-    this.setState({style: e.currentTarget.value});
-    this.map.setOptions({ styles: styles[e.currentTarget.value] });
-  }
-
-  componentDidMount() {
-    // we want to configure the map options to be able to display all of the 
-    // points of interest for an event. We can get the center (average)
-    // and then configure the radius to display all of the point within the bounds
-    this.map = new window.google.maps.Map(this.mapNode, mapOptions);
-    const styleControl = document.getElementById("style-selector-control");
-
-    this.map.controls[window.google.maps.ControlPosition.TOP_RIGHT].push(styleControl);
-  }
-
-  render(){
-    return(
-      <>
-        <div id="style-selector-control" className="map-control">
-          <select id="style-selector" className="selector-control" onChange={this.handleChange} value={this.state.style}>
-            <option value="default">Default</option>
-            <option value="dark">Night mode</option>
-            {/* <option value="hiding">Hide features</option> */}
-          </select>
-        </div>
-        <div id="map-container" ref={ map => this.mapNode = map }></div> 
-      </>
-    )
-  }
-};
-
-export default Map;
-
-const mapOptions = {
+const MAP_OPTIONS = {
   center: { lat: 37.7758, lng: -122.435 }, // this is SF
   zoom: 13,
   streetViewControl: false,
@@ -52,7 +10,7 @@ const mapOptions = {
   fullscreenControl: false,
 };
 
-const styles = {
+const STYLES = {
   default: [],
   dark: [
     { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
@@ -153,3 +111,46 @@ const styles = {
     },
   ],
 };
+
+
+class Map extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+      style: "default"
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e){
+    this.setState({style: e.currentTarget.value});
+    this.map.setOptions({ styles: STYLES[e.currentTarget.value] });
+  }
+
+  componentDidMount() {
+    // we want to configure the map options to be able to display all of the 
+    // points of interest for an event. We can get the center (average)
+    // and then configure the radius to display all of the point within the bounds
+    this.map = new window.google.maps.Map(this.mapNode, MAP_OPTIONS);
+    const styleControl = document.getElementById("style-selector-control");
+
+    this.map.controls[window.google.maps.ControlPosition.TOP_RIGHT].push(styleControl);
+  }
+
+  render(){
+    return(
+      <>
+        <div id="style-selector-control" className="map-control">
+          <select id="style-selector" className="selector-control" onChange={this.handleChange} value={this.state.style}>
+            <option value="default">Default</option>
+            <option value="dark">Night mode</option>
+            {/* <option value="hiding">Hide features</option> */}
+          </select>
+        </div>
+        <div id="map-container" ref={ map => this.mapNode = map }></div> 
+      </>
+    )
+  }
+};
+
+export default Map;
