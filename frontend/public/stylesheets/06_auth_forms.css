@@ -1,0 +1,52 @@
+#signup-form-header, #login-form-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  text-align: center;
+  padding: 20px;
+}
+
+#login-form-inputs, #signup-form-inputs {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#signup-form-inputs > input {
+  padding-bottom: 5px;
+  padding-top: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+#login-form-inputs > input {
+  padding-bottom: 5px;
+  padding-top: 5px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+
+#demo-signup-container, #demo-login-container {
+  padding-top: 30px;
+  margin: 0 auto;
+  width: 60%;
+  text-align: center;
+}
+
+#demo-signup-header, #demo-login-header {
+  font-size: 18px;
+  padding-bottom: 20px;
+}
+
+#demo-signup-buttons, #demo-login-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+#login-demo-login-button, #login-bottom-signup-button,
+#signup-demo-login-button, #signup-bottom-login-button {
+  font-size: 16px;
+}

@@ -53,35 +53,46 @@ class LoginForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div id="login-form-wrapper">
+        <h2 id="login-form-header">Log In</h2>
         <form onSubmit={this.handleSubmit}>
-          <div>
+          <div id="login-form-inputs">
               <input type="text"
                 value={this.state.username}
                 onChange={this.update('username')}
                 placeholder="Username"
               />
-            <br/>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 placeholder="Password"
               />
-            <br/>
             <input type="submit" value="Submit" />
-            {this.renderErrors()}
           </div>
         </form>
-        <button
-          id="login-demo-login-button"
-          onClick={() => {
-          this.props.login({
-            username: "coolguy123",
-            password: "hoppers123"
-          })
-        }}>
-          Demo Login
-        </button>
+        
+        {this.renderErrors()}
+
+        <div id="demo-login-container">
+          <h4 id="demo-login-header">Don't want to Log In?</h4>
+          <div id="demo-login-buttons">
+            <button
+              id="login-demo-login-button"
+              onClick={() => {
+              this.props.login({
+                username: "coolguy123",
+                password: "hoppers123"
+              })
+            }}>
+              Demo Login
+            </button>
+            <button
+              id="login-bottom-signup-button"
+              onClick={() => this.props.change("signup")}>
+                Sign Up
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

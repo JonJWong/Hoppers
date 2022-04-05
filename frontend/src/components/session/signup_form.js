@@ -56,48 +56,56 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className="signup-form-container">
+      <div id="signup-form-wrapper">
+        <h2 id="signup-form-header">Sign Up</h2>
         <form onSubmit={this.handleSubmit}>
-          <div className="signup-form">
-            <br/>
+          <div id="signup-form-inputs">
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
                 placeholder="Email"
               />
-            <br/>
               <input type="text"
                 value={this.state.username}
                 onChange={this.update('username')}
                 placeholder="Username"
               />
-            <br/>
               <input type="password"
                 value={this.state.password}
                 onChange={this.update('password')}
                 placeholder="Password"
               />
-            <br/>
               <input type="password"
                 value={this.state.password2}
                 onChange={this.update('password2')}
                 placeholder="Confirm Password"
               />
-            <br/>
             <input type="submit" value="Submit" />
-            {this.renderErrors()}
           </div>
         </form>
-        <button
-          id="login-demo-login-button"
-          onClick={() => {
-          this.props.login({
-            username: "coolguy123",
-            password: "hoppers123"
-          })
-        }}>
-          Demo Login
-        </button>
+        
+        {this.renderErrors()}
+
+        <div id="demo-signup-container">
+          <h4 id="demo-signup-header">Don't want to Sign Up?</h4>
+          <div id="demo-signup-buttons">
+            <button
+              id="signup-demo-signup-button"
+              onClick={() => {
+              this.props.login({
+                username: "coolguy123",
+                password: "hoppers123"
+              })
+            }}>
+              Demo Login
+            </button>
+            <button
+              id="signup-bottom-login-button"
+              onClick={() => this.props.change("login")}>
+                Log In
+            </button>
+          </div>
+        </div>
       </div>
     );
   }

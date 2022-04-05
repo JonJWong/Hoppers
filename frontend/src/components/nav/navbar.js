@@ -15,7 +15,7 @@ class NavBar extends React.Component {
     this.getLinks = this.getLinks.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.openForm = this.openForm.bind(this);
+    this.changeForm = this.changeForm.bind(this);
     this.renderForm = this.renderForm.bind(this);
     this.renderModal = this.renderModal.bind(this);
   }
@@ -46,13 +46,13 @@ class NavBar extends React.Component {
             <div id="nav-button-container">
               <button
                 id="nav-bar-signup"
-                onClick={() => this.openForm("signup")}>
-                Sign Up
+                onClick={() => this.openModal("signup")}>
+                  Sign Up
               </button>
               <button
                 id="nav-bar-login"
-                onClick={() => this.openForm("login")}>
-                Log In
+                onClick={() => this.openModal("login")}>
+                  Log In
               </button>
             </div>
         );
@@ -82,17 +82,18 @@ class NavBar extends React.Component {
     })
   }
 
-  openForm(type) {
-    this.setState({
-      currentForm: type,
-      modalOpen: true
-    })
+  changeForm(type) {
+    this.setState({ currentForm: type })
   }
 
   renderForm() {
     const { currentForm } = this.state;
-    if (currentForm === "signup") return <SignupFormContainer />;
-    if (currentForm === "login") return <LoginFormContainer />;
+    if (currentForm === "signup") {
+      return <SignupFormContainer change={this.changeForm} />;
+    }
+    if (currentForm === "login") {
+      return <LoginFormContainer change={this.changeForm} />;
+    }
   }
 
   renderModal() {
