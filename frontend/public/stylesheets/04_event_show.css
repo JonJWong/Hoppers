@@ -85,3 +85,9 @@
 .thread-index-item{
   border: 1px solid yellowgreen;
 }
+
+.comment-username{
+  color: #314758;
+  font-style: italic;
+  font-weight: 700;
+}
