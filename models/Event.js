@@ -20,7 +20,7 @@ const EventSchema = new Schema({
   },
   owner: {
     type: Schema.Types.ObjectId,
-    ref: 'users'
+    ref: 'User'
   },
   // Array of Points of Interests Object
   PointsOfInterest: [
@@ -53,12 +53,12 @@ const EventSchema = new Schema({
   // Array of Users Ids 
   attendees: [ {
     type: Schema.Types.ObjectId, 
-    ref: 'users'
+    ref: 'User'
   }
   ],
   threads: [{
     type: Schema.Types.ObjectId,
-    ref: "threads"
+    ref: "Thread"
   }]
 }, {
   timestamps: true
