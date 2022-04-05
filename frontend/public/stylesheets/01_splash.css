@@ -1,3 +1,85 @@
 #splash-wrapper {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-repeat: no-repeat;
+  background-position-y: 65%;
+  background-position-x: 55%;
+  background-image: url("https://images.unsplash.com/photo-1648391923763-aa7452d5aa6b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx")
+}
+
+#splash-block {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  opacity: 100%;
+  z-index: -1;
+}
+
+#splash-container {
+  position: fixed;
+  left: 17%;
+  right: 17%;
+  top: 130px;
+  bottom: 0px;
+  height: 800px;
+  margin: 0 auto;
+  background: linear-gradient(0deg, #09203f, #537895);
+}
+
+#splash-title {
+  color: #eeeeee;
+  font-size: 50px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+#splash-contents {
+  width: 85%;
+  margin: 0 auto;
+  color: #eeeeee;
+  font-size: 28px;
+  font-weight: 50%;
+  text-align: center;
+  line-height: 1.3;
+}
+
+#splash-subcontent {
+  width: 85%;
+  font-size: 22px;
+  line-height: 1.5;
+  font-weight: 100%;
+  padding-top: 7%;
+  margin: 0 auto;
+}
+
+#splash-entry-button {
+  font-weight: bold;
   padding: 20px;
+  width: 460px;
+  border-radius: 50px;
+  color: #a8a8a8;
+  background: none;
+  margin: 0 auto;
+  border-style: none;
+  font-size: 40px;
+  position: absolute;
+  bottom: 60px;
+  left: 20%;
+  right: 20%;
+  background-color: #537895;
+  color: black;
+  cursor: pointer;
+  transition: background-color .4s ease-in-out, color .4s ease-in-out;
+}
+
+#splash-entry-button:hover {
+  background-color: black;
+  color: #eeeeee;
 }

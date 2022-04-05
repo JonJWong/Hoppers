@@ -1,6 +1,9 @@
 @import url("/stylesheets/00_reset.css");
 @import url("/stylesheets/01_splash.css");
-@import url("/stylesheets/02_event_index.css");
+@import url("/stylesheets/02_nav.css");
+
+@import url("/stylesheets/03_event_index.css");
+
 
 #map-container {
   height: 500px;

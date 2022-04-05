@@ -92,6 +92,16 @@ class SignupForm extends React.Component {
             {this.renderErrors()}
           </div>
         </form>
+        <button
+          id="login-demo-login-button"
+          onClick={() => {
+          this.props.login({
+            username: "coolguy123",
+            password: "hoppers123"
+          })
+        }}>
+          Demo Login
+        </button>
       </div>
     );
   }

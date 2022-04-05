@@ -9,7 +9,7 @@ class Splash extends React.Component {
     return (
       <div id="splash-wrapper">
         <div id="splash-container">
-            <h1 id="splash-title">Welcome to Hoppers!</h1>
+            <h1 id="splash-title">Good Vibes, wherever you go.</h1>
           <div id="splash-contents">
             Whether it be a great night out with friends, or a journey to meet new people, Hopper has you covered!
             <div id="splash-subcontent">
@@ -19,7 +19,7 @@ class Splash extends React.Component {
             </div>
           </div>
 
-          <button>Try Hoppers Today!</button>
+          <button id="splash-entry-button">Try Hoppers Today!</button>
         </div>
           
         <div id="splash-block"></div>

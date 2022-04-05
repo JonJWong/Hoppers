@@ -1,0 +1,60 @@
+#nav-bar-wrapper {
+  height: 98px;
+  bottom: 90%;
+  background-color: #537895;
+  z-index: 1;
+}
+
+#nav-bar-container {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 30px;
+  padding-right: 30px;
+  border-bottom: 2px black solid;
+}
+
+#nav-bar-burger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 40px;
+  background: transparent;
+  border-style: none;
+  font-size: 30px;
+  cursor: pointer;
+}
+
+#nav-button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 220px;
+}
+
+#nav-bar-signup, #nav-bar-login, #nav-bar-logout {
+  width: 100px;
+  border-style: none;
+  background-color: slategray;
+  color: #eeeeee;
+  padding: 10px;
+  font-size: 20px;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: background-color .4s ease-in-out;
+}
+
+#nav-bar-signup:hover {
+  background-color: teal;
+  color: #eeeeee;
+}
+
+#nav-bar-login:hover {
+  background-color: teal;
+  color: black;
+}
+
+#nav-bar-logout:hover {
+  background-color: orangered;
+}
