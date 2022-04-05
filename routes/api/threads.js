@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-
 const Thread = require('../../models/Thread');
 const validateThreadInput = require('../../validation/threads');
 
