@@ -243,22 +243,27 @@ class Map extends React.Component{
   }
 
   placeMarker(location) {
+    // create marker at the location of the click event
     const marker = new window.google.maps.Marker({
       position: location,
       map: this.map
     })
 
+    // center the map onto the location of click
     this.map.panTo(location);
 
+    // set marker id, assign to object attribute
     let id = marker.__gm_id;
     this.markers[id] = marker;
 
+    // add a listener for right-click to delete the marker that is right-clicked
     window.google.maps.event.addListener(marker, "rightclick", (point) => {
       id = this.__gm_id;
       this.deleteMarker(id);
     })
   }
 
+  // helper to delete a marker at a set ID on the map
   deleteMarker(id) {
     const marker = this.markers[id];
     marker.setMap(null);
@@ -281,12 +286,15 @@ class Map extends React.Component{
     // apply styles by time of day
     this.map.setOptions({ styles: styles});
 
+    // set up style control menu
     const styleControl = document.getElementById("style-selector-control");
 
+    // add listener to map that creates markers on click
     window.google.maps.event.addListener(this.map, "click", (e) => {
       this.placeMarker(e.latLng, this.map)
     })
 
+    // put style control on the top right of the map
     this.map.controls[window.google.maps.ControlPosition.TOP_RIGHT].push(styleControl);
   }
 
