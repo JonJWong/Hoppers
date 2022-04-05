@@ -21,9 +21,13 @@ router.get('/:id', (req, res) => {
     // Use Populate method to fill up with users and threads when we get to that part.
     .populate({
       path:"attendees",
-      model:"User"
+      model:"User",
+      select: 'username'
     })
-    .populate('owner')
+    .populate({
+      path: 'owner',
+      select: 'username'
+    })
     .populate({
       path: 'threads',
       model: "Thread",
