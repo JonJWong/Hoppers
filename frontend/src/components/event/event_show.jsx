@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {getDate, getTime} from "../../util/string_util"
+import {getDate, getTime, getTimeZone} from "../../util/string_util"
 import MapContainer from "../map/map_container"
 import AttendeeIndex from "./attendee_index";
 import ThreadIndex from "./thread_index";
@@ -25,15 +25,13 @@ class EventShow extends React.Component{
             <div className="event-show-details">
               <h2>{event.name}</h2>
               <h3>{event.description}</h3>
-              -----------------
-              <div>Start Date: {getDate(event.startTime)}</div>
-              <div>Start Time: {getTime(event.startTime)}</div>
-              -----------------
-              <div>End Date: {getDate(event.endTime)}</div>
-              <div>End Time: {getTime(event.endTime)}</div>
-              <Link to="/">To Events Index</Link>
+              <div className="date-time-container">
+                <div className="date">{getDate(event.startTime)}</div>
+                <div className="time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
+              </div>
+              <AttendeeIndex attendees={event.attendees}/>
+              <Link to="/">Back To Events Index</Link>
             </div>
-            <AttendeeIndex attendees={event.attendees}/>
           </div>  
           <MapContainer />
         </div>

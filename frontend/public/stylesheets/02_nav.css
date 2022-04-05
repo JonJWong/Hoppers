@@ -37,7 +37,7 @@
   font-size: 14px;
 }
 
-#nav-bar-signup, #nav-bar-login, #nav-bar-logout {
+#nav-bar-signup, #nav-bar-login, #nav-bar-logout, #nav-bar-profile {
   width: 100px;
   border-style: none;
   background-color: slategray;
@@ -46,7 +46,7 @@
   font-size: 20px;
   border-radius: 40px;
   cursor: pointer;
-  transition: background-color .4s ease-in-out;
+  transition: background-color .2s ease-out;
 }
 
 #nav-bar-signup:hover {
@@ -59,7 +59,7 @@
   color: black;
 }
 
-#nav-bar-logout:hover {
+#nav-bar-logout:hover, #nav-bar-profile:hover {
   background-color: orangered;
 }
 

@@ -33,8 +33,12 @@ class NavBar extends React.Component {
         return (
             <div id="nav-button-container">
                 <Link
-                  to={'/profile'}>
-                    My Profile
+                  to={'/profile'}
+                >
+                  <button
+                    id="nav-bar-profile">
+                      My Profile
+                  </button>
                 </Link>
                 <button
                   id="nav-bar-logout"

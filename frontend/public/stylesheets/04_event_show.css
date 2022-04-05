@@ -12,8 +12,9 @@
   width: 80%;
   justify-content: center;
   align-items: center;
-  margin: 15px;
   border: 1px solid red;
+  margin: 15px;
+  padding: 15px;
 }
 
 .event-show-content{
@@ -23,13 +24,13 @@
   border: 1px solid orange;
 }
 
-.event-show-details h2{
+.event-show-container h2{
   font-size: 32px;
   font-weight: 700;
   padding-bottom: 6px;
 }
 
-.event-show-details h3{
+.event-show-container h3{
   font-size: 18px;
   padding-bottom: 6px;
 }
@@ -61,14 +62,24 @@
   background:none !important;
 } */
 
+.date-time-container{
+  margin-bottom: 15px;
+}
+
 .attendee-list{
-  margin: 15px;
   border: 1px solid green;
+  margin-bottom: 15px;
 }
 
 .thread-index{
   width: 80%;
   border: 1px solid purple;
+}
+
+.thread-list-container{
+  width: 90%;
+  border: 1px solid red;
+  margin: 15px;
 }
 
 .thread-index-item{

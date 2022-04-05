@@ -19,7 +19,7 @@
 }
 
 a {
-  color: #537895; 
+  /* color: black;  */
   transition: color .2s ease-out;
 }
 
