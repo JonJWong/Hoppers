@@ -11,7 +11,65 @@ const MAP_OPTIONS = {
 };
 
 const STYLES = {
-  default: [],
+  default: [
+    {
+      featureType: "administrative",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "administrative.land_parcel",
+      elementType: "labels",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi",
+      elementType: "labels.text",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.business",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.business",
+      elementType: "geometry",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.government",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.medical",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.park",
+      elementType: "labels.text",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.place_of_worship",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.school",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.sports_complex",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "road.local",
+      elementType: "labels",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "transit",
+      stylers: [{visibility: "off"}]
+    }
+  ],
   dark: [
     { elementType: "geometry", stylers: [{ color: "#242f3e" }] },
     { elementType: "labels.text.stroke", stylers: [{ color: "#242f3e" }] },
@@ -91,14 +149,69 @@ const STYLES = {
       elementType: "labels.text.stroke",
       stylers: [{ color: "#17263c" }],
     },
+    {
+      featureType: "administrative",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "administrative.land_parcel",
+      elementType: "labels",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi",
+      elementType: "labels.text",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.business",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.business",
+      elementType: "geometry",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.government",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.medical",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.park",
+      elementType: "labels.text",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.place_of_worship",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.school",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "poi.sports_complex",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "road.local",
+      elementType: "labels",
+      stylers: [{visibility: "off"}]
+    },
+    {
+      featureType: "transit",
+      stylers: [{visibility: "off"}]
+    }
   ],
   hiding: [
     {
       featureType: "administrative",
       elementType: "labels",
-      stylers: [
-        { visibility: "off" }
-      ]
+      stylers: [{ visibility: "off" }]
     },
     {
       featureType: "poi.business",
@@ -132,6 +245,18 @@ class Map extends React.Component{
     // points of interest for an event. We can get the center (average)
     // and then configure the radius to display all of the point within the bounds
     this.map = new window.google.maps.Map(this.mapNode, MAP_OPTIONS);
+
+    // get time of day and set a styles var accordingly
+    const hour = new Date().getHours();
+    let styles;
+    if (hour < 7 || hour > 17) {
+      styles = STYLES["dark"]
+    } else {
+      styles = STYLES["default"]
+    }
+    // apply styles by time of day
+    this.map.setOptions({ styles: styles});
+
     const styleControl = document.getElementById("style-selector-control");
 
     this.map.controls[window.google.maps.ControlPosition.TOP_RIGHT].push(styleControl);
