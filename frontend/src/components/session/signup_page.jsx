@@ -1,7 +1,7 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-class SignupForm extends React.Component {
+class SignupPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,6 +42,15 @@ class SignupForm extends React.Component {
     this.props.signup(user, this.props.history); 
   }
 
+  demoLogin() {
+    const user = {
+      username: "coolguy123",
+      password: "hoppers123"
+    }
+
+    this.props.login(user)
+  }
+
   renderErrors() {
     return(
       <ul>
@@ -56,10 +65,10 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div id="signup-form-wrapper">
-        <h2 id="signup-form-header">Sign Up</h2>
+      <div id="signup-page-wrapper">
+        <h2 id="signup-page-header">Sign Up</h2>
         <form onSubmit={this.handleSubmit}>
-          <div id="signup-form-inputs">
+          <div id="signup-page-inputs">
               <input type="text"
                 value={this.state.email}
                 onChange={this.update('email')}
@@ -88,17 +97,19 @@ class SignupForm extends React.Component {
 
         <div id="demo-signup-container">
           <h4 id="demo-signup-header">Don't want to Sign Up?</h4>
-          <div id="demo-signup-buttons">
+          <div id="signup-page-buttons">
             <button
-              id="signup-demo-signup-button"
-              onClick={() => this.props.demoLogin()}>
+              id="signup-page-demo-login-button"
+              onClick={() => this.demoLogin()}>
               Demo Login
             </button>
-            <button
-              id="signup-bottom-login-button"
-              onClick={() => this.props.change("login")}>
-                Log In
-            </button>
+            <Link
+              to="/login">
+              <button
+                id="signup-page-bottom-login-button">
+                  Log In
+              </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -106,4 +117,4 @@ class SignupForm extends React.Component {
   }
 }
 
-export default withRouter(SignupForm);
+export default withRouter(SignupPage);
