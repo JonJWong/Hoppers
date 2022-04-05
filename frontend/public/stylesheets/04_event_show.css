@@ -7,9 +7,19 @@
   border: 1px solid blue;
 }
 
-.event-show-content{
-  margin: 15px;
+.event-show-body{
+  display: flex;
   width: 80%;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+  border: 1px solid red;
+}
+
+.event-show-content{
+  margin-right: 30px;
+  width: 50%;
+  height: 500px;
   border: 1px solid orange;
 }
 
@@ -40,3 +50,13 @@
 /* .gmnoprint div {
   background:none !important;
 } */
+
+.attendee-list{
+  margin: 15px;
+  border: 1px solid green;
+}
+
+.thread-index{
+  width: 80%;
+  border: 1px solid purple;
+}
