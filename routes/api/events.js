@@ -19,7 +19,17 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Event.findById(req.params.id)
     // Use Populate method to fill up with users and threads when we get to that part.
-    .then(event => res.json(event))
+    .populate({
+      path:"attendees",
+      model:"User"
+    })
+    .populate('owner')
+    .populate({
+      path: 'threads',
+      model: "Thread",
+      perDocumentLimit: 5
+    })
+    .then((event) => res.json(event))
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 });
 

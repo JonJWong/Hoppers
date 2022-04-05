@@ -9,7 +9,7 @@ const ThreadSchema = new Schema({
 
   event: {
     type: Schema.Types.ObjectId,
-    ref: 'events'
+    ref: 'Event'
   },
 
   // Array of Comments in that thread
@@ -21,7 +21,7 @@ const ThreadSchema = new Schema({
       },
       author: {
         type: Schema.Types.ObjectId,
-        ref: "users"
+        ref: "User"
       }
     }
   ]
