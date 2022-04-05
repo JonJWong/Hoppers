@@ -230,7 +230,7 @@ class IndexMap extends React.Component{
   constructor(props){
     super(props)
 
-    this.markers = {};
+    this.markers = [];
   }
 
   placeMarker(location) {
@@ -238,6 +238,16 @@ class IndexMap extends React.Component{
     const marker = new window.google.maps.Marker({
       position: location,
       map: this.map
+    })
+  }
+
+  // create markers for all markers passed down;
+  placeMarkers() {
+    this.markers.forEach(marker => {
+      const lat = marker.position.lat;
+      const lng = marker.position.lng;
+      const position = { lat: lat, lng: lng }
+      this.placeMarker(position)
     })
   }
 
