@@ -15,6 +15,7 @@ class NavBar extends React.Component {
     this.getLinks = this.getLinks.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.modalLogout = this.modalLogout.bind(this);
     this.demoLogin = this.demoLogin.bind(this);
     this.changeForm = this.changeForm.bind(this);
     this.renderForm = this.renderForm.bind(this);
@@ -61,7 +62,7 @@ class NavBar extends React.Component {
   }
 
   openModal(form) {
-    form ||= "signup";
+    form ||= "login";
     this.setState({
       modalOpen: true,
       currentForm: form
@@ -83,12 +84,21 @@ class NavBar extends React.Component {
     })
   }
 
+  modalLogout() {
+    setTimeout(() => {
+      this.props.logout();
+    }, 700)
+    this.closeModal();
+  }
+
   demoLogin() {
-    const { login } = this.props;
-    login({
-      username: "coolguy123",
-      password: "hoppers123"
-    })
+    setTimeout(() => {
+      const { login } = this.props;
+      login({
+        username: "coolguy123",
+        password: "hoppers123"
+      })
+    }, 500)
     this.closeModal();
   }
 
@@ -97,16 +107,26 @@ class NavBar extends React.Component {
   }
 
   renderForm() {
-    const { currentForm } = this.state;
-    if (currentForm === "signup") {
-      return <SignupFormContainer
-        change={this.changeForm}
-        demoLogin={this.demoLogin} />;
-    }
-    if (currentForm === "login") {
-      return <LoginFormContainer
-        change={this.changeForm}
-        demoLogin={this.demoLogin} />;
+    if (!this.props.loggedIn) {
+      const { currentForm } = this.state;
+      if (currentForm === "signup") {
+        return <SignupFormContainer
+          change={this.changeForm}
+          demoLogin={this.demoLogin} />;
+      }
+      if (currentForm === "login") {
+        return <LoginFormContainer
+          change={this.changeForm}
+          demoLogin={this.demoLogin} />;
+      }
+    } else {
+      return (
+        <button
+          id="nav-modal-signout"
+          onClick={this.modalLogout}>
+            Sign Out
+        </button>
+      )
     }
   }
 

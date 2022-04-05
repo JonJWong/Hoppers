@@ -35,10 +35,16 @@ export const logoutUser = () => ({
 // We want to assign the signIn attribute to the session slice of state
   // this will be used by the signup form to redirect to the login form
 export const signup = user => dispatch => (
-  APIUtil.signup(user).then(
-    () => (dispatch(receiveUserSignIn()))
-    ,err => (dispatch(receiveErrors(err.response.data)))
-  )
+  APIUtil.signup(user).then(res => {
+    const { token } = res.data;
+    localStorage.setItem('jwtToken', token);
+    APIUtil.setAuthToken(token);
+    const decoded = jwt_decode(token);
+    dispatch(receiveCurrentUser(decoded))
+  })
+  .catch(err => {
+    dispatch(receiveErrors(err.response.data));
+  })
 );
 
 // Upon login, set the session token and dispatch the current user. Dispatch errors on failure.

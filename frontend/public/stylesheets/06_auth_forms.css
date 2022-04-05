@@ -16,6 +16,7 @@
 }
 
 #signup-form-inputs > input {
+  font-size: 16px;
   padding-bottom: 5px;
   padding-top: 5px;
   margin-bottom: 5px;
@@ -23,6 +24,7 @@
 }
 
 #login-form-inputs > input {
+  font-size: 16px;
   padding-bottom: 5px;
   padding-top: 5px;
   margin-bottom: 5px;
@@ -48,5 +50,43 @@
 
 #login-demo-login-button, #login-bottom-signup-button,
 #signup-demo-login-button, #signup-bottom-login-button {
+  padding: 5px;
   font-size: 16px;
+}
+
+#login-page-header {
+  width: auto;
+  padding: 20px;
+  padding-top: 40px;
+  font-size: 36px;
+  text-align: center;
+}
+
+#login-page-inputs {
+  margin: 0 auto;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+#login-page-inputs > input {
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+#login-page-buttons {
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  margin: 0 auto;
+  align-items: center;
+}
+
+#login-page-demo-login-button, #login-page-bottom-signup-button {
+  padding: 5px;
+  font-size: 24px;
 }
