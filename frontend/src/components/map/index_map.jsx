@@ -8,6 +8,8 @@ const MAP_OPTIONS = {
   keyboardShortcuts: false,
   backgroundColor: 'none',
   fullscreenControl: false,
+  zoomControl: false,
+  gestureHandling: "none"
 };
 
 const STYLES = {
