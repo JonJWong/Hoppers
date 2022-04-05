@@ -19,9 +19,9 @@ const ThreadSchema = new Schema({
         type: String,
         required: true
       },
-      author: {
-        type: Schema.Types.ObjectId,
-        ref: "User"
+      username: {
+        type: String,
+        required: true
       }
     }
   ]
