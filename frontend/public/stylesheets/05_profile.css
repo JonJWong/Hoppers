@@ -1,0 +1,14 @@
+.profile-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid blue;
+}
+
+.profile-content{
+  padding: 15px;
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

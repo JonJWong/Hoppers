@@ -18,14 +18,10 @@ class SignupForm extends React.Component {
 
   // TODO: the demo code wanted to redirect to the login page after registering?
   // Probably so that the user would then be prompted to login
-    // its weird but I've seen websites do it before
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.signedIn === true) {
+  componentDidUpdate(){
+    if(this.props.signedIn){
       this.props.history.push('/login');
     }
-
-    // TODO: this should be assigned within componentDidUpdate
-    this.setState({errors: nextProps.errors})
   }
 
   update(field) {
@@ -49,9 +45,9 @@ class SignupForm extends React.Component {
   renderErrors() {
     return(
       <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
+        {Object.keys(this.props.errors).map((error, i) => (
           <li key={`error-${i}`}>
-            {this.state.errors[error]}
+            {this.props.errors[error]}
           </li>
         ))}
       </ul>
