@@ -1,10 +1,12 @@
 .event-index-container{
   border: 1px solid blue;
   display: flex;
+  margin: 15px;
   justify-content: center;
 }
 
 .event-list{
+  margin: 15px;
   width: 80%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);

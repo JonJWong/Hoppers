@@ -49,9 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   ReactDOM.render(<Root store={store} />, root);
 
-
-
-
   // BEGIN TESTING
   window.getEvent = getEvent;
 });

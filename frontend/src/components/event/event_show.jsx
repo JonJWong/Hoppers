@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {getDate, getTime} from "../../util/string_util"
+import MapContainer from "../map/map_container"
 
 class EventShow extends React.Component{
 
@@ -30,6 +31,7 @@ class EventShow extends React.Component{
           <div>End Time: {getTime(event.endTime)}</div>
           <Link to="/">To Events Index</Link>
         </div>  
+        <MapContainer />
       </div>
     )
   }

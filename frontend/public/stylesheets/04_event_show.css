@@ -1,6 +1,8 @@
 .event-show-container{
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin: 15px;
   border: 1px solid blue;
 }
@@ -10,3 +12,31 @@
   width: 80%;
   border: 1px solid orange;
 }
+
+.map-control {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+  font-family: "Roboto", "sans-serif";
+  margin: 10px;
+  display: none;
+}
+
+
+#map-container .map-control {
+  display: block;
+}
+
+.selector-control {
+  font-size: 14px;
+  line-height: 35px;
+}
+
+
+/* Hide terms of use  */
+.gmnoprint a, .gmnoprint span {
+  display:none;
+}
+/* .gmnoprint div {
+  background:none !important;
+} */
