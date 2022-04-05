@@ -66,7 +66,6 @@ router.post('/:id/comments',
 
     Thread.findById(req.params.id)
       .then(thread => {
-        
         const { errors, isValid } = validateCommentInput(req.body);
         if (!isValid) {return res.status(400).json(errors)}
 
