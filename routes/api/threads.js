@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-
 const Thread = require('../../models/Thread');
 const validateThreadInput = require('../../validation/threads');
 
@@ -42,6 +41,19 @@ router.delete('/:id',
       .then(thread => thread.delete())
       .then(res.json("Thread deleted"))
   })
+
+router.patch('/:id', 
+  passport.authenticate('jwt', { session: false }), 
+  (req, res) => {
+    
+    Thread.findById(req.params.id)
+      .then(thread => {
+        thread.name = req.body.name
+
+        thread.save().then(thread => res.json(thread));
+      })
+      .catch(err => res.status(404).json({ nothreadfound: 'No thread found with that ID' }))
+})
 
 module.exports = router;
 
