@@ -15,6 +15,7 @@ class NavBar extends React.Component {
     this.getLinks = this.getLinks.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.demoLogin = this.demoLogin.bind(this);
     this.changeForm = this.changeForm.bind(this);
     this.renderForm = this.renderForm.bind(this);
     this.renderModal = this.renderModal.bind(this);
@@ -82,6 +83,15 @@ class NavBar extends React.Component {
     })
   }
 
+  demoLogin() {
+    const { login } = this.props;
+    login({
+      username: "coolguy123",
+      password: "hoppers123"
+    })
+    this.closeModal();
+  }
+
   changeForm(type) {
     this.setState({ currentForm: type })
   }
@@ -89,10 +99,14 @@ class NavBar extends React.Component {
   renderForm() {
     const { currentForm } = this.state;
     if (currentForm === "signup") {
-      return <SignupFormContainer change={this.changeForm} />;
+      return <SignupFormContainer
+        change={this.changeForm}
+        demoLogin={this.demoLogin} />;
     }
     if (currentForm === "login") {
-      return <LoginFormContainer change={this.changeForm} />;
+      return <LoginFormContainer
+        change={this.changeForm}
+        demoLogin={this.demoLogin} />;
     }
   }
 

@@ -78,12 +78,7 @@ class LoginForm extends React.Component {
           <div id="demo-login-buttons">
             <button
               id="login-demo-login-button"
-              onClick={() => {
-              this.props.login({
-                username: "coolguy123",
-                password: "hoppers123"
-              })
-            }}>
+              onClick={() => this.props.demoLogin()}>
               Demo Login
             </button>
             <button
