@@ -1,6 +1,8 @@
 .event-show-container{
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin: 15px;
   border: 1px solid blue;
 }
