@@ -8,16 +8,14 @@ import ThreadIndex from "./thread_index";
 class EventShow extends React.Component{
 
   componentDidMount(){
-    if(!this.props.event){
-      this.props.fetchEvent(this.props.match.params.eventId)
-    };
+    this.props.fetchEvent(this.props.match.params.eventId)
   };
 
   render(){
-    if(!this.props.event){
+    const {event} = this.props
+    if(!event) {
       return null
     }
-    const {event} = this.props
     return(
       <div className="event-show-container">
         <div className="event-show-body">
@@ -36,7 +34,6 @@ class EventShow extends React.Component{
           <MapContainer />
         </div>
         <ThreadIndex threads={event.threads} />
-        {/* insert threads/comments component here */}
       </div>
     );
   };
