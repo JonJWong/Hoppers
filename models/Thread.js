@@ -3,7 +3,7 @@ const Schema = mongoose.Schema;
 
 const ThreadSchema = new Schema({
   name: {
-    type: Text,
+    type: String,
     required: true
   },
 
@@ -16,7 +16,7 @@ const ThreadSchema = new Schema({
   comments: [
     {
       body: {
-        type: Text,
+        type: String,
         required: true
       },
       author: {
