@@ -180,7 +180,7 @@ router.patch('/:id/:user_id',
   .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 })
 
-// DELETE route to remove user from attendes of the Event 
+// DELETE route to remove user from attendes of the event 
 router.delete('/:id/:user_id',
   passport.authenticate('jwt', {session: false}),
   (req, res) => {Event.findById(req.params.id)
@@ -192,9 +192,12 @@ router.delete('/:id/:user_id',
         deleteIndex = index;
       }
     })
+    // Delete User from Attendies
     if(deleteIndex === -1){return res.status(404).json({noAttendeeFound: "This event has no user with this ID"})}
     event.attendees.splice(deleteIndex, 1)
     event.save();
+    // Delete Event from Users Event List
+
     res.json(event)})
   .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 })
