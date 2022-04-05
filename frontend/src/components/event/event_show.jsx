@@ -13,7 +13,7 @@ class EventShow extends React.Component{
 
   render(){
     const {event} = this.props
-    if(!event) {
+    if((!event)||(!event.attendees)) {
       return null
     }
     return(
