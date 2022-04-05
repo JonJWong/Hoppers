@@ -1,5 +1,5 @@
 import React from "react";
-import CommentIndex from "./comment_index";
+import CommentIndex from "./comment_index.jsx";
 
 class ThreadIndexItem extends React.Component{
 
