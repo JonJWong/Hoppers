@@ -27,7 +27,6 @@ router.get('/:id', (req, res) => {
     .populate({
       path: 'threads',
       model: "Thread",
-      perDocumentLimit: 5
     })
     .then((event) => res.json(event))
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
