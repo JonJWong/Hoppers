@@ -65,15 +65,38 @@ router.put('/:id',
 
   }
 )
+
+/// Point of Interest Routes
+
+// GET route for poi(point of interest inside of an event (embedded index)
+router.get('/:id/pois/:poi_id',
+  passport.authenticate('jwt', {session: false}),
+  (req, res) => {Event.findById(req.params.id)
+  .then( event => {
+    let target = ""
+    // Find correct Point of Interest
+    event.PointsOfInterest.forEach( (poi) => 
+      {if (poi.id === req.params.poi_id)
+        target = poi;
+      }
+    );
+    // Error Message if id does not match any point of interest
+    if(target === ""){return res.json({ noPointofInterestFound: "This event does not have a Point of interest with that Id"})}
+    res.json(target)})
+  .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
+  }
+)
+
+
 // POST route for poi(point of interest) inside of an event (embedded create)
-router.post('/:id/poi', 
+router.post('/:id/pois', 
   passport.authenticate('jwt', {session: false}),
   (req, res) => {
     Event.findById(req.params.id)
     .then( event => {
       const { errors, isValid } = validatePointOfInterestInput(req.body);
       // // Check if body is a valid Point of Interest
-      if (!isValid) { return res.status(400).json(errors);}
+      if (!isValid) {return res.status(400).json(errors);}
       event.PointsOfInterest.push(req.body);
       event.save()
       res.json(event)})
@@ -81,6 +104,52 @@ router.post('/:id/poi',
   }
 )
 
+// PUT/PATCH route for poi(point of interet) inside of an event(embeded put)
+router.put('/:id/pois/:poi_id', 
+  passport.authenticate('jwt', {session: false}),
+  (req, res) => {
+    Event.findById(req.params.id)
+    .then( event => {
+      let targetIndex = ""
+      // Find correct index of point of interest
+      event.PointsOfInterest.forEach( (poi, index) => 
+        {if (poi.id === req.params.poi_id) 
+          {
+            targetIndex = index;
+          }}
+      );
+      // Error Message if id does not match any point of interest
+      if(targetIndex === ""){return res.json({ noPointofInterestFound: "This event does not have a Point of interest with that ID"})}
+      // Check if body is a valid Point of Interest
+      const { errors, isValid } = validatePointOfInterestInput(req.body);
+      if (!isValid) {return res.status(400).json(errors);}
+      // Update correct Point of Interest
+      event.PointsOfInterest[targetIndex] = req.body;
+      event.save()
+      res.json(event)})
+    .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
+  }
+)
+
+// DELETE route for Point of Interest
+router.delete('/:id/pois/:poi_id', 
+  passport.authenticate('jwt', {session: false}),
+  (req, res) => {Event.findById(req.params.id)
+  .then( event => {
+    let target = ""
+    // Find correct Point of Interest
+    event.PointsOfInterest.forEach( (poi) => 
+      {if (poi.id === req.params.poi_id)
+        target = poi;
+      }
+    );
+    // Error Message if id does not match any point of interest
+    if(target === ""){return res.json({ noPointofInterestFound: "This event does not have a Point of interest with that ID"})}
+    target.remove();
+    event.save();
+    res.json(event)})
+  .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
+})
 
 module.exports = router;
 
