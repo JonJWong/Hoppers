@@ -232,12 +232,36 @@ class Map extends React.Component{
     this.state = {
       style: "default"
     }
+
+    this.markers = {};
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(e){
     this.setState({style: e.currentTarget.value});
     this.map.setOptions({ styles: STYLES[e.currentTarget.value] });
+  }
+
+  placeMarker(location) {
+    const marker = new window.google.maps.Marker({
+      position: location,
+      map: this.map
+    })
+
+    this.map.panTo(location);
+
+    let id = marker.__gm_id;
+    this.markers[id] = marker;
+
+    window.google.maps.event.addListener(marker, "rightclick", (point) => {
+      id = this.__gm_id;
+      this.deleteMarker(id);
+    })
+  }
+
+  deleteMarker(id) {
+    const marker = this.markers[id];
+    marker.setMap(null);
   }
 
   componentDidMount() {
@@ -258,6 +282,10 @@ class Map extends React.Component{
     this.map.setOptions({ styles: styles});
 
     const styleControl = document.getElementById("style-selector-control");
+
+    window.google.maps.event.addListener(this.map, "click", (e) => {
+      this.placeMarker(e.latLng, this.map)
+    })
 
     this.map.controls[window.google.maps.ControlPosition.TOP_RIGHT].push(styleControl);
   }
