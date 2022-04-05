@@ -17,7 +17,7 @@ module.exports = function validatePointOfInterestInput(data) {
     errors.name = 'Name field is required'; 
   }
 
-  // Limit description
+  // Limit description to 200 characters.
   if (!Validator.isLength(data.description, {min:0, max: 200 })){
     errors.name = "Description must be between 0 and 200 characters"
   }
