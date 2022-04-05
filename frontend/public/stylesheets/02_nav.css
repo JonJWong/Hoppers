@@ -33,7 +33,7 @@
   width: 220px;
 }
 
-#nav-bar-signup, #nav-bar-login {
+#nav-bar-signup, #nav-bar-login, #nav-bar-logout {
   width: 100px;
   border-style: none;
   background-color: slategray;
@@ -53,4 +53,8 @@
 #nav-bar-login:hover {
   background-color: teal;
   color: black;
+}
+
+#nav-bar-logout:hover {
+  background-color: orangered;
 }
