@@ -225,12 +225,17 @@ const STYLES = {
   ],
 };
 
+// Object.values(this.props.PointsOfInterest).map(point => {
+//   return point.location;
+// }) || 
 
 class IndexMap extends React.Component{
   constructor(props){
     super(props)
 
-    this.markers = [];
+    this.markers = [{ lat: 37.7758, lng: -122.435 }]
+    this.placeMarkers = this.placeMarkers.bind(this);
+    this.placeMarker = this.placeMarker.bind(this);
   }
 
   placeMarker(location) {
@@ -243,11 +248,8 @@ class IndexMap extends React.Component{
 
   // create markers for all markers passed down;
   placeMarkers() {
-    this.markers.forEach(marker => {
-      const lat = marker.position.lat;
-      const lng = marker.position.lng;
-      const position = { lat: lat, lng: lng }
-      this.placeMarker(position)
+    this.markers.forEach(location => {
+      this.placeMarker(location);
     })
   }
 
@@ -266,7 +268,8 @@ class IndexMap extends React.Component{
       styles = STYLES["default"]
     }
     // apply styles by time of day
-    this.map.setOptions({ styles: styles});
+    this.map.setOptions({ styles: styles });
+    this.placeMarkers();
   }
 
   render(){
