@@ -233,7 +233,7 @@ class Map extends React.Component{
       style: "default"
     }
 
-    this.markers = {};
+    this.markers = [];
     this.handleChange = this.handleChange.bind(this);
   }
 
@@ -249,16 +249,17 @@ class Map extends React.Component{
       map: this.map
     })
 
+    // add marker to array of markers attribute
+    this.markers.push(marker)
+
     // center the map onto the location of click
     this.map.panTo(location);
 
     // set marker id, assign to object attribute
-    let id = marker.__gm_id;
-    this.markers[id] = marker;
+    let id = this.markers.indexOf(marker);
 
     // add a listener for right-click to delete the marker that is right-clicked
     window.google.maps.event.addListener(marker, "rightclick", (point) => {
-      id = this.__gm_id;
       this.deleteMarker(id);
     })
   }
