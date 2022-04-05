@@ -3,7 +3,7 @@ import EventIndex from "./event_index";
 import { fetchEvents } from "../../actions/event_actions";
 
 const mSTP = state => ({
-  allEvents: state.events.all
+  allEvents: Object.values(state.events.all)
 });
 
 const mDTP = dispatch => ({
