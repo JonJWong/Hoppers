@@ -1,12 +1,10 @@
-// Although there's only one function here so far, let's import the whole file since we will be adding more later
 import * as APIUtil from '../util/session_api_util';
 import jwt_decode from 'jwt-decode';
 
-// This pattern should be familiar to you from the full stack project
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
-export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
+// export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
 
 // We'll dispatch this when our user signs in
 export const receiveCurrentUser = currentUser => ({
@@ -15,9 +13,9 @@ export const receiveCurrentUser = currentUser => ({
 });
 
 // This will be used to redirect the user to the login page upon signup
-export const receiveUserSignIn = () => ({
-  type: RECEIVE_USER_SIGN_IN
-});
+// export const receiveUserSignIn = () => ({
+//   type: RECEIVE_USER_SIGN_IN
+// });
   
 // We dispatch this one to show authentication errors on the frontend
 export const receiveErrors = errors => ({

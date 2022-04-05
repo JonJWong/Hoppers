@@ -7,10 +7,32 @@
   border: 1px solid blue;
 }
 
-.event-show-content{
-  margin: 15px;
+.event-show-body{
+  display: flex;
   width: 80%;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid red;
+  margin: 15px;
+  padding: 15px;
+}
+
+.event-show-content{
+  margin-right: 30px;
+  width: 50%;
+  height: 500px;
   border: 1px solid orange;
+}
+
+.event-show-container h2{
+  font-size: 32px;
+  font-weight: 700;
+  padding-bottom: 6px;
+}
+
+.event-show-container h3{
+  font-size: 18px;
+  padding-bottom: 6px;
 }
 
 .map-control {
@@ -21,7 +43,6 @@
   margin: 10px;
   display: none;
 }
-
 
 #map-container .map-control {
   display: block;
@@ -40,3 +61,27 @@
 /* .gmnoprint div {
   background:none !important;
 } */
+
+.date-time-container{
+  margin-bottom: 15px;
+}
+
+.attendee-list{
+  border: 1px solid green;
+  margin-bottom: 15px;
+}
+
+.thread-index{
+  width: 80%;
+  border: 1px solid purple;
+}
+
+.thread-list-container{
+  width: 90%;
+  border: 1px solid red;
+  margin: 15px;
+}
+
+.thread-index-item{
+  border: 1px solid yellowgreen;
+}
