@@ -274,7 +274,7 @@ class IndexMap extends React.Component{
 
   render(){
     return(
-      <div id="map-container" ref={ map => this.mapNode = map }></div>
+      <div className="index-map-container" ref={ map => this.mapNode = map }></div>
     )
   }
 };
