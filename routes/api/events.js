@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const mongoose = require('mongoose')
-
+const User = require('../../models/User')
 const Event = require('../../models/Event');
 const Thread = require('../../models/Thread');
 const validateEventInput = require('../../validation/events')
@@ -19,7 +18,17 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   Event.findById(req.params.id)
     // Use Populate method to fill up with users and threads when we get to that part.
-    .then(event => res.json(event))
+    .populate({
+      path:"attendees",
+      model:"User"
+    })
+    .populate('owner')
+    .populate({
+      path: 'threads',
+      model: "Thread",
+      perDocumentLimit: 5
+    })
+    .then((event) => res.json(event))
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 });
 
@@ -55,7 +64,7 @@ router.delete('/:id',
 })
 
 // Update route for an Event
-router.patch('/:id',
+router.put('/:id',
   passport.authenticate('jwt', {session: false}), 
   (req, res) => {
     Event.findById(req.params.id)
@@ -105,8 +114,8 @@ router.post('/:id/pois',
   }
 )
 
-// PATCH route for poi(point of interet) inside of an event(embeded put)
-router.patch('/:id/pois/:poi_id', 
+// PUT/PATCH route for poi(point of interet) inside of an event(embeded put)
+router.put('/:id/pois/:poi_id', 
   passport.authenticate('jwt', {session: false}),
   (req, res) => {
     Event.findById(req.params.id)
@@ -116,7 +125,7 @@ router.patch('/:id/pois/:poi_id',
       event.PointsOfInterest.forEach( (poi, index) => 
         {if (poi.id === req.params.poi_id) 
           {
-            targetIndex = index;;
+            targetIndex = index;
           }}
       );
       // Error Message if id does not match any point of interest
@@ -151,37 +160,6 @@ router.delete('/:id/pois/:poi_id',
     res.json(event)})
   .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 })
-
-// PATCH route to add a user to the attendes of the Event
-router.patch('/:id/:user_id',
-  passport.authenticate('jwt', {session: false}),
-  (req, res) => {Event.findById(req.params.id)
-  .then( event => { 
-    event.attendees.push(req.params.user_id)
-    event.save();
-    res.json(event)})
-  .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
-})
-
-// DELETE route to remove user from attendes of the Event 
-router.delete('/:id/:user_id',
-  passport.authenticate('jwt', {session: false}),
-  (req, res) => {Event.findById(req.params.id)
-  .then( event => { 
-    let deleteIndex = -1
-    // Find Index of User to be deleted
-    event.attendees.forEach(function(attendee, index){
-      if(attendee.toString() === req.params.user_id){
-        deleteIndex = index;
-      }
-    })
-    if(deleteIndex === -1){return res.status(404).json({noAttendeeFound: "This event has no user with this ID"})}
-    event.attendees.splice(deleteIndex, 1)
-    event.save();
-    res.json(event)})
-  .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
-})
-
 
 module.exports = router;
 
