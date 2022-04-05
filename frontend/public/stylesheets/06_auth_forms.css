@@ -54,7 +54,7 @@
   font-size: 16px;
 }
 
-#login-page-header {
+#login-page-header, #signup-page-header {
   width: auto;
   padding: 20px;
   padding-top: 40px;
@@ -62,7 +62,7 @@
   text-align: center;
 }
 
-#login-page-inputs {
+#login-page-inputs, #signup-page-inputs {
   margin: 0 auto;
   width: 300px;
   display: flex;
@@ -77,7 +77,14 @@
   font-size: 20px;
 }
 
-#login-page-buttons {
+#signup-page-inputs > input {
+  padding: 5px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+#login-page-buttons, #signup-page-buttons {
   width: 300px;
   display: flex;
   justify-content: space-between;
@@ -86,7 +93,8 @@
   align-items: center;
 }
 
-#login-page-demo-login-button, #login-page-bottom-signup-button {
+#login-page-demo-login-button, #login-page-bottom-signup-button,
+#signup-page-demo-login-button, #signup-page-bottom-login-button {
   padding: 5px;
-  font-size: 24px;
+  font-size: 20px;
 }

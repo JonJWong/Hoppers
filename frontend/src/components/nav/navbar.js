@@ -43,22 +43,22 @@ class NavBar extends React.Component {
                 </button>
             </div>
         );
-      } else {
-        return (
-            <div id="nav-button-container">
-              <button
-                id="nav-bar-signup"
-                onClick={() => this.openModal("signup")}>
-                  Sign Up
-              </button>
-              <button
-                id="nav-bar-login"
-                onClick={() => this.openModal("login")}>
-                  Log In
-              </button>
-            </div>
-        );
-      }
+      }// else {
+      //   return (
+      //       <div id="nav-button-container">
+      //         <button
+      //           id="nav-bar-signup"
+      //           onClick={() => this.openModal("signup")}>
+      //             Sign Up
+      //         </button>
+      //         <button
+      //           id="nav-bar-login"
+      //           onClick={() => this.openModal("login")}>
+      //             Log In
+      //         </button>
+      //       </div>
+      //   );
+      // }
   }
 
   openModal(form) {

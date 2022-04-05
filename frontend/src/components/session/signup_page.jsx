@@ -1,53 +1,56 @@
 import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 
-class LoginPage extends React.Component {
+class SignupPage extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
+      email: '',
       username: '',
       password: '',
+      password2: '',
       errors: {}
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.renderErrors = this.renderErrors.bind(this);
+    this.clearedErrors = false;
   }
 
-  // Once the user has been authenticated, redirect to the Tweets page.
-  // N.B. Hitting the login endpoint is the only way to get authenticated in this app.
-  
-  
-  // Handle field updates (called in the render method)
+  // TODO: the demo code wanted to redirect to the login page after registering?
+  // Probably so that the user would then be prompted to login
+  componentDidUpdate(){
+    if(this.props.signedIn){
+      this.props.history.push('/login');
+    }
+  }
+
   update(field) {
     return e => this.setState({
       [field]: e.currentTarget.value
     });
   }
 
-  // Handle form submission
   handleSubmit(e) {
     e.preventDefault();
-
     let user = {
+      email: this.state.email,
       username: this.state.username,
-      password: this.state.password
+      password: this.state.password,
+      password2: this.state.password2
     };
 
-    this.props.login(user); 
+    this.props.signup(user, this.props.history); 
   }
 
   demoLogin() {
-    const demo = {
+    const user = {
       username: "coolguy123",
       password: "hoppers123"
     }
 
-    this.props.login(demo)
+    this.props.login(user)
   }
 
-  // Render the session errors if there are any
   renderErrors() {
     return(
       <ul>
@@ -62,10 +65,15 @@ class LoginPage extends React.Component {
 
   render() {
     return (
-      <div id="login-page-wrapper">
-        <h2 id="login-page-header">Log In</h2>
+      <div id="signup-page-wrapper">
+        <h2 id="signup-page-header">Sign Up</h2>
         <form onSubmit={this.handleSubmit}>
-          <div id="login-page-inputs">
+          <div id="signup-page-inputs">
+              <input type="text"
+                value={this.state.email}
+                onChange={this.update('email')}
+                placeholder="Email"
+              />
               <input type="text"
                 value={this.state.username}
                 onChange={this.update('username')}
@@ -76,25 +84,30 @@ class LoginPage extends React.Component {
                 onChange={this.update('password')}
                 placeholder="Password"
               />
+              <input type="password"
+                value={this.state.password2}
+                onChange={this.update('password2')}
+                placeholder="Confirm Password"
+              />
             <input type="submit" value="Submit" />
           </div>
         </form>
         
         {this.renderErrors()}
 
-        <div id="demo-login-container">
-          <h4 id="demo-login-header">Don't want to Log In?</h4>
-          <div id="login-page-buttons">
+        <div id="demo-signup-container">
+          <h4 id="demo-signup-header">Don't want to Sign Up?</h4>
+          <div id="signup-page-buttons">
             <button
-              id="login-page-demo-login-button"
+              id="signup-page-demo-login-button"
               onClick={() => this.demoLogin()}>
               Demo Login
             </button>
             <Link
-              to="/signup">
+              to="/login">
               <button
-                id="login-page-bottom-signup-button">
-                  Sign Up
+                id="signup-page-bottom-login-button">
+                  Log In
               </button>
             </Link>
           </div>
@@ -104,4 +117,4 @@ class LoginPage extends React.Component {
   }
 }
 
-export default withRouter(LoginPage);
+export default withRouter(SignupPage);
