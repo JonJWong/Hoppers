@@ -33,6 +33,10 @@
   width: 220px;
 }
 
+#nav-button-container button{
+  font-size: 14px;
+}
+
 #nav-bar-signup, #nav-bar-login, #nav-bar-logout {
   width: 100px;
   border-style: none;
@@ -82,7 +86,7 @@
   top: 0;
   bottom: 0;
   left: 0;
-  right: 80%;
+  right: 65%;
   background-color: white;
   z-index: 1;
   transform: translateX(-100%);

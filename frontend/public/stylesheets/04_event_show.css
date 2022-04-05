@@ -24,12 +24,14 @@
 }
 
 .event-show-details h2{
-  font-size: 24px;
-  font-weight: 600;
+  font-size: 32px;
+  font-weight: 700;
+  padding-bottom: 6px;
 }
 
 .event-show-details h3{
   font-size: 18px;
+  padding-bottom: 6px;
 }
 
 .map-control {
@@ -40,7 +42,6 @@
   margin: 10px;
   display: none;
 }
-
 
 #map-container .map-control {
   display: block;

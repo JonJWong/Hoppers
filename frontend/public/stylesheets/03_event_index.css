@@ -17,3 +17,13 @@
   padding: 10px;
   border: 1px solid red;
 }
+
+a {
+  color: #537895; 
+  transition: color .2s ease-out;
+}
+
+a:hover{
+  color: orange;
+}
+

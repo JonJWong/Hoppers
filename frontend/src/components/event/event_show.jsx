@@ -23,8 +23,8 @@ class EventShow extends React.Component{
         <div className="event-show-body">
           <div className="event-show-content">
             <div className="event-show-details">
-              <h2>Event Name: {event.name}</h2>
-              <h3>Description: {event.description}</h3>
+              <h2>{event.name}</h2>
+              <h3>{event.description}</h3>
               -----------------
               <div>Start Date: {getDate(event.startTime)}</div>
               <div>Start Time: {getTime(event.startTime)}</div>
