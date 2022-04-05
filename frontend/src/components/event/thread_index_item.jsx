@@ -10,6 +10,7 @@ class ThreadIndexItem extends React.Component{
         <br />
         the name of this thread is: {thread.name}
         <br />
+        This thread will be able to display all of the comments within.
       </div>
     )
   }

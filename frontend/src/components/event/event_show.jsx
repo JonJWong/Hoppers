@@ -22,11 +22,9 @@ class EventShow extends React.Component{
       <div className="event-show-container">
         <div className="event-show-body">
           <div className="event-show-content">
-            <div>
-              I am the event show content div
-              <div>My event ID is: {event._id}</div>
-              <div>Event Name: {event.name}</div>
-              <div>Description: {event.description}</div>
+            <div className="event-show-details">
+              <h2>Event Name: {event.name}</h2>
+              <h3>Description: {event.description}</h3>
               -----------------
               <div>Start Date: {getDate(event.startTime)}</div>
               <div>Start Time: {getTime(event.startTime)}</div>

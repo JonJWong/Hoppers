@@ -13,7 +13,7 @@ class ThreadIndex extends React.Component{
       <div className="thread-index">
         I am the thread index for a single event. I contain all threads for an event
         <br />
-        {threads.map(thread => (
+        {threads.map((thread,idx) => (
           <ThreadIndexItem key={thread._id} thread={thread} />
         ))}
       </div>

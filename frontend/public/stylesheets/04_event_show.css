@@ -23,6 +23,15 @@
   border: 1px solid orange;
 }
 
+.event-show-details h2{
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.event-show-details h3{
+  font-size: 18px;
+}
+
 .map-control {
   background-color: #fff;
   border: 1px solid #ccc;
@@ -59,4 +68,8 @@
 .thread-index{
   width: 80%;
   border: 1px solid purple;
+}
+
+.thread-index-item{
+  border: 1px solid yellowgreen;
 }
