@@ -54,7 +54,7 @@ router.delete('/:id',
 })
 
 // Update route for an Event
-router.put('/:id',
+router.patch('/:id',
   passport.authenticate('jwt', {session: false}), 
   (req, res) => {
     Event.findById(req.params.id)
@@ -104,8 +104,8 @@ router.post('/:id/pois',
   }
 )
 
-// PUT/PATCH route for poi(point of interet) inside of an event(embeded put)
-router.put('/:id/pois/:poi_id', 
+// PATCH route for poi(point of interet) inside of an event(embeded put)
+router.patch('/:id/pois/:poi_id', 
   passport.authenticate('jwt', {session: false}),
   (req, res) => {
     Event.findById(req.params.id)
