@@ -1,3 +1,15 @@
+.event-page-container{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.event-page-container h1{
+  font-size: 40px;
+}
+
 .event-index-container{
   border: 1px solid blue;
   display: flex;
@@ -17,3 +29,13 @@
   padding: 10px;
   border: 1px solid red;
 }
+
+a {
+  /* color: black;  */
+  transition: color .2s ease-out;
+}
+
+a:hover{
+  color: orange;
+}
+
