@@ -37,6 +37,6 @@
 .gmnoprint a, .gmnoprint span {
   display:none;
 }
-.gmnoprint div {
+/* .gmnoprint div {
   background:none !important;
-}
+} */
