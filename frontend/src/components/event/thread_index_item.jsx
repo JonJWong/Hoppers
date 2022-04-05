@@ -1,4 +1,5 @@
 import React from "react";
+import CommentIndex from "./comment_index";
 
 class ThreadIndexItem extends React.Component{
 
@@ -6,11 +7,10 @@ class ThreadIndexItem extends React.Component{
     const {thread} = this.props
     return(
       <div className="thread-index-item">
-        I am a thread.
-        <br />
-        the name of this thread is: {thread.name}
-        <br />
-        This thread will be able to display all of the comments within.
+        <h4>Thread name: {thread.name}</h4>
+        <div className="comment-index">
+          <CommentIndex comments={thread.comments} />
+        </div>
       </div>
     )
   }

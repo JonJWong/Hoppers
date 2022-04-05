@@ -127,11 +127,15 @@ class NavBar extends React.Component {
       }
     } else {
       return (
-        <button
-          id="nav-modal-signout"
-          onClick={this.modalLogout}>
-            Sign Out
-        </button>
+        <div> 
+          <h2>Hoppers</h2>
+          <h4>Hello {this.props.user.username}</h4>
+          <button
+            id="nav-modal-signout"
+            onClick={this.modalLogout}>
+              Sign Out
+          </button>
+        </div>
       )
     }
   }

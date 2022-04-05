@@ -5,10 +5,10 @@ class AttendeeIndex extends React.Component{
     const{attendees} = this.props;
     return(
       <div className="attendee-list">
-        I am the list of attendees
+        <h3>Attendee List</h3>
         {attendees.map(person => (
-          <div key={person}>
-            {person}
+          <div key={person.username}>
+            {person.username}
           </div>
         ))}
       </div>
