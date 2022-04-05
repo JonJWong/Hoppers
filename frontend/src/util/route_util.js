@@ -7,7 +7,7 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
   <Route path={path} exact={exact} render={(props) => (
     loggedIn ? (
       // Redirect to the tweets page if the user is authenticated
-      <Redirect to="/tweets" />
+      <Redirect to="/events" />
     ) : (
       <Component {...props} />
     )
