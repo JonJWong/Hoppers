@@ -47,15 +47,17 @@ router.delete('/:id',
     .then(res.json("Event deleted"))
 })
 
-// router.put('/:id',
-//   passport.authenticate('jwt', {session: false}), 
-//   (req, res) => {
-//     Event.findById(req.params.id)
-//     .then(event => event.update())
-//     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
+router.put('/:id',
+  passport.authenticate('jwt', {session: false}), 
+  (req, res) => {
+    Event.findById(req.params.id)
+    .then(function(event){
+      event.set(req.body)
+      res.json(event)})
+    .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 
-//   }
-// )
+  }
+)
 
 module.exports = router;
 
