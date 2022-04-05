@@ -1,0 +1,12 @@
+.event-show-container{
+  display: flex;
+  justify-content: center;
+  margin: 15px;
+  border: 1px solid blue;
+}
+
+.event-show-content{
+  margin: 15px;
+  width: 80%;
+  border: 1px solid orange;
+}

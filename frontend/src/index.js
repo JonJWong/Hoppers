@@ -10,6 +10,9 @@ import jwt_decode from 'jwt-decode';
 // The session utility we created to set the auth token header in all axios requests
 import { setAuthToken } from './util/session_api_util';
 
+// BEGIN TESTING
+import {getEvent} from "./util/event_api_util"
+
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -45,4 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const root = document.getElementById('root');
 
   ReactDOM.render(<Root store={store} />, root);
+
+
+
+
+  // BEGIN TESTING
+  window.getEvent = getEvent;
 });
