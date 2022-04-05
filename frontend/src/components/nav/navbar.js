@@ -59,15 +59,27 @@ class NavBar extends React.Component {
       }
   }
 
-  openModal() {
-    this.setState({ modalOpen: true });
+  openModal(form) {
+    form ||= "signup";
+    this.setState({
+      modalOpen: true,
+      currentForm: form
+    });
+    setTimeout(() => {
+      const modal = document.querySelector(".nav-modal-left-container");
+      modal.classList.add("modal-open")
+    }, 10)
   }
 
   closeModal() {
-    this.setState({
-      modalOpen: false,
-      currentForm: ""
-    });
+    const modal = document.querySelector(".nav-modal-left-container");
+    modal.classList.remove("modal-open")
+    modal.addEventListener("transitionend", () => {
+      this.setState({
+        modalOpen: false,
+        currentForm: ""
+      });
+    })
   }
 
   openForm(type) {
@@ -89,7 +101,7 @@ class NavBar extends React.Component {
         <div
           id="nav-modal-left-wrapper">
             <div
-              id="nav-modal-left-container">
+              className="nav-modal-left-container">
                 {this.renderForm()}
             </div>
           <div 
