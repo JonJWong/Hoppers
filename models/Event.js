@@ -34,11 +34,13 @@ const EventSchema = new Schema({
         type: Date, 
         required: true
       },
-      latitude: {
-        type: Number, 
-      },
-      longitude: {
-        type: Number, 
+      location: {
+        lat: {
+          type: Number, 
+        },
+        lng: {
+          type: Number, 
+        }
       },
       name: {
         type: String,
