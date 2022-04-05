@@ -72,13 +72,20 @@
   z-index: 5;
 }
 
-#nav-modal-left-block {
+.nav-modal-left-block {
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   background-color: rgba(80, 80, 80, .8);
+  transition: all .5s ease-out;
+  animation: fadeIn .2s;
+}
+
+@keyframes fadeIn {
+  0% {opacity:0;}
+  100% {opacity:1;}
 }
 
 .nav-modal-left-container {
@@ -95,6 +102,10 @@
 
 .modal-open {
   transform: translateX(0%);
+}
+
+.modal-fade {
+  background-color: rgba(80, 80, 80, 0);
 }
 
 #nav-modal-signout {

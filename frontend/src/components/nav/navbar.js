@@ -79,6 +79,8 @@ class NavBar extends React.Component {
 
   closeModal() {
     const modal = document.querySelector(".nav-modal-left-container");
+    const modal_blur = document.querySelector(".nav-modal-left-block");
+    modal_blur.classList.add("modal-fade")
     modal.classList.remove("modal-open")
     modal.addEventListener("transitionend", () => {
       this.setState({
@@ -144,7 +146,7 @@ class NavBar extends React.Component {
                 {this.renderForm()}
             </div>
           <div 
-            id="nav-modal-left-block"
+            className="nav-modal-left-block"
             onClick={() => this.closeModal()}>
           </div>
         </div>
