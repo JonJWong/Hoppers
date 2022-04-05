@@ -11,6 +11,8 @@ const validatePointOfInterestInput = require('../../validation/point-of-interest
 // GET route for all Event(index)
 router.get('/', (req, res) => {
   Event.find()
+    .select('-attendees')
+    .select('-threads')
     .then(events => res.json(events))
     .catch(err => res.status(404).json({ noeventsfound: 'No events found' }))
 });
