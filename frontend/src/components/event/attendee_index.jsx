@@ -1,6 +1,6 @@
 import React from "react";
 
-class ParticipantIndex extends React.Component{
+class AttendeeIndex extends React.Component{
   render(){
     const{attendees} = this.props;
     return(
@@ -16,4 +16,4 @@ class ParticipantIndex extends React.Component{
   }
 };
 
-export default ParticipantIndex;
+export default AttendeeIndex;
