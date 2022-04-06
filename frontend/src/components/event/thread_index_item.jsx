@@ -1,5 +1,6 @@
 import React from "react";
-import CommentIndex from "./comment_index.jsx";
+// import CommentIndex from "./comment_index.jsx";
+import CommentIndexContainer from "./comment_index_container.js";
 
 class ThreadIndexItem extends React.Component{
 
@@ -12,7 +13,7 @@ class ThreadIndexItem extends React.Component{
           <div> collapse icon</div>
         </div>
         <div className="comment-index">
-          <CommentIndex threadId={thread._id} comments={thread.comments} />
+          <CommentIndexContainer threadId={thread._id} comments={thread.comments} />
         </div>
       </div>
     )
