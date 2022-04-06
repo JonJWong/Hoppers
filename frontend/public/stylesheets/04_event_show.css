@@ -91,3 +91,15 @@
   font-style: italic;
   font-weight: 700;
 }
+
+.show-map-wrapper {
+  min-height: 500px;
+  width: 100%;
+  height: 100%;
+}
+
+.show-map-container {
+  width: 100%;
+  min-height: 500px;
+  height: 100%;
+}
