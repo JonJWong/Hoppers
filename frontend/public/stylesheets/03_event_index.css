@@ -49,6 +49,7 @@ a:hover{
 }
 
 .index-item-name {
+  padding-top: 10px;
   font-size: 24px;
   padding-bottom: 10px;
 }
