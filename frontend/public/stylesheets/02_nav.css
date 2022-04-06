@@ -1,8 +1,23 @@
 #nav-bar-wrapper {
   height: 98px;
-  bottom: 90%;
   background-color: #537895;
   z-index: 1;
+  width: 100%;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+
+.nav-filler{
+  height: 98px;
+  z-index: 7;
+}
+
+.title h2{
+  color: rgb(226, 240, 240);
+  text-shadow: 10px #eeeeee;
+  font-size: 38px;
 }
 
 #nav-bar-container {
@@ -12,7 +27,6 @@
   align-items: center;
   padding-left: 30px;
   padding-right: 30px;
-  border-bottom: 2px black solid;
 }
 
 #login-form-wrapper{
@@ -33,6 +47,7 @@
   border-style: none;
   font-size: 30px;
   cursor: pointer;
+  margin-right: 180px;
 }
 
 #nav-button-container {
@@ -121,8 +136,91 @@
 }
 
 #nav-modal-signout {
-  margin-left: 10%;
+  width: 50%;
+  font-size: 16px;
+}
+
+.modal-content-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+}
+
+.modal-profile-wrapper{
   width: 80%;
-  margin-top: 100px;
+}
+
+.modal-profile-container{
+  width: 90%;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+
+.modal-profile-container h4{
+  padding-bottom: 6px;
+}
+
+.modal-content-container a{
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #537895;
+}
+
+.modal-content-container a:hover{
+  color: #537895;
+}
+
+.select-none{
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+   -khtml-user-select: none; /* Konqueror HTML */
+     -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+          user-select: none;
+}
+
+.modal-content-container .circle{
+  background: rgba(176, 174, 174, 0.482);
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin-right: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-size: 20px;
+  /* font-weight: 600; */
+}
+
+.modal-content-container h4 {
+  font-size: 16px;
+}
+
+.modal-link{
+  padding-bottom: 24px;
+}
+
+.modal-links{
+  padding-left: 12px;
+}
+
+.modal-link a{
+  color: #383a34;
+  font-size: 20px;
+}
+
+.modal-link a:hover{
+  color: #383a34;
+  font-size: 20px;
+}
+
+.modal-link i{
+  font-size: 20px;
+  padding-right: 14px;
 }

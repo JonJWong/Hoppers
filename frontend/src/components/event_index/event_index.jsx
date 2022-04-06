@@ -22,7 +22,6 @@ class EventIndex extends React.Component{
   render(){
     return(
       <div className="event-page-container"> 
-        <h1>Hoppers</h1>
         <div className="event-index-container">
           {this.renderEvents()}
         </div>
