@@ -111,7 +111,7 @@ router.patch('/:id',
 
 /// Point of Interest Routes
 
-// GET route for poi(point of interest inside of an event 
+// GET route for poi(point of interest) inside of an event 
 router.get('/:id/pois/:poi_id',
   passport.authenticate('jwt', {session: false}),
   (req, res) => {Event.findById(req.params.id)
@@ -149,7 +149,7 @@ router.post('/:id/pois',
   }
 )
 
-// PATCH route for poi(point of interet) inside of an event
+// PATCH route for poi(point of interest) inside of an event
 router.patch('/:id/pois/:poi_id', 
   passport.authenticate('jwt', {session: false}),
   (req, res) => {
