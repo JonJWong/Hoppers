@@ -90,6 +90,15 @@ router.delete('/:id',
         user.events.splice(eventdeleteIndex, 1)
         user.save();
       })})
+      // Delete threads belonging to event
+      if (event.threads.length !== 0) {
+        console.log(event.threads)
+        event.threads.forEach(thread => {
+          Thread.findById(thread.toString())
+            .then(thread => thread.delete())
+        })
+      }
+      
     // Delete Event
       event.delete()    
     }

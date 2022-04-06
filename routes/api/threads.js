@@ -37,7 +37,7 @@ router.post('/',
     Event.findById(req.body.eventId)
       .then(currentEvent => {
         currentEvent.threads.push(newThread)
-        currentEvent.save().then(event => res.json(event))
+        currentEvent.save().then(event => res.json(newThread))
       })
   });
 
@@ -64,7 +64,7 @@ router.delete('/:id',
         currentEvent.save()
         })
         thread.delete()
-        res.json("Thread deleted")
+        res.json(thread)
       })
       .catch(err => res.status(404).json({ error: 'Error in Deletion' }))
     }
@@ -95,8 +95,10 @@ router.post('/:id/comments',
       .then(thread => {
         const { errors, isValid } = validateCommentInput(req.body);
         if (!isValid) {return res.status(400).json(errors)}
-
-        thread.comments.push(req.body)
+        let comment = req.body
+        // comment.time = Math.floor(Date.now() / 1000)
+        comment.time = new Date().toISOString()
+        thread.comments.push(comment)
         thread.save().then(thread => res.json(thread));
       })
       .catch(err => res.status(404).json({ nothreadfound: 'No thread found with that ID' }))
