@@ -19,7 +19,6 @@ class AttendeeIndex extends React.Component{
               {person.username}
             </div>
           ))}
-
       </div>
     )
   }

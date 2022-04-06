@@ -45,7 +45,10 @@ class EventShow extends React.Component{
           </div>
           
         </div>
-        <ThreadIndex threads={event.threads} />
+        <div className="interaction-container">
+          <ThreadIndex threads={event.threads} />
+          <AttendeeIndex attendees={event.attendees}/>
+        </div>
       </div>
     );
   };

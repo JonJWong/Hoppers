@@ -67,6 +67,21 @@
   margin-bottom: 15px;
 }
 
+<<<<<<< HEAD
+=======
+.attendee-list{
+  border: 1px solid green;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.attendee-list-container{
+  margin: 15px;
+}
+
+>>>>>>> 5910246 (Modal content (#49))
 .thread-index{
   width: 80%;
   border: 1px solid purple;
@@ -75,7 +90,7 @@
 }
 
 .thread-list-container{
-  width: 90%;
+  width: 60%;
   border: 1px solid red;
   margin: 15px;
 }
@@ -134,4 +149,9 @@
 
 .attendee-list-name {
   font-style: italic;
+}
+.interaction-container{
+  display: flex;
+  width: 80%;
+  margin: 15px;
 }
