@@ -31,7 +31,6 @@ router.post('/',
       name: req.body.name,
       event: req.body.eventId,
     })
-    console.log("monkey")
     newThread.save();
     // Add thread to correct event.
     Event.findById(req.body.eventId)
@@ -49,7 +48,6 @@ router.delete('/:id',
     Thread.findById(req.params.id)
       .then(function(thread){
         // Delete thread out of Event
-        console.log(thread.event.toString())
         Event.findById(thread.event.toString())
         .then(currentEvent => {
         let deleteIndex = -1
@@ -59,7 +57,6 @@ router.delete('/:id',
             deleteIndex = index;
           }
         }) 
-        console.log(deleteIndex)
         currentEvent.threads.splice(deleteIndex, 1) 
         currentEvent.save()
         })
@@ -74,7 +71,6 @@ router.delete('/:id',
 router.patch('/:id', 
   passport.authenticate('jwt', { session: false }), 
   (req, res) => {
-    console.log("hi")
     Thread.findById(req.params.id)
       .then(thread => {
         const { errors, isValid } = validateThreadInput(req.body);

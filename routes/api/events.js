@@ -92,7 +92,6 @@ router.delete('/:id',
       })})
       // Delete threads belonging to event
       if (event.threads.length !== 0) {
-        console.log(event.threads)
         event.threads.forEach(thread => {
           Thread.findById(thread.toString())
             .then(thread => thread.delete())
