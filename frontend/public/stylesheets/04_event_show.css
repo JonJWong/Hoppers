@@ -144,3 +144,15 @@
   padding-top: 5px;
   padding-bottom: 5px;
 }
+
+.event-show-body, .event-show-content,
+.event-show-details, .event-date, .event-time {
+  cursor: default;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
