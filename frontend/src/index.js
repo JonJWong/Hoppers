@@ -12,6 +12,7 @@ import { setAuthToken } from './util/session_api_util';
 
 // BEGIN TESTING
 import { getEvent, makeEvent, editEvent, deleteEvent } from "./util/event_api_util"
+import { getThreads, getThread, makeThread, editThread, deleteThread, makeComment, editComment, deleteComment } from "./util/thread_api_util"
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -53,4 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
   window.makeEvent = makeEvent;
   window.editEvent = editEvent;
   window.deleteEvent = deleteEvent;
+
+  window.getThreads = getThreads
+  window.getThread = getThread
+  window.makeThread = makeThread
+  window.editThread = editThread
+  window.deleteThread = deleteThread
+  window.makeComment = makeComment
+  window.editComment = editComment
+  window.deleteComment = deleteComment
 });
