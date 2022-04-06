@@ -68,4 +68,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.createComment = createComment
   window.updateComment = updateComment
+  window.dispatch = store.dispatch
 });
