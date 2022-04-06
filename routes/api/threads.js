@@ -95,8 +95,10 @@ router.post('/:id/comments',
       .then(thread => {
         const { errors, isValid } = validateCommentInput(req.body);
         if (!isValid) {return res.status(400).json(errors)}
-
-        thread.comments.push(req.body)
+        let comment = req.body
+        // comment.time = Math.floor(Date.now() / 1000)
+        comment.time = new Date().toISOString()
+        thread.comments.push(comment)
         thread.save().then(thread => res.json(thread));
       })
       .catch(err => res.status(404).json({ nothreadfound: 'No thread found with that ID' }))
