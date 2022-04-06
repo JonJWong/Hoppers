@@ -37,7 +37,7 @@ router.post('/',
     Event.findById(req.body.eventId)
       .then(currentEvent => {
         currentEvent.threads.push(newThread)
-        currentEvent.save().then(event => res.json(event))
+        currentEvent.save().then(event => res.json(newThread))
       })
   });
 

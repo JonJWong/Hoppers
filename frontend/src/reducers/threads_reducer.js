@@ -1,5 +1,5 @@
 import { RECEIVE_EVENT } from "../actions/event_actions"
-import { RECEIVE_THREAD } from "../actions/thread_actions";
+import { RECEIVE_THREAD, RECEIVE_NEW_THREAD } from "../actions/thread_actions";
 
 const threadReducer = (state = [], action) => {
   Object.freeze(state)
@@ -14,6 +14,9 @@ const threadReducer = (state = [], action) => {
         }
       })
       return newState
+    case RECEIVE_NEW_THREAD:
+      newState.push(action.thread.data)
+      return newState;
     default:
       return state;
   };
