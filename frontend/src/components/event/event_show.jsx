@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {getDate, getTime, getTimeZone} from "../../util/string_util";
+import { editComment } from "../../util/thread_api_util";
 import ShowMap from "../map/show_map";
 import AttendeeIndex from "./attendee_index";
 import ThreadIndex from "./thread_index";
@@ -12,6 +13,8 @@ class EventShow extends React.Component{
   };
 
   render(){
+    // check if current user is the owner. 
+    const editCapability = this.props?.event?.owner?._id === this.props.currentUser.id
     const {event, threads} = this.props
     if((!event)||(!event.attendees)) {
       return null
@@ -44,7 +47,9 @@ class EventShow extends React.Component{
           
         </div>
         <div className="interaction-container">
-          <ThreadIndex threads={threads} />
+          <ThreadIndex threads={threads} event={event}  deleteThread={this.props.deleteThread}
+          editCapability = {editCapability}
+          />
           <AttendeeIndex attendees={event.attendees}/>
         </div>
       </div>
