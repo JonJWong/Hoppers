@@ -11,8 +11,7 @@ import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 
 // BEGIN TESTING
-import {getEvent} from "./util/event_api_util"
-
+import { getEvent, makeEvent, editEvent, deleteEvent } from "./util/event_api_util"
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
@@ -51,4 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // BEGIN TESTING
   window.getEvent = getEvent;
+  window.makeEvent = makeEvent;
+  window.editEvent = editEvent;
+  window.deleteEvent = deleteEvent;
 });

@@ -74,9 +74,19 @@ router.patch('/:id',
   passport.authenticate('jwt', {session: false}), 
   (req, res) => {
     Event.findById(req.params.id)
-    .then(function(event){
-      event.set(req.body)
-      res.json(event)})
+    // .then(function(event){
+    //   event.set(req.body)
+    //   res.json(event)})
+      .then(event => {
+        const { errors, isValid } = validateEventInput(req.body);
+        if (!isValid) { return res.status(400).json(errors) }
+
+        event.name = req.body.name
+        event.description = req.body.description
+        event.startTime = req.body.startTime
+        event.endTime = req.body.endTime
+        event.save().then(event => res.json(event));
+      })
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 
   }
