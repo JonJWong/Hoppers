@@ -15,6 +15,7 @@
   border: 1px solid red;
   margin: 15px;
   padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .event-show-content{
@@ -24,13 +25,13 @@
   border: 1px solid orange;
 }
 
-.event-show-container h2{
+.event-show-title{
   font-size: 32px;
   font-weight: 700;
-  padding-bottom: 6px;
+  padding-bottom: 10px;
 }
 
-.event-show-container h3{
+.event-show-description {
   font-size: 18px;
   padding-bottom: 6px;
 }
@@ -68,16 +69,27 @@
 
 .attendee-list{
   border: 1px solid green;
+  width: 40%;
+  height: 70%;
   margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.attendee-list-container{
+  margin: 15px;
 }
 
 .thread-index{
   width: 80%;
   border: 1px solid purple;
+  z-index: 1;
+  background-color: white;
 }
 
 .thread-list-container{
-  width: 90%;
+  width: 60%;
   border: 1px solid red;
   margin: 15px;
 }
@@ -102,4 +114,71 @@
   width: 100%;
   min-height: 500px;
   height: 100%;
+}
+
+.event-date {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.event-show-body, .event-show-content,
+.event-show-details, .event-date, .event-time {
+  text-align: center;
+  cursor: default;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+
+.attendee-list{
+  border: 1px solid green;
+  margin-bottom: 15px;
+  height: 70%;
+}
+
+.attendee-list-title {
+  font-size: 18px;
+  padding-bottom: 10px;
+  text-decoration: underline;
+}
+
+.attendee-list-name {
+  font-style: italic;
+}
+
+.interaction-container{
+  display: flex;
+  width: 80%;
+  margin: 15px;
+}
+.event-date {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.event-show-body, .event-show-content,
+.event-show-details, .event-date, .event-time {
+  text-align: center;
+  cursor: default;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                supported by Chrome, Edge, Opera and Firefox */
+}
+
+.attendee-list-title {
+  font-size: 18px;
+  padding-bottom: 10px;
+  text-decoration: underline;
+}
+
+.attendee-list-name {
+  font-style: italic;
 }

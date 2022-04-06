@@ -1,7 +1,8 @@
-import { getEvents, getEvent } from "../util/event_api_util";
+import { getEvents, getEvent, makeEvent, editEvent, deleteEvent } from "../util/event_api_util";
 
 export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
+export const REMOVE_EVENT = "REMOVE_EVENT";
 
 export const receiveEvents = (events) => ({
   type: RECEIVE_EVENTS,
@@ -13,6 +14,11 @@ export const receiveEvent = (event) => ({
   event
 });
 
+export const removeEvent = (eventId) => ({
+  type: REMOVE_EVENT,
+  eventId
+});
+
 export const fetchEvents = () => dispatch => (
   getEvents()
     .then(events => dispatch(receiveEvents(events)))
@@ -22,5 +28,23 @@ export const fetchEvents = () => dispatch => (
 export const fetchEvent = (eventId) => dispatch => (
   getEvent(eventId)
     .then(event => dispatch(receiveEvent(event)))
+    .catch(err => console.log(err))
+);
+
+export const createEvent = (data) => dispatch => (
+  makeEvent(data)
+    .then(event => dispatch(receiveEvent(event)))
+    .catch(err => console.log(err))
+);
+
+export const updateEvent = (data) => dispatch => (
+  editEvent(data)
+    .then(event => dispatch(receiveEvent(event)))
+    .catch(err => console.log(err))
+);
+
+export const deleteCurrentEvent = (eventId) => dispatch => (
+  deleteEvent(eventId)
+    .then(() => dispatch(removeEvent(eventId)))
     .catch(err => console.log(err))
 );
