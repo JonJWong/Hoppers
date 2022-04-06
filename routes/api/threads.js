@@ -31,7 +31,7 @@ router.post('/',
       name: req.body.name,
       event: req.body.eventId,
     })
-
+    console.log("monkey")
     newThread.save();
     // Add thread to correct event.
     Event.findById(req.body.eventId)
@@ -74,7 +74,7 @@ router.delete('/:id',
 router.patch('/:id', 
   passport.authenticate('jwt', { session: false }), 
   (req, res) => {
-    
+    console.log("hi")
     Thread.findById(req.params.id)
       .then(thread => {
         const { errors, isValid } = validateThreadInput(req.body);

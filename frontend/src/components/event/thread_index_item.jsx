@@ -20,7 +20,7 @@ class ThreadIndexItem extends React.Component{
           <h3 className="thread-title">{thread.name}</h3>
           <div> collapse icon</div>
           {deleteButton}
-          {/* {editForm} */}
+          {editForm}
         </div>
         <div className="comment-index">
           <CommentIndexContainer threadId={thread._id} comments={thread.comments} />

@@ -10,6 +10,7 @@ class ThreadForm extends React.Component{
   }
 
   handleChange(type){
+    console.log(this.props.action)
     return (e) => {this.setState({[type]: e.currentTarget.value})}
   }
   
