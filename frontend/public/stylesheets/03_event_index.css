@@ -12,7 +12,7 @@
   font-size: 40px;
 }
 
-.event-index-container{
+#event-index-container {
   border: 1px solid blue;
   width: 90%;
   display: flex;
@@ -20,19 +20,43 @@
   justify-content: center;
 }
 
-.event-list{
+#event-list {
   margin: 15px;
   width: 90%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
 
-.event-index-item{
+#index-self-section {
+  margin: 15px;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#event-self-index-container {
+  border: 1px solid blue;
+  width: 90%;
+  display: flex;
+  margin: 15px;
+  justify-content: center;
+  overflow-y: scroll;
+}
+
+#self-event-list {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.event-index-item {
   height: auto;
   padding: 10px;
   border: 1px solid red;
   margin: 3%;
-  transition: box-shadow .5s ease-in-out;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 21px 22px, rgba(0, 0, 0, 0.12) 0px -6px 15px, rgba(0, 0, 0, 0.12) 0px 2px 3px, rgba(0, 0, 0, 0.17) 0px 6px 6.6px, rgba(0, 0, 0, 0.09) 0px -1px 2px;
+  transition: box-shadow .2s ease-in-out;
 }
 
 .event-index-item:hover {
@@ -59,13 +83,6 @@
 .index-item-date, .index-item-time {
   cursor: default;
   text-align: center;
-  -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 .index-item-name {
@@ -87,4 +104,52 @@
 .index-item-time {
   font-size: 14px;
   padding-bottom: 5px;
+}
+
+#index-self-top {
+  width: 100%;
+  background-color: white;
+  position: sticky;
+  top: 10px;
+  display: grid;
+  grid-template-columns: 160px auto;
+  padding: 10px;
+}
+
+#index-self-title {
+  justify-self: start;
+  align-self: center;
+  font-size: 22px;
+}
+
+#index-self-create {
+  font-size: 16px;
+  background-color: #eeeeee;
+  color: black;
+  border-style: none;
+  padding: 10px;
+  justify-self: start;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  transition: background-color .2s ease-out, color .2s ease-out;
+  cursor: pointer;
+}
+
+#index-self-create:hover {
+  background-color: #df7116;
+  color: #eeeeee;
+}
+
+#index-self-button-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+#event-public-title {
+  width: 90%;
+  padding-left: 10%;
+  font-size: 26px;
+  padding-top: 10px;
 }

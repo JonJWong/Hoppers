@@ -6,24 +6,65 @@ class EventIndex extends React.Component{
     this.props.fetchEvents();
   }
 
-  renderEvents(){
-    if (Object.values(this.props.allEvents).length === 0 ){
+  renderEventBar() {
+    return (
+      <div id="index-self-section">
+        <div id="index-self-top">
+          <div id="index-self-title">
+            Your Events:
+          </div>
+          <div id="index-self-button-container">
+            <button id="index-self-create">Create New Event</button>
+          </div>
+        </div>
+
+        {this.renderOwnEvents()}
+      </div>
+    )
+  }
+
+  renderOwnEvents() {
+    if(Object.values(this.props.allEvents).length === 0) {
       return null
     }
-    return(
-      <ul className="event-list">
-        {this.props.allEvents?.map(event => (
-          <EventIndexItem key={event._id} event={event} />
-        ))}
+
+    return (
+      <ul id="self-event-list">
+        {this.props.allEvents?.map(event => {
+          if (event.owner === this.props.user) {
+            return <EventIndexItem key={event._id} event={event} />
+          }
+        })}
       </ul>
     )
   }
 
-  render(){
+  renderForeignEvents() {
+    if (Object.values(this.props.allEvents).length === 0 ){
+      return null
+    }
+    return (
+      <ul id="event-list">
+        {this.props.allEvents?.map(event => {
+          if (event.owner !== this.props.user) {
+            return <EventIndexItem key={event._id} event={event} />
+          }
+        }
+        )}
+      </ul>
+    )
+  }
+
+  render() {
     return(
-      <div className="event-page-container"> 
-        <div className="event-index-container">
-          {this.renderEvents()}
+      <div className="event-page-container">
+        <div id="event-self-index-container">
+          {this.renderEventBar()}
+        </div>
+
+        <div id="event-public-title">Public Events:</div>
+        <div id="event-index-container">
+          {this.renderForeignEvents()}
         </div>
       </div>
     )
