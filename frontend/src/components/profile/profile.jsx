@@ -53,8 +53,10 @@ class Profile extends React.Component {
     return (
       <div className='profile-container'>
         <div className='profile-content'>
-          <div>Hello {this.props.currentUser.username}</div>
-          <Link to="/events">To events page</Link>
+          <div id="profile-greeting">Hello, {this.props.currentUser.username}</div>
+          <Link
+            to="/events"
+            id="profile-link">To events page</Link>
         </div>
         {this.renderEventBar()}
       </div>
