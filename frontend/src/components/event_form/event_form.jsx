@@ -130,8 +130,8 @@ class EventForm extends React.Component{
               />
           </div>
           
-          <div id="create-form-start-date-wrapper">
-            <div id ="create-form-start-date">Start Date</div>
+          <div id="create-form-end-time-wrapper">
+            <div id ="create-form-end-time">End Time</div>
               <input 
                 type="datetime-local"
                 value={this.state.endTime}

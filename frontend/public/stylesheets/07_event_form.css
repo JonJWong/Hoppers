@@ -51,11 +51,11 @@
 }
 
 #create-form-start-wrapper {
-  grid-area: 3 / 1 / 4 / 2;
+  grid-area: 2 / 1 / 3 / 2;
 }
 
-#create-form-start-date-wrapper {
-  grid-area: 2 / 1 / 3 / 2;
+#create-form-end-time-wrapper {
+  grid-area: 3 / 1 / 4 / 2;
 }
 
 #create-form-header {
@@ -93,11 +93,11 @@
 }
 
 #create-form-name-wrapper, #create-form-description-wrapper,
-#create-form-start-wrapper, #create-form-start-date-wrapper {
+#create-form-start-wrapper, #create-form-end-time-wrapper {
   padding: 5px;
 }
 
 #create-form-name,
-#create-form-start-time, #create-form-start-date {
+#create-form-start-time, #create-form-end-time {
   padding-bottom: 5px;
 }

@@ -223,7 +223,6 @@ class FunctionalMap extends React.Component{
       style: "default"
     }
 
-    this.clearMarkers = this.clearMarkers.bind(this);
     this.sendPois = this.sendPois.bind(this);
     this.markers = [];
   }
@@ -256,13 +255,6 @@ class FunctionalMap extends React.Component{
     marker.setMap(null);
   }
 
-  clearMarkers() {
-    this.markers.forEach(marker => {
-      marker.setMap(null)
-    })
-    this.markers = [];
-  }
-
   sendPois(e) {
     e.preventDefault();
     const points = [];
@@ -274,7 +266,7 @@ class FunctionalMap extends React.Component{
       newPoint.location = pos;
       points.push(newPoint)
     })
-    this.clearMarkers();
+    this.markers = [];
     this.props.accept("PointsOfInterest", points)
   }
 
