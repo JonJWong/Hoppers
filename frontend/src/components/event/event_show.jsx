@@ -34,6 +34,7 @@ class EventShow extends React.Component{
                 className="event-show-back-link">
                   Back To Events Index
               </Link>
+
             </div>
           </div>
 
