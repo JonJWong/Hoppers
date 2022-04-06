@@ -2,15 +2,14 @@ const express = require('express');
 const router = express.Router(); //gets router object
 const bcrypt = require('bcryptjs');
 const User = require('../../models/User');
+const Event = require('../../models/Event')
 const jwt = require('jsonwebtoken');
 const keys = require('../../config/keys');
 const passport = require('passport');
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
+const validateUserUpdate = require('../../validation/users')
 
-router.get('/test', (req, res) => {
-  res.json({msg: 'This is the user route'})
-});
 
 //private auth route for accessing user data on the frontend once logged in
 router.get('/current', 
@@ -77,7 +76,9 @@ router.post("/login", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
 
-  User.findOne({ username }).then(user => {
+  User.findOne({ username })
+  // .populate("events")
+  .then(user => {
     if (!user) {
       errors.username = "This user does not exist";
       return res.status(400).json(errors);
@@ -102,5 +103,45 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+// Patch route for User
+router.patch('/:id',
+  passport.authenticate('jwt', {session: false}),
+  (req, res) => {
+    const {errors, isValid} = validateUserUpdate(req.body);
+    if (!isValid){
+      return res.status(400).json(errors);
+    }
+    User.findById(req.params.id)
+    .then(user => {
+      user.set(req.body)
+      res.json(user)})
+    .catch(err => res.status(404).json({ noUserFound: "No user found with that ID"}))
+  }
+)
+
+router.delete('/:id',
+  passport.authenticate('jwt', {session: false}),
+  (req, res) => {
+    User.findById(req.params.id)
+    .then(user => {
+      user.events.forEach(function(event){
+        Event.findById(event.toString()).then(
+          function(event){
+            let deleteIndex = -1;
+            event.attendees.forEach(function(attendee, index)
+            {if(attendee.toString() === req.params.id)
+              {deleteIndex = index}
+            })
+            event.attendees.splice(deleteIndex, 1);
+            event.save()
+          }
+        )
+      })
+      user.delete();
+      res.json("User Annihilated")})
+    .catch(err => res.status(404).json({ noUserFound: "No user found with that ID"}))
+  }
+)
 
 module.exports = router;

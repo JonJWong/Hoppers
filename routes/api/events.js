@@ -106,7 +106,6 @@ router.patch('/:id',
       event.set(req.body)
       res.json(event)})
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
-
   }
 )
 
