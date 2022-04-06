@@ -16,14 +16,14 @@ class Profile extends React.Component {
 
   renderEventBar() {
     return (
-      <div id="index-self-section">
-        <div id="index-self-top">
-          <div id="index-self-title">
-            Your Events:
+      <div id="profile-self-section">
+        <div id="profile-self-top">
+          <div id="profile-self-title">
+            Events you're hosting:
           </div>
-          <div id="index-self-button-container">
+          <div id="profile-self-button-container">
             <Link to="events/create">
-              <button id="index-self-create">Create New Event</button>
+              <button id="profile-self-create">Create New Event</button>
             </Link>
           </div>
         </div>
@@ -41,7 +41,7 @@ class Profile extends React.Component {
     return (
       <ul id="profile-self-event-list">
         {this.props.allEvents?.map(event => {
-          if (event.owner === this.props.user) {
+          if (event.owner === this.props.currentUser.id) {
             return <EventIndexItem key={event._id} event={event} />
           }
         })}
