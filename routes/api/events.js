@@ -22,8 +22,8 @@ router.get('/:id', (req, res) => {
   Event.findById(req.params.id)
     // Use Populate method to fill up with users and threads when we get to that part.
     .populate({
-      path:"attendees",
-      model:"User",
+      path: 'attendees',
+      model: 'User',
       select: 'username'
     })
     .populate({
