@@ -7,7 +7,10 @@ class ThreadIndexItem extends React.Component{
     const {thread} = this.props
     return(
       <div className="thread-index-item">
-        <h4>Thread name: {thread.name}</h4>
+        <div className="thread-header-container">
+          <h3 className="thread-title">{thread.name}</h3>
+          <div> collapse icon</div>
+        </div>
         <div className="comment-index">
           <CommentIndex comments={thread.comments} />
         </div>

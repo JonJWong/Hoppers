@@ -88,6 +88,10 @@
   background-color: white;
 }
 
+.thread-index-title{
+  font-size: 26px;
+}
+
 .thread-list-container{
   width: 60%;
   border: 1px solid red;
@@ -96,6 +100,23 @@
 
 .thread-index-item{
   border: 1px solid yellowgreen;
+  margin: 10px;
+}
+
+.comment-box{
+  margin-bottom: 4px;
+  border-bottom: 1px solid #ccc;
+}
+
+.thread-header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thread-title{
+  font-size: 20px;
+  margin-bottom: 6px;
 }
 
 .comment-username{

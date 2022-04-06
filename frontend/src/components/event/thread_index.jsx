@@ -7,7 +7,7 @@ class ThreadIndex extends React.Component{
     if(!threads) return null
     return(
       <div className="thread-index">
-        <h3>Conversation Threads</h3>
+        <h3 className="thread-index-title">Conversation Threads</h3>
         <div className="thread-list-container">
           {threads.map((thread,idx) => (
             <ThreadIndexItem key={`${thread._id}+${idx}`} thread={thread} />
