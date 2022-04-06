@@ -64,7 +64,7 @@ router.delete('/:id',
         currentEvent.save()
         })
         thread.delete()
-        res.json("Thread deleted")
+        res.json(thread)
       })
       .catch(err => res.status(404).json({ error: 'Error in Deletion' }))
     }

@@ -12,7 +12,9 @@ class ThreadIndex extends React.Component{
           <CreateThreadContainer event = {this.props.event}/>
         <div className="thread-list-container">
           {threads.map((thread,idx) => (
-            <ThreadIndexItem key={`${thread._id}+${idx}`} thread={thread} />
+            <ThreadIndexItem key={`${thread._id}+${idx}`} thread={thread} 
+            deleteThread = {this.props.deleteThread}
+            />
           ))}
         </div>
       </div>

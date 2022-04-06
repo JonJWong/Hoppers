@@ -6,7 +6,7 @@ import {fetchEvent} from "../../actions/event_actions"
 const mSTP = (state, ownProps) => {
   return {
   thread: {
-    name: "Checking",
+    name: "",
     eventId: ownProps.event._id
   },
   formType: "Create Thread"
