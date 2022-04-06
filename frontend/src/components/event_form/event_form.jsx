@@ -58,8 +58,7 @@ class EventForm extends React.Component{
 
   renderPoiInputs() {
     let points = this.state.PointsOfInterest;
-    return this.state.PointsOfInterest.map((point, i) => {
-      const { lat, lng } = point.location;
+    return points.map((point, i) => {
       return (
         <div className="create-form-marker-input" key={i}>
 
