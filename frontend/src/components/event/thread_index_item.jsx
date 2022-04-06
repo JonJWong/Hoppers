@@ -12,7 +12,7 @@ class ThreadIndexItem extends React.Component{
           <div> collapse icon</div>
         </div>
         <div className="comment-index">
-          <CommentIndex comments={thread.comments} />
+          <CommentIndex threadId={thread._id} comments={thread.comments} />
         </div>
       </div>
     )
