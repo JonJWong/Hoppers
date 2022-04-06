@@ -8,8 +8,6 @@ const MAP_OPTIONS = {
   keyboardShortcuts: false,
   backgroundColor: 'none',
   fullscreenControl: false,
-  zoomControl: false,
-  gestureHandling: "none"
 };
 
 const STYLES = {
@@ -227,32 +225,49 @@ const STYLES = {
   ],
 };
 
-// Object.values(this.props.PointsOfInterest).map(point => {
-//   return point.location;
-// }) || 
 
-class IndexMap extends React.Component{
+class FunctionalMap extends React.Component{
   constructor(props){
     super(props)
+    this.state = {
+      style: "default"
+    }
 
-    this.markers = [{ lat: 37.7758, lng: -122.435 }]
-    this.placeMarkers = this.placeMarkers.bind(this);
-    this.placeMarker = this.placeMarker.bind(this);
+    this.markers = [];
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e){
+    this.setState({style: e.currentTarget.value});
+    this.map.setOptions({ styles: STYLES[e.currentTarget.value] });
   }
 
   placeMarker(location) {
-    // create marker at the location specified
+    // create marker at the location of the click event
     const marker = new window.google.maps.Marker({
       position: location,
       map: this.map
     })
+
+    // add marker to array of markers attribute
+    this.markers.push(marker)
+
+    // center the map onto the location of click
+    this.map.panTo(location);
+
+    // set marker id, assign to object attribute
+    let id = this.markers.indexOf(marker);
+
+    // add a listener for right-click to delete the marker that is right-clicked
+    window.google.maps.event.addListener(marker, "rightclick", (point) => {
+      this.deleteMarker(id);
+    })
   }
 
-  // create markers for all markers passed down;
-  placeMarkers() {
-    this.markers.forEach(location => {
-      this.placeMarker(location);
-    })
+  // helper to delete a marker at a set ID on the map
+  deleteMarker(id) {
+    const marker = this.markers[id];
+    marker.setMap(null);
   }
 
   componentDidMount() {
@@ -270,15 +285,34 @@ class IndexMap extends React.Component{
       styles = STYLES["default"]
     }
     // apply styles by time of day
-    this.map.setOptions({ styles: styles });
-    this.placeMarkers();
+    this.map.setOptions({ styles: styles});
+
+    // set up style control menu
+    const styleControl = document.getElementById("style-selector-control");
+
+    // add listener to map that creates markers on click
+    window.google.maps.event.addListener(this.map, "click", (e) => {
+      this.placeMarker(e.latLng, this.map)
+    })
+
+    // put style control on the top right of the map
+    this.map.controls[window.google.maps.ControlPosition.TOP_RIGHT].push(styleControl);
   }
 
   render(){
     return(
-      <div className="index-map-container" ref={ map => this.mapNode = map }></div>
+      <>
+        <div id="style-selector-control" className="map-control">
+          <select id="style-selector" className="selector-control" onChange={this.handleChange} value={this.state.style}>
+            <option value="default">Default</option>
+            <option value="dark">Night mode</option>
+            {/* <option value="hiding">Hide features</option> */}
+          </select>
+        </div>
+        <div id="functional-map-container" ref={ map => this.mapNode = map }></div> 
+      </>
     )
   }
 };
 
-export default IndexMap;
+export default FunctionalMap;
