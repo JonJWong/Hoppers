@@ -15,6 +15,7 @@
   border: 1px solid red;
   margin: 15px;
   padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .event-show-content{
@@ -69,6 +70,8 @@
 .thread-index{
   width: 80%;
   border: 1px solid purple;
+  z-index: 1;
+  background-color: white;
 }
 
 .thread-list-container{
