@@ -1,5 +1,5 @@
 import React from "react";
-import {getDate, getTime} from "../../util/string_util"
+import {getDate, getTime, getTimeZone} from "../../util/string_util"
 import { Link } from "react-router-dom";
 import IndexMap from "../map/index_map";
 
@@ -8,14 +8,12 @@ const EventIndexItem = ({event}) => (
     <div className="index-map-wrapper">
       <IndexMap PointsOfInterest={event.PointsOfInterest} />
     </div>
-    <div>Event Name: {event.name}</div>
-    <div>Description: {event.description}</div>
-    -----------------
-    <div>Start Date: {getDate(event.startTime)}</div>
-    <div>Start Time: {getTime(event.startTime)}</div>
-    -----------------
-    <div>End Date: {getDate(event.endTime)}</div>
-    <div>End Time: {getTime(event.endTime)}</div>
+    <h2 className="index-item-name">{event.name}</h2>
+    <h3 className="index-item-description">{event.description}</h3>
+    <div className="date-time-container">
+      <div className="index-item-date">{getDate(event.startTime)}</div>
+      <div className="index-item-time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
+    </div>
     <Link to={`events/${event._id}`}>To show page</Link>
   </li>
 );

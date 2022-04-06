@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const mongoose = require('mongoose')
-
+const User = require('../../models/User')
 const Event = require('../../models/Event');
 const Thread = require('../../models/Thread');
 const validateEventInput = require('../../validation/events')
@@ -48,6 +48,7 @@ router.post('/',
       return res.status(400).json(errors);
     }
 
+    // Create new Event
     const newEvent = new Event({
       name: req.body.name,
       description: req.body.description,
@@ -56,7 +57,16 @@ router.post('/',
       owner: req.user.id,
     })
 
-    newEvent.save().then(event => res.json(event));
+    // Add user id into attendes
+    newEvent.attendees.push(req.user.id)
+    newEvent.save().then(function(event){
+      // Add event to user events
+      User.findById(req.user.id).then( function(user){
+        user.events.push(event)
+        user.save();
+      })
+      res.json(event)})
+    ;
   });
 
 // DELETE route for an event(destroy)
@@ -65,7 +75,25 @@ router.delete('/:id',
   (req, res) => {
 
   Event.findById(req.params.id)
-    .then(event => event.delete())
+    .then(function(event) {
+      // Eliminate event from user's attending
+      event.attendees.forEach(attendee => {
+      User.findById(attendee.toString()).then(
+      user => {
+        let eventdeleteIndex = - 1
+        // Find index of Event to be deleted from Users
+        user.events.forEach(function (event,index){
+          if(event.toString() === req.params.id){
+            eventdeleteIndex = index;
+          }
+        })
+        user.events.splice(eventdeleteIndex, 1)
+        user.save();
+      })})
+    // Delete Event
+      event.delete()    
+    }
+    )
     .then(res.json("Event deleted"))
 })
 
@@ -88,13 +116,12 @@ router.patch('/:id',
         event.save().then(event => res.json(event));
       })
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
-
   }
 )
 
 /// Point of Interest Routes
 
-// GET route for poi(point of interest inside of an event (embedded index)
+// GET route for poi(point of interest) inside of an event 
 router.get('/:id/pois/:poi_id',
   passport.authenticate('jwt', {session: false}),
   (req, res) => {Event.findById(req.params.id)
@@ -114,7 +141,7 @@ router.get('/:id/pois/:poi_id',
 )
 
 
-// POST route for poi(point of interest) inside of an event (embedded create)
+// POST route for poi(point of interest) inside of an event 
 router.post('/:id/pois', 
   passport.authenticate('jwt', {session: false}),
   (req, res) => {
@@ -126,13 +153,13 @@ router.post('/:id/pois',
       let poi = req.body
       poi.location = {lng: req.body.longitude, lat: req.body.latitude}
       event.PointsOfInterest.push(poi);
-      // event.save()
+      event.save()
       res.json(event)})
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
   }
 )
 
-// PATCH route for poi(point of interet) inside of an event(embeded put)
+// PATCH route for poi(point of interest) inside of an event
 router.patch('/:id/pois/:poi_id', 
   passport.authenticate('jwt', {session: false}),
   (req, res) => {
@@ -151,8 +178,10 @@ router.patch('/:id/pois/:poi_id',
       // Check if body is a valid Point of Interest
       const { errors, isValid } = validatePointOfInterestInput(req.body);
       if (!isValid) {return res.status(400).json(errors);}
-      // Update correct Point of Interest
-      event.PointsOfInterest[targetIndex] = req.body;
+      // Update correct Point of Interest and add longitude and latitude to location
+      let poi = req.body
+      poi.location = {lng: req.body.longitude, lat: req.body.latitude}
+      event.PointsOfInterest[targetIndex] = poi;
       event.save()
       res.json(event)})
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
@@ -179,6 +208,9 @@ router.delete('/:id/pois/:poi_id',
   .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 })
 
+
+//// Routes to add/delete user from event
+
 // PATCH route to add a user to the attendes of the Event
 router.patch('/:id/:user_id',
   passport.authenticate('jwt', {session: false}),
@@ -186,11 +218,18 @@ router.patch('/:id/:user_id',
   .then( event => { 
     event.attendees.push(req.params.user_id)
     event.save();
-    res.json(event)})
+    // Push Event into user
+    User.findById(req.params.user_id)
+    .then( user => {
+      user.events.push(req.params.id);
+      user.save();
+    })
+    res.json(event);
+  })
   .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 })
 
-// DELETE route to remove user from attendes of the Event 
+// DELETE route to remove user from attendes of the event 
 router.delete('/:id/:user_id',
   passport.authenticate('jwt', {session: false}),
   (req, res) => {Event.findById(req.params.id)
@@ -202,9 +241,24 @@ router.delete('/:id/:user_id',
         deleteIndex = index;
       }
     })
+    // Delete User from Attendies
     if(deleteIndex === -1){return res.status(404).json({noAttendeeFound: "This event has no user with this ID"})}
     event.attendees.splice(deleteIndex, 1)
     event.save();
+    // Delete Event from Users Event List
+    User.findById(req.params.user_id).then(
+      user => {
+        let eventdeleteIndex = - 1
+        // Find index of Event to be deleted from Users
+        user.events.forEach(function (event,index){
+          if(event.toString() === req.params.id){
+            eventdeleteIndex = index;
+          }
+        })
+        user.events.splice(eventdeleteIndex, 1)
+        user.save();
+      }
+    )
     res.json(event)})
   .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 })

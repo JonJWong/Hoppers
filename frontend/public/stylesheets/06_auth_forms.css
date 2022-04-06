@@ -34,7 +34,7 @@
 #demo-signup-container, #demo-login-container {
   padding-top: 30px;
   margin: 0 auto;
-  width: 60%;
+  width: 75%;
   text-align: center;
 }
 
@@ -45,13 +45,14 @@
 
 #demo-signup-buttons, #demo-login-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 #login-demo-login-button, #login-bottom-signup-button,
-#signup-demo-login-button, #signup-bottom-login-button {
+#signup-demo-signup-button, #signup-bottom-login-button {
   padding: 5px;
   font-size: 16px;
+  width:130px;
 }
 
 #login-page-header, #signup-page-header {
@@ -87,7 +88,7 @@
 #login-page-buttons, #signup-page-buttons {
   width: 300px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   padding: 10px;
   margin: 0 auto;
   align-items: center;
@@ -97,4 +98,5 @@
 #signup-page-demo-login-button, #signup-page-bottom-login-button {
   padding: 5px;
   font-size: 20px;
+  width: 140px;
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import LoginFormContainer from "../session/login_form_container";
 import SignupFormContainer from "../session/signup_form_container";
+import NavProfile from './nav_profile';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -127,15 +128,11 @@ class NavBar extends React.Component {
       }
     } else {
       return (
-        <div> 
-          <h2>Hoppers</h2>
-          <h4>Hello {this.props.user.username}</h4>
-          <button
-            id="nav-modal-signout"
-            onClick={this.modalLogout}>
-              Sign Out
-          </button>
-        </div>
+        <NavProfile 
+          user={this.props.user} 
+          modalLogout={this.modalLogout}
+          closeModal={this.closeModal}
+        />
       )
     }
   }
@@ -160,17 +157,26 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <div id="nav-bar-wrapper">
-        <div id="nav-bar-container">
-          <button
-            id="nav-bar-burger"
-            onClick={() => this.openModal()}>
-            <i className="fa-solid fa-bars"></i>
-          </button>
-          { this.getLinks() }
+      <>
+        <div id="nav-bar-wrapper">
+          <div id="nav-bar-container">
+            <button
+              id="nav-bar-burger"
+              onClick={() => this.openModal()}>
+              <i className="fa-solid fa-bars"></i>
+            </button>
+            <Link to="/events">
+              <div className='title select-none'>
+                <h2>Hoppers</h2>
+              </div>
+            </Link>
+            { this.getLinks() }
+          </div>
+          { this.renderModal() }
+
         </div>
-        { this.renderModal() }
-      </div>
+        <div className='nav-filler'></div>
+      </>
     );
   }
 }
