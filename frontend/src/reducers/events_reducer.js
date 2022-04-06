@@ -1,4 +1,4 @@
-import {RECEIVE_EVENTS, RECEIVE_EVENT} from "../actions/event_actions"
+import { RECEIVE_EVENTS, RECEIVE_EVENT, REMOVE_EVENT } from "../actions/event_actions"
 
 const eventReducer = (state = { all: {}, user: {}, new: undefined }, action) => {
   Object.freeze(state)
@@ -13,6 +13,9 @@ const eventReducer = (state = { all: {}, user: {}, new: undefined }, action) => 
     case RECEIVE_EVENT:
       newState.all[action.event.data._id] = action.event.data;
       return newState;
+    case REMOVE_EVENT:
+      delete newState[action.eventId]
+      return newState
     default:
       return state;
   };
