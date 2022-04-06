@@ -84,7 +84,7 @@
 .thread-index{
   width: 80%;
   border: 1px solid purple;
-  z-index: 1;
+  /* z-index: 1; */
   background-color: white;
 }
 

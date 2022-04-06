@@ -12,7 +12,7 @@ class EventShow extends React.Component{
   };
 
   render(){
-    const {event} = this.props
+    const {event, threads} = this.props
     if((!event)||(!event.attendees)) {
       return null
     }
@@ -44,7 +44,7 @@ class EventShow extends React.Component{
           
         </div>
         <div className="interaction-container">
-          <ThreadIndex threads={event.threads} />
+          <ThreadIndex threads={threads} />
           <AttendeeIndex attendees={event.attendees}/>
         </div>
       </div>
