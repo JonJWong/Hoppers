@@ -29,8 +29,6 @@ class EventShow extends React.Component{
                 <div className="event-time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
               </div>
 
-              <AttendeeIndex attendees={event.attendees}/>
-
               <Link
                 to="/"
                 className="event-show-back-link">
