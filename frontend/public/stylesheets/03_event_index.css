@@ -44,18 +44,21 @@
   width: 100%;
 }
 
-.event-index-item > a {
-  /* color: black;  */
+.index-show-link {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
   transition: color .2s ease-out;
 }
 
-.event-index-item > a:hover{
+.index-show-link:hover{
   color: #df7116;
 }
 
 .index-item-name, .index-item-description,
 .index-item-date, .index-item-time {
   cursor: default;
+  text-align: center;
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
      -khtml-user-select: none; /* Konqueror HTML */

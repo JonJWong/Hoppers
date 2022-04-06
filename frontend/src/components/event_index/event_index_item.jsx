@@ -14,7 +14,11 @@ const EventIndexItem = ({event}) => (
       <div className="index-item-date">{getDate(event.startTime)}</div>
       <div className="index-item-time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
     </div>
-    <Link to={`events/${event._id}`}>To show page</Link>
+    <Link
+      to={`events/${event._id}`}
+      className="index-show-link">
+        To show page
+    </Link>
   </li>
 );
 

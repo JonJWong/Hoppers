@@ -268,6 +268,8 @@ class IndexMap extends React.Component{
 
     // add event listeners to container to zoom in and out
     // this is so jank but it works
+    // need to go up two parentElements since the map is wrapped with a wrapper
+    // element
     this.mapNode.parentElement.parentElement.addEventListener("mouseover", () => {
       this.map.setZoom(this.map.getZoom() - 1)
     })
