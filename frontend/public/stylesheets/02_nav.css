@@ -136,7 +136,7 @@
 }
 
 #nav-modal-signout {
-  width: 30%;
+  width: 50%;
   font-size: 16px;
 }
 
@@ -146,24 +146,33 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  margin: 20px;
+}
+
+.modal-profile-wrapper{
+  width: 80%;
 }
 
 .modal-profile-container{
   width: 90%;
-  margin: 20px;
+  margin-bottom: 20px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
-.modal-profile-container a{
+.modal-profile-container h4{
+  padding-bottom: 6px;
+}
+
+.modal-content-container a{
   text-decoration: none;
   font-size: 14px;
   font-weight: 600;
   color: #537895;
 }
 
-.modal-profile-container a:hover{
+.modal-content-container a:hover{
   color: #537895;
 }
 
@@ -181,7 +190,7 @@
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  margin-right: 8px;
+  margin-right: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -191,4 +200,27 @@
 
 .modal-content-container h4 {
   font-size: 16px;
+}
+
+.modal-link{
+  padding-bottom: 24px;
+}
+
+.modal-links{
+  padding-left: 12px;
+}
+
+.modal-link a{
+  color: #383a34;
+  font-size: 20px;
+}
+
+.modal-link a:hover{
+  color: #383a34;
+  font-size: 20px;
+}
+
+.modal-link i{
+  font-size: 20px;
+  padding-right: 14px;
 }
