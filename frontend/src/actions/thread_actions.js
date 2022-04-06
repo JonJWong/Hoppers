@@ -7,6 +7,12 @@ export const receiveThread = (thread) => ({
   thread
 });
 
+export const createThread = (thread) => dispatch => {
+  ThreadApiUtil.makeThread(thread)
+  .then(thread => dispatch(receiveThread(thread)))
+  .catch(err => console.log(err))
+}
+
 export const createComment = (threadId, comment) => dispatch => (
   ThreadApiUtil.makeComment(threadId, comment)
     .then(thread => dispatch(receiveThread(thread)))

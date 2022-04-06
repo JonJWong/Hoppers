@@ -1,24 +1,18 @@
-import { connect } from "react-redux";
-import ThreadForm from "./event_form";
-import { createThread } from "../../actions/thread_actions";
-import { withRouter } from "react-router-dom";
+// import { connect } from "react-redux";
+// import ThreadForm from "./thread_form";
+// import { createThread } from "../../actions/thread_actions";
 
-const mSTP = (state) => ({
-  event: {
-    name: "",
-    description: "",
-    startDate: "",
-    endDate: "",
-    startTime: "",
-    endTime: "",
-    owner: state.session.user.id
-  },
-  formType: "Create The Ultimate Event!"
-})
+// const mSTP = (state, ownProps) => ({
+//   thread: {
+//     name: "",
+//     event: state.event.all[ownProps.match.params.eventId]
+//   },
+//   formType: "Create Thread"
+// })
 
-const mDTP = dispatch => ({
-  action: (event) => dispatch(createEvent(event))
-})
+// const mDTP = dispatch => ({
+//   action: (thread) => dispatch(createThread(thread))
+// })
 
 
-export default withRouter(connect(mSTP, mDTP)(EventForm))
+// export default (connect(mSTP, mDTP)(ThreadForm))
