@@ -132,7 +132,10 @@ class NavBar extends React.Component {
             <div className='circle select-none'>
               {this.props.user.username[0]}
             </div>
-            <h4>{this.props.user.username}</h4>
+            <div>
+              <h4>{this.props.user.username}</h4>
+              <Link to={'/profile'}>My Profile</Link>
+            </div>
           </div>
           <button
             id="nav-modal-signout"
@@ -172,11 +175,15 @@ class NavBar extends React.Component {
               onClick={() => this.openModal()}>
               <i className="fa-solid fa-bars"></i>
             </button>
+            <div className='title'>
+              <h2>Hoppers</h2>
+            </div>
             { this.getLinks() }
           </div>
           { this.renderModal() }
+
         </div>
-        <div className='nav-filler'>&nbsp;</div>
+        <div className='nav-filler'></div>
       </>
     );
   }

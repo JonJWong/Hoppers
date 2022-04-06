@@ -1,9 +1,7 @@
 #nav-bar-wrapper {
   height: 98px;
-  bottom: 90%;
   background-color: #537895;
   z-index: 1;
-  /* position: fixed; */
   width: 100%;
   position: fixed;
   width: 100%;
@@ -13,6 +11,13 @@
 
 .nav-filler{
   height: 98px;
+  z-index: 7;
+}
+
+.title h2{
+  color: rgb(226, 240, 240);
+  text-shadow: 10px #eeeeee;
+  font-size: 38px;
 }
 
 #nav-bar-container {
@@ -22,7 +27,6 @@
   align-items: center;
   padding-left: 30px;
   padding-right: 30px;
-  /* border-bottom: 2px black solid; */
 }
 
 #login-form-wrapper{
@@ -43,6 +47,7 @@
   border-style: none;
   font-size: 30px;
   cursor: pointer;
+  margin-right: 180px;
 }
 
 #nav-button-container {
@@ -145,10 +150,21 @@
 
 .modal-profile-container{
   width: 90%;
-  border: 1px solid red;
   margin: 20px;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.modal-profile-container a{
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  color: #537895;
+}
+
+.modal-profile-container a:hover{
+  color: #537895;
 }
 
 .select-none{
