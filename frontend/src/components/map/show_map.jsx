@@ -8,8 +8,8 @@ const MAP_OPTIONS = {
   keyboardShortcuts: false,
   backgroundColor: 'none',
   fullscreenControl: false,
-  maxZoom: 16,
-  minZoom: 13
+  maxZoom: 18,
+  minZoom: 14
 };
 
 const STYLES = {
