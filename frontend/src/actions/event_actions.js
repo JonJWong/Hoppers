@@ -15,7 +15,7 @@ export const receiveEvent = (event) => ({
 });
 
 export const removeEvent = (eventId) => ({
-  tpye: REMOVE_EVENT,
+  type: REMOVE_EVENT,
   eventId
 });
 
