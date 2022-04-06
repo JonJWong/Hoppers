@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 const mongoose = require('mongoose')
-
+const User = require('../../models/User')
 const Event = require('../../models/Event');
 const Thread = require('../../models/Thread');
 const validateEventInput = require('../../validation/events')
@@ -176,7 +176,14 @@ router.patch('/:id/:user_id',
   .then( event => { 
     event.attendees.push(req.params.user_id)
     event.save();
-    res.json(event)})
+    // Push Event into user
+    User.findById(req.params.user_id)
+    .then( user => {
+      user.events.push(req.params.id);
+      user.save();
+    })
+    res.json(event);
+  })
   .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 })
 
@@ -197,7 +204,19 @@ router.delete('/:id/:user_id',
     event.attendees.splice(deleteIndex, 1)
     event.save();
     // Delete Event from Users Event List
-
+    User.findById(req.params.user_id).then(
+      user => {
+        let eventdeleteIndex = - 1
+        // Find index of Event to be deleted from Users
+        user.events.forEach(function (event,index){
+          if(event.toString() === req.params.event_id){
+            eventdeleteIndex = index;
+          }
+        })
+        user.events.splice(eventdeleteIndex, 1)
+        user.save();
+      }
+    )
     res.json(event)})
   .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 })
