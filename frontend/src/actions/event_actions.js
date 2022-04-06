@@ -31,14 +31,14 @@ export const fetchEvent = (eventId) => dispatch => (
     .catch(err => console.log(err))
 );
 
-export const createEvent = (eventId, data) => dispatch => (
-  makeEvent(eventId, data)
+export const createEvent = (data) => dispatch => (
+  makeEvent(data)
     .then(event => dispatch(receiveEvent(event)))
     .catch(err => console.log(err))
 );
 
-export const updateEvent = (eventId, data) => dispatch => (
-  editEvent(eventId, data)
+export const updateEvent = (data) => dispatch => (
+  editEvent(data)
     .then(event => dispatch(receiveEvent(event)))
     .catch(err => console.log(err))
 );
