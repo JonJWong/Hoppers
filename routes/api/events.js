@@ -48,6 +48,7 @@ router.post('/',
       return res.status(400).json(errors);
     }
 
+    // Create new Event
     const newEvent = new Event({
       name: req.body.name,
       description: req.body.description,
@@ -56,7 +57,16 @@ router.post('/',
       owner: req.user.id,
     })
 
-    newEvent.save().then(event => res.json(event));
+    // Add user id into attendes
+    newEvent.attendees.push(req.user.id)
+    newEvent.save().then(function(event){
+      // Add event to user events
+      User.findById(req.user.id).then( function(user){
+        user.events.push(event)
+        user.save();
+      })
+      res.json(event)})
+    ;
   });
 
 // DELETE route for an event(destroy)
