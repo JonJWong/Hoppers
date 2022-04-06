@@ -265,15 +265,17 @@ class FunctionalMap extends React.Component{
 
   sendPois(e) {
     e.preventDefault();
-    const markers = [];
+    const points = [];
     this.markers.forEach(marker => {
       const pos = {};
+      const newPoint = {};
       pos["lat"] = marker.position.lat();
       pos["lng"] = marker.position.lng();
-      markers.push(pos);
+      newPoint.location = pos;
+      points.push(newPoint)
     })
     this.clearMarkers();
-    this.props.accept("markers", markers)
+    this.props.accept("PointsOfInterest", points)
   }
 
   componentDidMount() {

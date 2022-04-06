@@ -25,24 +25,15 @@ class EventForm extends React.Component{
     return (e) => {this.setState({[field]: e.currentTarget.value})}
   }
 
-  updatePoi(index, type, marker, e) {
+  updatePoi(e, i, point, field) {
     e.preventDefault();
+
     const points = this.state.PointsOfInterest;
-    const { lat, lng } = marker;
-    const newPoint = {
-      startTime: points[index]?.startTime,
-      endTime: points[index]?.endTime,
-      location: { lat: lat, lng: lng },
-      name: points[index]?.name,
-      description: points[index]?.description
-    }
-
-    newPoint[type] = e.currentTarget.value;
-
-    points[index] = newPoint;
+    const newPoint = point;
+    newPoint[field] = e.currentTarget.value;
+    points[i] = newPoint;
 
     this.setState({ PointsOfInterest: points });
-    console.log(this.state.PointsOfInterest)
   }
   
   handleSubmit(e) {
@@ -61,36 +52,41 @@ class EventForm extends React.Component{
 
   deletePoi(i, e) {
     e.preventDefault();
-    let markers = this.state.markers;
-    markers.splice(i, 1);
-    this.setState({ markers: markers })
+    let points = this.state.PointsOfInterest;
+    points.splice(i, 1);
+    this.setState({ PointsOfInterest: points });
   }
 
   renderPoiInputs() {
-    return this.state.markers.map((marker, i) => {
-      const { lat, lng } = marker;
+    return this.state.PointsOfInterest.map((point, i) => {
+      const { lat, lng } = point.location;
       return (
-        <div className="create-form-marker-input" key={marker + i}>
+        <div className="create-form-marker-input" key={point + i}>
+
           <div className="poi-name">Name</div>
           <input
             type="text"
-            onChange={(e) => this.updatePoi(i, "name", marker, e)}
+            onChange={(e) => this.updatePoi(e, i, point, "name")}
             placeholder={`Point of Interest ${i + 1} name`}/>
+
           <div className="poi-start">Start Time</div>
           <input
             type="text"
-            onChange={(e) => this.updatePoi(i, "startTime", marker, e)}
+            onChange={(e) => this.updatePoi(e, i, point, "startTime")}
             placeholder={`Point of Interest ${i + 1} start time`}/>
+
           <div className="poi-end">End Time</div>
           <input
             type="text"
-            onChange={(e) => this.updatePoi(i, "endTime", marker, e)}
+            onChange={(e) => this.updatePoi(e, i, point, "endTime")}
             placeholder={`Point of Interest ${i + 1} end time`}/>
+
           <div className="poi-description">Description</div>
           <input
             type="text"
-            onChange={(e) => this.updatePoi(i, "description", marker, e)}
+            onChange={(e) => this.updatePoi(e, i, point, "description")}
             placeholder={`Point of Interest ${i + 1} description`}/>
+
           <button
             onClick={e => {this.deletePoi(i, e)}}
             className="poi-delete"><i className="fa-solid fa-x"></i></button>
