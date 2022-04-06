@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {getDate, getTime, getTimeZone} from "../../util/string_util";
-import DisplayMap from "../map/display_map";
+import ShowMap from "../map/show_map";
 import AttendeeIndex from "./attendee_index";
 import ThreadIndex from "./thread_index";
 
@@ -30,8 +30,12 @@ class EventShow extends React.Component{
               <AttendeeIndex attendees={event.attendees}/>
               <Link to="/">Back To Events Index</Link>
             </div>
-          </div>  
-          <DisplayMap PointsOfInterest={event.PointsOfInterest} />
+          </div>
+
+          <div className="show-map-wrapper">
+            <ShowMap PointsOfInterest={event.PointsOfInterest} />
+          </div>
+          
         </div>
         <ThreadIndex threads={event.threads} />
       </div>

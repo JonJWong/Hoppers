@@ -1,11 +1,13 @@
 import React from "react";
 import {getDate, getTime} from "../../util/string_util"
 import { Link } from "react-router-dom";
-import DisplayMap from "../map/display_map";
+import IndexMap from "../map/index_map";
 
 const EventIndexItem = ({event}) => (
   <li className="event-index-item">
-    <DisplayMap PointsOfInterest={event.PointsOfInterest} />
+    <div className="index-map-wrapper">
+      <IndexMap PointsOfInterest={event.PointsOfInterest} />
+    </div>
     <div>Event Name: {event.name}</div>
     <div>Description: {event.description}</div>
     -----------------

@@ -8,8 +8,8 @@ const MAP_OPTIONS = {
   keyboardShortcuts: false,
   backgroundColor: 'none',
   fullscreenControl: false,
-  zoomControl: false,
-  gestureHandling: "none"
+  maxZoom: 16,
+  minZoom: 13
 };
 
 const STYLES = {
@@ -231,7 +231,7 @@ const STYLES = {
 //   return point.location;
 // }) || 
 
-class DisplayMap extends React.Component{
+class ShowMap extends React.Component{
   constructor(props){
     super(props)
 
@@ -276,9 +276,9 @@ class DisplayMap extends React.Component{
 
   render(){
     return(
-      <div className="index-map-container" ref={ map => this.mapNode = map }></div>
+      <div className="show-map-container" ref={ map => this.mapNode = map }></div>
     )
   }
 };
 
-export default DisplayMap;
+export default ShowMap;
