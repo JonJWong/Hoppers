@@ -75,7 +75,25 @@ router.delete('/:id',
   (req, res) => {
 
   Event.findById(req.params.id)
-    .then(event => event.delete())
+    .then(function(event) {
+      // Eliminate event from user's attending
+      event.attendees.forEach(attendee => {
+      User.findById(attendee.toString()).then(
+      user => {
+        let eventdeleteIndex = - 1
+        // Find index of Event to be deleted from Users
+        user.events.forEach(function (event,index){
+          if(event.toString() === req.params.id){
+            eventdeleteIndex = index;
+          }
+        })
+        user.events.splice(eventdeleteIndex, 1)
+        user.save();
+      })})
+    // Delete Event
+      event.delete()    
+    }
+    )
     .then(res.json("Event deleted"))
 })
 
@@ -219,7 +237,7 @@ router.delete('/:id/:user_id',
         let eventdeleteIndex = - 1
         // Find index of Event to be deleted from Users
         user.events.forEach(function (event,index){
-          if(event.toString() === req.params.event_id){
+          if(event.toString() === req.params.id){
             eventdeleteIndex = index;
           }
         })
