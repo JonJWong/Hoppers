@@ -57,6 +57,13 @@ router.post('/',
       owner: req.user.id,
     })
 
+    req.body.PointsOfInterest.forEach((poi) => {
+      const { errors, isValid } = validatePointOfInterestInput(poi);
+      // // Check if is a valid Point of Interest
+      if (!isValid) {return res.status(400).json(errors);}
+      newEvent.PointsOfInterest.push(poi);
+    })
+    
     // Add user id into attendes
     newEvent.attendees.push(req.user.id)
     newEvent.save().then(function(event){
