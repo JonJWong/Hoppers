@@ -16,6 +16,8 @@ class ThreadForm extends React.Component{
   handleSubmit(e){
     e.preventDefault();
     this.props.action(this.state)
+    // Clear input if create thread 
+    if(this.props.formType === "Create Thread") {this.setState({["name"]: ""})}
   }
 
   render(){  

@@ -12,8 +12,8 @@ export const makeThread = (data) => {
   return axios.post('/api/threads', data)
 };
 
-export const editThread = (threadId, data) => {
-  return axios.patch(`/api/threads/${threadId}`, data)
+export const editThread = (data) => {
+  return axios.patch(`/api/threads/${data._id}`, data)
 };
 
 export const deleteThread = (threadId) => {
