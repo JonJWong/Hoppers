@@ -226,7 +226,7 @@ const STYLES = {
 };
 
 
-class Map extends React.Component{
+class FunctionalMap extends React.Component{
   constructor(props){
     super(props)
     this.state = {
@@ -315,4 +315,4 @@ class Map extends React.Component{
   }
 };
 
-export default Map;
+export default FunctionalMap;

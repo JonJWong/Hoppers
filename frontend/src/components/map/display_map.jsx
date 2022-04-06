@@ -231,7 +231,7 @@ const STYLES = {
 //   return point.location;
 // }) || 
 
-class IndexMap extends React.Component{
+class DisplayMap extends React.Component{
   constructor(props){
     super(props)
 
@@ -281,4 +281,4 @@ class IndexMap extends React.Component{
   }
 };
 
-export default IndexMap;
+export default DisplayMap;
