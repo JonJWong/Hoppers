@@ -8,10 +8,15 @@ class AttendeeIndex extends React.Component{
     }
     return(
       <div className="attendee-list">
-        <h3>Attendee List</h3>
+        <h3 className="attendee-list-title">
+          Attendee List
+        </h3>
+        
         <div className="attendee-list-container">
           {attendees.map(person => (
-            <div key={person.username}>
+            <div
+              key={person.username}
+              className="attendee-list-name">
               {person.username}
             </div>
           ))}
