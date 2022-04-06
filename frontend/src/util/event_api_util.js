@@ -12,8 +12,8 @@ export const makeEvent = (data) => {
   return axios.post('/api/events', data)
 };
 
-export const editEvent = (eventId, data) => {
-  return axios.patch(`/api/events/${eventId}`, data)
+export const editEvent = (data) => {
+  return axios.patch(`/api/events/${data._id}`, data)
 }
 
 export const deleteEvent = (eventId) => {
