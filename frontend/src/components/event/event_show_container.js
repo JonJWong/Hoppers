@@ -4,7 +4,8 @@ import { fetchEvent } from "../../actions/event_actions";
 
 const mSTP = (state, ownProps) => {
   return { 
-    event: state.events.all[ownProps.match.params.eventId]
+    event: state.events.all[ownProps.match.params.eventId],
+    threads: state.threads
   }
 };
 
