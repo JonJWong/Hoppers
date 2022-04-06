@@ -165,9 +165,11 @@ class NavBar extends React.Component {
               onClick={() => this.openModal()}>
               <i className="fa-solid fa-bars"></i>
             </button>
-            <div className='title'>
-              <h2>Hoppers</h2>
-            </div>
+            <Link to="/events">
+              <div className='title select-none'>
+                <h2>Hoppers</h2>
+              </div>
+            </Link>
             { this.getLinks() }
           </div>
           { this.renderModal() }
