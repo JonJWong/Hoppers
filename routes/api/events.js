@@ -106,13 +106,12 @@ router.patch('/:id',
       event.set(req.body)
       res.json(event)})
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
-
   }
 )
 
 /// Point of Interest Routes
 
-// GET route for poi(point of interest inside of an event (embedded index)
+// GET route for poi(point of interest) inside of an event 
 router.get('/:id/pois/:poi_id',
   passport.authenticate('jwt', {session: false}),
   (req, res) => {Event.findById(req.params.id)
@@ -132,7 +131,7 @@ router.get('/:id/pois/:poi_id',
 )
 
 
-// POST route for poi(point of interest) inside of an event (embedded create)
+// POST route for poi(point of interest) inside of an event 
 router.post('/:id/pois', 
   passport.authenticate('jwt', {session: false}),
   (req, res) => {
@@ -144,13 +143,13 @@ router.post('/:id/pois',
       let poi = req.body
       poi.location = {lng: req.body.longitude, lat: req.body.latitude}
       event.PointsOfInterest.push(poi);
-      // event.save()
+      event.save()
       res.json(event)})
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
   }
 )
 
-// PATCH route for poi(point of interet) inside of an event(embeded put)
+// PATCH route for poi(point of interest) inside of an event
 router.patch('/:id/pois/:poi_id', 
   passport.authenticate('jwt', {session: false}),
   (req, res) => {
@@ -169,8 +168,10 @@ router.patch('/:id/pois/:poi_id',
       // Check if body is a valid Point of Interest
       const { errors, isValid } = validatePointOfInterestInput(req.body);
       if (!isValid) {return res.status(400).json(errors);}
-      // Update correct Point of Interest
-      event.PointsOfInterest[targetIndex] = req.body;
+      // Update correct Point of Interest and add longitude and latitude to location
+      let poi = req.body
+      poi.location = {lng: req.body.longitude, lat: req.body.latitude}
+      event.PointsOfInterest[targetIndex] = poi;
       event.save()
       res.json(event)})
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
@@ -196,6 +197,9 @@ router.delete('/:id/pois/:poi_id',
     res.json(event)})
   .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
 })
+
+
+//// Routes to add/delete user from event
 
 // PATCH route to add a user to the attendes of the Event
 router.patch('/:id/:user_id',
