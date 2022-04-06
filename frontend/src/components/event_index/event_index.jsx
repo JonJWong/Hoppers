@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import EventIndexItem from "./event_index_item";
 
 class EventIndex extends React.Component{
@@ -14,7 +15,9 @@ class EventIndex extends React.Component{
             Your Events:
           </div>
           <div id="index-self-button-container">
-            <button id="index-self-create">Create New Event</button>
+            <Link to="events/create">
+              <button id="index-self-create">Create New Event</button>
+            </Link>
           </div>
         </div>
 
