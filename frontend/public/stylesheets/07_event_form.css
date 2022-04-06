@@ -2,3 +2,29 @@
   height: 400px;
   width: 400px;
 }
+
+#poi-input-list {
+  width: 900px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.create-form-marker-input {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.poi-name, .poi-start, .poi-end, .poi-description, .poi-name {
+  font-size: 16px;
+}
+
+.poi-delete {
+  padding-top: 10px;
+}
+
+.create-form-marker-input > input {
+  width: 200px;
+}

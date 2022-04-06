@@ -59,27 +59,41 @@ class EventForm extends React.Component{
     this.setState({ [key]: value })
   }
 
+  deletePoi(i, e) {
+    e.preventDefault();
+    let markers = this.state.markers;
+    markers.splice(i, 1);
+    this.setState({ markers: markers })
+  }
+
   renderPoiInputs() {
     return this.state.markers.map((marker, i) => {
       const { lat, lng } = marker;
       return (
         <div className="create-form-marker-input" key={marker + i}>
+          <div className="poi-name">Name</div>
           <input
             type="text"
             onChange={(e) => this.updatePoi(i, "name", marker, e)}
             placeholder={`Point of Interest ${i + 1} name`}/>
+          <div className="poi-start">Start Time</div>
           <input
             type="text"
             onChange={(e) => this.updatePoi(i, "startTime", marker, e)}
             placeholder={`Point of Interest ${i + 1} start time`}/>
+          <div className="poi-end">End Time</div>
           <input
             type="text"
             onChange={(e) => this.updatePoi(i, "endTime", marker, e)}
             placeholder={`Point of Interest ${i + 1} end time`}/>
+          <div className="poi-description">Description</div>
           <input
             type="text"
             onChange={(e) => this.updatePoi(i, "description", marker, e)}
             placeholder={`Point of Interest ${i + 1} description`}/>
+          <button
+            onClick={e => {this.deletePoi(i, e)}}
+            className="poi-delete"><i className="fa-solid fa-x"></i></button>
         </div>
       )
     })
@@ -121,7 +135,9 @@ class EventForm extends React.Component{
 
         <FunctionalMap event={this.state} accept={this.accept} />
 
-        {this.renderPoiInputs()}
+        <div id="poi-input-list">
+          {this.renderPoiInputs()}
+        </div>
 
         <button
           type="Submit"
