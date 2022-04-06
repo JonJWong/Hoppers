@@ -265,11 +265,14 @@ class IndexMap extends React.Component{
     // and then configure the radius to display all of the point within the bounds
     this.map = new window.google.maps.Map(this.mapNode, MAP_OPTIONS);
 
-    window.google.maps.event.addListener(this.map, "mouseover", () => {
+
+    // add event listeners to container to zoom in and out
+    // this is so jank but it works
+    this.mapNode.parentElement.parentElement.addEventListener("mouseover", () => {
       this.map.setZoom(this.map.getZoom() - 1)
     })
 
-    window.google.maps.event.addListener(this.map, "mouseout", () => {
+    this.mapNode.parentElement.parentElement.addEventListener("mouseout", () => {
       this.map.setZoom(this.map.getZoom() + 1)
     })
 
