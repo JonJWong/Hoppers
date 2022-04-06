@@ -1,27 +1,5 @@
 import React from "react";
 
-const CENTER = { lat: 37.7758, lng: -122.435 } // this is SF
-
-const MAP_OPTIONS = {
-  center: CENTER,
-  zoom: 14,
-  streetViewControl: false,
-  mapTypeControl: false,
-  keyboardShortcuts: false,
-  backgroundColor: 'none',
-  fullscreenControl: false,
-  maxZoom: 18,
-  minZoom: 14,
-  restriction: {
-    latLngBounds: {
-      north: CENTER.lat + .03,
-      south: CENTER.lat - .03,
-      east: CENTER.lng + .07,
-      west: CENTER.lng - .07
-    }
-  }
-};
-
 const STYLES = {
   default: [
     {
@@ -245,7 +223,9 @@ class ShowMap extends React.Component{
   constructor(props){
     super(props)
 
-    this.markers = [{ lat: 37.7758, lng: -122.435 }]
+    this.markers = this.props.PointsOfInterest.map(point => {
+      return point.location
+    })
     this.placeMarkers = this.placeMarkers.bind(this);
     this.placeMarker = this.placeMarker.bind(this);
   }
@@ -266,6 +246,27 @@ class ShowMap extends React.Component{
   }
 
   componentDidMount() {
+    const CENTER = this.markers[0] || { lat: 37.7758, lng: -122.435 } // this is SF
+
+    const MAP_OPTIONS = {
+      center: CENTER,
+      zoom: 14,
+      streetViewControl: false,
+      mapTypeControl: false,
+      keyboardShortcuts: false,
+      backgroundColor: 'none',
+      fullscreenControl: false,
+      maxZoom: 18,
+      minZoom: 14,
+      restriction: {
+        latLngBounds: {
+          north: CENTER.lat + .03,
+          south: CENTER.lat - .03,
+          east: CENTER.lng + .07,
+          west: CENTER.lng - .07
+        }
+      }
+    };
     // we want to configure the map options to be able to display all of the 
     // points of interest for an event. We can get the center (average)
     // and then configure the radius to display all of the point within the bounds
