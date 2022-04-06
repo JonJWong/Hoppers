@@ -104,7 +104,7 @@
 }
 
 .comment-box{
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   border-bottom: 1px solid #ccc;
 }
 
@@ -119,10 +119,74 @@
   margin-bottom: 6px;
 }
 
+.comment-container .circle{
+  background: rgba(176, 174, 174, 0.482);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.comment-profile{
+  display: flex;
+  align-items: center;
+}
+
+.comment-container{
+  margin: 4px;
+}
+
+.comment-title-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
 .comment-username{
   color: #314758;
   font-style: italic;
+  font-size: 13px;
   font-weight: 700;
+}
+
+.time-ago{
+  font-size: 12px;
+  display: flex;
+  align-items: flex-start;
+  height: auto;
+}
+
+.comment-body{
+  font-size: 14px;
+  margin-left: 5px;
+}
+
+.comment-header{
+  display: flex;
+}
+
+.delete-comment{
+  min-width: 10px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.fa-circle-minus:hover{
+  color: rgb(231, 150, 0);
+}
+
+.del-comment-button{
+  cursor: pointer;
+  transition: color .2s ease-out;
+	color: #383a34;
 }
 
 .show-map-wrapper {

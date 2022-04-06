@@ -9,7 +9,7 @@ class NavProfile extends React.Component{
         <div className="modal-profile-wrapper">
           <div className='modal-profile-container'>
             <div className='circle select-none'>
-              {user.username[0]}
+              {user.username[0].toUpperCase()}
             </div>
             <div>
               <h4>{user.username}</h4>

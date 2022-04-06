@@ -1,5 +1,6 @@
 import React from "react";
-import CommentIndex from "./comment_index.jsx";
+// import CommentIndex from "./comment_index.jsx";
+import CommentIndexContainer from "./comment_index_container.js";
 import EditThreadContainer from "../thread_form/edit_thread_container.js";
 
 class ThreadIndexItem extends React.Component{
@@ -22,7 +23,7 @@ class ThreadIndexItem extends React.Component{
           {/* {editForm} */}
         </div>
         <div className="comment-index">
-          <CommentIndex comments={thread.comments} />
+          <CommentIndexContainer threadId={thread._id} comments={thread.comments} />
         </div>
       </div>
     )

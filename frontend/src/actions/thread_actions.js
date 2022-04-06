@@ -48,3 +48,9 @@ export const updateComment = (threadId, commentId, comment) => dispatch => (
     .then(thread => dispatch(receiveThread(thread)))
     .catch(err => console.log(err))
 );
+
+export const removeComment = (threadId, commentId) => dispatch => (
+  ThreadApiUtil.deleteComment(threadId, commentId)
+    .then(thread => dispatch(receiveThread(thread)))
+    .catch(err => console.log(err))
+);
