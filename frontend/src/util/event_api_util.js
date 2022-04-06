@@ -19,3 +19,23 @@ export const editEvent = (data) => {
 export const deleteEvent = (eventId) => {
   return axios.delete(`/api/events/${eventId}`)
 };
+
+export const addPoi = (eventId, data) => {
+  return axios.post(`/api/events/${eventId}/pois`, data)
+};
+
+export const editPoi = (eventId, data) => {
+  return axios.patch(`/api/events/${eventId}/pois/${data._id}`, data)
+};
+
+export const removePoi = (eventId, poiId) => {
+  return axios.delete(`/api/events/${eventId}/pois/${poiId}`)
+};
+
+export const addAttendee = (eventId, userId) => {
+  return axios.patch(`/api/events/${eventId}/${userId}`)
+};
+
+export const removeAttendee = (eventId, userId) => {
+  return axios.delete(`/api/events/${eventId}/${userId}`)
+};
