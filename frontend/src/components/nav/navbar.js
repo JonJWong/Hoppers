@@ -127,9 +127,13 @@ class NavBar extends React.Component {
       }
     } else {
       return (
-        <div> 
-          <h2>Hoppers</h2>
-          <h4>Hello {this.props.user.username}</h4>
+        <div className='modal-content-container'> 
+          <div className='modal-profile-container'>
+            <div className='circle select-none'>
+              {this.props.user.username[0]}
+            </div>
+            <h4>{this.props.user.username}</h4>
+          </div>
           <button
             id="nav-modal-signout"
             onClick={this.modalLogout}>
@@ -160,17 +164,20 @@ class NavBar extends React.Component {
 
   render() {
     return (
-      <div id="nav-bar-wrapper">
-        <div id="nav-bar-container">
-          <button
-            id="nav-bar-burger"
-            onClick={() => this.openModal()}>
-            <i className="fa-solid fa-bars"></i>
-          </button>
-          { this.getLinks() }
+      <>
+        <div id="nav-bar-wrapper">
+          <div id="nav-bar-container">
+            <button
+              id="nav-bar-burger"
+              onClick={() => this.openModal()}>
+              <i className="fa-solid fa-bars"></i>
+            </button>
+            { this.getLinks() }
+          </div>
+          { this.renderModal() }
         </div>
-        { this.renderModal() }
-      </div>
+        <div className='nav-filler'>&nbsp;</div>
+      </>
     );
   }
 }
