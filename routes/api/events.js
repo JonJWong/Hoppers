@@ -143,7 +143,7 @@ router.post('/:id/pois',
       let poi = req.body
       poi.location = {lng: req.body.longitude, lat: req.body.latitude}
       event.PointsOfInterest.push(poi);
-      // event.save()
+      event.save()
       res.json(event)})
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
   }
@@ -168,8 +168,10 @@ router.patch('/:id/pois/:poi_id',
       // Check if body is a valid Point of Interest
       const { errors, isValid } = validatePointOfInterestInput(req.body);
       if (!isValid) {return res.status(400).json(errors);}
-      // Update correct Point of Interest
-      event.PointsOfInterest[targetIndex] = req.body;
+      // Update correct Point of Interest and add longitude and latitude to location
+      let poi = req.body
+      poi.location = {lng: req.body.longitude, lat: req.body.latitude}
+      event.PointsOfInterest[targetIndex] = poi;
       event.save()
       res.json(event)})
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))
