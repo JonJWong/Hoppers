@@ -32,6 +32,11 @@
   padding: 10px;
   border: 1px solid red;
   margin: 3%;
+  transition: box-shadow .5s ease-in-out;
+}
+
+.event-index-item:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .index-map-container {
@@ -39,13 +44,28 @@
   width: 100%;
 }
 
-a {
-  /* color: black;  */
+.index-show-link {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
   transition: color .2s ease-out;
 }
 
-a:hover{
-  color: orange;
+.index-show-link:hover{
+  color: #df7116;
+}
+
+.index-item-name, .index-item-description,
+.index-item-date, .index-item-time {
+  cursor: default;
+  text-align: center;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 .index-item-name {

@@ -21,13 +21,20 @@ class EventShow extends React.Component{
         <div className="event-show-body">
           <div className="event-show-content">
             <div className="event-show-details">
-              <h2>{event.name}</h2>
-              <h3>{event.description}</h3>
+              
+              <h2 className="event-show-title">{event.name}</h2>
+              <h3 className="event-show-description">{event.description}</h3>
               <div className="date-time-container">
-                <div className="date">{getDate(event.startTime)}</div>
-                <div className="time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
+                <div className="event-date">{getDate(event.startTime)}</div>
+                <div className="event-time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
               </div>
-              <Link to="/">Back To Events Index</Link>
+
+              <Link
+                to="/"
+                className="event-show-back-link">
+                  Back To Events Index
+              </Link>
+
             </div>
           </div>
 

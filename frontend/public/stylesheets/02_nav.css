@@ -83,7 +83,7 @@
 }
 
 #nav-bar-logout:hover, #nav-bar-profile:hover {
-  background-color: orangered;
+  background-color: #df7116;
 }
 
 #nav-modal-left-wrapper {
@@ -113,6 +113,7 @@
 }
 
 .nav-modal-left-container {
+  max-width: 465px;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -136,7 +137,9 @@
 }
 
 #nav-modal-signout {
-  width: 50%;
+  width: 70%;
+  min-width: 90px;
+  max-width: 300px;
   font-size: 16px;
 }
 
@@ -188,6 +191,7 @@
 .modal-content-container .circle{
   background: rgba(176, 174, 174, 0.482);
   border-radius: 50%;
+  min-width: 50px;
   width: 50px;
   height: 50px;
   margin-right: 12px;
