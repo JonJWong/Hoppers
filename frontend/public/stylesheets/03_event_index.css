@@ -29,7 +29,7 @@
 
 #index-self-section {
   margin: 15px;
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -44,12 +44,20 @@
   background-color: white;
 }
 
+
+.show-shadow{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+}
+
 #self-event-list {
   height: 490px;
-  overflow-y: scroll;
-  width: 100%;
+  width: 90%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  padding: 20px;
 }
 
 .event-index-item {
@@ -109,7 +117,7 @@
 }
 
 #index-self-top {
-  width: 100%;
+  width: 90%;
   background-color: white;
   display: grid;
   grid-template-columns: 160px auto;
