@@ -31,6 +31,12 @@ export const deleteThread = (threadId) => disaptch => {
   .catch(err => console.log(err))
 }
 
+export const updateThread = (thread) => dispatch => {
+  ThreadApiUtil.editThread(thread)
+  .then((thread) => dispatch(receiveThread(thread)))
+  .catch(err => console.log(err))
+}
+
 export const createComment = (threadId, comment) => dispatch => (
   ThreadApiUtil.makeComment(threadId, comment)
     .then(thread => dispatch(receiveThread(thread)))

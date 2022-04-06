@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
 import ThreadForm from "./thread_form";
 import { createThread } from "../../actions/thread_actions";
-import {fetchEvent} from "../../actions/event_actions"
 
 const mSTP = (state, ownProps) => {
   return {

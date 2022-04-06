@@ -1,13 +1,17 @@
 import React from "react";
 import CommentIndex from "./comment_index.jsx";
+import EditThreadContainer from "../thread_form/edit_thread_container.js";
 
 class ThreadIndexItem extends React.Component{
 
   render(){
-    let deleteButton = this.props.editCapability ? 
+    const deleteButton = this.props.editCapability ? 
       <button id ="button-delete" onClick={() => this.props.deleteThread(thread._id)}>Delete</button> 
       : null 
 
+    const editForm = this.props.editCapability ? <EditThreadContainer 
+    thread = {this.props.thread}/> : null
+    
     const {thread} = this.props
     return(
       <div className="thread-index-item">
@@ -15,6 +19,7 @@ class ThreadIndexItem extends React.Component{
           <h3 className="thread-title">{thread.name}</h3>
           <div> collapse icon</div>
           {deleteButton}
+          {/* {editForm} */}
         </div>
         <div className="comment-index">
           <CommentIndex comments={thread.comments} />
