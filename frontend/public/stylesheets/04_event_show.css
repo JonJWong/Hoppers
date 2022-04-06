@@ -70,6 +70,8 @@
 .attendee-list{
   border: 1px solid green;
   width: 40%;
+  height: 70%;
+  margin-bottom: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -168,12 +170,6 @@
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                 supported by Chrome, Edge, Opera and Firefox */
-}
-
-.attendee-list{
-  border: 1px solid green;
-  margin-bottom: 15px;
-  height: 70%;
 }
 
 .attendee-list-title {
