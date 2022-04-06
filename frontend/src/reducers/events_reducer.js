@@ -11,7 +11,8 @@ const eventReducer = (state = { all: {}, user: {}, new: undefined }, action) => 
       // newState.all = action.events.data;
       return newState;
     case RECEIVE_EVENT:
-      newState.all[action.event.data._id] = action.event.data;
+      newState.all[action.event.data._id] = Object.assign({},action.event.data);
+      delete newState.all[action.event.data._id].threads
       return newState;
     case REMOVE_EVENT:
       delete newState[action.eventId]
