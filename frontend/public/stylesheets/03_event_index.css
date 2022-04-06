@@ -41,10 +41,12 @@
   display: flex;
   margin: 15px;
   justify-content: center;
-  overflow-y: scroll;
+  background-color: white;
 }
 
 #self-event-list {
+  height: 490px;
+  overflow-y: scroll;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -109,8 +111,6 @@
 #index-self-top {
   width: 100%;
   background-color: white;
-  position: sticky;
-  top: 10px;
   display: grid;
   grid-template-columns: 160px auto;
   padding: 10px;
