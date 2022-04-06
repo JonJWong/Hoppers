@@ -1,5 +1,6 @@
 const Validator = require('validator');
 const validText = require('./valid-text');
+const validStartandEndTimes = require('./valid-times')
 
 module.exports = function validateEventInput(data) {
   let errors = {};
@@ -20,6 +21,11 @@ module.exports = function validateEventInput(data) {
   if(Validator.isEmpty(data.description)){
     errors.description  = "Description is required";
   }
+
+  // // Validate start and end times
+  // if(!validStartandEndTimes(data.startTime, data.endTime)){
+  //   errors.times = "Invalid Start and/or EndTimes"
+  // }
 
   return {
     errors,
