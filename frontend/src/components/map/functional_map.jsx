@@ -1,27 +1,5 @@
 import React from "react";
 
-const CENTER = { lat: 37.7758, lng: -122.435 } // this is SF
-
-const MAP_OPTIONS = {
-  center: CENTER,
-  zoom: 14,
-  streetViewControl: false,
-  mapTypeControl: false,
-  keyboardShortcuts: false,
-  backgroundColor: 'none',
-  fullscreenControl: false,
-  maxZoom: 18,
-  minZoom: 14,
-  restriction: {
-    latLngBounds: {
-      north: CENTER.lat + .03,
-      south: CENTER.lat - .03,
-      east: CENTER.lng + .07,
-      west: CENTER.lng - .07
-    }
-  }
-};
-
 const STYLES = {
   default: [
     {
@@ -245,13 +223,9 @@ class FunctionalMap extends React.Component{
       style: "default"
     }
 
+    this.clearMarkers = this.clearMarkers.bind(this);
+    this.sendPois = this.sendPois.bind(this);
     this.markers = [];
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange(e){
-    this.setState({style: e.currentTarget.value});
-    this.map.setOptions({ styles: STYLES[e.currentTarget.value] });
   }
 
   placeMarker(location) {
@@ -260,7 +234,7 @@ class FunctionalMap extends React.Component{
       position: location,
       map: this.map
     })
-
+  
     // add marker to array of markers attribute
     this.markers.push(marker)
 
@@ -282,7 +256,51 @@ class FunctionalMap extends React.Component{
     marker.setMap(null);
   }
 
+  clearMarkers() {
+    this.markers.forEach(marker => {
+      marker.setMap(null)
+    })
+    this.markers = [];
+  }
+
+  sendPois(e) {
+    e.preventDefault();
+    const markers = [];
+    this.markers.forEach(marker => {
+      const pos = {};
+      pos["lat"] = marker.position.lat();
+      pos["lng"] = marker.position.lng();
+      markers.push(pos);
+    })
+    this.clearMarkers();
+    this.props.accept("markers", markers)
+  }
+
   componentDidMount() {
+    const event = this.props.event;
+    const firstPoint = event.PointsOfInterest[0]?.location;
+    const CENTER = firstPoint || { lat: 37.7758, lng: -122.435 }; // this is SF
+
+    const MAP_OPTIONS = {
+      center: CENTER,
+      zoom: 14,
+      streetViewControl: false,
+      mapTypeControl: false,
+      keyboardShortcuts: false,
+      backgroundColor: 'none',
+      fullscreenControl: false,
+      maxZoom: 18,
+      minZoom: 14,
+      restriction: {
+        latLngBounds: {
+          north: CENTER.lat + .03,
+          south: CENTER.lat - .03,
+          east: CENTER.lng + .07,
+          west: CENTER.lng - .07
+        }
+      }
+    };
+
     // we want to configure the map options to be able to display all of the 
     // points of interest for an event. We can get the center (average)
     // and then configure the radius to display all of the point within the bounds
@@ -297,30 +315,25 @@ class FunctionalMap extends React.Component{
       styles = STYLES["default"]
     }
     // apply styles by time of day
-    this.map.setOptions({ styles: styles});
-
-    // set up style control menu
-    const styleControl = document.getElementById("style-selector-control");
+    this.map.setOptions({ styles: styles });
 
     // add listener to map that creates markers on click
     window.google.maps.event.addListener(this.map, "click", (e) => {
       this.placeMarker(e.latLng, this.map)
     })
 
-    // put style control on the top right of the map
-    this.map.controls[window.google.maps.ControlPosition.TOP_RIGHT].push(styleControl);
+    const submitButton = document.getElementById("map-add-pois");
+    this.map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(submitButton);
   }
 
   render(){
     return(
       <>
-        <div id="style-selector-control" className="map-control">
-          <select id="style-selector" className="selector-control" onChange={this.handleChange} value={this.state.style}>
-            <option value="default">Default</option>
-            <option value="dark">Night mode</option>
-            {/* <option value="hiding">Hide features</option> */}
-          </select>
-        </div>
+        <button
+          id="map-add-pois"
+          onClick={e => this.sendPois(e)}>
+            Add Points of Interest
+        </button>
         <div id="functional-map-container" ref={ map => this.mapNode = map }></div> 
       </>
     )
