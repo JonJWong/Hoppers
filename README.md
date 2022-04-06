@@ -8,7 +8,6 @@ Once a user has joined an event, they can chat with each other to discuss any up
 
 Additionally, event attendees can post about the night's events on the main event page, so they can have a history of their glorious deeds. Furthermore, event-owners can make their “plan’ public and have other users join their night out or they can join other “public” plans.
 
--
 <h2 id="table-of-contents">Table of Contents</h2>
 
   - [Features](#features)
@@ -56,7 +55,6 @@ IMAGE HERE
 
 <h2 id="future-plans">Future Plans</h2>
 
--
 ### Credit
 
 A team of four extremely talented and hard-working individuals put this together[^2]!
