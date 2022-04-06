@@ -7,12 +7,9 @@ class EventForm extends React.Component{
     this.state = {
       name: "",
       description: "",
-      startDate: "",
-      endDate: "",
       startTime: "",
       endTime: "",
       PointsOfInterest: [],
-      markers: [],
       owner: this.props.ownerId
     }
 
@@ -39,9 +36,11 @@ class EventForm extends React.Component{
   handleSubmit(e) {
     e.preventDefault();
     let that = this; 
+
+    console.log(this.state);
     // Create new Event and then push to the Event's page.
     this.props.action(this.state).then(function(event){
-      return that.props.history.push(`/events/`)
+      return that.props.history.push(`/events`)
     });
   }
 
@@ -58,10 +57,11 @@ class EventForm extends React.Component{
   }
 
   renderPoiInputs() {
+    let points = this.state.PointsOfInterest;
     return this.state.PointsOfInterest.map((point, i) => {
       const { lat, lng } = point.location;
       return (
-        <div className="create-form-marker-input" key={point + i}>
+        <div className="create-form-marker-input" key={i}>
 
           <div className="poi-name">Name</div>
           <input
@@ -71,13 +71,13 @@ class EventForm extends React.Component{
 
           <div className="poi-start">Start Time</div>
           <input
-            type="text"
+            type="datetime-local"
             onChange={(e) => this.updatePoi(e, i, point, "startTime")}
             placeholder={`Point of Interest ${i + 1} start time`}/>
 
           <div className="poi-end">End Time</div>
           <input
-            type="text"
+            type="datetime-local"
             onChange={(e) => this.updatePoi(e, i, point, "endTime")}
             placeholder={`Point of Interest ${i + 1} end time`}/>
 
@@ -132,7 +132,7 @@ class EventForm extends React.Component{
           </div>
           
           <div id="create-form-start-date-wrapper">
-            <div id ="create-form-start-date">End Time</div>
+            <div id ="create-form-start-date">Start Date</div>
               <input 
                 type="datetime-local"
                 value={this.state.endTime}
