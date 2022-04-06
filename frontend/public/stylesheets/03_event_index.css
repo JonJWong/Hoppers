@@ -39,13 +39,13 @@
   width: 100%;
 }
 
-a {
+.event-index-item > a {
   /* color: black;  */
   transition: color .2s ease-out;
 }
 
-a:hover{
-  color: orange;
+.event-index-item > a:hover{
+  color: #df7116;
 }
 
 .index-item-name {
