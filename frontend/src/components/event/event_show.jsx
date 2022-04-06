@@ -27,7 +27,6 @@ class EventShow extends React.Component{
                 <div className="date">{getDate(event.startTime)}</div>
                 <div className="time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
               </div>
-              <AttendeeIndex attendees={event.attendees}/>
               <Link to="/">Back To Events Index</Link>
             </div>
           </div>
@@ -37,7 +36,10 @@ class EventShow extends React.Component{
           </div>
           
         </div>
-        <ThreadIndex threads={event.threads} />
+        <div className="interaction-container">
+          <ThreadIndex threads={event.threads} />
+          <AttendeeIndex attendees={event.attendees}/>
+        </div>
       </div>
     );
   };

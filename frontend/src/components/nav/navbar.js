@@ -173,7 +173,6 @@ class NavBar extends React.Component {
             { this.getLinks() }
           </div>
           { this.renderModal() }
-
         </div>
         <div className='nav-filler'></div>
       </>
