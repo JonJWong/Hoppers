@@ -1,15 +1,19 @@
 import React from "react";
 
+const CENTER = { lat: 37.7758, lng: -122.435 } // this is SF
+
 const MAP_OPTIONS = {
-  center: { lat: 37.7758, lng: -122.435 }, // this is SF
-  zoom: 13,
+  center: CENTER,
+  zoom: 14,
   streetViewControl: false,
   mapTypeControl: false,
   keyboardShortcuts: false,
   backgroundColor: 'none',
   fullscreenControl: false,
   zoomControl: false,
-  gestureHandling: "none"
+  gestureHandling: "none",
+  maxZoom: 18,
+  minZoom: 13
 };
 
 const STYLES = {
@@ -260,6 +264,14 @@ class IndexMap extends React.Component{
     // points of interest for an event. We can get the center (average)
     // and then configure the radius to display all of the point within the bounds
     this.map = new window.google.maps.Map(this.mapNode, MAP_OPTIONS);
+
+    window.google.maps.event.addListener(this.map, "mouseover", () => {
+      this.map.setZoom(this.map.getZoom() - 1)
+    })
+
+    window.google.maps.event.addListener(this.map, "mouseout", () => {
+      this.map.setZoom(this.map.getZoom() + 1)
+    })
 
     // get time of day and set a styles var accordingly
     const hour = new Date().getHours();

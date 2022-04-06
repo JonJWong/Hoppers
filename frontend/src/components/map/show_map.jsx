@@ -1,15 +1,25 @@
 import React from "react";
 
+const CENTER = { lat: 37.7758, lng: -122.435 } // this is SF
+
 const MAP_OPTIONS = {
-  center: { lat: 37.7758, lng: -122.435 }, // this is SF
-  zoom: 13,
+  center: CENTER,
+  zoom: 14,
   streetViewControl: false,
   mapTypeControl: false,
   keyboardShortcuts: false,
   backgroundColor: 'none',
   fullscreenControl: false,
   maxZoom: 18,
-  minZoom: 14
+  minZoom: 14,
+  restriction: {
+    latLngBounds: {
+      north: CENTER.lat + .03,
+      south: CENTER.lat - .03,
+      east: CENTER.lng + .07,
+      west: CENTER.lng - .07
+    }
+  }
 };
 
 const STYLES = {

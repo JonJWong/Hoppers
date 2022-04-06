@@ -24,8 +24,8 @@ class EventShow extends React.Component{
               <h2>{event.name}</h2>
               <h3>{event.description}</h3>
               <div className="date-time-container">
-                <div className="date">{getDate(event.startTime)}</div>
-                <div className="time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
+                <div className="event-date">{getDate(event.startTime)}</div>
+                <div className="event-time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
               </div>
               <AttendeeIndex attendees={event.attendees}/>
               <Link to="/">Back To Events Index</Link>
