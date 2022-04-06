@@ -8,11 +8,11 @@ const EventIndexItem = ({event}) => (
     <div className="index-map-wrapper">
       <IndexMap PointsOfInterest={event.PointsOfInterest} />
     </div>
-    <h2 className="index-item-name">{event.name}</h2>
-    <h3 className="index-item-description">{event.description}</h3>
+    <h2 className="index-item-name select-none">{event.name}</h2>
+    <h3 className="index-item-description select-none">{event.description}</h3>
     <div className="date-time-container">
-      <div className="index-item-date">{getDate(event.startTime)}</div>
-      <div className="index-item-time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
+      <div className="index-item-date select-none">{getDate(event.startTime)}</div>
+      <div className="index-item-time select-none">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
     </div>
     <Link
       to={`events/${event._id}`}

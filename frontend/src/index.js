@@ -11,7 +11,7 @@ import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 
 // BEGIN TESTING
-import { getEvent, makeEvent, editEvent, deleteEvent } from "./util/event_api_util"
+import { getEvent, makeEvent, editEvent, deleteEvent, addPoi, editPoi, removePoi, addAttendee, removeAttendee} from "./util/event_api_util"
 import { getThreads, getThread, makeThread, editThread, deleteThread, makeComment, editComment, deleteComment } from "./util/thread_api_util"
 import { createComment, updateComment} from "./actions/thread_actions"
 // END TESTING
@@ -56,6 +56,11 @@ document.addEventListener('DOMContentLoaded', () => {
   window.makeEvent = makeEvent;
   window.editEvent = editEvent;
   window.deleteEvent = deleteEvent;
+  window.addPoi = addPoi;
+  window.editPoi = editPoi;
+  window.removePoi = removePoi;
+  window.addAttendee = addAttendee;
+  window.removeAttendee = removeAttendee;
 
   window.getThreads = getThreads
   window.getThread = getThread
