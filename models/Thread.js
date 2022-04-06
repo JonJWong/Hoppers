@@ -22,6 +22,9 @@ const ThreadSchema = new Schema({
       username: {
         type: String,
         required: true
+      },
+      time: {
+        type: String,
       }
     }
   ]
