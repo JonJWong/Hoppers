@@ -24,13 +24,13 @@
   border: 1px solid orange;
 }
 
-.event-show-container h2{
+.event-show-title{
   font-size: 32px;
   font-weight: 700;
-  padding-bottom: 6px;
+  padding-bottom: 10px;
 }
 
-.event-show-container h3{
+.event-show-description {
   font-size: 18px;
   padding-bottom: 6px;
 }
@@ -63,11 +63,6 @@
 } */
 
 .date-time-container{
-  margin-bottom: 15px;
-}
-
-.attendee-list{
-  border: 1px solid green;
   margin-bottom: 15px;
 }
 
@@ -111,6 +106,7 @@
 
 .event-show-body, .event-show-content,
 .event-show-details, .event-date, .event-time {
+  text-align: center;
   cursor: default;
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */
@@ -119,4 +115,20 @@
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                 supported by Chrome, Edge, Opera and Firefox */
+}
+
+.attendee-list{
+  border: 1px solid green;
+  margin-bottom: 15px;
+  height: 70%;
+}
+
+.attendee-list-title {
+  font-size: 18px;
+  padding-bottom: 10px;
+  text-decoration: underline;
+}
+
+.attendee-list-name {
+  font-style: italic;
 }
