@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom'
 import LoginFormContainer from "../session/login_form_container";
 import SignupFormContainer from "../session/signup_form_container";
+import NavProfile from './nav_profile';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -127,22 +128,11 @@ class NavBar extends React.Component {
       }
     } else {
       return (
-        <div className='modal-content-container'> 
-          <div className='modal-profile-container'>
-            <div className='circle select-none'>
-              {this.props.user.username[0]}
-            </div>
-            <div>
-              <h4>{this.props.user.username}</h4>
-              <Link to={'/profile'}>My Profile</Link>
-            </div>
-          </div>
-          <button
-            id="nav-modal-signout"
-            onClick={this.modalLogout}>
-              Sign Out
-          </button>
-        </div>
+        <NavProfile 
+          user={this.props.user} 
+          modalLogout={this.modalLogout}
+          closeModal={this.closeModal}
+        />
       )
     }
   }
