@@ -6,6 +6,7 @@
 @import url("/stylesheets/05_profile.css");
 @import url("/stylesheets/06_auth_forms.css");
 @import url("/stylesheets/07_event_form.css");
+@import url("/stylesheets/08_poi_container.css");
 
 #map-container {
   height: 500px;
