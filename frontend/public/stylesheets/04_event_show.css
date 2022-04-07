@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   margin: 15px;
-  /* border: 1px solid blue; */
+  border: 1px solid blue;
 }
 
 .event-show-body{
@@ -12,45 +12,20 @@
   width: 80%;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid red; */
+  border: 1px solid red;
   margin: 15px;
   padding: 15px;
-  /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .event-show-content{
   margin-right: 30px;
   width: 50%;
   height: 500px;
-  /* border: 1px solid gray; */
-  display: flex;
-  justify-content: center;
+  border: 1px solid orange;
 }
-
-.event-show-content * {
-  /* text-align: left; */
-}
-
-.comment-input, textarea{
-  width: 98%;
-  overflow: auto;
-  padding: none;
-  margin-left: 2px;
-  line-height: 12px;
-  margin-top: 6px;
-  resize: none;
-  line-height: 1.5;
-  vertical-align: middle;
-}
-
-.comment-submit{
-  /* margin-bottom: 8px; */
-  visibility: hidden;
-}
-
 
 .event-show-title{
-  padding-top: 15px;
   font-size: 32px;
   font-weight: 700;
   padding-bottom: 10px;
@@ -93,7 +68,8 @@
 }
 
 .attendee-list{
-  width: 30%;
+  border: 1px solid green;
+  width: 40%;
   height: 70%;
   margin-bottom: 15px;
   display: flex;
@@ -117,13 +93,13 @@
 }
 
 .thread-list-container{
-  width: 90%;
+  width: 60%;
   border: 1px solid red;
   margin: 15px;
 }
 
 .thread-index-item{
-  /* border: 1px solid yellowgreen; */
+  border: 1px solid yellowgreen;
   margin: 10px;
 }
 
@@ -244,7 +220,7 @@
 }
 
 .attendee-list{
-  /* border: 1px solid green; */
+  border: 1px solid green;
   margin-bottom: 15px;
   height: 70%;
 }
@@ -280,17 +256,6 @@
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                 supported by Chrome, Edge, Opera and Firefox */
-}
-
-.join-button{
-  cursor: pointer;
-  color: #537895;
-  padding-bottom: 15px;
-}
-
-.event-show-back-link{
-  color: #537895;
-  padding-bottom: 15px;
 }
 
 .attendee-list-title {
