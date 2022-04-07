@@ -1,9 +1,9 @@
 const Validator = require('validator');
 const validText = require('./valid-text');
-const validStartandEndTimes = require('./valid-times')
 
-module.exports = function validatePointOfInterestInput(data) {
+module.exports = function validatePointOfInterestInput(data, index) {
   let errors = {};
+  errors.index = index;
 
   data.name = validText(data.name) ? data.name : '';
   data.description = validText(data.description) ? data.description : '';
@@ -23,10 +23,6 @@ module.exports = function validatePointOfInterestInput(data) {
     errors.name = "Description must be between 0 and 200 characters"
   }
   
-  // // Validate start and end times
-  // if(!validStartandEndTimes(data.startTime, data.endTime)){
-  //   errors.times = "Invalid Start and/or EndTimes"
-  // }
   return {
     errors,
     isValid: Object.keys(errors).length === 0

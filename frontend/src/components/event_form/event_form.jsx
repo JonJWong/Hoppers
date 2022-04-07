@@ -16,6 +16,7 @@ class EventForm extends React.Component{
     this.accept = this.accept.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
     this.update = this.update.bind(this)
+    this.renderPoiError = this.renderPoiError.bind(this)
   }
 
   update(field) {
@@ -54,12 +55,18 @@ class EventForm extends React.Component{
     this.setState({ PointsOfInterest: points });
   }
 
+  renderPoiError(i){
+    if(this.props.errors.includes(i)){
+      return <div className="form-error"> {`This poi is improperly formated.`} </div>
+    }
+  }
+
   renderPoiInputs() {
     let points = this.state.PointsOfInterest;
     return points.map((point, i) => {
       return (
         <div className="create-form-marker-input" key={i}>
-
+          {this.renderPoiError(i + 1)}
           <div className="poi-name">Name</div>
           <input
             type="text"
@@ -87,11 +94,25 @@ class EventForm extends React.Component{
   }
 
   render(){
-    let descriptionLabel = this.props.errors.includes('Description is required') ? <div className="form-error">Description is required!</div> : <div id="create-form-description">Description</div>
-    let nameLabel = this.props.errors.includes('Name is required') ? <div className="form-error">Name: Too short!</div> : <div id="create-form-name">Name</div>
-    let startTimeLabel = this.props.errors.includes('Start time is required') ? <div className="form-error">Start time is required!</div> : <div id="create-form-start-time">Start Time</div>
-    let endTimeLabel = this.props.errors.includes('End time is required') ? <div className="form-error">End time is required!</div> : <div id="create-form-end-time">End Time</div>
-    let poiLabel = this.props.errors.includes('Must have at least 1 point of interest') ? <div className="form-error">Please select at least one Point of Interest!</div> : null
+    let descriptionLabel = this.props.errors.includes('Description is required') 
+      ? <div className="form-error">Description is required!</div> 
+      : <div id="create-form-description">Description</div>
+
+    let nameLabel = this.props.errors.includes('Name is required') 
+      ? <div className="form-error">Name: Too short!</div> 
+      : <div id="create-form-name">Name</div>
+    
+    let startTimeLabel = this.props.errors.includes('Start time is required') 
+      ? <div className="form-error">Start time is required!</div> 
+      : <div id="create-form-start-time">Start Time</div>
+    
+    let endTimeLabel = this.props.errors.includes('End time is required') 
+      ? <div className="form-error">End time is required!</div> 
+      : <div id="create-form-end-time">End Time</div>
+
+    let poiLabel = this.props.errors.includes('Must have at least 1 point of interest') 
+      ? <div className="form-error">Please select at least one Point of Interest!</div> 
+      : null
     return( 
     <div id="create-form-wrapper">
       <h5 id="create-form-header">{this.props.formType}</h5>

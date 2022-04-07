@@ -1,6 +1,5 @@
 const Validator = require('validator');
 const validText = require('./valid-text');
-const validStartandEndTimes = require('./valid-times')
 
 module.exports = function validateEventInput(data) {
   let errors = {};
