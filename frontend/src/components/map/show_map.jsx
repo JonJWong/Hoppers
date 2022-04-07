@@ -244,22 +244,20 @@ const STYLES = {
   ],
 };
 
-// Object.values(this.props.PointsOfInterest).map(point => {
-//   return point.location;
-// }) || 
-
 class ShowMap extends React.Component{
   constructor(props){
     super(props)
 
-    this.markers = this.props.PointsOfInterest.map(point => {
-      return point.location
-    })
+    this.infoWindows = [];
+    this.markers = this.props.PointsOfInterest;
     this.placeMarkers = this.placeMarkers.bind(this);
     this.placeMarker = this.placeMarker.bind(this);
   }
 
   placeMarker(location, i) {
+    const that = this;
+    const map = this.map;
+    const position = location.location;
     // get time of day and set a styles var accordingly
     const hour = new Date().getHours();
     let hoverColor = "#eeeeee";
@@ -275,14 +273,30 @@ class ShowMap extends React.Component{
 
     // create marker at the location of the click event
     const marker = new window.google.maps.Marker({
-      position: location,
-      map: this.map,
+      position: position,
+      map: map,
       label: {
         text: `#${i + 1}`,
         color: color
       },
       icon: icon
     })
+
+    const infoWindowContent = 
+    `<div class="marker-content">` +
+      `<h3 class="infowindow-title">Point of Interest ${i + 1}</h3>` +
+      `<div class="infowindow-name">Name: ${location.name}</div>` +
+      `<div class="infowindow-start-time">Name: ${location.startTime}</div>` +
+      `<div class="infowindow-end-time">Name: ${location.endTime}</div>` +
+      `<div class="infowindow-description">Name: ${location.description}</div>` +
+    `</div>`
+
+    const infoWindow = new window.google.maps.InfoWindow({
+      content: infoWindowContent,
+      maxWidth: 200
+    })
+
+    this.infoWindows.push(infoWindow);
 
     marker.addListener("mouseover", () => {
       const label = marker.getLabel();
@@ -299,6 +313,21 @@ class ShowMap extends React.Component{
 
       marker.setIcon(icon);
     })
+
+    marker.addListener("click", () => {
+      that.closeInfoWindows();
+      infoWindow.open({
+        anchor: marker,
+        map,
+        shouldFocus: false
+      })
+    })
+  }
+
+  closeInfoWindows() {
+    for (let window of this.infoWindows) {
+      window.close();
+    }
   }
 
   // create markers for all markers passed down;
