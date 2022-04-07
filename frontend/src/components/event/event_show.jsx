@@ -12,6 +12,33 @@ class EventShow extends React.Component{
     this.props.fetchEvent(this.props.match.params.eventId)
   };
 
+  componentDidUpdate(prevProps) {
+    if (this.props.event?.attendees?.length !== prevProps.event?.attendees?.length) {
+      this.props.fetchEvent(this.props.match.params.eventId)
+    }
+  }
+
+  joinEventButton() {
+    let joinButton;
+    const { event, currentUser, addNewAttendee, deleteAttendee } = this.props
+
+    if (currentUser) {
+      let index = event.attendees.findIndex((attendee) => attendee.username === currentUser.username)
+      if (index === -1) {
+        joinButton = 
+          <div onClick={() => addNewAttendee(event._id, currentUser.id)}>
+            <div>Join Event!</div>
+          </div>
+      } else {
+        joinButton =
+          <div onClick={() => deleteAttendee(event._id, currentUser.id)}> 
+            <div>Leave Event!</div>
+          </div>
+      }
+    }
+    return joinButton
+  }
+
   render(){
     // check if current user is the owner. 
     const editCapability = this.props?.event?.owner?._id === this.props.currentUser.id
@@ -50,6 +77,9 @@ class EventShow extends React.Component{
           <ThreadIndex threads={threads} event={event}  deleteThread={this.props.deleteThread}
           editCapability = {editCapability}
           />
+          <div>
+            {this.joinEventButton()}
+          </div>
           <AttendeeIndex attendees={event.attendees}/>
         </div>
       </div>

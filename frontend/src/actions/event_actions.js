@@ -1,4 +1,4 @@
-import { getEvents, getEvent, makeEvent, editEvent, deleteEvent } from "../util/event_api_util";
+import { getEvents, getEvent, makeEvent, editEvent, deleteEvent, addAttendee, removeAttendee, addPoi, editPoi, removePoi } from "../util/event_api_util";
 
 export const RECEIVE_EVENTS = "RECEIVE_EVENTS";
 export const RECEIVE_EVENT = "RECEIVE_EVENT";
@@ -48,3 +48,33 @@ export const deleteCurrentEvent = (eventId) => dispatch => (
     .then(() => dispatch(removeEvent(eventId)))
     .catch(err => console.log(err))
 );
+
+export const addNewPoi = (eventId, data) => dispatch => (
+  addPoi(eventId, data)
+    .then(event => dispatch(receiveEvent(event)))
+    .catch(err => console.log(err))
+)
+
+export const updatePoi = (eventId, data) => dispatch => (
+  editPoi(eventId, data)
+    .then(event => dispatch(receiveEvent(event)))
+    .catch(err => console.log(err))
+)
+
+export const deletePoi = (eventId, poiId) => dispatch => (
+  removePoi(eventId, poiId)
+    .then(event => dispatch(receiveEvent(event)))
+    .catch(err => console.log(err))
+)
+
+export const addNewAttendee = (eventId, userId) => dispatch => (
+  addAttendee(eventId, userId)
+    .then(event => dispatch(receiveEvent(event)))
+    .catch(err => console.log(err))
+)
+
+export const deleteAttendee = (eventId, userId) => dispatch => (
+  removeAttendee(eventId, userId)
+    .then(event => dispatch(receiveEvent(event)))
+    .catch(err => console.log(err))
+)
