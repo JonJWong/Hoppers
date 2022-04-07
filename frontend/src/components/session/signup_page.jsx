@@ -20,7 +20,7 @@ class SignupPage extends React.Component {
   // Probably so that the user would then be prompted to login
   componentDidUpdate(){
     if(this.props.signedIn){
-      this.props.history.push('/login');
+      this.props.history.replace('/login');
     }
   }
 
