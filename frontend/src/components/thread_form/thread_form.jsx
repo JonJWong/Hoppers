@@ -27,6 +27,7 @@ class ThreadForm extends React.Component{
       <h5>{this.props.formType}</h5>
       <form onSubmit ={this.handleSubmit}>
         {nameLabel}
+        <br />
         <input
         type = "text"
         value = {this.state.name}
