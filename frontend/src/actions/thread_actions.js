@@ -36,9 +36,9 @@ export const createThread = (thread) => dispatch => {
     .catch(err => dispatch(receiveThreadErrors(err.response.data)))
 }
 
-export const deleteThread = (threadId) => disaptch => {
+export const deleteThread = (threadId) => dispatch => {
   ThreadApiUtil.deleteThread(threadId)
-    .then(() => disaptch(removeThread(threadId)))
+    .then(() => dispatch(removeThread(threadId)))
 }
 
 export const updateThread = (thread) => dispatch => {
