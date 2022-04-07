@@ -23,7 +23,8 @@ class ThreadIndexItem extends React.Component{
           {editForm}
         </div>
         <div className="comment-index">
-          <CommentIndexContainer threadId={thread._id} comments={thread.comments} />
+          <CommentIndexContainer threadId={thread._id} comments={thread.comments} 
+          event = {this.props.event} />
         </div>
       </div>
     )
