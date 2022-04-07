@@ -5,7 +5,8 @@ import {updateThread } from "../../actions/thread_actions";
 const mSTP = (state, ownProps) => {
   return {
   thread: ownProps.thread,
-  formType: "Update Thread"
+  formType: "Update Thread",
+  errors: state.errors.threads
   }
 }
 

@@ -47,6 +47,8 @@ class Profile extends React.Component {
           {this.props.allEvents?.map(event => {
             if (event.owner === this.props.currentUser.id) {
               return <EventIndexItem key={event._id} event={event} />
+            } else {
+              return null
             }
           })}
           <div className="spacer">&nbsp;</div>

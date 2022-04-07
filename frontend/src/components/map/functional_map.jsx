@@ -258,11 +258,6 @@ class FunctionalMap extends React.Component{
     this.current = 0;
   }
 
-  setCenter() {
-    const CENTER = { lat: "", lng: "" };
-    
-  }
-
   placeMarker(location) {
     // get time of day and set a styles var accordingly
     const hour = new Date().getHours();

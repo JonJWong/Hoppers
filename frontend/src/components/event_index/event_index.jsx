@@ -35,9 +35,9 @@ class EventIndex extends React.Component{
       <div className="show-shadow">
         <ul id="self-event-list">
           {this.props.allEvents?.map(event => {
-            if (event.owner === this.props.user) {
-              return <EventIndexItem key={event._id} event={event} />
-            }
+            return event.owner === this.props.user
+              ? <EventIndexItem key={event._id} event={event} />
+              : null
           })}
           <div className="spacer">&nbsp;</div>
           <div className="spacer">&nbsp;</div>
@@ -54,9 +54,9 @@ class EventIndex extends React.Component{
     return (
       <ul id="event-list">
         {this.props.allEvents?.map(event => {
-          if (event.owner !== this.props.user) {
-            return <EventIndexItem key={event._id} event={event} />
-          }
+          return event.owner !== this.props.user
+            ? <EventIndexItem key={event._id} event={event} />
+            : null
         }
         )}
       </ul>

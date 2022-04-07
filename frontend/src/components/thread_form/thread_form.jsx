@@ -21,11 +21,13 @@ class ThreadForm extends React.Component{
   }
 
   render(){  
+    let nameLabel = this.props.errors.length > 0 ? <span id="thread-name-error">Name: Can't be blank</span> : <span id="thread-name">Name:</span>
     return( 
     <div>
       <h5>{this.props.formType}</h5>
       <form onSubmit ={this.handleSubmit}>
-        <span id="thread-name">Name:</span>
+        {nameLabel}
+        <br />
         <input
         type = "text"
         value = {this.state.name}
