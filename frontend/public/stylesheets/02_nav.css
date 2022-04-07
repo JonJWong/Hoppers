@@ -113,12 +113,13 @@
 }
 
 .nav-modal-left-container {
-  max-width: 465px;
+  /* max-width: 465px; */
+  width: 450px;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
-  right: 65%;
+  /* right: 65%; */
   background-color: white;
   z-index: 1;
   transform: translateX(-100%);
@@ -137,7 +138,7 @@
 }
 
 #nav-modal-signout {
-  width: 70%;
+  width: 50%;
   min-width: 90px;
   max-width: 300px;
   font-size: 16px;
@@ -149,20 +150,32 @@
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  margin: 20px 0px 20px 0px;
 }
 
 .modal-profile-wrapper{
-  width: 80%;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-wrap{
+  display: flex;
+  align-items: center;
 }
 
 .modal-profile-container{
-  width: 90%;
+  width: 95%;
   margin-bottom: 20px;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: space-between;
 }
+.modal-profile-container h2 {
+  font-size: 26px;
+  color: #537895;
+}
+
 
 .modal-profile-container h4{
   padding-bottom: 6px;
@@ -216,17 +229,17 @@
 
 .modal-link a{
   color: #383a34;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .modal-link a:hover{
   color: #383a34;
-  font-size: 20px;
 }
 
 .modal-link i{
   font-size: 20px;
   padding-right: 14px;
+  width: 23px;
 }
 
 .logo-container{
