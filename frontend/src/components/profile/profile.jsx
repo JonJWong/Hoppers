@@ -11,7 +11,8 @@ class Profile extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchEvents();
+    // this.props.fetchEvents();
+    this.props.getUserEvents(this.props.currentUser.id);
   }
 
   renderEventBar() {
@@ -29,18 +30,25 @@ class Profile extends React.Component {
         </div>
 
         {this.renderOwnEvents()}
+        <br>
+        </br>
+        <div> 
+        <div id="profile-self-title">
+          Events you are a part of:
+          </div>
+        {this.renderNonOwnEvents()}
+        </div>
       </div>
     )
   }
 
   renderOwnEvents() {
-    if(Object.values(this.props.allEvents).length === 0) {
+    if(Object.values(this.props.userEvents).length === 0) {
       return null
     }
-
     return (
       <ul id="profile-self-event-list">
-        {this.props.allEvents?.map(event => {
+        {this.props.userEvents?.map(event => {
           return event.owner === this.props.currentUser.id
             ? <EventIndexItem key={event._id} event={event} />
             : null
@@ -50,18 +58,14 @@ class Profile extends React.Component {
   }
 
   renderNonOwnEvents(){
-    if(Object.values(this.props.allEvents).length === 0){
+    if(Object.values(this.props.userEvents).length === 0){
       return null
     }
-
-
-
     return (
       <ul id="profile-self-event-list">
-        {this.props.allEvents?.map(event => {
-          if(event.owner !== this.props.currentUser.id){
-            return <eventIndexItem key={event._id} event = {event}/>
-          }
+        {this.props.userEvents?.map(event => {
+          return event.owner !== this.props.currentUser.id
+          ? <EventIndexItem key={event._id} event = {event}/> : null
         })}
       </ul>
     )

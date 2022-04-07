@@ -4,6 +4,7 @@ import jwt_decode from 'jwt-decode';
 export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
+export const RECIEVE_CURRENT_USER_EVENTS = "RECIEVE_CURRENT_USER_EVENTS"
 // export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
 
 // We'll dispatch this when our user signs in
@@ -27,6 +28,12 @@ export const receiveErrors = errors => ({
 export const logoutUser = () => ({
   type: RECEIVE_USER_LOGOUT
 });
+
+// Receive a Current User's events
+const currentUserEvents = (user) => ({
+  type: RECIEVE_CURRENT_USER_EVENTS,
+  user
+})
 
 // Upon signup, dispatch the approporiate action depending on which type of response we receieve from the backend
 // if we sign up successfuly and insert a new user into the DB,
@@ -68,3 +75,9 @@ export const logout = () => dispatch => {
   APIUtil.setAuthToken(false)
   dispatch(logoutUser())
 };
+
+
+export const userEvents = (userId) => dispatch => {
+  APIUtil.userEvents(userId)
+    .then((user) => dispatch(currentUserEvents(user)))
+}

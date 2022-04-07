@@ -109,7 +109,7 @@ router.post("/login", (req, res) => {
   });
 });
 
-// GET route for an Indiviudal User - gives back events, name, description, PointsofInterest
+// GET route for an Indiviudal User of non owned events
 router.get('/:id',
   passport.authenticate('jwt', {session: false}),
   (req, res) => {
@@ -117,7 +117,6 @@ router.get('/:id',
     .populate({
     path:"events",
     model: "Event",
-    select: "name description PointsOfInterest"
   })
     .then( user => {res.json(user)})
     .catch(err => res.status(404).json({ noUserFound: "No user found with that ID"}))

@@ -4,7 +4,6 @@ export const RECEIVE_THREAD = "RECEIVE_THREAD";
 export const RECEIVE_NEW_THREAD = "RECEIVE_NEW_THREAD";
 export const REMOVE_THREAD = "REMOVE_THREAD";
 export const RECEIVE_THREAD_ERRORS = "RECEIVE_THREAD_ERRORS";
-export const REMOVE_THREAD_ERRORS = "REMOVE_THREAD_ERRORS";
 
 export const receiveThread = (thread) => ({
   type: RECEIVE_THREAD,
@@ -26,9 +25,6 @@ const receiveThreadErrors = (errors) => ({
   errors
 });
 
-const removeThreadErrors = (errors) => ({
-  type: REMOVE_THREAD_ERRORS
-});
 
 export const createThread = (thread) => dispatch => {
   ThreadApiUtil.makeThread(thread)
