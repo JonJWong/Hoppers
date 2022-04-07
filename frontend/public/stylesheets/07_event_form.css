@@ -101,7 +101,7 @@
   width: 250px;
 }
 
-#create-form-description-error {
+.form-error {
   color: red;
 }
 
