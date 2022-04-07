@@ -1,0 +1,17 @@
+.thread-title-container{
+  display: flex;
+  align-items: center;
+}
+
+
+.add-thread-button{
+  cursor: pointer;
+  font-size: 20px;
+  padding-left: 12px;
+  padding-top: 2px;
+  transition: color .2s ease-out;
+}
+
+.add-thread-button i:hover{
+  color: #df7116;
+}

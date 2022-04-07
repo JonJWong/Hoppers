@@ -26,7 +26,7 @@ const receiveThreadErrors = (errors) => ({
   errors
 });
 
-const removeThreadErrors = (errors) => ({
+export const removeThreadErrors = () => ({
   type: REMOVE_THREAD_ERRORS
 });
 

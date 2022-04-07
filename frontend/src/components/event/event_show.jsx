@@ -88,7 +88,7 @@ class EventShow extends React.Component{
         </div>
         <div className="interaction-container">
           <ThreadIndex threads={threads} event={event}  deleteThread={this.props.deleteThread}
-          editCapability = {editCapability}
+            editCapability = {editCapability} removeThreadErrors={this.props.removeThreadErrors}
           />
           <AttendeeIndex attendees={event.attendees}/>
         </div>
