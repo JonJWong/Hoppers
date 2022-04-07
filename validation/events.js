@@ -1,6 +1,5 @@
 const Validator = require('validator');
 const validText = require('./valid-text');
-const validStartandEndTimes = require('./valid-times')
 
 module.exports = function validateEventInput(data) {
   let errors = {};
@@ -34,13 +33,9 @@ module.exports = function validateEventInput(data) {
 
   // Validate Poi(Point of interest)
   if (data.PointsOfInterest.length < 1) {
-    errors.PointsOfInterest = "Must have atleast 1 point of interest"
+    errors.PointsOfInterest = "Must have at least 1 point of interest"
   }
 
-  // // Validate start and end times
-  // if(!validStartandEndTimes(data.startTime, data.endTime)){
-  //   errors.times = "Invalid Start and/or EndTimes"
-  // }
 
   return {
     errors,

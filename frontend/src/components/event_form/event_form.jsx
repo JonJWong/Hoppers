@@ -16,6 +16,7 @@ class EventForm extends React.Component{
     this.accept = this.accept.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
     this.update = this.update.bind(this)
+    this.renderPoiError = this.renderPoiError.bind(this)
   }
 
   update(field) {
@@ -35,18 +36,11 @@ class EventForm extends React.Component{
   
   handleSubmit(e) {
     e.preventDefault();
-
-    // Create new Event and then push to the Event's page.
-
-    console.log(this.state)
-    console.log(this.state.name.trim().length)
-    if (this.state.name.trim().length > 1 && this.state.description.trim().length > 0 && this.state.startTime !== "" && this.state.endTime !== "" && this.state.PointsOfInterest.length > 0) {
-      this.props.createEvent(this.state).then(() => {
+    // Create new Event and then push to the Event's page if successfull
+      this.props.createEvent(this.state).then((response) => {
+        if(response.type === "RECEIVE_EVENT_ERRORS"){return};
         return this.props.history.replace(`/events`)
       })
-    } else {
-      this.props.createEvent(this.state)
-    }
   }
 
   // helper to take in markers from map
@@ -61,12 +55,19 @@ class EventForm extends React.Component{
     this.setState({ PointsOfInterest: points });
   }
 
+  renderPoiError(i){
+    let poiError = this.props.errors.includes(i + 1) 
+      ? <div className= "form-error"> {`This poi is improperly formated.`} </div>
+      : <div className = "form-error"> </div>
+    return poiError
+  }
+
   renderPoiInputs() {
     let points = this.state.PointsOfInterest;
     return points.map((point, i) => {
       return (
         <div className="create-form-marker-input" key={i}>
-
+          {this.renderPoiError(i)}
           <div className="poi-name">Name</div>
           <input
             type="text"
@@ -94,11 +95,25 @@ class EventForm extends React.Component{
   }
 
   render(){
-    let descriptionLabel = this.props.errors.includes('Description is required') ? <div id="create-form-description-error">Description is required!</div> : <div id="create-form-description">Description</div>
-    let nameLabel = this.props.errors.includes('Name is required') ? <div id="create-form-name-error">Name: Too short!</div> : <div id="create-form-name">Name</div>
-    let startTimeLabel = this.props.errors.includes('Start time is required') ? <div id="create-form-start-time">Start time is required!</div> : <div id="create-form-start-time">Start Time</div>
-    let endTimeLabel = this.props.errors.includes('End time is required') ? <div id="create-form-end-time">End time is required!</div> : <div id="create-form-end-time">End Time</div>
-    let poiLabel = this.props.errors.includes('Must have atleast 1 point of interest') ? <div>Please select atleast one Point of Interest!</div> : <div></div>
+    let descriptionLabel = this.props.errors.includes('Description is required') 
+      ? <div className="form-error">Description is required!</div> 
+      : <div id="create-form-description">Description</div>
+
+    let nameLabel = this.props.errors.includes('Name is required') 
+      ? <div className="form-error">Name: Too short!</div> 
+      : <div id="create-form-name">Name</div>
+    
+    let startTimeLabel = this.props.errors.includes('Start time is required') 
+      ? <div className="form-error">Start time is required!</div> 
+      : <div id="create-form-start-time">Start Time</div>
+    
+    let endTimeLabel = this.props.errors.includes('End time is required') 
+      ? <div className="form-error">End time is required!</div> 
+      : <div id="create-form-end-time">End Time</div>
+
+    let poiLabel = this.props.errors.includes('Must have at least 1 point of interest') 
+      ? <div className="form-error">Please select at least one Point of Interest!</div> 
+      : <div> </div>
     return( 
     <div id="create-form-wrapper">
       <h5 id="create-form-header">{this.props.formType}</h5>
