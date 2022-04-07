@@ -11,6 +11,7 @@
   display: flex;
   width: 80%;
   height: 600px;
+
   justify-content: center;
   align-items: flex-start;
   /* border: 1px solid red; */
@@ -28,6 +29,8 @@
   align-items: flex-start;
   height: fit-content;
   margin-left: 8px;
+  max-height: 650px;
+  overflow-y: scroll;
 }
 
 #blur-background{
@@ -57,11 +60,13 @@
   overflow: auto;
   padding: none;
   margin-left: 2px;
-  line-height: 12px;
-  margin-top: 6px;
+  /* line-height: 12px; */
+  /* margin-top: 6px; */
   resize: none;
   line-height: 1.5;
   vertical-align: middle;
+  border-radius: 6px;
+  height: 1.5em;
 }
 
 .comment-submit{

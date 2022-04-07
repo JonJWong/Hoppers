@@ -30,7 +30,7 @@ class CommentForm extends React.Component{
     const {formType} = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
-        <h4>{formType}</h4>
+        {/* <h4>{formType}</h4> */}
         <textarea 
           placeholder={`What's on your mind, ${this.props.comment.username}?`} 
           onKeyPress={ this.commentEnterSubmit} 

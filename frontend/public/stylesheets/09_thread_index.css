@@ -40,18 +40,30 @@
 }
 
 .thread-form-container{
-  padding-left: 4px;
-  animation: grow .2s;
-  height: 40px;
+  padding-left: 4px;  
+  transition: height 0.4s ease-out, opacity 0.1s ease-out;
+  height: 0;
+  opacity: 0;
 }
 
-@keyframes grow {
-  0% {height: 0%;}
-  100% {height: 40px;}
+.visible{
+  height: 40px;
+  opacity: 1;
+}
+
+.thread-title:after{
+  content: "\f106";
+  font: normal normal normal 14px/1 FontAwesome;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.thread-title:after{
+  content: "\f107";
 }
 
 .thread-list-container{
-  width: 90%;
+  width: 95%;
   margin: 15px;
 }
 

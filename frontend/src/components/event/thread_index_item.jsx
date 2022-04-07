@@ -25,10 +25,11 @@ class ThreadIndexItem extends React.Component{
     return(
       <div className="thread-index-item">
         <div className="thread-header-container">
-          <h3 className="thread-title">{thread.name}</h3>
-          <div> collapse icon</div>
-          {deleteButton}
-          {editForm}
+          <div className="collapse-thread "> 
+            <h3 className="thread-title">{thread.name}&nbsp;</h3>
+          </div>
+          {/* {deleteButton}
+          {editForm} */}
         </div>
         <div className="comment-index">
           <CommentIndexContainer threadId={thread._id} comments={thread.comments} 

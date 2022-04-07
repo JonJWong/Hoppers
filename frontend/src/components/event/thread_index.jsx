@@ -48,14 +48,11 @@ class ThreadIndex extends React.Component{
             {this.state.confirmationMessage}
           </p>
         </div>
-        { this.state.addThread ? (
           <CreateThreadContainer 
             event={this.props.event} 
             updateConfirmationMessage={this.updateConfirmationMessage}
+            addThread={this.state.addThread}
           />
-        ) :(
-          null
-        )}
         <div className="thread-list-container">
           {threads.map((thread,idx) => (
             <ThreadIndexItem key={`${thread._id}+${idx}`} thread={thread} 

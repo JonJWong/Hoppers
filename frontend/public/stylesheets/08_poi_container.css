@@ -3,12 +3,14 @@
   margin-bottom: 12px;
   height: 340px;
   overflow-y: scroll;
+  width: 100%;
 }
 
 .poi-container{
   margin: 12px;
   padding: 4px;
   border-radius: 2px;
+  width: 90%;
 }
 .poi-container p{
   font-size: 15px;
