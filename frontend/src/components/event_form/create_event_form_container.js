@@ -5,7 +5,8 @@ import { withRouter } from "react-router-dom";
 
 const mSTP = (state) => ({
   ownerId: state.session.user.id,
-  formType: "Create Event"
+  formType: "Create Event",
+  errors: state.errors.events
 })
 
 const mDTP = dispatch => ({

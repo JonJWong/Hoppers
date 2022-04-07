@@ -6,7 +6,7 @@ const EventsErrorsReducer = (state = _nullErrors, action) => {
   Object.freeze(state);
   switch (action.type) {
     case RECEIVE_EVENT_ERRORS:
-      return action.errors;
+      return Object.values(action.errors);
     case RECEIVE_EVENT:
       return _nullErrors;
     case REMOVE_EVENT_ERRORS:

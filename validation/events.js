@@ -22,6 +22,21 @@ module.exports = function validateEventInput(data) {
     errors.description  = "Description is required";
   }
 
+  // Validate Start Time
+  if (Validator.isEmpty(data.startTime)) {
+    errors.startTime = "Start time is required";
+  }
+
+  // Validate End Time
+  if (Validator.isEmpty(data.endTime)) {
+    errors.endTime = "End time is required";
+  }
+
+  // Validate Poi(Point of interest)
+  if (data.PointsOfInterest.length < 1) {
+    errors.PointsOfInterest = "Must have atleast 1 point of interest"
+  }
+
   // // Validate start and end times
   // if(!validStartandEndTimes(data.startTime, data.endTime)){
   //   errors.times = "Invalid Start and/or EndTimes"
