@@ -32,10 +32,9 @@ class Profile extends React.Component {
         <div> 
           <div id="profile-self-title">
             Events you are a part of:
-              </div>
-            {this.renderNonOwnEvents()}
-            </div>
           </div>
+            {this.renderNonOwnEvents()}
+        </div>
         </div>
       </>
     )
@@ -69,12 +68,21 @@ class Profile extends React.Component {
       return null
     }
     return (
-      <ul id="profile-self-event-list">
-        {this.props.userEvents?.map(event => {
-          return event.owner !== this.props.currentUser.id
-          ? <EventIndexItem key={event._id} event = {event}/> : null
-        })}
-      </ul>
+      <div className="show-shadow" >
+        <ul id="profile-self-event-list">
+          {this.props.allEvents?.map(event => {
+            if (event.owner === this.props.currentUser.id) {
+              return <EventIndexItem key={event._id} event={event} />
+            } else {
+              return null
+            }
+          })}
+          <div className="spacer">&nbsp;</div>
+          <div className="spacer">&nbsp;</div>
+          <div className="spacer">&nbsp;</div>
+          <div className="spacer">&nbsp;</div>
+        </ul>
+      </div>
     )
   }
   
