@@ -35,7 +35,7 @@ class Profile extends React.Component {
 
         </div>
         <div id="event-public-title" className="sb">
-          Events you are attending:       
+          Events you're attending:       
         </div>
         <div id="event-index-container">
           {this.renderNonOwnEvents()}
