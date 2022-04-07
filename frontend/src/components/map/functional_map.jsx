@@ -443,14 +443,19 @@ class FunctionalMap extends React.Component{
 
   render(){
     return(
-      <>
+      <div id="functional-map-container-wrapper">
         <button
           id="map-add-pois"
           onClick={e => this.sendPois(e)}>
             Confirm Points of Interest
         </button>
         <div id="functional-map-container" ref={ map => this.mapNode = map }></div> 
-      </>
+        <div id="form-map-footer">
+          To add a point of interest, left-click a location on the map.
+          To remove a point of interest, right-click the undesired marker to remove it.
+          To add the selected points to the form, please press "Confirm Points Of Interest"
+        </div>
+      </div>
     )
   }
 };
