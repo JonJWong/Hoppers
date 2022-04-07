@@ -39,6 +39,9 @@ class EventIndex extends React.Component{
               return <EventIndexItem key={event._id} event={event} />
             }
           })}
+          <div className="spacer">&nbsp;</div>
+          <div className="spacer">&nbsp;</div>
+          <div className="spacer">&nbsp;</div>
         </ul>
       </div>
     )

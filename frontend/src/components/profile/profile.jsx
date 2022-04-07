@@ -26,6 +26,9 @@ class Profile extends React.Component {
               <button id="profile-self-create">Create New Event</button>
             </Link>
           </div>
+          {/* <Link
+            to="/events"
+            id="profile-link">To events page</Link> */}
         </div>
 
         {this.renderOwnEvents()}
@@ -39,25 +42,25 @@ class Profile extends React.Component {
     }
 
     return (
-      <ul id="profile-self-event-list">
-        {this.props.allEvents?.map(event => {
-          if (event.owner === this.props.currentUser.id) {
-            return <EventIndexItem key={event._id} event={event} />
-          }
-        })}
-      </ul>
+      <div className="show-shadow" >
+        <ul id="profile-self-event-list">
+          {this.props.allEvents?.map(event => {
+            if (event.owner === this.props.currentUser.id) {
+              return <EventIndexItem key={event._id} event={event} />
+            }
+          })}
+          <div className="spacer">&nbsp;</div>
+          <div className="spacer">&nbsp;</div>
+          <div className="spacer">&nbsp;</div>
+          <div className="spacer">&nbsp;</div>
+        </ul>
+      </div>
     )
   }
   
   render() {
     return (
       <div className='profile-container'>
-        <div className='profile-content'>
-          <div id="profile-greeting">Hello, {this.props.currentUser.username}</div>
-          <Link
-            to="/events"
-            id="profile-link">To events page</Link>
-        </div>
         {this.renderEventBar()}
       </div>
     );

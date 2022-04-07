@@ -58,6 +58,14 @@ class EventShow extends React.Component{
                 <div className="event-date">{getDate(event.startTime)}</div>
                 <div className="event-time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
               </div>
+              <div className="poi-list-container">
+                {event.PointsOfInterest.map(poi => (
+                  <div className="poi-container">
+                    <h4>{poi.name}</h4>
+                    <div className="event-time">{getTime(poi.startTime)} - {getTime(poi.endTime)}</div>
+                  </div>
+                ))}
+              </div>
 
               <Link
                 to="/"
