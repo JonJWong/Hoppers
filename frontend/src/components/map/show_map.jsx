@@ -1,5 +1,5 @@
 import React from "react";
-
+import * as StringUtil from "../../util/string_util";
 // Circle marker params
 const LIGHT_CIRCLE = {
   path: window.google.maps.SymbolPath.CIRCLE,
@@ -286,9 +286,9 @@ class ShowMap extends React.Component{
     `<div class="marker-content">` +
       `<h3 class="infowindow-title">Point of Interest ${i + 1}</h3>` +
       `<div class="infowindow-name">Name: ${location.name}</div>` +
-      `<div class="infowindow-start-time">Name: ${location.startTime}</div>` +
-      `<div class="infowindow-end-time">Name: ${location.endTime}</div>` +
-      `<div class="infowindow-description">Name: ${location.description}</div>` +
+      `<div class="infowindow-start">Start: ${StringUtil.getTime(location.startTime)}</div>` +
+      `<div class="infowindow-end">End: ${StringUtil.getTime(location.endTime)}</div>` +
+      `<div class="infowindow-description">Description: ${location.description}</div>` +
     `</div>`
 
     const infoWindow = new window.google.maps.InfoWindow({
