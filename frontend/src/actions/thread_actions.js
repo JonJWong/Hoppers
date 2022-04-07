@@ -50,13 +50,11 @@ export const updateThread = (thread) => dispatch => {
 export const createComment = (threadId, comment) => dispatch => (
   ThreadApiUtil.makeComment(threadId, comment)
     .then(thread => dispatch(receiveThread(thread)))
-    .catch(err => dispatch(receiveCommentErrors(err.response.data)))
 );
 
 export const updateComment = (threadId, commentId, comment) => dispatch => (
   ThreadApiUtil.editComment(threadId, commentId, comment)
     .then(thread => dispatch(receiveThread(thread)))
-    .catch(err => dispatch(receiveCommentErrors(err.response.data)))
 );
 
 export const removeComment = (threadId, commentId) => dispatch => (
