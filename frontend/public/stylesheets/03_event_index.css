@@ -20,7 +20,7 @@
 }
 
 #event-list {
-  margin: 15px;
+  padding: 20px;
   width: 90%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -50,6 +50,7 @@
   justify-content: center;
   overflow-y: scroll;
   box-shadow: inset 0 -70px 70px -70px gray;
+  border-radius: 6px;
 }
 
 #self-event-list {
