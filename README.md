@@ -64,7 +64,7 @@ Users would be able to direct-message each other in real-time.
 
 <h2>Credit<h2>
 
-A team of four extremely talented and hard-working individuals put this together[^2]!
+### A team of four extremely talented and hard-working individuals put this together[^2]!
 
   - <a href="https://github.com/JonJWong" target="_blank" rel="noopener noreferrer">Jonathan</a>: Team leader, and project coordinator / front-end designer (React.js).
   - <a href="https://github.com/njpietrow" target="_blank" rel="noopener noreferrer">Nick</a>: Front-end designer, component manager / creator (React.js).
