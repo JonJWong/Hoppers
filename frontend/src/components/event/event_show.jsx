@@ -26,14 +26,10 @@ class EventShow extends React.Component{
       let index = event.attendees.findIndex((attendee) => attendee.username === currentUser.username)
       if (index === -1) {
         joinButton = 
-          <div onClick={() => addNewAttendee(event._id, currentUser.id)}>
-            <div>Join Event!</div>
-          </div>
+          <div className="join-button" onClick={() => addNewAttendee(event._id, currentUser.id)}>Join Event!</div>
       } else {
         joinButton =
-          <div onClick={() => deleteAttendee(event._id, currentUser.id)}> 
-            <div>Leave Event!</div>
-          </div>
+          <div className="join-button" onClick={() => deleteAttendee(event._id, currentUser.id)}>Leave Event!</div>
       }
     }
     return joinButton
@@ -60,6 +56,15 @@ class EventShow extends React.Component{
                 <div className="event-date">{getDate(event.startTime)}</div>
                 <div className="event-time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
               </div>
+              <div className="poi-list-container">
+                {event.PointsOfInterest.map(poi => (
+                  <div key={poi.name} className="poi-container">
+                    <h4>{poi.name}</h4>
+                    <div className="event-time">{getTime(poi.startTime)} - {getTime(poi.endTime)}</div>
+                  </div>
+                ))}
+              </div>
+              {this.joinEventButton()}  
 
               <Link
                 to="/"
@@ -79,9 +84,6 @@ class EventShow extends React.Component{
           <ThreadIndex threads={threads} event={event}  deleteThread={this.props.deleteThread}
           editCapability = {editCapability}
           />
-          <div>
-            {this.joinEventButton()}
-          </div>
           <AttendeeIndex attendees={event.attendees}/>
         </div>
         
