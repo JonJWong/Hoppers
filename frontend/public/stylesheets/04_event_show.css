@@ -302,3 +302,7 @@
 .attendee-list-name {
   font-style: italic;
 }
+
+.thread-name-error {
+  color: red;
+}
