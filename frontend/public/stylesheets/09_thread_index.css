@@ -1,0 +1,72 @@
+.thread-title-container{
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.confirmation-message{
+  padding-left: 12px;
+  color: red;
+  font-size: medium;
+  font-weight: 600;
+}
+
+.add-thread-button{
+  cursor: pointer;
+  font-size: 20px;
+  padding-left: 12px;
+  padding-top: 2px;
+  transition: color .2s ease-out;
+}
+
+.add-thread-button i:hover{
+  color: #df7116;
+}
+
+.thread-index{
+  width: 80%;
+  border: 1px solid purple;
+  /* z-index: 1; */
+  background-color: white;
+}
+
+.thread-index-title{
+  font-size: 26px;
+}
+
+.thread-form-container{
+  padding-left: 4px;
+  animation: grow .2s;
+  height: 40px;
+}
+
+@keyframes grow {
+  0% {height: 0%;}
+  100% {height: 40px;}
+}
+
+.thread-list-container{
+  width: 90%;
+  margin: 15px;
+}
+
+.thread-index-item{
+  /* border: 1px solid yellowgreen; */
+  margin: 10px;
+}
+
+.comment-box{
+  margin-bottom: 6px;
+  border-bottom: 1px solid #ccc;
+}
+
+.thread-header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.thread-title{
+  font-size: 20px;
+  margin-bottom: 6px;
+}

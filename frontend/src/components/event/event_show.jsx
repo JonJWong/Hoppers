@@ -46,21 +46,27 @@ class EventShow extends React.Component{
     
     return(
       <div className="event-show-container">
+        <div className="background">
+          <img id="blur-background" alt="none"/>
+        </div>
         <div className="event-show-body">
           <div className="event-show-content">
             <div className="event-show-details">
               
               <h2 className="event-show-title">{event.name}</h2>
-              <h3 className="event-show-description">{event.description}</h3>
+              <h4 className="event-show-description">About this event </h4>
+              <p className="description">{event.description}</p>
               <div className="date-time-container">
+                <h4 className="details">Details </h4>
                 <div className="event-date">{getDate(event.startTime)}</div>
-                <div className="event-time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
+                <div className="">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
               </div>
               <div className="poi-list-container">
-                {event.PointsOfInterest.map(poi => (
+                {event.PointsOfInterest.map((poi, idx) => (
                   <div key={poi.name} className="poi-container">
-                    <h4>{poi.name}</h4>
+                    <h4>{`${idx + 1}) `}{poi.name}</h4>
                     <div className="event-time">{getTime(poi.startTime)} - {getTime(poi.endTime)}</div>
+                    <p>{poi.description}</p>
                   </div>
                 ))}
               </div>
@@ -82,7 +88,7 @@ class EventShow extends React.Component{
         </div>
         <div className="interaction-container">
           <ThreadIndex threads={threads} event={event}  deleteThread={this.props.deleteThread}
-          editCapability = {editCapability}
+            editCapability = {editCapability} removeThreadErrors={this.props.removeThreadErrors}
           />
           <AttendeeIndex attendees={event.attendees}/>
         </div>
