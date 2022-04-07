@@ -65,6 +65,7 @@ class NavBar extends React.Component {
       modalOpen: true,
       currentForm: form
     });
+    this.props.removeSessionErrors()
     setTimeout(() => {
       const modal = document.querySelector(".nav-modal-left-container");
       modal.classList.add("modal-open")
@@ -76,11 +77,12 @@ class NavBar extends React.Component {
     const modal_blur = document.querySelector(".nav-modal-left-block");
     modal_blur.classList.add("modal-fade")
     modal.classList.remove("modal-open")
+    this.props.removeSessionErrors()
     modal.addEventListener("transitionend", () => {
       this.setState({
         modalOpen: false,
         currentForm: ""
-      });
+      })
     })
   }
 
