@@ -16,12 +16,6 @@ class CommentForm extends React.Component{
     this.setState({body: ""})
   }
 
-  commentEnterSubmit = (e) => {
-    if (e.key === "Enter" && e.shiftKey === false) {
-      this.handleSubmit(e)
-    }
-  }
-
   update(field){
     return e => this.setState({[field]: e.currentTarget.value})
   }
@@ -31,14 +25,8 @@ class CommentForm extends React.Component{
     return (
       <form onSubmit={this.handleSubmit}>
         <h4>{formType}</h4>
-        <textarea 
-          placeholder={`What's on your mind, ${this.props.comment.username}?`} 
-          onKeyPress={ this.commentEnterSubmit} 
-          className="comment-input" 
-          value={this.state.body} 
-          onChange={this.update("body")}  
-        />
-        <input className="comment-submit" type="button" name="go" value="Submit" />
+        <textarea value={this.state.body} onChange={this.update("body")}/>
+        <input type="submit" value={"submit"} />
       </form>
     )
   }

@@ -12,10 +12,14 @@ class EventIndex extends React.Component{
     return (
       <div id="index-self-section">
         <div id="index-self-top">
-          {/* <div id="index-self-title">
+          <div id="index-self-title">
             Your Events:
-          </div> */}
-
+          </div>
+          <div id="index-self-button-container">
+            <Link to="events/create">
+              <button id="index-self-create">Create New Event</button>
+            </Link>
+          </div>
         </div>
 
         {this.renderOwnEvents()}
@@ -36,9 +40,6 @@ class EventIndex extends React.Component{
               ? <EventIndexItem key={event._id} event={event} />
               : null
           })}
-          <div className="spacer">&nbsp;</div>
-          <div className="spacer">&nbsp;</div>
-          <div className="spacer">&nbsp;</div>
         </ul>
       </div>
     )
@@ -63,14 +64,6 @@ class EventIndex extends React.Component{
   render() {
     return(
       <div className="event-page-container">
-        <div id="event-public-title" className="sb">
-          Your Events:           
-          <div id="index-self-button-container">
-            <Link to="events/create">
-              <button id="index-self-create">Create New Event</button>
-            </Link>
-          </div>
-        </div>
         <div id="event-self-index-container">
           {this.renderEventBar()}
         </div>
