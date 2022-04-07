@@ -192,7 +192,9 @@ class EditEventForm extends React.Component{
           {poiLabel}
         </div>
       {this.state ? (
-        <FunctionalMap event={this.state} accept={this.accept} />
+        <FunctionalMap event={this.state} accept={this.accept}
+          removeEventErrors = {this.props.removeEventErrors}
+        />
       ) : (
         null
       )}
