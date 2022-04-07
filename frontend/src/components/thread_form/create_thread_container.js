@@ -8,7 +8,8 @@ const mSTP = (state, ownProps) => {
     name: "",
     eventId: ownProps.event._id
   },
-  formType: "Create Thread"
+  formType: "Create Thread",
+  errors: state.errors.threads
   }
 }
 

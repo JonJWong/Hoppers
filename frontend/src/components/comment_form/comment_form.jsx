@@ -9,6 +9,9 @@ class CommentForm extends React.Component{
 
   handleSubmit(e){
     e.preventDefault()
+    if (this.state.body === '') {
+      return
+    }
     this.props.action(this.props.threadId, this.state)
     this.setState({body: ""})
   }
