@@ -16,23 +16,20 @@ class Profile extends React.Component {
 
   renderEventBar() {
     return (
-      <div id="profile-self-section">
-        <div id="profile-self-top">
-          <div id="profile-self-title">
-            Events you're hosting:
-          </div>
-          <div id="profile-self-button-container">
+      <>
+        <div id="event-public-title" className="sb">
+          Events you're hosting:         
+          <div id="index-self-button-container">
             <Link to="events/create">
-              <button id="profile-self-create">Create New Event</button>
+              <button id="index-self-create">Create New Event</button>
             </Link>
           </div>
-          {/* <Link
-            to="/events"
-            id="profile-link">To events page</Link> */}
         </div>
+        <div id="profile-self-section">
 
-        {this.renderOwnEvents()}
-      </div>
+          {this.renderOwnEvents()}
+        </div>
+      </>
     )
   }
 

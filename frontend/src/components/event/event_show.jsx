@@ -56,7 +56,7 @@ class EventShow extends React.Component{
               </div>
               <div className="poi-list-container">
                 {event.PointsOfInterest.map(poi => (
-                  <div className="poi-container">
+                  <div key={poi.name} className="poi-container">
                     <h4>{poi.name}</h4>
                     <div className="event-time">{getTime(poi.startTime)} - {getTime(poi.endTime)}</div>
                   </div>
