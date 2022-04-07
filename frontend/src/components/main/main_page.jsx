@@ -24,13 +24,20 @@ class Splash extends React.Component {
           {this.props.loggedIn 
             ? (
               <div id="splash-footer">
+                <Link
+                  to="/events">
+                    <button id="splash-entry-button">Back To Events</button>
+                </Link>
                 Please note all features subject to changes. Hoppers can not guarantee the perfect night out. Also if you have a substance abuse problem please seek assistance by dialing a the SAMHSA hotline. 1-800-662-HELP
               </div>
             ) : (
-              <Link
-                to="/login">
-                <button id="splash-entry-button">Try Hoppers Today!</button>
-              </Link>
+              <div id="splash-footer">
+                <Link
+                  to="/login">
+                  <button id="splash-entry-button">Try Hoppers Today!</button>
+                </Link>
+                Please note all features subject to changes. Hoppers can not guarantee the perfect night out. Also if you have a substance abuse problem please seek assistance by dialing a the SAMHSA hotline. 1-800-662-HELP
+              </div>
             )}
         </div>
           
