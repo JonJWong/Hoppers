@@ -40,16 +40,6 @@
   z-index: -4;
 }
 
-.background{
-  /* z-index: -4; */
-
-  /* filter: blur() brightness(.9); */
-  background-repeat: no-repeat;
-  background-position-y: 65%;
-  background-position-x: 55%;
-  /* background-image: url("https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F223899609%2F37045133340%2F1%2Foriginal.20220204-051702?w=50&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2400%2C1200&s=9b88fffdc9ef07d993f6709e4a3ea69c"); */
-}
-
 
 .event-show-content{
   margin-right: 30px;
