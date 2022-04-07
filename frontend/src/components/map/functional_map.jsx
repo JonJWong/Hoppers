@@ -228,6 +228,11 @@ class FunctionalMap extends React.Component{
     this.markers = [];
   }
 
+  setCenter() {
+    const CENTER = { lat: "", lng: "" };
+    
+  }
+
   placeMarker(location) {
     // create marker at the location of the click event
     const marker = new window.google.maps.Marker({
@@ -280,8 +285,17 @@ class FunctionalMap extends React.Component{
 
   componentDidMount() {
     const event = this.props.event;
-    const firstPoint = event.PointsOfInterest[0]?.location;
-    const CENTER = firstPoint || { lat: 37.7758, lng: -122.435 }; // this is SF
+    let avgLat = 0;
+    let avgLng = 0;
+    this.props.PointsOfInterest.forEach(point => {
+      avgLat += point.location.lat;
+      avgLng += point.location.lng;
+    })
+    avgLat /= this.props.PointsOfInterest.length;
+    avgLng /= this.props.PointsOfInterest.length;
+
+    const newCenter = { lat: avgLat, lng: avgLng };
+    const CENTER = newCenter || { lat: 37.7758, lng: -122.435 }; // this is SF
 
     const MAP_OPTIONS = {
       center: CENTER,
