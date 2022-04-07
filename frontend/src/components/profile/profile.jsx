@@ -36,6 +36,8 @@ class Profile extends React.Component {
             {this.renderNonOwnEvents()}
         </div>
       </div>
+      
+      </>
     )
   }
 
@@ -63,7 +65,7 @@ class Profile extends React.Component {
   }
 
   renderNonOwnEvents(){
-    if(Object.values(this.props.userEvents).length === 0){
+    if (Object.values(this.props.userEvents).length === 0) {
       return null
     }
     return (
