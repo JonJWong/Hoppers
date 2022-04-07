@@ -47,7 +47,7 @@
   border-style: none;
   font-size: 30px;
   cursor: pointer;
-  margin-right: 180px;
+  margin-right: 20px;
 }
 
 #nav-button-container {
@@ -227,4 +227,8 @@
 .modal-link i{
   font-size: 20px;
   padding-right: 14px;
+}
+
+.logo-container{
+  display: flex;
 }
