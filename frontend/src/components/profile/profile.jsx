@@ -13,6 +13,7 @@ class Profile extends React.Component {
   componentDidMount(){
     this.props.fetchEvents();
     this.props.getUserEvents(this.props.currentUser.id);
+    window.scroll({top: 0, left: 0, behavior: 'smooth' })
   }
 
   renderEventBar() {
