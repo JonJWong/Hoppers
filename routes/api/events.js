@@ -60,7 +60,8 @@ router.post('/',
       owner: req.user.id,
     })
     req.body.PointsOfInterest.forEach((poi, index) => {
-       // // Check if it is a valid Point of Interest
+       // // Check if it is a valid Point of Interest and is not null
+      if(poi === null){return}
       const { errors, isValid } = validatePointOfInterestInput(poi, index);
         if (!isValid) { 
           return fullErrors[errors.index + 1] = (errors.index + 1)}
@@ -142,8 +143,6 @@ router.patch('/:id',
         req.body.PointsOfInterest.forEach((poi, index) => {
         // // Check if it is a valid Point of Interest and is not null
           if(poi === null){return}
-          console.log(poi)
-          console.log(validatePointOfInterestInput(poi, index))
           const { errors, isValid } = validatePointOfInterestInput(poi, index);
             if (!isValid) { 
               console.log(errors)
