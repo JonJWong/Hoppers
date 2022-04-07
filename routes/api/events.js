@@ -145,7 +145,6 @@ router.patch('/:id',
           if(poi === null){return}
           const { errors, isValid } = validatePointOfInterestInput(poi, index);
             if (!isValid) { 
-              console.log(errors)
               return fullErrors[errors.index + 1] = (errors.index + 1)}
             if(isValid){event.PointsOfInterest.push(poi);}
         })
