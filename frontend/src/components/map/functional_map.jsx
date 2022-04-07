@@ -259,7 +259,7 @@ class FunctionalMap extends React.Component{
   }
 
   placeMarkers() {
-    if (!this.props.event.PointsOfInterest[0].location) {
+    if (!this.props.event.PointsOfInterest[0]?.location) {
       return
     }
     const markers = this.props.event.PointsOfInterest.map(point => {
