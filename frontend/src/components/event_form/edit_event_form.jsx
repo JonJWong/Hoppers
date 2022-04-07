@@ -15,7 +15,9 @@ class EditEventForm extends React.Component{
     this.props.fetchEvent(this.props.match.params.eventId)
       .then(action => {
         const event = action.event.data;
-        this.setState(event);
+        this.props.ownerId === event.owner._id
+          ? this.setState(event)
+          : this.props.history.replace("/events")
       })
   }
 
@@ -40,7 +42,7 @@ class EditEventForm extends React.Component{
 
     // Create new Event and then push to the Event's page.
     this.props.updateEvent(this.state).then(() => {
-      return this.props.history.push(`/events`)
+      return this.props.history.replace(`/events`)
     });
   }
 

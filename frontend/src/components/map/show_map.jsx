@@ -1,4 +1,33 @@
 import React from "react";
+import * as StringUtil from "../../util/string_util";
+// Circle marker params
+const LIGHT_CIRCLE = {
+  path: window.google.maps.SymbolPath.CIRCLE,
+  scale: 15,
+  fillColor: "#eeeeee",
+  strokeColor: "#eeeeee",
+  fillOpacity: 1.0,
+  strokeWeight: 0.4
+}
+
+// Dark circle marker params
+const DARK_CIRCLE = {
+  path: window.google.maps.SymbolPath.CIRCLE,
+  scale: 15,
+  fillColor: "#000000",
+  strokeColor: "#000000",
+  fillOpacity: 1.0,
+  strokeWeight: 0.4
+}
+
+const HOVER_CIRCLE = {
+  path: window.google.maps.SymbolPath.CIRCLE,
+  scale: 15,
+  fillColor: "#df7116",
+  strokeColor: "#df7116",
+  fillOpacity: 1.0,
+  strokeWeight: 0.4
+}
 
 const STYLES = {
   default: [
@@ -215,33 +244,96 @@ const STYLES = {
   ],
 };
 
-// Object.values(this.props.PointsOfInterest).map(point => {
-//   return point.location;
-// }) || 
-
 class ShowMap extends React.Component{
   constructor(props){
     super(props)
 
-    this.markers = this.props.PointsOfInterest.map(point => {
-      return point.location
-    })
+    this.infoWindows = [];
+    this.markers = this.props.PointsOfInterest;
     this.placeMarkers = this.placeMarkers.bind(this);
     this.placeMarker = this.placeMarker.bind(this);
   }
 
-  placeMarker(location) {
-    // create marker at the location specified
-    new window.google.maps.Marker({
-      position: location,
-      map: this.map
+  placeMarker(location, i) {
+    const that = this;
+    const map = this.map;
+    const position = location.location;
+    // get time of day and set a styles var accordingly
+    const hour = new Date().getHours();
+    let hoverColor = "#eeeeee";
+    let color;
+    let icon;
+    if (hour < 7 || hour > 17) {
+      icon = LIGHT_CIRCLE
+      color = "black"
+    } else {
+      icon = DARK_CIRCLE
+      color = "#eeeeee"
+    }
+
+    // create marker at the location of the click event
+    const marker = new window.google.maps.Marker({
+      position: position,
+      map: map,
+      label: {
+        text: `#${i + 1}`,
+        color: color
+      },
+      icon: icon
     })
+
+    const infoWindowContent = 
+    `<div class="marker-content">` +
+      `<h3 class="infowindow-title">Point of Interest ${i + 1}</h3>` +
+      `<div class="infowindow-name">Name: ${location.name}</div>` +
+      `<div class="infowindow-start">Start: ${StringUtil.getTime(location.startTime)}</div>` +
+      `<div class="infowindow-end">End: ${StringUtil.getTime(location.endTime)}</div>` +
+      `<div class="infowindow-description">Description: ${location.description}</div>` +
+    `</div>`
+
+    const infoWindow = new window.google.maps.InfoWindow({
+      content: infoWindowContent,
+      maxWidth: 200
+    })
+
+    this.infoWindows.push(infoWindow);
+
+    marker.addListener("mouseover", () => {
+      const label = marker.getLabel();
+      label.color = hoverColor;
+      marker.setLabel(label);
+
+      marker.setIcon(HOVER_CIRCLE);
+    })
+
+    marker.addListener("mouseout", () => {
+      const label = marker.getLabel();
+      label.color = color;
+      marker.setLabel(label);
+
+      marker.setIcon(icon);
+    })
+
+    marker.addListener("click", () => {
+      that.closeInfoWindows();
+      infoWindow.open({
+        anchor: marker,
+        map,
+        shouldFocus: false
+      })
+    })
+  }
+
+  closeInfoWindows() {
+    for (let window of this.infoWindows) {
+      window.close();
+    }
   }
 
   // create markers for all markers passed down;
   placeMarkers() {
-    this.markers.forEach(location => {
-      this.placeMarker(location);
+    this.markers.forEach((location, i) => {
+      this.placeMarker(location, i);
     })
   }
 
@@ -296,6 +388,10 @@ class ShowMap extends React.Component{
     // apply styles by time of day
     this.map.setOptions({ styles: styles });
     this.placeMarkers();
+
+    window.google.maps.event.addListener(this.map, "click", (e) => {
+      this.closeInfoWindows();
+    })
   }
 
   render(){
