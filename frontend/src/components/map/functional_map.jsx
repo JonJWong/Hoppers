@@ -304,7 +304,7 @@ class FunctionalMap extends React.Component{
 
     const infoWindowContent = 
     `<div class="marker-content">` +
-      `<h3 class="infowindow-name">Name: ${point.name}</h3>` +
+      `<h3 class="infowindow-name">${point.name}</h3>` +
       `<div class="infowindow-start">Start: ${StringUtil.getTime(point.startTime)}</div>` +
       `<div class="infowindow-end">End: ${StringUtil.getTime(point.endTime)}</div>` +
       `<div class="infowindow-description">Description: ${point.description}</div>` +
