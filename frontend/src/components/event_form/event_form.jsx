@@ -83,10 +83,6 @@ class EventForm extends React.Component{
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "description")}
             placeholder={`Point of Interest ${i + 1} description`}/>
-
-          <button
-            onClick={e => {this.deletePoi(i, e)}}
-            className="poi-delete"><i className="fa-solid fa-x"></i></button>
         </div>
       )
     })
