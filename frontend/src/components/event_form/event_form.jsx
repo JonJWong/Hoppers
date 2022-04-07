@@ -91,7 +91,7 @@ class EventForm extends React.Component{
     let nameLabel = this.props.errors.includes('Name is required') ? <div className="form-error">Name: Too short!</div> : <div id="create-form-name">Name</div>
     let startTimeLabel = this.props.errors.includes('Start time is required') ? <div className="form-error">Start time is required!</div> : <div id="create-form-start-time">Start Time</div>
     let endTimeLabel = this.props.errors.includes('End time is required') ? <div className="form-error">End time is required!</div> : <div id="create-form-end-time">End Time</div>
-    let poiLabel = this.props.errors.includes('Must have atleast 1 point of interest') ? <div className="form-error">Please select at least one Point of Interest!</div> : null
+    let poiLabel = this.props.errors.includes('Must have at least 1 point of interest') ? <div className="form-error">Please select at least one Point of Interest!</div> : null
     return( 
     <div id="create-form-wrapper">
       <h5 id="create-form-header">{this.props.formType}</h5>
