@@ -25,6 +25,7 @@ class ThreadIndex extends React.Component{
             <ThreadIndexItem key={`${thread._id}+${idx}`} thread={thread} 
             deleteThread = {this.props.deleteThread}
             editCapability = {this.props.editCapability}
+            event = {this.props.event}
             />
           ))}
         </div>
