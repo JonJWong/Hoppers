@@ -1,6 +1,22 @@
 import React from 'react'
 import FunctionalMap from '../map/functional_map';
 
+const getFormattedDatetime = (dateString) => {
+  const d = new Date(dateString);
+  let month = '' + (d.getMonth() + 1);
+  let day = '' + d.getDate();
+  const year = d.getFullYear();
+  let hour = '' + d.getHours();
+  let min = '' + d.getMinutes();
+  let sec = '' + d.getSeconds();
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+  if (hour.length < 2) hour = '0' + hour;
+  if (min.length < 2) min = '0' + min;
+  if (sec.length < 2) sec = '0' + sec;
+  return [year, month, day].join('-')+'T'+[hour,min,sec].join(':');
+} 
+
 class EventForm extends React.Component{
   constructor(props){
     super(props)
@@ -136,6 +152,7 @@ class EventForm extends React.Component{
             {descriptionLabel}
               <textarea
               value={this.state.description}
+              min={getFormattedDatetime(new Date().toLocaleString())}
               onChange={this.update("description")}
               /> 
           </div>
@@ -145,6 +162,7 @@ class EventForm extends React.Component{
               <input 
                 type="datetime-local"
                 value={this.state.startTime}
+                min={getFormattedDatetime(new Date().toLocaleString())}
                 onChange={this.update("startTime")}
               />
           </div>
