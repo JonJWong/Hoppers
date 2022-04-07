@@ -1,5 +1,5 @@
 import React from 'react';
-import EventIndexItem from "../event_index/event_index_item";
+import ProfileEventItem from "./profile_event_container";
 import { Link } from 'react-router-dom';
 
 class Profile extends React.Component {
@@ -49,21 +49,19 @@ class Profile extends React.Component {
       return null
     }
     return (
-      <div className="show-shadow" >
-        <ul id="profile-self-event-list">
-          {this.props.allEvents?.map(event => {
-            if (event.owner === this.props.currentUser.id) {
-              return <EventIndexItem key={event._id} event={event} />
-            } else {
-              return null
-            }
-          })}
-          <div className="spacer">&nbsp;</div>
-          <div className="spacer">&nbsp;</div>
-          <div className="spacer">&nbsp;</div>
-          <div className="spacer">&nbsp;</div>
-        </ul>
-      </div>
+      <ul id="profile-self-event-list">
+        {this.props.allEvents?.map(event => {
+          if (event.owner === this.props.currentUser.id) {
+            return <ProfileEventItem key={event._id} event={event} />
+          } else {
+            return null
+          }
+        })}
+        <div className="spacer">&nbsp;</div>
+        <div className="spacer">&nbsp;</div>
+        <div className="spacer">&nbsp;</div>
+        <div className="spacer">&nbsp;</div>
+      </ul>
     )
   }
 
@@ -75,7 +73,7 @@ class Profile extends React.Component {
       <ul id="event-list">
         {this.props.allEvents?.map(event => {
           return event.owner !== this.props.currentUser.id
-            ? <EventIndexItem key={event._id} event={event} />
+            ? <ProfileEventItem key={event._id} event={event} />
             : null
         })}
       </ul>
