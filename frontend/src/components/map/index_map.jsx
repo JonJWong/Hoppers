@@ -232,7 +232,7 @@ class IndexMap extends React.Component{
 
   placeMarker(location) {
     // create marker at the location specified
-    const marker = new window.google.maps.Marker({
+    new window.google.maps.Marker({
       position: location,
       map: this.map
     })
