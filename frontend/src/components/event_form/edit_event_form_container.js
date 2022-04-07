@@ -7,7 +7,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     formType: "Edit Event",
     ownerId: state.session.user.id,
-    event: state.events.all[ownProps.match.params.eventId]
+    event: state.events.all[ownProps.match.params.eventId],
+    errors: state.errors.events
   }
 }
 

@@ -45,9 +45,10 @@ router.post('/',
     const { errors, isValid } = validateEventInput(req.body);
     let fullErrors = {}
     if (!isValid) {
+      // Add Non-Poi errors to the error response
       fullErrors = errors;
-      if(req.body.PointsOfInterest.length === 0)
-      return res.status(400).json(fullErrors)
+      // Return earlyf if no Poi's
+      if(req.body.PointsOfInterest.length === 0) {return res.status(400).json(fullErrors)}
     }
 
     // Create new Event
@@ -61,10 +62,11 @@ router.post('/',
     req.body.PointsOfInterest.forEach((poi, index) => {
        // // Check if it is a valid Point of Interest
       const { errors, isValid } = validatePointOfInterestInput(poi, index);
-      if (!isValid) { 
-        return fullErrors[errors.index + 1] = (errors.index + 1)}
-      if (isValid) {newEvent.PointsOfInterest.push(poi)};
+        if (!isValid) { 
+          return fullErrors[errors.index + 1] = (errors.index + 1)}
+        if (isValid) {newEvent.PointsOfInterest.push(poi)};
     })
+    // Return Errors if there are any
     if(Object.values(fullErrors).length > 0){return res.status(400).json(fullErrors)}
     
     // Add user id into attendes
@@ -120,17 +122,30 @@ router.patch('/:id',
   passport.authenticate('jwt', {session: false}), 
   (req, res) => {
     Event.findById(req.params.id)
-    // .then(function(event){
-    //   event.set(req.body)
-    //   res.json(event)})
       .then(event => {
         const { errors, isValid } = validateEventInput(req.body);
-        if (!isValid) { return res.status(400).json(errors) }
+        let fullErrors = {}
+        if (!isValid) { 
+          // Add Non-Poi errors to the error response
+          fullErrors = errors;
+          // Return early if no Poi's
+          if(req.body.PointsOfInterest.length === 0){return res.status(400).json(fullErrors)}
+        }
 
         event.name = req.body.name
         event.description = req.body.description
         event.startTime = req.body.startTime
         event.endTime = req.body.endTime
+
+        req.body.PointsOfInterest.forEach((poi, index) => {
+        // // Check if it is a valid Point of Interest
+        const { errors, isValid } = validatePointOfInterestInput(poi, index);
+          if (!isValid) { 
+            return fullErrors[errors.index + 1] = (errors.index + 1)}
+      })
+        // Return Errors if there are any
+        if(Object.values(fullErrors).length > 0){return res.status(400).json(fullErrors)}
+        // Save Event if no errors
         event.PointsOfInterest = req.body.PointsOfInterest
         event.save().then(event => res.json(event));
       })
