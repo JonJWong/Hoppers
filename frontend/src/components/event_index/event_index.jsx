@@ -61,7 +61,7 @@ class EventIndex extends React.Component{
           Your Events:           
           <div id="index-self-button-container">
             <Link to="/profile">
-              <button id="index-self-profile">More...</button>
+              <button id="index-self-profile">Show More Events...</button>
             </Link>
             <Link to="events/create">
               <button id="index-self-create">Create New Event</button>

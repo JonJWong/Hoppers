@@ -21,10 +21,11 @@ class Splash extends React.Component {
             </div>
           </div>
 
-          {this.props.currentUser 
+          {this.props.loggedIn 
             ? (
-              <>
-              </>
+              <div id="splash-footer">
+                Please note all features subject to changes. Hoppers can not guarantee the perfect night out. Also if you have a substance abuse problem please seek assistance by dialing a the SAMHSA hotline. 1-800-662-HELP
+              </div>
             ) : (
               <Link
                 to="/login">
@@ -41,7 +42,7 @@ class Splash extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    currentUser: state.session.user
+    loggedIn: state.session.isAuthenticated
   }
 }
 

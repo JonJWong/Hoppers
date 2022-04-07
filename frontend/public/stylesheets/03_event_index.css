@@ -62,14 +62,6 @@
   border-bottom: 4px #eeeeee solid;
 }
 
-#index-self-profile {
-  border-style: none;
-  font-size: 18px;
-  padding: 9px;
-  margin-right: 20px;
-  border-radius: 30px;
-}
-
 .spacer{
   height: 40px;
 }
@@ -183,9 +175,23 @@
   cursor: pointer;
 }
 
-#index-self-create:hover {
+#index-self-create:hover, #index-self-profile:hover {
   background-color: #df7116;
   color: #eeeeee;
+}
+
+#index-self-profile {
+  border-style: none;
+  font-size: 18px;
+  padding: 9px;
+  padding-left: 13px;
+  padding-right: 13px;
+  margin-right: 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  color: black;
+  background-color: #eeeeee;
+  transition: background-color .2s ease-out, color .2s ease-out;
 }
 
 #index-self-button-container {
