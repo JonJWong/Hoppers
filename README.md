@@ -20,7 +20,7 @@ Additionally, event attendees can post about the night's events on the main even
 
 Users can create events and select points of interest to include along their event-route.
 
-<img src="https://github.com/JonJWong/Hoppers/images/eventcreate.png" alt="event-create-photo"></img>
+<img src="https://github.com/JonJWong/Hoppers/blob/main/images/eventcreate.png" alt="event-create-photo"></img>
 
 These events are then saved to the database, along with all their points of interest.
 These points of interest are then turned into a route on the map, where the general path is shown.
@@ -86,7 +86,7 @@ sendPois(e) {
 
 The main page will display all events currently open to the public, where anyone can join in to make new social connections or just have a nice day with the other attendees.
 
-<img src="https://github.com/JonJWong/Hoppers/images/eventindex.png" alt="event-index-photo"></img>
+<img src="https://github.com/JonJWong/Hoppers/blob/main/images/eventindex.png" alt="event-index-photo"></img>
 
 <h2 id="technologies-used">Technologies Used</h2>
 
