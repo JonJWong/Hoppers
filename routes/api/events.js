@@ -43,8 +43,11 @@ router.post('/',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
     const { errors, isValid } = validateEventInput(req.body);
+    let fullErrors = {}
     if (!isValid) {
-      return res.status(400).json(errors);
+      fullErrors = errors;
+      if(req.body.PointsOfInterest.length === 0)
+      return res.status(400).json(fullErrors)
     }
 
     // Create new Event
@@ -55,16 +58,15 @@ router.post('/',
       endTime: req.body.endTime,
       owner: req.user.id,
     })
-
-    let poiErrors = []
     req.body.PointsOfInterest.forEach((poi, index) => {
+       // // Check if it is a valid Point of Interest
       const { errors, isValid } = validatePointOfInterestInput(poi, index);
-      // // Check if is a valid Point of Interest
-      if (!isValid) { return poiErrors.push(errors.index + 1)}
-      newEvent.PointsOfInterest.push(poi);
+      if (!isValid) { 
+        return fullErrors[errors.index + 1] = (errors.index + 1)}
+      if (isValid) {newEvent.PointsOfInterest.push(poi)};
     })
-
-    if(poiErrors.length > 0){return res.status(400).json(poiErrors)}
+    console.log(fullErrors)
+    if(Object.values(fullErrors).length > 0){return res.status(400).json(fullErrors)}
     
     // Add user id into attendes
     newEvent.attendees.push(req.user.id)

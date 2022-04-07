@@ -25,6 +25,6 @@ module.exports = function validatePointOfInterestInput(data, index) {
   
   return {
     errors,
-    isValid: Object.keys(errors).length === 0
+    isValid: Object.keys(errors).length === 1
   };
 };
