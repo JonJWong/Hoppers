@@ -6,6 +6,7 @@ class EventIndex extends React.Component{
   componentDidMount(){
     this.props.fetchEvents();
     this.props.getUserEvents(this.props.user);
+    window.scroll({top: 0, left: 0, behavior: 'smooth' });
   }
 
   renderEventBar() {
@@ -22,18 +23,18 @@ class EventIndex extends React.Component{
     }
 
     return (
-      <div className="show-shadow">
-        <ul id="self-event-list">
-          {this.props.allEvents?.map(event => {
+      <ul id="self-event-list">
+        {this.props.allEvents?.map((event, i) => {
+          if (i < 3) {
             return event.owner === this.props.user
               ? <EventIndexItem key={event._id} event={event} />
               : null
-          })}
-          <div className="spacer">&nbsp;</div>
-          <div className="spacer">&nbsp;</div>
-          <div className="spacer">&nbsp;</div>
-        </ul>
-      </div>
+          }
+        })}
+        <div className="spacer">&nbsp;</div>
+        <div className="spacer">&nbsp;</div>
+        <div className="spacer">&nbsp;</div>
+      </ul>
     )
   }
 
@@ -59,6 +60,9 @@ class EventIndex extends React.Component{
         <div id="event-public-title" className="sb">
           Your Events:           
           <div id="index-self-button-container">
+            <Link to="/profile">
+              <button id="index-self-profile">More...</button>
+            </Link>
             <Link to="events/create">
               <button id="index-self-create">Create New Event</button>
             </Link>

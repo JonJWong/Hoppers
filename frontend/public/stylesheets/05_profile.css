@@ -34,7 +34,6 @@
 }
 
 #profile-self-event-list {
-  height: 550px;
   width: 95%;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
