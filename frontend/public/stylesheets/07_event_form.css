@@ -115,7 +115,7 @@
   padding-bottom: 5px;
 }
 
-#create-form-name-error {
+#create-form-name-error, #create-form-start-time-error, #create-form-end-time-error, #create-form-poi-error {
   color: red;
 }
 

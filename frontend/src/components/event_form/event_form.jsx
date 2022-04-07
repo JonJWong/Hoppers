@@ -37,9 +37,6 @@ class EventForm extends React.Component{
     e.preventDefault();
 
     // Create new Event and then push to the Event's page.
-
-    console.log(this.state)
-    console.log(this.state.name.trim().length)
     if (this.state.name.trim().length > 1 && this.state.description.trim().length > 0 && this.state.startTime !== "" && this.state.endTime !== "" && this.state.PointsOfInterest.length > 0) {
       this.props.createEvent(this.state).then(() => {
         return this.props.history.replace(`/events`)
@@ -96,9 +93,9 @@ class EventForm extends React.Component{
   render(){
     let descriptionLabel = this.props.errors.includes('Description is required') ? <div id="create-form-description-error">Description is required!</div> : <div id="create-form-description">Description</div>
     let nameLabel = this.props.errors.includes('Name is required') ? <div id="create-form-name-error">Name: Too short!</div> : <div id="create-form-name">Name</div>
-    let startTimeLabel = this.props.errors.includes('Start time is required') ? <div id="create-form-start-time">Start time is required!</div> : <div id="create-form-start-time">Start Time</div>
-    let endTimeLabel = this.props.errors.includes('End time is required') ? <div id="create-form-end-time">End time is required!</div> : <div id="create-form-end-time">End Time</div>
-    let poiLabel = this.props.errors.includes('Must have atleast 1 point of interest') ? <div>Please select atleast one Point of Interest!</div> : <div></div>
+    let startTimeLabel = this.props.errors.includes('Start time is required') ? <div id="create-form-start-time-error">Start time is required!</div> : <div id="create-form-start-time">Start Time</div>
+    let endTimeLabel = this.props.errors.includes('End time is required') ? <div id="create-form-end-time-error">End time is required!</div> : <div id="create-form-end-time">End Time</div>
+    let poiLabel = this.props.errors.includes('Must have atleast 1 point of interest') ? <div id="create-form-poi-error">Please select atleast one Point of Interest!</div> : <div></div>
     return( 
     <div id="create-form-wrapper">
       <h5 id="create-form-header">{this.props.formType}</h5>
