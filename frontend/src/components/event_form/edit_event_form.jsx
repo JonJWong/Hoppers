@@ -1,5 +1,6 @@
 import React from 'react'
 import FunctionalMap from '../map/functional_map';
+import moment from "moment";
 
 class EditEventForm extends React.Component{
   constructor(props){
