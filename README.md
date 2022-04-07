@@ -55,9 +55,16 @@ IMAGE HERE
 
 <h2 id="future-plans">Future Plans</h2>
 
-### Credit
+Users would be able to privatize / create private events.
+  - These events would be able to be shared via messages sent to another user's inbox.
+  - Only Attendees would be able to see and access these events.
 
-A team of four extremely talented and hard-working individuals put this together[^2]!
+Users would be able to direct-message each other in real-time.
+  - Web socket implementation, for individual and group-DMs (event participants)
+
+<h2>Credit<h2>
+
+### A team of four extremely talented and hard-working individuals put this together[^2]!
 
   - <a href="https://github.com/JonJWong" target="_blank" rel="noopener noreferrer">Jonathan</a>: Team leader, and project coordinator / front-end designer (React.js).
   - <a href="https://github.com/njpietrow" target="_blank" rel="noopener noreferrer">Nick</a>: Front-end designer, component manager / creator (React.js).

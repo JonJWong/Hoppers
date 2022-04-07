@@ -37,11 +37,12 @@ class EventForm extends React.Component{
     e.preventDefault();
 
     // Create new Event and then push to the Event's page.
+
     console.log(this.state)
     console.log(this.state.name.trim().length)
     if (this.state.name.trim().length > 1 && this.state.description.trim().length > 0 && this.state.startTime !== "" && this.state.endTime !== "" && this.state.PointsOfInterest.length > 0) {
       this.props.createEvent(this.state).then(() => {
-        return this.props.history.push(`/events`)
+        return this.props.history.replace(`/events`)
       })
     } else {
       this.props.createEvent(this.state)
