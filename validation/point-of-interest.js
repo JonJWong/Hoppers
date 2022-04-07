@@ -22,6 +22,16 @@ module.exports = function validatePointOfInterestInput(data, index) {
   if (!Validator.isLength(data.description, {min:0, max: 200 })){
     errors.name = "Description must be between 0 and 200 characters"
   }
+
+  // Validate Start Time
+  if (Validator.isEmpty(data.startTime)) {
+    errors.startTime = "Start time is required";
+  }
+
+  // Validate End Time
+  if (Validator.isEmpty(data.endTime)) {
+    errors.endTime = "End time is required";
+  }
   
   return {
     errors,

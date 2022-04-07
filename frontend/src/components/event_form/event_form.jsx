@@ -57,8 +57,8 @@ class EventForm extends React.Component{
 
   renderPoiError(i){
     let poiError = this.props.errors.includes(i + 1) 
-      ? <div className="form-error"> {`This poi is improperly formated.`} </div>
-      : <div> </div>
+      ? <div className= "form-error"> {`This poi is improperly formated.`} </div>
+      : <div className = "form-error"> </div>
     return poiError
   }
 
