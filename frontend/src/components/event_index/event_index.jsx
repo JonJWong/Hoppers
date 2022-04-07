@@ -5,6 +5,7 @@ import EventIndexItem from "./event_index_item";
 class EventIndex extends React.Component{
   componentDidMount(){
     this.props.fetchEvents();
+    this.props.getUserEvents(this.props.user);
   }
 
   renderEventBar() {
