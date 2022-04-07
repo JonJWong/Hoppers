@@ -1,6 +1,5 @@
 import React from 'react'
 import FunctionalMap from '../map/functional_map';
-import moment from "moment";
 
 class EditEventForm extends React.Component{
   constructor(props){
@@ -22,7 +21,7 @@ class EditEventForm extends React.Component{
 
   update(field, e) {
     const value = e.currentTarget.value;
-    return () => this.setState({[field]: e.currentTarget.value})
+    this.setState({[field]: e.currentTarget.value})
   }
 
   updatePoi(e, i, point, field) {
@@ -39,7 +38,6 @@ class EditEventForm extends React.Component{
   handleSubmit(e) {
     e.preventDefault();
 
-    debugger
     // Create new Event and then push to the Event's page.
     this.props.updateEvent(this.state).then(() => {
       return this.props.history.push(`/events`)

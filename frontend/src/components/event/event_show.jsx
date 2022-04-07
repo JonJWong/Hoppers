@@ -43,9 +43,11 @@ class EventShow extends React.Component{
     // check if current user is the owner. 
     const editCapability = this.props?.event?.owner?._id === this.props.currentUser.id
     const {event, threads} = this.props
+
     if((!event)||(!event.attendees)) {
       return null
     }
+    
     return(
       <div className="event-show-container">
         <div className="event-show-body">
@@ -82,10 +84,16 @@ class EventShow extends React.Component{
           </div>
           <AttendeeIndex attendees={event.attendees}/>
         </div>
-
-        <Link to={`/events/${event._id}/edit`}>
-          Fuck
-        </Link>
+        
+        {this.props.currentUser.id === event.owner._id
+          ? (
+            <Link to={`/events/${event._id}/edit`}>
+              Edit Event
+            </Link>
+          ) : (
+            <>
+            </>
+          )}
       </div>
     );
   };
