@@ -58,6 +58,16 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   padding: 20px;
+  padding-bottom: 80px;
+  border-bottom: 4px #eeeeee solid;
+}
+
+#index-self-profile {
+  border-style: none;
+  font-size: 18px;
+  padding: 9px;
+  margin-right: 20px;
+  border-radius: 30px;
 }
 
 .spacer{

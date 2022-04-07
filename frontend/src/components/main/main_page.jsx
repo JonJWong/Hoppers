@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Splash extends React.Component {
   constructor(props) {
@@ -20,10 +21,16 @@ class Splash extends React.Component {
             </div>
           </div>
 
-          <Link
-            to="/login">
-            <button id="splash-entry-button">Try Hoppers Today!</button>
-          </Link>
+          {this.props.currentUser 
+            ? (
+              <>
+              </>
+            ) : (
+              <Link
+                to="/login">
+                <button id="splash-entry-button">Try Hoppers Today!</button>
+              </Link>
+            )}
         </div>
           
         <div id="splash-block"></div>
@@ -32,4 +39,16 @@ class Splash extends React.Component {
   }
 }
 
-export default Splash;
+const mapStateToProps = (state) => {
+  return {
+    currentUser: state.session.user
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Splash);
