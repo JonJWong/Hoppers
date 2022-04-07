@@ -7,7 +7,7 @@ const mSTP = (state, ownProps) => ({
     body: "",
     username: state.session.user.username,
   },
-  formType: "Leave Comment"
+  formType: "Add a Comment"
 });
 
 const mDTP = dispatch => ({

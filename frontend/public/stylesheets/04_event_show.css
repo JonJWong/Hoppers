@@ -22,12 +22,32 @@
   margin-right: 30px;
   width: 50%;
   height: 500px;
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
+  display: flex;
+  justify-content: center;
 }
 
 .event-show-content * {
   /* text-align: left; */
 }
+
+.comment-input, textarea{
+  width: 98%;
+  overflow: auto;
+  padding: none;
+  margin-left: 2px;
+  line-height: 12px;
+  margin-top: 6px;
+  resize: none;
+  line-height: 1.5;
+  vertical-align: middle;
+}
+
+.comment-submit{
+  /* margin-bottom: 8px; */
+  visibility: hidden;
+}
+
 
 .event-show-title{
   padding-top: 15px;
@@ -73,8 +93,7 @@
 }
 
 .attendee-list{
-  border: 1px solid green;
-  width: 40%;
+  width: 30%;
   height: 70%;
   margin-bottom: 15px;
   display: flex;
@@ -104,7 +123,7 @@
 }
 
 .thread-index-item{
-  border: 1px solid yellowgreen;
+  /* border: 1px solid yellowgreen; */
   margin: 10px;
 }
 
@@ -225,7 +244,7 @@
 }
 
 .attendee-list{
-  border: 1px solid green;
+  /* border: 1px solid green; */
   margin-bottom: 15px;
   height: 70%;
 }
@@ -261,6 +280,17 @@
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
                                 supported by Chrome, Edge, Opera and Firefox */
+}
+
+.join-button{
+  cursor: pointer;
+  color: #537895;
+  padding-bottom: 15px;
+}
+
+.event-show-back-link{
+  color: #537895;
+  padding-bottom: 15px;
 }
 
 .attendee-list-title {
