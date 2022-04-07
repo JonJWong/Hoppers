@@ -136,17 +136,23 @@ router.patch('/:id',
         event.description = req.body.description
         event.startTime = req.body.startTime
         event.endTime = req.body.endTime
+        // clear Pois to get rid of nulls
+        event.PointsOfInterest = []
 
         req.body.PointsOfInterest.forEach((poi, index) => {
-        // // Check if it is a valid Point of Interest
-        const { errors, isValid } = validatePointOfInterestInput(poi, index);
-          if (!isValid) { 
-            return fullErrors[errors.index + 1] = (errors.index + 1)}
-      })
+        // // Check if it is a valid Point of Interest and is not null
+          if(poi === null){return}
+          console.log(poi)
+          console.log(validatePointOfInterestInput(poi, index))
+          const { errors, isValid } = validatePointOfInterestInput(poi, index);
+            if (!isValid) { 
+              console.log(errors)
+              return fullErrors[errors.index + 1] = (errors.index + 1)}
+            if(isValid){event.PointsOfInterest.push(poi);}
+        })
         // Return Errors if there are any
         if(Object.values(fullErrors).length > 0){return res.status(400).json(fullErrors)}
         // Save Event if no errors
-        event.PointsOfInterest = req.body.PointsOfInterest
         event.save().then(event => res.json(event));
       })
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))

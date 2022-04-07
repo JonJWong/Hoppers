@@ -57,7 +57,6 @@ class EditEventForm extends React.Component{
   
   handleSubmit(e) {
     e.preventDefault();
-
     // Create new Event and then push to the Event's page if successfull
     this.props.updateEvent(this.state).then((response) => {
       if(response.type === "RECEIVE_EVENT_ERRORS"){return}
