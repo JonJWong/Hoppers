@@ -46,13 +46,18 @@ class EventShow extends React.Component{
     
     return(
       <div className="event-show-container">
+        <div className="background">
+          <img id="blur-background" alt="none"/>
+        </div>
         <div className="event-show-body">
           <div className="event-show-content">
             <div className="event-show-details">
               
               <h2 className="event-show-title">{event.name}</h2>
-              <h3 className="event-show-description">{event.description}</h3>
+              <h4 className="event-show-description">About this event </h4>
+              <p className="description">{event.description}</p>
               <div className="date-time-container">
+                <h4 className="details">Details </h4>
                 <div className="event-date">{getDate(event.startTime)}</div>
                 <div className="event-time">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
               </div>

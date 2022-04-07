@@ -1,7 +1,14 @@
 .poi-list-container{
-  margin: 12px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 .poi-container{
+  margin-bottom: 8px;
+}
+
+.poi-container h4{
   margin-bottom: 6px;
 }
