@@ -1,6 +1,22 @@
 import React from 'react'
 import FunctionalMap from '../map/functional_map';
 
+const getFormattedDatetime = (dateString) => {
+  const d = new Date(dateString);
+  let month = '' + (d.getMonth() + 1);
+  let day = '' + d.getDate();
+  const year = d.getFullYear();
+  let hour = '' + d.getHours();
+  let min = '' + d.getMinutes();
+  let sec = '' + d.getSeconds();
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+  if (hour.length < 2) hour = '0' + hour;
+  if (min.length < 2) min = '0' + min;
+  if (sec.length < 2) sec = '0' + sec;
+  return [year, month, day].join('-')+'T'+[hour,min,sec].join(':');
+} 
+
 class EditEventForm extends React.Component{
   constructor(props){
     super(props)
@@ -74,12 +90,14 @@ class EditEventForm extends React.Component{
           <div className="poi-start">Start Time</div>
           <input
             type="datetime-local"
-            onChange={(e) => this.updatePoi(e, i, point, "startTime")}/>
+            onChange={(e) => this.updatePoi(e, i, point, "startTime")}
+            value={getFormattedDatetime(point.startTime)}/>
 
           <div className="poi-end">End Time</div>
           <input
             type="datetime-local"
-            onChange={(e) => this.updatePoi(e, i, point, "endTime")}/>
+            onChange={(e) => this.updatePoi(e, i, point, "endTime")}
+            value={getFormattedDatetime(point.endTime)}/>
 
           <div className="poi-description">Description</div>
           <input
@@ -129,6 +147,7 @@ class EditEventForm extends React.Component{
             <div id ="create-form-start-time">Start Time</div>
               <input 
                 type="datetime-local"
+                value={getFormattedDatetime(this.state.startTime)}
                 onChange={(e) => this.update("startTime", e)}
               />
           </div>
@@ -137,6 +156,7 @@ class EditEventForm extends React.Component{
             <div id ="create-form-end-time">End Time</div>
               <input 
                 type="datetime-local"
+                value={getFormattedDatetime(this.state.endTime)}
                 onChange={(e) => this.update("endTime", e)}
               />
           </div>
@@ -154,7 +174,7 @@ class EditEventForm extends React.Component{
         <button
           type="Submit"
           id="create-form-submit">
-            {this.props.formType}
+            Submit Changes
         </button>
       </form>
     </div>

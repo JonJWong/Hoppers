@@ -1,4 +1,6 @@
 import React from "react";
+import * as StringUtil from "../../util/string_util";
+import moment from "moment";
 
 // Circle marker params
 const LIGHT_CIRCLE = {
@@ -252,6 +254,7 @@ class FunctionalMap extends React.Component{
       style: "default"
     }
     
+    this.infoWindows = [];
     this.placeMarkers = this.placeMarkers.bind(this);    
     this.sendPois = this.sendPois.bind(this);
     this.markers = {};
@@ -263,15 +266,18 @@ class FunctionalMap extends React.Component{
       return
     }
     const markers = this.props.event.PointsOfInterest.map(point => {
-      return point.location
+      return point
     })
 
-    markers.forEach(coord => {
-      this.placeMarker(coord)
+    markers.forEach((point, i) => {
+      this.placeMarker(point, i)
     })
   }
 
-  placeMarker(location) {
+  placeMarker(point, i) {
+    const position = point.location;
+    const map = this.map;
+    const that = this;
     // get time of day and set a styles var accordingly
     const hour = new Date().getHours();
     let hoverColor = "#eeeeee";
@@ -287,14 +293,30 @@ class FunctionalMap extends React.Component{
 
     // create marker at the location of the click event
     const marker = new window.google.maps.Marker({
-      position: location,
-      map: this.map,
+      position: position,
+      map: map,
       label: {
         text: `#${this.current + 1}`,
         color: color
       },
       icon: icon
     })
+
+    const infoWindowContent = 
+    `<div class="marker-content">` +
+      `<h3 class="infowindow-title">Point of Interest ${i + 1}</h3>` +
+      `<div class="infowindow-name">Name: ${point.name}</div>` +
+      `<div class="infowindow-start">Start: ${StringUtil.getTime(point.startTime)}</div>` +
+      `<div class="infowindow-end">End: ${StringUtil.getTime(point.endTime)}</div>` +
+      `<div class="infowindow-description">Description: ${point.description}</div>` +
+    `</div>`
+
+    const infoWindow = new window.google.maps.InfoWindow({
+      content: infoWindowContent,
+      maxWidth: 200
+    })
+
+    this.infoWindows.push(infoWindow);
 
     marker.addListener("mouseover", () => {
       const label = marker.getLabel();
@@ -312,8 +334,17 @@ class FunctionalMap extends React.Component{
       marker.setIcon(icon);
     })
 
+    marker.addListener("click", () => {
+      that.closeInfoWindows();
+      infoWindow.open({
+        anchor: marker,
+        map,
+        shouldFocus: false
+      })
+    })
+
     // center the map onto the location of click
-    this.map.panTo(location);
+    this.map.panTo(position);
 
     // set marker id, assign to object attribute
     let id = this.current;
@@ -322,9 +353,15 @@ class FunctionalMap extends React.Component{
     this.markers[id] = marker;
 
     // add a listener for right-click to delete the marker that is right-clicked
-    window.google.maps.event.addListener(marker, "rightclick", (point) => {
+    window.google.maps.event.addListener(marker, "rightclick", () => {
       this.deleteMarker(id);
     })
+  }
+
+  closeInfoWindows() {
+    for (let window of this.infoWindows) {
+      window.close();
+    }
   }
 
   // helper to delete a marker at a set ID on the map
@@ -369,7 +406,7 @@ class FunctionalMap extends React.Component{
       minZoom: 13,
       restriction: {
         latLngBounds: {
-          north: CENTER.lat + .04,
+          north: CENTER.lat + .06,
           south: CENTER.lat - .1,
           east: CENTER.lng + .07,
           west: CENTER.lng - .09
@@ -406,14 +443,19 @@ class FunctionalMap extends React.Component{
 
   render(){
     return(
-      <>
+      <div id="functional-map-container-wrapper">
         <button
           id="map-add-pois"
           onClick={e => this.sendPois(e)}>
             Confirm Points of Interest
         </button>
         <div id="functional-map-container" ref={ map => this.mapNode = map }></div> 
-      </>
+        <div id="form-map-footer">
+          To add a point of interest, left-click a location on the map.
+          To remove a point of interest, right-click the undesired marker to remove it.
+          To add the selected points to the form, please press "Confirm Points Of Interest"
+        </div>
+      </div>
     )
   }
 };
