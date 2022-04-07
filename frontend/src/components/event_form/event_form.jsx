@@ -56,9 +56,10 @@ class EventForm extends React.Component{
   }
 
   renderPoiError(i){
-    if(this.props.errors.includes(i)){
-      return <div className="form-error"> {`This poi is improperly formated.`} </div>
-    }
+    let poiError = this.props.errors.includes(i + 1) 
+      ? <div className="form-error"> {`This poi is improperly formated.`} </div>
+      : <div> </div>
+    return poiError
   }
 
   renderPoiInputs() {
@@ -66,7 +67,7 @@ class EventForm extends React.Component{
     return points.map((point, i) => {
       return (
         <div className="create-form-marker-input" key={i}>
-          {this.renderPoiError(i + 1)}
+          {this.renderPoiError(i)}
           <div className="poi-name">Name</div>
           <input
             type="text"
@@ -112,7 +113,7 @@ class EventForm extends React.Component{
 
     let poiLabel = this.props.errors.includes('Must have at least 1 point of interest') 
       ? <div className="form-error">Please select at least one Point of Interest!</div> 
-      : null
+      : <div> </div>
     return( 
     <div id="create-form-wrapper">
       <h5 id="create-form-header">{this.props.formType}</h5>

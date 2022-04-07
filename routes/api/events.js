@@ -65,7 +65,6 @@ router.post('/',
         return fullErrors[errors.index + 1] = (errors.index + 1)}
       if (isValid) {newEvent.PointsOfInterest.push(poi)};
     })
-    console.log(fullErrors)
     if(Object.values(fullErrors).length > 0){return res.status(400).json(fullErrors)}
     
     // Add user id into attendes
