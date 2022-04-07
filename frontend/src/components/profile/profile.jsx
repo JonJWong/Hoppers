@@ -11,7 +11,7 @@ class Profile extends React.Component {
   }
 
   componentDidMount(){
-    // this.props.fetchEvents();
+    this.props.fetchEvents();
     this.props.getUserEvents(this.props.currentUser.id);
   }
 
@@ -70,7 +70,7 @@ class Profile extends React.Component {
     return (
       <ul id="profile-self-event-list">
         {this.props.allEvents?.map(event => {
-          return event.owner === this.props.currentUser.id
+          return event.owner !== this.props.currentUser.id
             ? <EventIndexItem key={event._id} event={event} />
             : null
         })}
