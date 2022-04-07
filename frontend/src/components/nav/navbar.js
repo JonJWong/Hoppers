@@ -48,22 +48,7 @@ class NavBar extends React.Component {
                 </button>
             </div>
         );
-      }// else {
-      //   return (
-      //       <div id="nav-button-container">
-      //         <button
-      //           id="nav-bar-signup"
-      //           onClick={() => this.openModal("signup")}>
-      //             Sign Up
-      //         </button>
-      //         <button
-      //           id="nav-bar-login"
-      //           onClick={() => this.openModal("login")}>
-      //             Log In
-      //         </button>
-      //       </div>
-      //   );
-      // }
+      }
   }
 
   openModal(form) {
@@ -160,16 +145,18 @@ class NavBar extends React.Component {
       <>
         <div id="nav-bar-wrapper">
           <div id="nav-bar-container">
-            <button
-              id="nav-bar-burger"
-              onClick={() => this.openModal()}>
-              <i className="fa-solid fa-bars"></i>
-            </button>
-            <Link to="/events">
-              <div className='title select-none'>
-                <h2>Hoppers</h2>
-              </div>
-            </Link>
+            <div className='logo-container'>
+              <button
+                id="nav-bar-burger"
+                onClick={() => this.openModal()}>
+                <i className="fa-solid fa-bars"></i>
+              </button>
+              <Link to="/events">
+                <div className='title select-none'>
+                  <h2>Hoppers</h2>
+                </div>
+              </Link>
+            </div>
             { this.getLinks() }
           </div>
           { this.renderModal() }

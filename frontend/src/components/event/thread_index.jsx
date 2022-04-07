@@ -12,7 +12,13 @@ class ThreadIndex extends React.Component{
     if(!threads) return null
     return(
       <div className="thread-index">
-        <h3 className="thread-index-title">Conversation Threads</h3>
+        <div>
+          <h3 className="thread-index-title">Conversation Threads</h3>
+          <div className="add-thread-button" >
+            <i className="fa-solid fa-plus"></i>
+          </div>
+        </div>
+        
           {createThread}
         <div className="thread-list-container">
           {threads.map((thread,idx) => (
