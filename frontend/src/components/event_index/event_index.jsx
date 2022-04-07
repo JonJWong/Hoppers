@@ -11,13 +11,6 @@ class EventIndex extends React.Component{
   renderEventBar() {
     return (
       <div id="index-self-section">
-        <div id="index-self-top">
-          {/* <div id="index-self-title">
-            Your Events:
-          </div> */}
-
-        </div>
-
         {this.renderOwnEvents()}
       </div>
     )
