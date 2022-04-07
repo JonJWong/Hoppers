@@ -104,6 +104,7 @@ class NavBar extends React.Component {
 
   changeForm(type) {
     this.setState({ currentForm: type })
+    this.props.removeSessionErrors();
   }
 
   renderForm() {

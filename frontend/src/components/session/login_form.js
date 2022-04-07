@@ -41,9 +41,9 @@ class LoginForm extends React.Component {
   // Render the session errors if there are any
   renderErrors() {
     return(
-      <ul>
+      <ul className="error-messages">
         {Object.keys(this.props.errors).map((error, i) => (
-          <li key={`error-${i}`}>
+          <li className = "form-error "key={`error-${i}`}>
             {this.props.errors[error]}
           </li>
         ))}
@@ -83,7 +83,7 @@ class LoginForm extends React.Component {
             </button>
             <button
               id="login-bottom-signup-button"
-              onClick={() => this.props.change("signup")}>
+              onClick={() =>this.props.change("signup")}>
                 Sign Up
             </button>
           </div>
