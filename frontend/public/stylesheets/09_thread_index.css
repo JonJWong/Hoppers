@@ -9,6 +9,11 @@
   color: red;
   font-size: medium;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.margin-left{
+  margin-left: 12px;
 }
 
 .add-thread-button{

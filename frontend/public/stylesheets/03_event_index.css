@@ -71,7 +71,7 @@
   height: auto;
   padding: 10px;
   margin: 3%;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 21px 22px, rgba(0, 0, 0, 0.12) 0px -6px 15px, rgba(0, 0, 0, 0.12) 0px 2px 3px, rgba(0, 0, 0, 0.17) 0px 6px 6.6px, rgba(0, 0, 0, 0.09) 0px -1px 2px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 11px 12px, rgba(0, 0, 0, 0.12) 0px -3px 8px, rgba(0, 0, 0, 0.12) 0px 2px 3px, rgba(0, 0, 0, 0.17) 0px 6px 6.6px, rgba(0, 0, 0, 0.09) 0px -1px 2px;
   transition: box-shadow .2s ease-in-out;
   cursor: pointer;
 }
@@ -90,7 +90,7 @@
 }
 
 .event-index-item:hover {
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 24px 25px, rgba(0, 0, 0, 0.12) 0px -6px 15px, rgba(0, 0, 0, 0.12) 0px 4px 5px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .index-map-container {
