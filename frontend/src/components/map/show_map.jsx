@@ -388,6 +388,10 @@ class ShowMap extends React.Component{
     // apply styles by time of day
     this.map.setOptions({ styles: styles });
     this.placeMarkers();
+
+    window.google.maps.event.addListener(this.map, "click", (e) => {
+      this.closeInfoWindows();
+    })
   }
 
   render(){
