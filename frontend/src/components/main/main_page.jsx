@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 class Splash extends React.Component {
   constructor(props) {
@@ -20,10 +21,24 @@ class Splash extends React.Component {
             </div>
           </div>
 
-          <Link
-            to="/login">
-            <button id="splash-entry-button">Try Hoppers Today!</button>
-          </Link>
+          {this.props.loggedIn 
+            ? (
+              <div id="splash-footer">
+                <Link
+                  to="/events">
+                    <button id="splash-entry-button">Back To Events</button>
+                </Link>
+                Please note all features subject to changes. Hoppers can not guarantee the perfect night out. Also if you have a substance abuse problem please seek assistance by dialing a the SAMHSA hotline. 1-800-662-HELP
+              </div>
+            ) : (
+              <div id="splash-footer">
+                <Link
+                  to="/login">
+                  <button id="splash-entry-button">Try Hoppers Today!</button>
+                </Link>
+                Please note all features subject to changes. Hoppers can not guarantee the perfect night out. Also if you have a substance abuse problem please seek assistance by dialing a the SAMHSA hotline. 1-800-662-HELP
+              </div>
+            )}
         </div>
           
         <div id="splash-block"></div>
@@ -32,4 +47,16 @@ class Splash extends React.Component {
   }
 }
 
-export default Splash;
+const mapStateToProps = (state) => {
+  return {
+    loggedIn: state.session.isAuthenticated
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Splash);

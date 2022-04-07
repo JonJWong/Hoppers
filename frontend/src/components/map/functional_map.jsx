@@ -274,6 +274,64 @@ class FunctionalMap extends React.Component{
     })
   }
 
+  newMarker(point) {
+    const map = this.map;
+    const that = this;
+    // get time of day and set a styles var accordingly
+    const hour = new Date().getHours();
+    let hoverColor = "#eeeeee";
+    let color;
+    let icon;
+    if (hour < 7 || hour > 17) {
+      icon = LIGHT_CIRCLE
+      color = "black"
+    } else {
+      icon = DARK_CIRCLE
+      color = "#eeeeee"
+    }
+
+    // create marker at the location of the click event
+    const marker = new window.google.maps.Marker({
+      position: point,
+      map: map,
+      label: {
+        text: `#${this.current + 1}`,
+        color: color
+      },
+      icon: icon
+    })
+
+    marker.addListener("mouseover", () => {
+      const label = marker.getLabel();
+      label.color = hoverColor;
+      marker.setLabel(label);
+
+      marker.setIcon(HOVER_CIRCLE);
+    })
+
+    marker.addListener("mouseout", () => {
+      const label = marker.getLabel();
+      label.color = color;
+      marker.setLabel(label);
+
+      marker.setIcon(icon);
+    })
+
+    // center the map onto the location of click
+    this.map.panTo(point);
+
+    // set marker id, assign to object attribute
+    let id = this.current;
+    this.current += 1;
+
+    this.markers[id] = marker;
+
+    // add a listener for right-click to delete the marker that is right-clicked
+    window.google.maps.event.addListener(marker, "rightclick", () => {
+      this.deleteMarker(id);
+    })
+  }
+
   placeMarker(point, i) {
     const position = point.location;
     const map = this.map;
@@ -431,7 +489,7 @@ class FunctionalMap extends React.Component{
 
     // add listener to map that creates markers on click
     window.google.maps.event.addListener(this.map, "click", (e) => {
-      this.placeMarker(e.latLng, this.map)
+      this.newMarker(e.latLng)
     })
 
     const submitButton = document.getElementById("map-add-pois");
