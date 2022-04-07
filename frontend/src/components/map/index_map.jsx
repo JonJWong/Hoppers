@@ -1,5 +1,34 @@
 import React from "react";
 
+// Circle marker params
+const LIGHT_CIRCLE = {
+  path: window.google.maps.SymbolPath.CIRCLE,
+  scale: 15,
+  fillColor: "#eeeeee",
+  strokeColor: "#eeeeee",
+  fillOpacity: 1.0,
+  strokeWeight: 0.4
+}
+
+// Dark circle marker params
+const DARK_CIRCLE = {
+  path: window.google.maps.SymbolPath.CIRCLE,
+  scale: 15,
+  fillColor: "#000000",
+  strokeColor: "#000000",
+  fillOpacity: 1.0,
+  strokeWeight: 0.4
+}
+
+const HOVER_CIRCLE = {
+  path: window.google.maps.SymbolPath.CIRCLE,
+  scale: 15,
+  fillColor: "#df7116",
+  strokeColor: "#df7116",
+  fillOpacity: 1.0,
+  strokeWeight: 0.4
+}
+
 const STYLES = {
   default: [
     {
@@ -230,18 +259,52 @@ class IndexMap extends React.Component{
     this.placeMarker = this.placeMarker.bind(this);
   }
 
-  placeMarker(location) {
-    // create marker at the location specified
-    new window.google.maps.Marker({
+  placeMarker(location, i) {
+    // get time of day and set a styles var accordingly
+    const hour = new Date().getHours();
+    let hoverColor = "#eeeeee";
+    let color;
+    let icon;
+    if (hour < 7 || hour > 17) {
+      icon = LIGHT_CIRCLE
+      color = "black"
+    } else {
+      icon = DARK_CIRCLE
+      color = "#eeeeee"
+    }
+
+    // create marker at the location of the click event
+    const marker = new window.google.maps.Marker({
       position: location,
-      map: this.map
+      map: this.map,
+      label: {
+        text: `#${i + 1}`,
+        color: color
+      },
+      icon: icon
+    })
+
+    marker.addListener("mouseover", () => {
+      const label = marker.getLabel();
+      label.color = hoverColor;
+      marker.setLabel(label);
+
+      marker.setIcon(HOVER_CIRCLE);
+    })
+
+    marker.addListener("mouseout", () => {
+      const label = marker.getLabel();
+      label.color = color;
+      marker.setLabel(label);
+
+      marker.setIcon(icon);
     })
   }
 
   // create markers for all markers passed down;
   placeMarkers() {
-    this.markers.forEach(location => {
-      this.placeMarker(location);
+    this.markers.forEach((location, i) => {
+      this.placeMarker(location, i);
     })
   }
 
