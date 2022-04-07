@@ -52,30 +52,33 @@ class EventShow extends React.Component{
         <div className="event-show-body">
           <div className="event-show-content">
             <div className="event-show-details">
-              
-              <h2 className="event-show-title">{event.name}</h2>
-              <h4 className="event-show-description">About this event </h4>
-              <p className="description">{event.description}</p>
-              <div className="date-time-container">
-                <h4 className="details">Details </h4>
-                <div className="event-date">{getDate(event.startTime)}</div>
-                <div className="">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
+              <div className="margin-left">
+                <h2 className="event-show-title">{event.name}</h2>
+                <h4 className="event-show-description">About this event </h4>
+                <p className="description">{event.description}</p>
+                <div className="date-time-container">
+                  <h4 className="details">Details </h4>
+                  <div className="event-date">{getDate(event.startTime)}</div>
+                  <div className="">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
+                </div>
               </div>
               <div className="poi-list-container">
                 {event.PointsOfInterest.map((poi, idx) => (
                   <div key={poi.name} className="poi-container">
                     <h4>{`${idx + 1}) `}{poi.name}</h4>
-                    <div className="event-time">{getTime(poi.startTime)} - {getTime(poi.endTime)}</div>
-                    <p>{poi.description}</p>
+                    <div className="poi-contents">
+                      <div className="event-time">{getTime(poi.startTime)} - {getTime(poi.endTime)}</div>
+                      <p>{poi.description}</p>
+                    </div>
                   </div>
                 ))}
               </div>
               {this.joinEventButton()}  
 
               <Link
-                to="/"
+                to="/events"
                 className="event-show-back-link">
-                  Back To Events Index
+                  See more events
               </Link>
 
             </div>

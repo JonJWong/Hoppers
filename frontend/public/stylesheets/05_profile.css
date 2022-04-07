@@ -68,3 +68,18 @@
   background-color: #df7116;
   color: #eeeeee;
 }
+
+.profile-item{
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.profile-item-description{
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  height: 3.34em;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
