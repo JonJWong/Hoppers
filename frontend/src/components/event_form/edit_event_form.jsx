@@ -1,25 +1,27 @@
 import React from 'react'
 import FunctionalMap from '../map/functional_map';
 
-class EventForm extends React.Component{
+class EditEventForm extends React.Component{
   constructor(props){
     super(props)
-    this.state = {
-      name: "",
-      description: "",
-      startTime: "",
-      endTime: "",
-      PointsOfInterest: [],
-      owner: this.props.ownerId
-    }
+    this.state = this.props.event;
 
     this.accept = this.accept.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
     this.update = this.update.bind(this)
   }
 
-  update(field) {
-    return (e) => {this.setState({[field]: e.currentTarget.value})}
+  componentDidMount() {
+    this.props.fetchEvent(this.props.match.params.eventId)
+      .then(action => {
+        const event = action.event.data;
+        this.setState(event);
+      })
+  }
+
+  update(field, e) {
+    const value = e.currentTarget.value;
+    this.setState({[field]: e.currentTarget.value})
   }
 
   updatePoi(e, i, point, field) {
@@ -37,7 +39,7 @@ class EventForm extends React.Component{
     e.preventDefault();
 
     // Create new Event and then push to the Event's page.
-    this.props.createEvent(this.state).then(() => {
+    this.props.updateEvent(this.state).then(() => {
       return this.props.history.push(`/events`)
     });
   }
@@ -64,6 +66,7 @@ class EventForm extends React.Component{
           <input
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "name")}
+            value={point.name}
             placeholder={`Point of Interest ${i + 1} name`}/>
 
           <div className="poi-start">Start Time</div>
@@ -80,13 +83,20 @@ class EventForm extends React.Component{
           <input
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "description")}
+            value={point.description}
             placeholder={`Point of Interest ${i + 1} description`}/>
         </div>
       )
     })
   }
 
-  render(){  
+  render(){
+    if (!this.state) {
+      return (
+        <>
+        </>
+      )
+    }
     return( 
     <div id="create-form-wrapper">
       <h5 id="create-form-header">{this.props.formType}</h5>
@@ -100,7 +110,7 @@ class EventForm extends React.Component{
               <input
                 type="text"
                 value={this.state.name}
-                onChange={this.update("name")}
+                onChange={(e) => this.update("name", e)}
                 placeholder="Event Name"
               />
           </div>
@@ -109,7 +119,7 @@ class EventForm extends React.Component{
             <div id="create-form-description">Description</div>
               <textarea
               value={this.state.description}
-              onChange={this.update("description")}
+              onChange={(e) => this.update("description", e)}
               /> 
           </div>
           
@@ -117,8 +127,7 @@ class EventForm extends React.Component{
             <div id ="create-form-start-time">Start Time</div>
               <input 
                 type="datetime-local"
-                value={this.state.startTime}
-                onChange={this.update("startTime")}
+                onChange={(e) => this.update("startTime", e)}
               />
           </div>
           
@@ -126,13 +135,15 @@ class EventForm extends React.Component{
             <div id ="create-form-end-time">End Time</div>
               <input 
                 type="datetime-local"
-                value={this.state.endTime}
-                onChange = {this.update("endTime")}
+                onChange={(e) => this.update("endTime", e)}
               />
           </div>
         </div>
-
-      <FunctionalMap event={this.state} accept={this.accept} />
+      {this.state.name ? (
+        <FunctionalMap event={this.state} accept={this.accept} />
+      ) : (
+        null
+      )}
 
         <div id="poi-input-list">
           {this.renderPoiInputs()}
@@ -149,4 +160,4 @@ class EventForm extends React.Component{
   }
 }
 
-export default EventForm
+export default EditEventForm

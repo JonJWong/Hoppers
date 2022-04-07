@@ -223,7 +223,7 @@ class IndexMap extends React.Component{
   constructor(props){
     super(props)
 
-    this.markers = this.props.PointsOfInterest.map(point => {
+    this.markers = this.props.PointsOfInterest?.map(point => {
       return point.location
     })
     this.placeMarkers = this.placeMarkers.bind(this);

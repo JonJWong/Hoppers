@@ -251,11 +251,24 @@ class FunctionalMap extends React.Component{
     this.state = {
       style: "default"
     }
-
-    // this.clearMarkers = this.clearMarkers.bind(this);
+    
+    this.placeMarkers = this.placeMarkers.bind(this);    
     this.sendPois = this.sendPois.bind(this);
     this.markers = {};
     this.current = 0;
+  }
+
+  placeMarkers() {
+    if (!this.props.event.PointsOfInterest[0]?.location) {
+      return
+    }
+    const markers = this.props.event.PointsOfInterest.map(point => {
+      return point.location
+    })
+
+    markers.forEach(coord => {
+      this.placeMarker(coord)
+    })
   }
 
   placeMarker(location) {
@@ -327,17 +340,16 @@ class FunctionalMap extends React.Component{
 
   sendPois(e) {
     e.preventDefault();
-    const points = [];
-    Object.values(this.markers).forEach(marker => {
+    const points = this.props.event.PointsOfInterest;
+
+    Object.values(this.markers).forEach((marker, i) => {
       const pos = {};
-      const newPoint = {};
+      const newPoint = points[i] || {};
       pos["lat"] = marker.position.lat();
       pos["lng"] = marker.position.lng();
-      newPoint.location = pos;
-      points.push(newPoint)
+      newPoint["location"] = pos;
+      points[i] = newPoint
     })
-
-    this.current = 0;
 
     this.props.accept("PointsOfInterest", points)
   }
@@ -388,6 +400,8 @@ class FunctionalMap extends React.Component{
 
     const submitButton = document.getElementById("map-add-pois");
     this.map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(submitButton);
+
+    this.placeMarkers();
   }
 
   render(){

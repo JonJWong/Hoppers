@@ -11,7 +11,7 @@ class Profile extends React.Component {
   }
 
   componentDidMount(){
-    // this.props.fetchEvents();
+    this.props.fetchEvents();
     this.props.getUserEvents(this.props.currentUser.id);
   }
 
@@ -32,12 +32,10 @@ class Profile extends React.Component {
         <div> 
           <div id="profile-self-title">
             Events you are a part of:
-              </div>
-            {this.renderNonOwnEvents()}
-            </div>
           </div>
+            {this.renderNonOwnEvents()}
         </div>
-      </>
+      </div>
     )
   }
 
@@ -70,9 +68,10 @@ class Profile extends React.Component {
     }
     return (
       <ul id="profile-self-event-list">
-        {this.props.userEvents?.map(event => {
+        {this.props.allEvents?.map(event => {
           return event.owner !== this.props.currentUser.id
-          ? <EventIndexItem key={event._id} event = {event}/> : null
+            ? <EventIndexItem key={event._id} event={event} />
+            : null
         })}
       </ul>
     )
