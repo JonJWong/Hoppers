@@ -42,7 +42,26 @@ class Profile extends React.Component {
       <ul id="profile-self-event-list">
         {this.props.allEvents?.map(event => {
           if (event.owner === this.props.currentUser.id) {
+            console.log(event)
             return <EventIndexItem key={event._id} event={event} />
+          }
+        })}
+      </ul>
+    )
+  }
+
+  renderNonOwnEvents(){
+    if(Object.values(this.props.allEvents).length === 0){
+      return null
+    }
+
+
+
+    return (
+      <ul id="profile-self-event-list">
+        {this.props.allEvents?.map(event => {
+          if(event.owner !== this.props.currentUser.id){
+            return <eventIndexItem key={event._id} event = {event}/>
           }
         })}
       </ul>

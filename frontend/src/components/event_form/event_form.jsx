@@ -36,8 +36,6 @@ class EventForm extends React.Component{
   handleSubmit(e) {
     e.preventDefault();
     let that = this; 
-
-    console.log(this.state);
     // Create new Event and then push to the Event's page.
     this.props.action(this.state).then(function(event){
       return that.props.history.push(`/events`)
