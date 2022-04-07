@@ -7,8 +7,18 @@
   grid-template-rows: 250px auto 40px;
 }
 
-#create-form-container > #functional-map-container {
+#functional-map-container-wrapper {
   grid-area: 1 / 1 / 4 / 2;
+  width: 600px;
+}
+
+#form-map-footer {
+  text-align: center;
+  font-size: 14px;
+  padding-top: 20px;
+}
+
+#functional-map-container {
   height: 600px;
   width: 600px;
 }
