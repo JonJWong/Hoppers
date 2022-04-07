@@ -100,12 +100,14 @@ class EditEventForm extends React.Component{
           <input
             type="datetime-local"
             onChange={(e) => this.updatePoi(e, i, point, "startTime")}
+            min={getFormattedDatetime(new Date().toLocaleString())}
             value={getFormattedDatetime(point.startTime)}/>
 
           <div className="poi-end">End Time</div>
           <input
             type="datetime-local"
             onChange={(e) => this.updatePoi(e, i, point, "endTime")}
+            min={getFormattedDatetime(point.startTime)}
             value={getFormattedDatetime(point.endTime)}/>
 
           <div className="poi-description">Description</div>
@@ -177,6 +179,7 @@ class EditEventForm extends React.Component{
               <input 
                 type="datetime-local"
                 value={getFormattedDatetime(this.state.startTime)}
+                min={getFormattedDatetime(new Date().toLocaleString())}
                 onChange={(e) => this.update("startTime", e)}
               />
           </div>
@@ -186,6 +189,7 @@ class EditEventForm extends React.Component{
               <input 
                 type="datetime-local"
                 value={getFormattedDatetime(this.state.endTime)}
+                min={getFormattedDatetime(this.state.startTime)}
                 onChange={(e) => this.update("endTime", e)}
               />
           </div>

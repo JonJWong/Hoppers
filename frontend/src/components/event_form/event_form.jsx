@@ -23,8 +23,8 @@ class EventForm extends React.Component{
     this.state = {
       name: "",
       description: "",
-      startTime: "",
-      endTime: "",
+      startTime: new Date(),
+      endTime: new Date(),
       PointsOfInterest: [],
       owner: this.props.ownerId
     }
@@ -93,11 +93,13 @@ class EventForm extends React.Component{
           <div className="poi-start">Start Time</div>
           <input
             type="datetime-local"
+            min={getFormattedDatetime(new Date().toLocaleString())}
             onChange={(e) => this.updatePoi(e, i, point, "startTime")}/>
 
           <div className="poi-end">End Time</div>
           <input
             type="datetime-local"
+            min={getFormattedDatetime(this.state.startTime)}
             onChange={(e) => this.updatePoi(e, i, point, "endTime")}/>
 
           <div className="poi-description">Description</div>
@@ -152,7 +154,6 @@ class EventForm extends React.Component{
             {descriptionLabel}
               <textarea
               value={this.state.description}
-              min={getFormattedDatetime(new Date().toLocaleString())}
               onChange={this.update("description")}
               /> 
           </div>
@@ -172,6 +173,7 @@ class EventForm extends React.Component{
               <input 
                 type="datetime-local"
                 value={this.state.endTime}
+                min={getFormattedDatetime(this.state.startTime)}
                 onChange = {this.update("endTime")}
               />
           </div>
