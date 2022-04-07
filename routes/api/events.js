@@ -128,6 +128,7 @@ router.patch('/:id',
         event.description = req.body.description
         event.startTime = req.body.startTime
         event.endTime = req.body.endTime
+        event.PointsOfInterest = req.body.PointsOfInterest
         event.save().then(event => res.json(event));
       })
     .catch(err => res.status(404).json({ noeventfound: 'No event found with that ID' }))

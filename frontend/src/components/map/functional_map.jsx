@@ -259,6 +259,9 @@ class FunctionalMap extends React.Component{
   }
 
   placeMarkers() {
+    if (!this.props.event.PointsOfInterest[0].location) {
+      return
+    }
     const markers = this.props.event.PointsOfInterest.map(point => {
       return point.location
     })
@@ -337,17 +340,16 @@ class FunctionalMap extends React.Component{
 
   sendPois(e) {
     e.preventDefault();
-    const points = [];
-    Object.values(this.markers).forEach(marker => {
+    const points = this.props.event.PointsOfInterest;
+
+    Object.values(this.markers).forEach((marker, i) => {
       const pos = {};
-      const newPoint = {};
+      const newPoint = points[i] || {};
       pos["lat"] = marker.position.lat();
       pos["lng"] = marker.position.lng();
-      newPoint.location = pos;
-      points.push(newPoint)
+      newPoint["location"] = pos;
+      points[i] = newPoint
     })
-
-    this.current = 0;
 
     this.props.accept("PointsOfInterest", points)
   }
