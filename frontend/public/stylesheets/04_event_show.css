@@ -133,43 +133,7 @@
   margin: 15px;
 }
 
-.thread-index{
-  width: 80%;
-  border: 1px solid purple;
-  /* z-index: 1; */
-  background-color: white;
-}
 
-.thread-index-title{
-  font-size: 26px;
-}
-
-.thread-list-container{
-  width: 90%;
-  border: 1px solid red;
-  margin: 15px;
-}
-
-.thread-index-item{
-  /* border: 1px solid yellowgreen; */
-  margin: 10px;
-}
-
-.comment-box{
-  margin-bottom: 6px;
-  border-bottom: 1px solid #ccc;
-}
-
-.thread-header-container{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.thread-title{
-  font-size: 20px;
-  margin-bottom: 6px;
-}
 
 .comment-container .circle{
   background: rgba(176, 174, 174, 0.482);

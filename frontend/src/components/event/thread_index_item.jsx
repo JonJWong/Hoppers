@@ -7,7 +7,15 @@ class ThreadIndexItem extends React.Component{
 
   render(){
     const deleteButton = this.props.editCapability ? 
-      <button id ="button-delete" onClick={() => this.props.deleteThread(thread._id)}>Delete</button> 
+      <button 
+        id ="button-delete" 
+        onClick={() => {
+          this.props.deleteThread(thread._id)
+          this.props.updateConfirmationMessage("Thread Deleted Successfully")
+        }}
+      >
+        Delete
+      </button> 
       : null 
 
     const editForm = this.props.editCapability ? <EditThreadContainer 

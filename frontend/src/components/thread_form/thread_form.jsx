@@ -21,21 +21,24 @@ class ThreadForm extends React.Component{
   }
 
   render(){  
-    let nameLabel = this.props.errors.length > 0 ? <span className="thread-name-error">Name: Can't be blank</span> : <span id="thread-name">Name:</span>
+    let nameLabel = this.props.errors.length > 0 
+      ? <span className="thread-name-error">Thread Name: Can't be blank</span> 
+      : <span id="thread-name">Thread Name:</span>
     return( 
-    <div>
-      <h5>{this.props.formType}</h5>
-      <form onSubmit ={this.handleSubmit}>
-        {nameLabel}
-        <br />
-        <input
-        type = "text"
-        value = {this.state.name}
-        onChange = {this.handleChange("name")}
-        />
-        <button type="Submit"> {this.props.formType} </button>
-      </form>
-    </div>
+      <div className='thread-form-container'>
+        {/* <h5>{this.props.formType}</h5> */}
+        <form onSubmit ={this.handleSubmit}>
+          {nameLabel}
+          <br />
+          <input
+            type = "text"
+            value = {this.state.name}
+            placeholder = "Enter a thread name"
+            onChange = {this.handleChange("name")}
+          />
+          <button type="Submit"> {this.props.formType} </button>
+        </form>
+      </div>
     )
   }
 }
