@@ -6,7 +6,6 @@ class CommentIndex extends React.Component{
 
   render(){
       const members = this.props.event.attendees.map(person => person.username)
-      console.log(members.includes(this.props.currentUserUsername))
       const commentForm = members.includes(this.props.currentUserUsername)
       ? <CreateCommentFormContainer threadId={this.props.threadId}/> : null
 
