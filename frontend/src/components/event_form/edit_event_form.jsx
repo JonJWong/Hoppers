@@ -1,17 +1,11 @@
 import React from 'react'
 import FunctionalMap from '../map/functional_map';
+import moment from "moment";
 
 class EditEventForm extends React.Component{
   constructor(props){
     super(props)
-    this.state = {
-      name: "",
-      description: "",
-      startTime: "",
-      endTime: "",
-      PointsOfInterest: [],
-      owner: this.props.ownerId
-    }
+    this.state = this.props.event;
 
     this.accept = this.accept.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -21,8 +15,8 @@ class EditEventForm extends React.Component{
   componentDidMount() {
     this.props.fetchEvent(this.props.match.params.eventId)
       .then(action => {
-        debugger
-        this.setState()
+        const event = action.event.data;
+        this.setState(event);
       })
   }
 
@@ -73,90 +67,102 @@ class EditEventForm extends React.Component{
           <input
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "name")}
+            value={point.name}
             placeholder={`Point of Interest ${i + 1} name`}/>
 
           <div className="poi-start">Start Time</div>
           <input
             type="datetime-local"
             onChange={(e) => this.updatePoi(e, i, point, "startTime")}
-            placeholder={`Point of Interest ${i + 1} start time`}/>
+            value={point.startTime.slice(0, -1)}/>
 
           <div className="poi-end">End Time</div>
           <input
             type="datetime-local"
             onChange={(e) => this.updatePoi(e, i, point, "endTime")}
-            placeholder={`Point of Interest ${i + 1} end time`}/>
+            value={point.endTime.slice(0, -1)}/>
 
           <div className="poi-description">Description</div>
           <input
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "description")}
+            value={point.description}
             placeholder={`Point of Interest ${i + 1} description`}/>
         </div>
       )
     })
   }
 
-  render(){  
-    return( 
-    <div id="create-form-wrapper">
-      <h5 id="create-form-header">{this.props.formType}</h5>
-      <form
-        id="create-form-container"
-        onSubmit ={this.handleSubmit}>
-
-        <div id="create-form-fields">
-          <div id="create-form-name-wrapper">
-            <div id="create-form-name">Name</div>
-              <input
-                type="text"
-                value={this.state.name}
-                onChange={this.update("name")}
-                placeholder="Event Name"
-              />
+  render(){
+    if (this.state) {
+      return( 
+      <div id="create-form-wrapper">
+        <h5 id="create-form-header">{this.props.formType}</h5>
+        <form
+          id="create-form-container"
+          onSubmit ={this.handleSubmit}>
+  
+          <div id="create-form-fields">
+            <div id="create-form-name-wrapper">
+              <div id="create-form-name">Name</div>
+                <input
+                  type="text"
+                  value={this.state.name}
+                  onChange={this.update("name")}
+                  placeholder="Event Name"
+                />
+            </div>
+            
+            <div id="create-form-description-wrapper">
+              <div id="create-form-description">Description</div>
+                <textarea
+                value={this.state.description}
+                onChange={this.update("description")}
+                /> 
+            </div>
+            
+            <div id="create-form-start-wrapper">
+              <div id ="create-form-start-time">Start Time</div>
+                <input 
+                  type="datetime-local"
+                  value={this.state.startTime.slice(0, -1)}
+                  onChange={this.update("startTime")}
+                />
+            </div>
+            
+            <div id="create-form-end-time-wrapper">
+              <div id ="create-form-end-time">End Time</div>
+                <input 
+                  type="datetime-local"
+                  value={this.state.endTime.slice(0, -1)}
+                  onChange = {this.update("endTime")}
+                />
+            </div>
           </div>
-          
-          <div id="create-form-description-wrapper">
-            <div id="create-form-description">Description</div>
-              <textarea
-              value={this.state.description}
-              onChange={this.update("description")}
-              /> 
+        {this.state.name ? (
+          <FunctionalMap event={this.state} accept={this.accept} />
+        ) : (
+          null
+        )}
+  
+          <div id="poi-input-list">
+            {this.renderPoiInputs()}
           </div>
-          
-          <div id="create-form-start-wrapper">
-            <div id ="create-form-start-time">Start Time</div>
-              <input 
-                type="datetime-local"
-                value={this.state.startTime}
-                onChange={this.update("startTime")}
-              />
-          </div>
-          
-          <div id="create-form-end-time-wrapper">
-            <div id ="create-form-end-time">End Time</div>
-              <input 
-                type="datetime-local"
-                value={this.state.endTime}
-                onChange = {this.update("endTime")}
-              />
-          </div>
-        </div>
-
-      <FunctionalMap event={this.state} accept={this.accept} />
-
-        <div id="poi-input-list">
-          {this.renderPoiInputs()}
-        </div>
-
-        <button
-          type="Submit"
-          id="create-form-submit">
-            {this.props.formType}
-        </button>
-      </form>
-    </div>
-    )
+  
+          <button
+            type="Submit"
+            id="create-form-submit">
+              {this.props.formType}
+          </button>
+        </form>
+      </div>
+      )
+    } else {
+      return (
+        <>
+        </>
+      )
+    }
   }
 }
 

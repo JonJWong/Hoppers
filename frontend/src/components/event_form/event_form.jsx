@@ -69,14 +69,12 @@ class EventForm extends React.Component{
           <div className="poi-start">Start Time</div>
           <input
             type="datetime-local"
-            onChange={(e) => this.updatePoi(e, i, point, "startTime")}
-            placeholder={`Point of Interest ${i + 1} start time`}/>
+            onChange={(e) => this.updatePoi(e, i, point, "startTime")}/>
 
           <div className="poi-end">End Time</div>
           <input
             type="datetime-local"
-            onChange={(e) => this.updatePoi(e, i, point, "endTime")}
-            placeholder={`Point of Interest ${i + 1} end time`}/>
+            onChange={(e) => this.updatePoi(e, i, point, "endTime")}/>
 
           <div className="poi-description">Description</div>
           <input

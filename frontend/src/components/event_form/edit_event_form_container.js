@@ -3,10 +3,13 @@ import EditEventForm from "./edit_event_form";
 import { updateEvent, fetchEvent } from "../../actions/event_actions";
 import { withRouter } from "react-router-dom";
 
-const mapStateToProps = (state, ownProps) => ({
-  event: state.events.all[ownProps.match.params.eventId],
-  formType: "Edit Event"
-})
+const mapStateToProps = (state, ownProps) => {
+  return {
+    formType: "Edit Event",
+    ownerId: state.session.user.id,
+    event: state.events.all[ownProps.match.params.eventId]
+  }
+}
 
 const mapDispatchToProps = dispatch => ({
   updateEvent: (event) => dispatch(updateEvent(event)),

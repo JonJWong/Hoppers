@@ -251,11 +251,21 @@ class FunctionalMap extends React.Component{
     this.state = {
       style: "default"
     }
-
-    // this.clearMarkers = this.clearMarkers.bind(this);
+    
+    this.placeMarkers = this.placeMarkers.bind(this);    
     this.sendPois = this.sendPois.bind(this);
     this.markers = {};
     this.current = 0;
+  }
+
+  placeMarkers() {
+    const markers = this.props.event.PointsOfInterest.map(point => {
+      return point.location
+    })
+
+    markers.forEach(coord => {
+      this.placeMarker(coord)
+    })
   }
 
   placeMarker(location) {
@@ -388,6 +398,8 @@ class FunctionalMap extends React.Component{
 
     const submitButton = document.getElementById("map-add-pois");
     this.map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(submitButton);
+
+    this.placeMarkers();
   }
 
   render(){

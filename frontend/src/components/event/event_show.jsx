@@ -82,6 +82,10 @@ class EventShow extends React.Component{
           </div>
           <AttendeeIndex attendees={event.attendees}/>
         </div>
+
+        <Link to={`/events/${event._id}/edit`}>
+          Fuck
+        </Link>
       </div>
     );
   };
