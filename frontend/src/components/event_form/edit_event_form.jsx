@@ -20,6 +20,10 @@ class EditEventForm extends React.Component{
 
   componentDidMount() {
     this.props.fetchEvent(this.props.match.params.eventId)
+      .then(action => {
+        debugger
+        this.setState()
+      })
   }
 
   update(field) {
