@@ -223,9 +223,10 @@ class FunctionalMap extends React.Component{
       style: "default"
     }
 
-    this.clearMarkers = this.clearMarkers.bind(this);
+    // this.clearMarkers = this.clearMarkers.bind(this);
     this.sendPois = this.sendPois.bind(this);
-    this.markers = [];
+    this.markers = {};
+    this.current = 0;
   }
 
   setCenter() {
@@ -239,15 +240,15 @@ class FunctionalMap extends React.Component{
       position: location,
       map: this.map
     })
-  
-    // add marker to array of markers attribute
-    this.markers.push(marker)
 
     // center the map onto the location of click
     this.map.panTo(location);
 
     // set marker id, assign to object attribute
-    let id = this.markers.indexOf(marker);
+    let id = this.current;
+    this.current += 1;
+
+    this.markers[id] = marker;
 
     // add a listener for right-click to delete the marker that is right-clicked
     window.google.maps.event.addListener(marker, "rightclick", (point) => {
@@ -258,20 +259,18 @@ class FunctionalMap extends React.Component{
   // helper to delete a marker at a set ID on the map
   deleteMarker(id) {
     const marker = this.markers[id];
+    const { event } = this.props;
     marker.setMap(null);
-  }
-
-  clearMarkers() {
-    this.markers.forEach(marker => {
-      marker.setMap(null)
-    })
-    this.markers = [];
+    delete this.markers[id];
+    delete event.PointsOfInterest[id];
+    console.log(event.PointsOfInterest)
+    this.props.accept("PointsOfInterest", event.PointsOfInterest)
   }
 
   sendPois(e) {
     e.preventDefault();
     const points = [];
-    this.markers.forEach(marker => {
+    Object.values(this.markers).forEach(marker => {
       const pos = {};
       const newPoint = {};
       pos["lat"] = marker.position.lat();
@@ -279,40 +278,29 @@ class FunctionalMap extends React.Component{
       newPoint.location = pos;
       points.push(newPoint)
     })
-    this.clearMarkers();
+    
     this.props.accept("PointsOfInterest", points)
   }
 
   componentDidMount() {
-    const event = this.props.event;
-    let avgLat = 0;
-    let avgLng = 0;
-    this.props.PointsOfInterest.forEach(point => {
-      avgLat += point.location.lat;
-      avgLng += point.location.lng;
-    })
-    avgLat /= this.props.PointsOfInterest.length;
-    avgLng /= this.props.PointsOfInterest.length;
-
-    const newCenter = { lat: avgLat, lng: avgLng };
-    const CENTER = newCenter || { lat: 37.7758, lng: -122.435 }; // this is SF
+    const CENTER = { lat: 37.7758, lng: -122.435 }; // this is SF
 
     const MAP_OPTIONS = {
       center: CENTER,
-      zoom: 14,
+      zoom: 13,
       streetViewControl: false,
       mapTypeControl: false,
       keyboardShortcuts: false,
       backgroundColor: 'none',
       fullscreenControl: false,
       maxZoom: 18,
-      minZoom: 14,
+      minZoom: 13,
       restriction: {
         latLngBounds: {
-          north: CENTER.lat + .03,
-          south: CENTER.lat - .03,
+          north: CENTER.lat + .04,
+          south: CENTER.lat - .1,
           east: CENTER.lng + .07,
-          west: CENTER.lng - .07
+          west: CENTER.lng - .09
         }
       }
     };
@@ -348,7 +336,7 @@ class FunctionalMap extends React.Component{
         <button
           id="map-add-pois"
           onClick={e => this.sendPois(e)}>
-            Add Points of Interest
+            Confirm Points of Interest
         </button>
         <div id="functional-map-container" ref={ map => this.mapNode = map }></div> 
       </>

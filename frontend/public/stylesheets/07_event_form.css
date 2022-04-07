@@ -75,6 +75,7 @@
 .poi-name, .poi-start, .poi-end, .poi-description, .poi-name {
   font-size: 16px;
   padding-bottom: 5px;
+  padding-top: 10px;
 }
 
 .poi-delete {
