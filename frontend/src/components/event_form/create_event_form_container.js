@@ -9,7 +9,7 @@ const mSTP = (state) => ({
 })
 
 const mDTP = dispatch => ({
-  action: (event) => dispatch(createEvent(event))
+  createEvent: (event) => dispatch(createEvent(event))
 })
 
 

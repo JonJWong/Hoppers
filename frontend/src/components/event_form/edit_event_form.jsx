@@ -1,7 +1,7 @@
 import React from 'react'
 import FunctionalMap from '../map/functional_map';
 
-class EventForm extends React.Component{
+class EditEventForm extends React.Component{
   constructor(props){
     super(props)
     this.state = {
@@ -16,6 +16,10 @@ class EventForm extends React.Component{
     this.accept = this.accept.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this)
     this.update = this.update.bind(this)
+  }
+
+  componentDidMount() {
+    this.props.fetchEvent(this.props.match.params.eventId)
   }
 
   update(field) {
@@ -35,10 +39,11 @@ class EventForm extends React.Component{
   
   handleSubmit(e) {
     e.preventDefault();
+    let that = this; 
 
     // Create new Event and then push to the Event's page.
-    this.props.createEvent(this.state).then(() => {
-      return this.props.history.push(`/events`)
+    this.props.action(this.state).then(function(event){
+      return that.props.history.push(`/events`)
     });
   }
 
@@ -151,4 +156,4 @@ class EventForm extends React.Component{
   }
 }
 
-export default EventForm
+export default EditEventForm
