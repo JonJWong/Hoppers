@@ -8,17 +8,27 @@ class NavProfile extends React.Component{
       <div className='modal-content-container'>
         <div className="modal-profile-wrapper">
           <div className='modal-profile-container'>
-            <div className='circle select-none'>
-              {user.username[0].toUpperCase()}
+            <div className="profile-wrap">
+              <div className='circle select-none'>
+                {user.username[0].toUpperCase()}
+              </div>
+              <div>
+                <h4>{user.username}</h4>
+                <Link to={'/profile'} onClick={closeModal}>My Profile</Link>
+              </div>
             </div>
-            <div>
-              <h4>{user.username}</h4>
-              <Link to={'/profile'} onClick={closeModal}>My Profile</Link>
-            </div>
+            <Link to={'/events'} onClick={closeModal}><h2 className="select-none link" onClick={closeModal}>Hoppers</h2></Link>
+            
           </div>
           <div className="modal-links">
             <div className="modal-link">
-              <Link to={'/events'} onClick={closeModal}><i className="fa-solid fa-calendar-days"></i> Events</Link>
+              <Link to={'/events'} onClick={closeModal}><i className="fa-solid fa-calendar-days"></i> All Events</Link>
+            </div>
+            <div className="modal-link">
+              <Link to={'/profile'} onClick={closeModal}><i className="fa-solid fa-address-card"></i> Your Events</Link>  
+            </div>
+            <div className="modal-link">
+              <Link to={'/'} onClick={closeModal}><i className="fa-solid fa-circle-info"></i>About Hoppers</Link>  
             </div>
             <button
               id="nav-modal-signout"
