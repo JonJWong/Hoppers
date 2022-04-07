@@ -101,6 +101,10 @@
   width: 250px;
 }
 
+#create-form-description-error {
+  color: red;
+}
+
 #create-form-name-wrapper, #create-form-description-wrapper,
 #create-form-start-wrapper, #create-form-end-time-wrapper {
   padding: 5px;
@@ -109,6 +113,10 @@
 #create-form-name,
 #create-form-start-time, #create-form-end-time {
   padding-bottom: 5px;
+}
+
+#create-form-name-error {
+  color: red;
 }
 
 #map-add-pois {

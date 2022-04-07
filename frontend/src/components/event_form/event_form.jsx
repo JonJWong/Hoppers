@@ -37,9 +37,15 @@ class EventForm extends React.Component{
     e.preventDefault();
 
     // Create new Event and then push to the Event's page.
-    this.props.createEvent(this.state).then(() => {
-      return this.props.history.push(`/events`)
-    });
+    console.log(this.state)
+    console.log(this.state.name.trim().length)
+    if (this.state.name.trim().length > 1 && this.state.description.trim().length > 0 && this.state.startTime !== "" && this.state.endTime !== "" && this.state.PointsOfInterest.length > 0) {
+      this.props.createEvent(this.state).then(() => {
+        return this.props.history.push(`/events`)
+      })
+    } else {
+      this.props.createEvent(this.state)
+    }
   }
 
   // helper to take in markers from map
@@ -86,7 +92,12 @@ class EventForm extends React.Component{
     })
   }
 
-  render(){  
+  render(){
+    let descriptionLabel = this.props.errors.includes('Description is required') ? <div id="create-form-description-error">Description is required!</div> : <div id="create-form-description">Description</div>
+    let nameLabel = this.props.errors.includes('Name is required') ? <div id="create-form-name-error">Name: Too short!</div> : <div id="create-form-name">Name</div>
+    let startTimeLabel = this.props.errors.includes('Start time is required') ? <div id="create-form-start-time">Start time is required!</div> : <div id="create-form-start-time">Start Time</div>
+    let endTimeLabel = this.props.errors.includes('End time is required') ? <div id="create-form-end-time">End time is required!</div> : <div id="create-form-end-time">End Time</div>
+    let poiLabel = this.props.errors.includes('Must have atleast 1 point of interest') ? <div>Please select atleast one Point of Interest!</div> : <div></div>
     return( 
     <div id="create-form-wrapper">
       <h5 id="create-form-header">{this.props.formType}</h5>
@@ -96,7 +107,7 @@ class EventForm extends React.Component{
 
         <div id="create-form-fields">
           <div id="create-form-name-wrapper">
-            <div id="create-form-name">Name</div>
+            {nameLabel}
               <input
                 type="text"
                 value={this.state.name}
@@ -106,7 +117,7 @@ class EventForm extends React.Component{
           </div>
           
           <div id="create-form-description-wrapper">
-            <div id="create-form-description">Description</div>
+            {descriptionLabel}
               <textarea
               value={this.state.description}
               onChange={this.update("description")}
@@ -114,7 +125,7 @@ class EventForm extends React.Component{
           </div>
           
           <div id="create-form-start-wrapper">
-            <div id ="create-form-start-time">Start Time</div>
+            {startTimeLabel}
               <input 
                 type="datetime-local"
                 value={this.state.startTime}
@@ -123,13 +134,14 @@ class EventForm extends React.Component{
           </div>
           
           <div id="create-form-end-time-wrapper">
-            <div id ="create-form-end-time">End Time</div>
+            {endTimeLabel}
               <input 
                 type="datetime-local"
                 value={this.state.endTime}
                 onChange = {this.update("endTime")}
               />
           </div>
+          {poiLabel}
         </div>
 
       <FunctionalMap event={this.state} accept={this.accept} />
