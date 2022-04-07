@@ -25,11 +25,19 @@
 #create-form-submit {
   justify-self: center;
   border-style: none;
+  color: black;
   background-color: #eeeeee;
   border-radius: 30px;
   font-size: 20px;
   grid-area: 3 / 2 / 4 / 3;
   width: 250px;
+  cursor: pointer;
+  transition: background-color .4s ease-in-out, color .4s ease-in-out;
+}
+
+#create-form-submit:hover {
+  color: #eeeeee;
+  background-color: #df7116;
 }
 
 #create-form-fields {
@@ -75,6 +83,7 @@
 .poi-name, .poi-start, .poi-end, .poi-description, .poi-name {
   font-size: 16px;
   padding-bottom: 5px;
+  padding-top: 10px;
 }
 
 .poi-delete {
@@ -100,4 +109,20 @@
 #create-form-name,
 #create-form-start-time, #create-form-end-time {
   padding-bottom: 5px;
+}
+
+#map-add-pois {
+  background-color: #eeeeee;
+  color: black;
+  border-style: none;
+  padding: 5px;
+  border-radius: 15px;
+  margin-top: 10px;
+  transition: background-color .4s ease-in-out, color .4s ease-in-out;
+  cursor: pointer;
+}
+
+#map-add-pois:hover {
+  background-color: #df7116;
+  color: #eeeeee;
 }

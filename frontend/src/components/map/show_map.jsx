@@ -246,7 +246,20 @@ class ShowMap extends React.Component{
   }
 
   componentDidMount() {
-    const CENTER = this.markers[0] || { lat: 37.7758, lng: -122.435 } // this is SF
+    let avgLat = 0;
+    let avgLng = 0;
+    let newCenter;
+    if (this.props.PointsOfInterest[0]?.location !== undefined) {
+      this.props.PointsOfInterest.forEach(point => {
+        avgLat += point.location.lat;
+        avgLng += point.location.lng;
+      })
+      avgLat /= this.props.PointsOfInterest.length;
+      avgLng /= this.props.PointsOfInterest.length;
+      newCenter = { lat: avgLat, lng: avgLng };
+    }
+    
+    const CENTER = newCenter || { lat: 37.7758, lng: -122.435 }; // this is SF
 
     const MAP_OPTIONS = {
       center: CENTER,
@@ -257,7 +270,7 @@ class ShowMap extends React.Component{
       backgroundColor: 'none',
       fullscreenControl: false,
       maxZoom: 18,
-      minZoom: 14,
+      minZoom: 13,
       restriction: {
         latLngBounds: {
           north: CENTER.lat + .03,
