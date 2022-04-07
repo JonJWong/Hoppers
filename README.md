@@ -20,28 +20,73 @@ Additionally, event attendees can post about the night's events on the main even
 
 Users can create events and select points of interest to include along their event-route.
 
-IMAGE HERE
+<img src="https://github.com/JonJWong/Hoppers/blob/main/images/eventcreate.png" alt="event-create-photo"></img>
 
 These events are then saved to the database, along with all their points of interest.
 These points of interest are then turned into a route on the map, where the general path is shown.
 
-CODE SNIPPET HERE?
+```javaScript
+placeMarkers() {
+  this.markers.forEach((location, i) => {
+    this.placeMarker(location, i);
+  })
+}
+
+placeMarker(location, i) {
+  // ... code to adjust marker options
+
+  const marker = new window.google.maps.Marker({
+    position: position,
+    map: map,
+    label: {
+      text: `#${i + 1}`,
+      color: color
+    },
+    icon: icon
+  })
+
+  // ... code to save marker reference to component state for manipulation
+}
+```
 
 
 ### Event Editing, Point-of-Interest route
 
 Within the route of points of interest, the event owner can create new points of interest in the route, and then submit the changes through a form.
 
-IMAGE HERE
-
 Since the route and points of interest go in order, the route will be drawn according to the changes.
 
+```javaScript
+// helper to take in markers from map
+// within EventForm(s)
+accept(key, value) {
+  this.setState({ [key]: value })
+}
+
+// helper to pass points of interest between EventForm(s) and Map
+// within FunctionalMap
+sendPois(e) {
+  e.preventDefault();
+  const points = this.props.event.PointsOfInterest;
+
+  Object.values(this.markers).forEach((marker, i) => {
+    const pos = {};
+    const newPoint = points[i] || {};
+    pos["lat"] = marker.position.lat();
+    pos["lng"] = marker.position.lng();
+    newPoint["location"] = pos;
+    points[i] = newPoint
+  })
+
+  this.props.accept("PointsOfInterest", points)
+}
+```
 
 ### Users can also browse all public events
 
 The main page will display all events currently open to the public, where anyone can join in to make new social connections or just have a nice day with the other attendees.
 
-IMAGE HERE
+<img src="https://github.com/JonJWong/Hoppers/blob/main/images/eventindex.png" alt="event-index-photo"></img>
 
 <h2 id="technologies-used">Technologies Used</h2>
 

@@ -160,7 +160,9 @@ class EventForm extends React.Component{
           {poiLabel}
         </div>
 
-      <FunctionalMap event={this.state} accept={this.accept} />
+      <FunctionalMap event={this.state} accept={this.accept} 
+        removeEventErrors = {this.props.removeEventErrors}
+      />
 
         <div id="poi-input-list">
           {this.renderPoiInputs()}
