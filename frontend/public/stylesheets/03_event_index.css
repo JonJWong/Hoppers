@@ -1,11 +1,10 @@
 .event-page-container{
   display: flex;
-  width: 100%;
   height: auto;
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  margin-top: 10px;
+  margin: 20px;
 }
 
 .event-page-container h1{
@@ -13,7 +12,7 @@
 }
 
 #event-index-container {
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   width: 90%;
   display: flex;
   margin: 15px;
@@ -33,10 +32,10 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
 }
 
 #event-self-index-container {
-  border: 1px solid blue;
   width: 90%;
   display: flex;
   margin: 15px;
@@ -50,6 +49,7 @@
   display: flex;
   justify-content: center;
   overflow-y: scroll;
+  box-shadow: inset 0 -70px 70px -70px gray;
 }
 
 #self-event-list {
@@ -60,13 +60,31 @@
   padding: 20px;
 }
 
+.spacer{
+  height: 40px;
+}
+
 .event-index-item {
+  position: relative;
   height: auto;
   padding: 10px;
-  border: 1px solid red;
   margin: 3%;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 21px 22px, rgba(0, 0, 0, 0.12) 0px -6px 15px, rgba(0, 0, 0, 0.12) 0px 2px 3px, rgba(0, 0, 0, 0.17) 0px 6px 6.6px, rgba(0, 0, 0, 0.09) 0px -1px 2px;
   transition: box-shadow .2s ease-in-out;
+  cursor: pointer;
+}
+
+.event-index-item *{
+  cursor: pointer;
+}
+
+.index-item-name {
+  cursor: pointer;
+}
+
+.link, .link *:hover{
+  cursor: inherit;
+  cursor: pointer;
 }
 
 .event-index-item:hover {
@@ -76,6 +94,8 @@
 .index-map-container {
   height: 300px;
   width: 100%;
+  position: relative;
+  z-index: 0;
 }
 
 .index-show-link {
@@ -91,8 +111,14 @@
 
 .index-item-name, .index-item-description,
 .index-item-date, .index-item-time {
-  cursor: default;
   text-align: center;
+}
+
+.sb{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .index-item-name {
@@ -121,13 +147,15 @@
   background-color: white;
   display: grid;
   grid-template-columns: 160px auto;
-  padding: 10px;
+  padding-bottom: 10px;
+  /* padding: 10px; */
 }
 
 #index-self-title {
   justify-self: start;
   align-self: center;
-  font-size: 22px;
+  font-size: 26px;
+  width: auto;
 }
 
 #index-self-create {
@@ -153,11 +181,12 @@
 #index-self-button-container {
   display: flex;
   justify-content: space-between;
+  padding-left: 15px;
 }
 
 #event-public-title {
-  width: 90%;
-  padding-left: 10%;
+  width: 80%;
+  /* padding-left: 10%; */
   font-size: 26px;
   padding-top: 10px;
 }
