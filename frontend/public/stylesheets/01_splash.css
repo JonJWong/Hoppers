@@ -35,7 +35,7 @@
   font-size: 50px;
   font-weight: bold;
   text-align: center;
-  padding-top: 40px;
+  padding-top: 100px;
   padding-bottom: 40px;
 }
 
@@ -82,4 +82,13 @@
 #splash-entry-button:hover {
   background-color: black;
   color: #eeeeee;
+}
+
+#splash-footer {
+  color: #eeeeee;
+  font-size: 10px;
+  position: absolute;
+  bottom: 15px;
+  text-align: center;
+  width: 100%;
 }

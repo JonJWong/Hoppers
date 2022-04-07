@@ -58,10 +58,10 @@ class EventIndex extends React.Component{
     return(
       <div className="event-page-container">
         <div id="event-public-title" className="sb">
-          Your Events:           
+          Events you're hosting:           
           <div id="index-self-button-container">
             <Link to="/profile">
-              <button id="index-self-profile">More...</button>
+              <button id="index-self-profile">All Hosted Events</button>
             </Link>
             <Link to="events/create">
               <button id="index-self-create">Create New Event</button>
