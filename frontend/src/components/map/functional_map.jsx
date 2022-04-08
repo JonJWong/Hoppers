@@ -311,7 +311,7 @@ class FunctionalMap extends React.Component{
 
     // create marker at the location of the click event
     const marker = new window.google.maps.Marker({
-      position: point,
+      position: {lat: point.lat(), lng: point.lng()},
       map: map,
       label: {
         text: `${current + 1}`,
@@ -345,14 +345,6 @@ class FunctionalMap extends React.Component{
     this.markers[id] = marker;
 
     this.path.push({ lat: point.lat(), lng: point.lng() });
-
-    this.poly ||= new window.google.maps.Polyline({
-      path: this.path,
-      geodesic: true,
-      strokeColor: color,
-      strokeOpacity: 1.0,
-      strokeWeight: 2
-    })
 
     this.poly.setPath(this.path);
 
@@ -528,10 +520,13 @@ class FunctionalMap extends React.Component{
     // get time of day and set a styles var accordingly
     const hour = new Date().getHours();
     let styles;
+    let color;
     if (hour < 7 || hour > 17) {
       styles = STYLES["dark"]
+      color = "#eeeeee";
     } else {
       styles = STYLES["default"]
+      color = "black";
     }
     // apply styles by time of day
     this.map.setOptions({ styles: styles });
@@ -545,6 +540,16 @@ class FunctionalMap extends React.Component{
     this.map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(submitButton);
 
     this.placeMarkers();
+
+    this.poly ||= new window.google.maps.Polyline({
+      path: this.path,
+      geodesic: true,
+      strokeColor: color,
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    })
+
+    this.poly.setMap(this.map);
   }
 
   render(){
