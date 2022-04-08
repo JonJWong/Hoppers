@@ -1,4 +1,5 @@
 import React from "react";
+import autosize from 'autosize';
 
 class CommentForm extends React.Component{
   constructor(props){
@@ -6,6 +7,11 @@ class CommentForm extends React.Component{
     this.state = this.props.comment;
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
+  componentDidMount(){
+    this.textarea.focus();
+    autosize(this.textarea);
+ }
 
   handleSubmit(e){
     e.preventDefault()
@@ -32,17 +38,18 @@ class CommentForm extends React.Component{
   }
 
   render(){
-    const {formType} = this.props;
     return (
       <form onSubmit={this.handleSubmit} className="comment-form">
-        {/* <h4>{formType}</h4> */}
-        <textarea 
-          placeholder={`What's on your mind, ${this.props.comment.username}?`} 
-          onKeyPress={ this.commentEnterSubmit} 
-          className="comment-input" 
-          value={this.state.body} 
-          onChange={this.update("body")}  
-        />
+        <p className="comment-body-p">
+          <textarea
+          className="comment-input"
+          onChange={this.update("body")}
+          value={this.state.body}    
+          ref={c=>this.textarea=c}
+          placeholder={`What's on your mind, ${this.props.comment.username}?`}
+          onKeyPress={ this.commentEnterSubmit}  
+          rows={1}/>
+        </p>
         <input className="comment-submit" type="button" name="go" value="Submit" />
       </form>
     )
@@ -50,3 +57,12 @@ class CommentForm extends React.Component{
 };
 
 export default CommentForm;
+
+
+const style = {
+  maxHeight:'75px',
+  minHeight:'38px',
+    resize:'none',
+    padding:'9px',
+    boxSizing:'border-box',
+    fontSize:'15px'};
