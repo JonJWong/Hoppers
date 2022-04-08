@@ -173,7 +173,7 @@
 .comment-username{
   color: #314758;
   font-style: italic;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -193,23 +193,7 @@
   display: flex;
 }
 
-.delete-comment{
-  min-width: 10px;
-  display: flex;
-  justify-content: flex-end;
-  font-size: 12px;
-  font-weight: 700;
-}
 
-.fa-circle-minus:hover{
-  color: rgb(231, 150, 0);
-}
-
-.del-comment-button{
-  cursor: pointer;
-  transition: color .2s ease-out;
-	color: #383a34;
-}
 
 .show-map-wrapper {
   min-height: 500px;
@@ -253,10 +237,6 @@
   text-decoration: underline;
 }
 
-.attendee-list-name {
-  font-style: italic;
-}
-
 .interaction-container{
   display: flex;
   width: 80%;
@@ -286,6 +266,7 @@
 
 .attendee-list-name {
   font-style: italic;
+  text-align: left;
 }
 
 .thread-name-error {

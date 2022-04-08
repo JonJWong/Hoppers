@@ -44,6 +44,7 @@
   transition: height 0.4s ease-out, opacity 0.1s ease-out;
   height: 0;
   opacity: 0;
+  padding-bottom: 24px;
 }
 
 .visible{
@@ -52,14 +53,14 @@
 }
 
 .thread-title:after{
-  content: "\f106";
+  content: "\f107";
   font: normal normal normal 14px/1 FontAwesome;
   text-align: center;
   vertical-align: middle;
 }
 
-.thread-title:after{
-  content: "\f107";
+.collapsed:after{
+  content: "\f106";
 }
 
 .thread-list-container{
@@ -72,9 +73,53 @@
   margin: 10px;
 }
 
+.comment-index{
+  transition:transform 0.2s ease-out;
+  transform:scaleY(1);
+  transform-origin:top;
+  z-index: 5;
+  /* visibility: visible; */
+  display: block;
+}
+
+.hidden{
+  transform:scaleY(0);
+  /* visibility: hidden; */
+  display: none;
+}
+
+.comment-tools{
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+
+.delete-comment i{
+  min-width: 10px;
+  display: flex;
+  justify-content: flex-end;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.del-comment-button:hover i{
+  color: rgb(231, 150, 0);
+}
+
+.del-comment-button{
+  cursor: pointer;
+  transition: color .2s ease-out;
+	color: #383a34;
+  padding-left: 2px;
+}
+
 .comment-box{
   margin-bottom: 6px;
   border-bottom: 1px solid #ccc;
+}
+
+.comment-form{
+  height: 28px;
 }
 
 .thread-header-container{

@@ -14,7 +14,7 @@ class CommentIndex extends React.Component{
       return null
     }
     return(
-      <div className="comment-index">
+      <div className={this.props.collapsed ? "comment-index hidden" : "comment-index"} >
         {Object.values(comments).map(comment => (
           <CommentIndexItem 
             key={comment._id} 

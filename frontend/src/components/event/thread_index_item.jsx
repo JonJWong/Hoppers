@@ -5,16 +5,24 @@ import EditThreadContainer from "../thread_form/edit_thread_container.js";
 
 class ThreadIndexItem extends React.Component{
 
+  constructor(props){
+    super(props);
+    this.state = {
+      collapsed: false
+    }
+  }
+
   render(){
     const deleteButton = this.props.editCapability ? 
       <button 
-        id ="button-delete" 
+        id ="button-delete"
+        className="ht" 
         onClick={() => {
           this.props.deleteThread(thread._id)
           this.props.updateConfirmationMessage("Thread Deleted Successfully")
         }}
       >
-        Delete
+        Delete thread
       </button> 
       : null 
 
@@ -25,15 +33,24 @@ class ThreadIndexItem extends React.Component{
     return(
       <div className="thread-index-item">
         <div className="thread-header-container">
-          <div className="collapse-thread "> 
-            <h3 className="thread-title">{thread.name}&nbsp;</h3>
+          <div className="collapse-thread"> 
+            <h3 
+              className={this.state.collapsed ? "thread-title collapsed" : "thread-title"}
+              onClick={() => this.setState({collapsed: !this.state.collapsed}) }
+            >
+              {thread.name}&nbsp;
+            </h3>
           </div>
-          {/* {deleteButton}
-          {editForm} */}
+          {deleteButton}
+          {/* {editForm} */}
         </div>
         <div className="comment-index">
-          <CommentIndexContainer threadId={thread._id} comments={thread.comments} 
-          event = {this.props.event} />
+          <CommentIndexContainer 
+            threadId={thread._id} 
+            comments={thread.comments} 
+            event={this.props.event} 
+            collapsed={this.state.collapsed}
+          />
         </div>
       </div>
     )
