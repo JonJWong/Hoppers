@@ -11,6 +11,7 @@ import EventIndexContainer from './event_index/event_index_container';
 import EventShowContainer from './event/event_show_container';
 import CreateEventFormContainer from './event_form/create_event_form_container';
 import EditEventFormContainer from "./event_form/edit_event_form_container";
+import InboxContainer from "./inbox/inbox_container";
 
 const App = () => (
   <div>
@@ -26,6 +27,7 @@ const App = () => (
       <ProtectedRoute exact path="/events/create" component={CreateEventFormContainer} />
       <ProtectedRoute exact path="/events/:eventId/edit" component={EditEventFormContainer} />
       <ProtectedRoute exact path="/events/:eventId" component={EventShowContainer} />
+      <ProtectedRoute exact path="/inbox" component={InboxContainer} />
     </Switch>
   </div>
 );

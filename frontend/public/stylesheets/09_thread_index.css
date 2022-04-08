@@ -76,6 +76,8 @@
   /* border: 1px solid yellowgreen; */
   margin: 10px;
   margin-bottom: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .comment-index{
@@ -176,6 +178,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
 
 .thread-title{
@@ -191,5 +196,4 @@
   text-decoration: underline;
   color: #537895;
   cursor: pointer;
-
 }
