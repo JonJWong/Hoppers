@@ -323,6 +323,27 @@ class ShowMap extends React.Component{
     })
   }
 
+  drawLines() {
+    const hour = new Date().getHours();
+    let color;
+    if (hour < 7 || hour > 17) {
+      color = "#eeeeee"
+    } else {
+      color = "black"
+    }
+
+    const path = this.markers.map(poi => poi.location)
+    const line = new window.google.maps.Polyline({
+      path: path,
+      geodesic: true,
+      strokeColor: color,
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    })
+
+    line.setMap(this.map)
+  }
+
   closeInfoWindows() {
     for (let window of this.infoWindows) {
       window.close();
@@ -334,6 +355,7 @@ class ShowMap extends React.Component{
     this.markers.forEach((location, i) => {
       this.placeMarker(location, i);
     })
+    this.drawLines()
   }
 
   componentDidMount() {

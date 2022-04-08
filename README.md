@@ -26,10 +26,32 @@ These events are then saved to the database, along with all their points of inte
 These points of interest are then turned into a route on the map, where the general path is shown.
 
 ```javaScript
+drawLines() {
+  const hour = new Date().getHours();
+  let color;
+  if (hour < 7 || hour > 17) {
+    color = "#eeeeee"
+  } else {
+    color = "black"
+  }
+
+  const path = this.markers.map(poi => poi.location)
+  const line = new window.google.maps.Polyline({
+    path: path,
+    geodesic: true,
+    strokeColor: color,
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  })
+
+  line.setMap(this.map)
+}
+
 placeMarkers() {
   this.markers.forEach((location, i) => {
     this.placeMarker(location, i);
   })
+  this.drawLines();
 }
 
 placeMarker(location, i) {
