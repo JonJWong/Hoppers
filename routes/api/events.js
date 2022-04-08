@@ -59,6 +59,8 @@ router.post('/',
       endTime: req.body.endTime,
       owner: req.user.id,
     })
+
+    console.log(newEvent.startTime)
     req.body.PointsOfInterest.forEach((poi, index) => {
        // // Check if it is a valid Point of Interest and is not null
       if(poi === null){return}

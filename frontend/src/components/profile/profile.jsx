@@ -11,7 +11,6 @@ class Profile extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchEvents();
     this.props.getUserEvents(this.props.currentUser.id);
     window.scroll({top: 0, left: 0, behavior: 'smooth' })
   }
@@ -51,7 +50,7 @@ class Profile extends React.Component {
     }
     return (
       <ul id="profile-self-event-list">
-        {this.props.allEvents?.map(event => {
+        {this.props.userEvents?.map(event => {
           if (event.owner === this.props.currentUser.id) {
             return <ProfileEventItem key={event._id} event={event} />
           } else {
@@ -72,7 +71,7 @@ class Profile extends React.Component {
     }
     return (
       <ul id="event-list">
-        {this.props.allEvents?.map(event => {
+        {this.props.userEvents?.map(event => {
           return event.owner !== this.props.currentUser.id
             ? <ProfileEventItem key={event._id} event={event} />
             : null
