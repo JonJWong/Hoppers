@@ -1,5 +1,6 @@
 import React from "react";
 import moment from "moment";
+import UpdateCommentForm from "../comment_form/update_comment_form_container"
 
 moment.updateLocale('en', {
     relativeTime: {
@@ -21,10 +22,15 @@ moment.updateLocale('en', {
   });
 
 class CommentIndexItem extends React.Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      editForm: false
+    }
+  }
 
   render(){
     const {comment} = this.props;
-
     return(
       <div className="comment-box">
         <div className="comment-container">
@@ -42,9 +48,16 @@ class CommentIndexItem extends React.Component{
               <div>
                 
                 {(comment.username === this.props.currentUserUsername) ? (
-                  <div className="delete-comment">
-                    <div className="del-comment-button" onClick={() => this.props.deleteComment(this.props.threadId, comment._id)}>
-                      <i className="fa-solid fa-circle-minus"></i>
+                  <div className="comment-tools">
+                    <div className="edit-comment">
+                      <div className="del-comment-button" onClick={() => this.setState({editForm: !this.state.editForm})}>
+                        <i className="fa-solid fa-pen-to-square"></i>
+                      </div>
+                    </div>
+                    <div className="delete-comment">
+                      <div className="del-comment-button" onClick={() => this.props.deleteComment(this.props.threadId, comment._id)}>
+                        <i className="fa-solid fa-circle-minus"></i>
+                      </div>
                     </div>
                   </div>
                 ):(
@@ -56,7 +69,15 @@ class CommentIndexItem extends React.Component{
             </div>
           </div>
           <div className="comment-body">
-            {comment.body}
+            {this.state.editForm ? (
+              <UpdateCommentForm 
+                body={comment.body} 
+                commentId={comment._id}
+                threadId={this.props.threadId}
+              />
+            ):(
+              comment.body
+            )}
           </div> 
         </div>
       </div>

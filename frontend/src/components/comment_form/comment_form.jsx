@@ -12,7 +12,12 @@ class CommentForm extends React.Component{
     if (this.state.body === '') {
       return
     }
-    this.props.action(this.props.threadId, this.state)
+    if (this.props.formType === "Add a Comment") {
+      this.props.action(this.props.threadId, this.state)
+    } else {
+      console.log(this.props.threadId, this.props.commentId, this.state)
+      this.props.action(this.props.threadId, this.props.commentId ,this.state)
+    }
     this.setState({body: ""})
   }
 
@@ -29,8 +34,8 @@ class CommentForm extends React.Component{
   render(){
     const {formType} = this.props;
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h4>{formType}</h4>
+      <form onSubmit={this.handleSubmit} className="comment-form">
+        {/* <h4>{formType}</h4> */}
         <textarea 
           placeholder={`What's on your mind, ${this.props.comment.username}?`} 
           onKeyPress={ this.commentEnterSubmit} 

@@ -11,6 +11,7 @@
   display: flex;
   width: 80%;
   height: 600px;
+
   justify-content: center;
   align-items: flex-start;
   /* border: 1px solid red; */
@@ -28,6 +29,8 @@
   align-items: flex-start;
   height: fit-content;
   margin-left: 8px;
+  max-height: 650px;
+  overflow-y: scroll;
 }
 
 #blur-background{
@@ -57,11 +60,13 @@
   overflow: auto;
   padding: none;
   margin-left: 2px;
-  line-height: 12px;
-  margin-top: 6px;
+  /* line-height: 12px; */
+  /* margin-top: 6px; */
   resize: none;
   line-height: 1.5;
   vertical-align: middle;
+  border-radius: 6px;
+  height: 1.5em;
 }
 
 .comment-submit{
@@ -168,7 +173,7 @@
 .comment-username{
   color: #314758;
   font-style: italic;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -188,23 +193,7 @@
   display: flex;
 }
 
-.delete-comment{
-  min-width: 10px;
-  display: flex;
-  justify-content: flex-end;
-  font-size: 12px;
-  font-weight: 700;
-}
 
-.fa-circle-minus:hover{
-  color: rgb(231, 150, 0);
-}
-
-.del-comment-button{
-  cursor: pointer;
-  transition: color .2s ease-out;
-	color: #383a34;
-}
 
 .show-map-wrapper {
   min-height: 500px;
@@ -248,10 +237,6 @@
   text-decoration: underline;
 }
 
-.attendee-list-name {
-  font-style: italic;
-}
-
 .interaction-container{
   display: flex;
   width: 80%;
@@ -281,6 +266,7 @@
 
 .attendee-list-name {
   font-style: italic;
+  text-align: left;
 }
 
 .thread-name-error {
