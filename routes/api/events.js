@@ -61,10 +61,13 @@ router.post('/',
     })
 
     console.log(newEvent.startTime)
+    // Use start and end times of new Event to Make sure Pois are properly timed
+    let startTime = newEvent.startTime
+    let endTime = newEvent.endTime
     req.body.PointsOfInterest.forEach((poi, index) => {
        // // Check if it is a valid Point of Interest and is not null
       if(poi === null){return}
-      const { errors, isValid } = validatePointOfInterestInput(poi, index);
+      const { errors, isValid } = validatePointOfInterestInput(poi, index,startTime, endTime);
         if (!isValid) { 
           return fullErrors[errors.index + 1] = (errors.index + 1)}
         if (isValid) {newEvent.PointsOfInterest.push(poi)};

@@ -1,7 +1,7 @@
 const Validator = require('validator');
 const validText = require('./valid-text');
 
-module.exports = function validatePointOfInterestInput(data, index, startTime) {
+module.exports = function validatePointOfInterestInput(data, index, startTime, endTime) {
   let errors = {};
   errors.index = index;
   if(data.name === undefined || data.startTime === undefined || data.endTime === undefined )
@@ -46,11 +46,11 @@ module.exports = function validatePointOfInterestInput(data, index, startTime) {
     errors.endTime = "Invalid end time"
   }
 
-  if (new Date(startTime) > new Date(data.startTime)){
+  if (new Date(startTime) > new Date(data.startTime) || new Date(endTime) < new Date(data.startTime)){
     errors.startTime = "Invalid start time"
   }
 
-  if (new Date(endTime) > new Date(data.startTime)){
+  if (new Date(startTime) > new Date(data.endTime) || new Date(endTime) < new Date(data.endTime)){
     errors.endTime = "Invalid end time"
   }
   
