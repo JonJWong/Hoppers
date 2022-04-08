@@ -1,14 +1,28 @@
 import React from 'react'
 import FunctionalMap from '../map/functional_map';
 
+const formatTime = (dateString) => {
+  const d = new Date(dateString);
+  let month = '' + (d.getMonth() + 1);
+  let day = '' + d.getDate();
+  const year = d.getFullYear();
+  let hour = '' + d.getHours();
+  let min = '' + d.getMinutes();
+  if (month.length < 2) month = '0' + month;
+  if (day.length < 2) day = '0' + day;
+  if (hour.length < 2) hour = '0' + hour;
+  if (min.length < 2) min = '0' + min;
+  return [year, month, day].join('-')+'T'+[hour,min].join(':');
+}
+
 class EventForm extends React.Component{
   constructor(props){
     super(props)
     this.state = {
       name: "",
       description: "",
-      startTime: "",
-      endTime: "",
+      startTime: formatTime(new Date()),
+      endTime: formatTime(new Date()),
       PointsOfInterest: [],
       owner: this.props.ownerId
     }
@@ -19,8 +33,8 @@ class EventForm extends React.Component{
     this.renderPoiError = this.renderPoiError.bind(this)
   }
 
-  update(field) {
-    return (e) => {this.setState({[field]: e.currentTarget.value})}
+  update(field, e) {
+    this.setState({[field]: e.currentTarget.value})
   }
 
   updatePoi(e, i, point, field) {
@@ -77,11 +91,13 @@ class EventForm extends React.Component{
           <div className="poi-start">Start Time</div>
           <input
             type="datetime-local"
+            min={formatTime(new Date())}
             onChange={(e) => this.updatePoi(e, i, point, "startTime")}/>
 
           <div className="poi-end">End Time</div>
           <input
             type="datetime-local"
+            min={formatTime(new Date())}
             onChange={(e) => this.updatePoi(e, i, point, "endTime")}/>
 
           <div className="poi-description">Description</div>
@@ -127,7 +143,7 @@ class EventForm extends React.Component{
               <input
                 type="text"
                 value={this.state.name}
-                onChange={this.update("name")}
+                onChange={(e) => this.update("name", e)}
                 placeholder="Event Name"
               />
           </div>
@@ -136,7 +152,7 @@ class EventForm extends React.Component{
             {descriptionLabel}
               <textarea
               value={this.state.description}
-              onChange={this.update("description")}
+              onChange={(e) => this.update("description", e)}
               /> 
           </div>
           
@@ -145,7 +161,8 @@ class EventForm extends React.Component{
               <input 
                 type="datetime-local"
                 value={this.state.startTime}
-                onChange={this.update("startTime")}
+                min={formatTime(new Date())}
+                onChange={(e) => this.update("startTime", e)}
               />
           </div>
           
@@ -154,7 +171,8 @@ class EventForm extends React.Component{
               <input 
                 type="datetime-local"
                 value={this.state.endTime}
-                onChange = {this.update("endTime")}
+                min={formatTime(new Date())}
+                onChange = {(e) => this.update("endTime", e)}
               />
           </div>
           {poiLabel}
