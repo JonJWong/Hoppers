@@ -55,6 +55,7 @@ export const updateEvent = (data) => dispatch => (
 export const deleteCurrentEvent = (eventId) => dispatch => (
   deleteEvent(eventId)
     .then(() => dispatch(removeEvent(eventId)))
+    .catch(err => dispatch(receiveEventErrors(err.response.data)))
 );
 
 export const addNewPoi = (eventId, data) => dispatch => (
