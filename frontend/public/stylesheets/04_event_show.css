@@ -30,7 +30,7 @@
   height: fit-content;
   margin-left: 8px;
   max-height: 650px;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 #blur-background{

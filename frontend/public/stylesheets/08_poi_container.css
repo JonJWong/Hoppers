@@ -2,7 +2,7 @@
   /* margin-top: 12px; */
   margin-bottom: 12px;
   height: 340px;
-  overflow-y: scroll;
+  overflow-y: auto;
   width: 100%;
 }
 
