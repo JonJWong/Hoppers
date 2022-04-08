@@ -12,7 +12,6 @@ class Splash extends React.Component {
             Whether it be a great night out with friends, or a journey to meet new people, Hopper has you covered!
             <div id="splash-subcontent">
               With Hopper you can create new events, plan out a route and timeframe (itinerary), and invite friends along the way! <br />
-              Chat  <br />
               Don't forget to participate in the selection of points of interest along the way, making the experience much more whole and welcoming to all!
             </div>
           </div>
