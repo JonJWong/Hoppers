@@ -82,7 +82,7 @@ class EventShow extends React.Component{
                       More Events
                   </Link>
 
-                  {this.props.currentUser.id === event.owner._id ? (
+                  {this.props.currentUser.id === event.owner._id  && event.name !== "Graduation" ? (
                     <>
                       &nbsp;|&nbsp;
                       <Link 
