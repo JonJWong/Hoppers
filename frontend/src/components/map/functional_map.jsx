@@ -446,6 +446,7 @@ class FunctionalMap extends React.Component{
     })
 
     this.props.accept("PointsOfInterest", points)
+    (this.props.removeEventErrors())
   }
 
   componentDidMount() {

@@ -13,14 +13,21 @@ class ThreadIndex extends React.Component{
     this.updateConfirmationMessage = this.updateConfirmationMessage.bind(this)
   }
 
+  componentWillUnmount(){
+    clearTimeout(this.clearTimeout);
+  }
+
   toggleCreateThread(){
-    this.setState({addThread: !this.state.addThread})
-    this.setState({confirmationMessage: ""})
-    this.props.removeThreadErrors()
+    this.setState({addThread: !this.state.addThread});
+    this.setState({confirmationMessage: ""});
+    this.props.removeThreadErrors();
   }
 
   updateConfirmationMessage(message){
-    this.setState({confirmationMessage: message})
+    this.setState({confirmationMessage: message});
+    this.clearTimeout = setTimeout(() => {
+      this.setState({confirmationMessage: ""});
+    }, 3000);
   }
 
   render(){
@@ -37,7 +44,7 @@ class ThreadIndex extends React.Component{
           ):(
             null
           )}
-          <p className="confirmation-message">
+          <p className="confirmation-message" onClick={() => this.updateConfirmationMessage("")}>
             {this.state.confirmationMessage}
           </p>
         </div>
