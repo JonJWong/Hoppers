@@ -449,8 +449,12 @@ class FunctionalMap extends React.Component{
     const { event } = this.props;
     marker.setMap(null);
 
-    this.path.splice(id, 1);
+    const index = Object.values(this.markers).indexOf(marker)
+
+    this.path.splice(index, 1);
     this.poly.setPath(this.path);
+    
+    console.log(this.path);
     
     delete this.markers[id];
     delete event.PointsOfInterest[id];
