@@ -60,7 +60,6 @@ router.post('/',
       owner: req.user.id,
     })
 
-    console.log(newEvent.startTime)
     // Use start and end times of new Event to Make sure Pois are properly timed
     let startTime = newEvent.startTime
     let endTime = newEvent.endTime

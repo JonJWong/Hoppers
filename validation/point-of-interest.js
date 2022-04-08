@@ -41,19 +41,25 @@ module.exports = function validatePointOfInterestInput(data, index, startTime, e
   }
 
   // Validates legitimate start and end time
-  if (new Date(data.startTime) > new Date(data.endTime) && !Validator.isEmpty(data.startTime)) {
-    errors.startTime = "Invalid start time"
-    errors.endTime = "Invalid end time"
-  }
+  if (new Date(data.startTime) > new Date(data.endTime) 
+    && !Validator.isEmpty(data.startTime) && !Validator.isEmpty(data.endTime)) 
+    {
+      errors.startTime = "Invalid start time"
+      errors.endTime = "Invalid end time"
+    }
 
-  if (new Date(startTime) > new Date(data.startTime) || new Date(endTime) < new Date(data.startTime)){
-    errors.startTime = "Invalid start time"
+  // Only check if start time is defined
+  if (startTime !== null) {
+    if (new Date(startTime) > new Date(data.startTime) || new Date(endTime) < new Date(data.startTime)){
+      errors.startTime = "Invalid start time"
+    }
   }
-
-  if (new Date(startTime) > new Date(data.endTime) || new Date(endTime) < new Date(data.endTime)){
-    errors.endTime = "Invalid end time"
+  // Check only if end time is defined
+  if (endTime !== null) {
+    if (new Date(startTime) > new Date(data.endTime) || new Date(endTime) < new Date(data.endTime)){
+      errors.endTime = "Invalid end time"
+    }
   }
-  
   return {
     errors,
     isValid: Object.keys(errors).length === 1
