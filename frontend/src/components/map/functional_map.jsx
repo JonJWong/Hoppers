@@ -1,6 +1,5 @@
 import React from "react";
 import * as StringUtil from "../../util/string_util";
-import moment from "moment";
 
 // Circle marker params
 const LIGHT_CIRCLE = {
@@ -276,7 +275,6 @@ class FunctionalMap extends React.Component{
 
   newMarker(point) {
     const map = this.map;
-    const that = this;
     // get time of day and set a styles var accordingly
     const hour = new Date().getHours();
     let hoverColor = "#eeeeee";

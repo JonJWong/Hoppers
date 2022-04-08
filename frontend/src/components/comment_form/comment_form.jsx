@@ -20,7 +20,6 @@ class CommentForm extends React.Component{
     if (this.props.formType === "Add a Comment") {
       this.props.action(this.props.threadId, this.state)
     } else {
-      console.log(this.props.threadId, this.props.commentId, this.state)
       this.props.action(this.props.threadId, this.props.commentId ,this.state)
     }
     this.setState({body: ""})

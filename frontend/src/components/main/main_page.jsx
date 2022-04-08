@@ -3,10 +3,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 class Splash extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div id="splash-wrapper">

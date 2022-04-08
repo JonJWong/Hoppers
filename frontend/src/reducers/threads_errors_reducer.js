@@ -4,7 +4,6 @@ const _nullErrors = [];
 
 const ThreadsErrorsReducer = (state = _nullErrors, action) => {
   Object.freeze(state);
-  let newState = Object.assign([], state)
   switch (action.type) {
     case RECEIVE_THREAD_ERRORS:
       return Object.values(action.errors);

@@ -38,7 +38,6 @@ class EditEventForm extends React.Component{
   }
 
   update(field, e) {
-    const value = e.currentTarget.value;
     this.setState({[field]: e.currentTarget.value})
   }
 
