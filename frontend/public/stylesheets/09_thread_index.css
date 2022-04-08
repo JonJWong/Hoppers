@@ -76,12 +76,10 @@
   /* border: 1px solid yellowgreen; */
   margin: 10px;
   margin-bottom: 20px;
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .comment-index{
-  max-height: 500px;
+  max-height: 4000px;
   transition: max-height 0.25s ease-in;
 }
 
