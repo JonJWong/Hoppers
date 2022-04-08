@@ -18,17 +18,18 @@ class EventIndex extends React.Component{
   }
 
   renderOwnEvents() {
-    if(Object.values(this.props.allEvents).length === 0) {
-      return null
-    }
+    if(Object.values(this.props.allEvents).length === 0) return null;
+    
+    const ownEvents = this.props.allEvents.filter(
+      event => event.owner === this.props.user)
+  
+    if (ownEvents.length === 0) return null;
 
     return (
       <ul id="self-event-list">
-        {this.props.allEvents?.map((event, i) => {
+        {ownEvents.map((event, i) => {
           if (i < 3) {
-            return event.owner === this.props.user
-              ? <EventIndexItem key={event._id} event={event} />
-              : null
+            return <EventIndexItem key={event._id} event={event} />
           }
         })}
         <div className="spacer">&nbsp;</div>
