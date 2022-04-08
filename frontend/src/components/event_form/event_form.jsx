@@ -189,6 +189,7 @@ class EventForm extends React.Component{
 
       <FunctionalMap event={this.state} accept={this.accept} 
         removeEventErrors = {this.props.removeEventErrors}
+        getPois={this.getPois}
       />
 
         <div id="poi-input-list">
