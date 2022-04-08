@@ -60,17 +60,19 @@ router.post('/',
       owner: req.user.id,
     })
 
-    // Use start and end times of new Event to Make sure Pois are properly timed
+    // Use start and end times of the new event as bounds for the Poi's
     let startTime = newEvent.startTime
     let endTime = newEvent.endTime
     req.body.PointsOfInterest.forEach((poi, index) => {
        // // Check if it is a valid Point of Interest and is not null
       if(poi === null){return}
       const { errors, isValid } = validatePointOfInterestInput(poi, index, startTime, endTime);
+        console.log(startTime)
         if (!isValid) { 
           return fullErrors[errors.index + 1] = (errors.index + 1)}
         if (isValid) {
-
+          // The new start time becomes the end of the last valid Poi.
+          startTime = poi.endTime
           newEvent.PointsOfInterest.push(poi)};
     })
     // Return Errors if there are any
@@ -154,7 +156,11 @@ router.patch('/:id',
           const { errors, isValid } = validatePointOfInterestInput(poi, index, startTime, endTime);
             if (!isValid) { 
               return fullErrors[errors.index + 1] = (errors.index + 1)}
-            if(isValid){event.PointsOfInterest.push(poi);}
+            if(isValid){
+              // The new start time becomes the end of the last valid Poi.
+              startTime = poi.endTime
+              event.PointsOfInterest.push(poi);
+            }
         })
         // Return Errors if there are any
         if(Object.values(fullErrors).length > 0){return res.status(400).json(fullErrors)}
