@@ -107,16 +107,16 @@
 }
 
 .attendee-list {
+  outline: 3px #eeeeee solid;
   width: 30%;
   height: 70%;
   margin: 15px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
 }
 
 .attendee-list-container {
-  margin: 15px;
+  width: 100%;
 }
 
 .comment-container .circle {
@@ -220,6 +220,10 @@
 
 .attendee-list-title {
   font-size: 26px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: underline;
 }
 
 .interaction-container{
@@ -246,10 +250,19 @@
 }
 
 .attendee-list-name {
+  height: auto;
   font-style: italic;
   text-align: left;
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .thread-name-error {
   color: red;
+}
+
+.attendee-list-container:nth-child(1) {
+  padding-top: 10px;
+  background-color: red;
 }
