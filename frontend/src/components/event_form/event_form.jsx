@@ -27,14 +27,19 @@ class EventForm extends React.Component{
       owner: this.props.ownerId
     }
 
+    this.getPois = this.getPois.bind(this);
     this.accept = this.accept.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.update = this.update.bind(this)
-    this.renderPoiError = this.renderPoiError.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.update = this.update.bind(this);
+    this.renderPoiError = this.renderPoiError.bind(this);
   }
 
   update(field, e) {
     this.setState({[field]: e.currentTarget.value})
+  }
+
+  getPois() {
+    return this.state.PointsOfInterest
   }
 
   updatePoi(e, i, point, field) {
