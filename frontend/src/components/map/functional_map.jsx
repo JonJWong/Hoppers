@@ -461,8 +461,6 @@ class FunctionalMap extends React.Component{
 
     this.reassignLabels();
 
-    console.log(event.PointsOfInterest)
-
     this.props.accept("PointsOfInterest", event.PointsOfInterest)
   }
 
