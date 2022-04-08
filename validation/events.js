@@ -36,9 +36,12 @@ module.exports = function validateEventInput(data) {
     errors.PointsOfInterest = "Must have at least 1 point of interest"
   }
 
-  if (new Date(data.startTime) > new Date(data.endTime) && !Validator.isEmpty(data.startTime)) {
-    errors.startTime = "Invalid start/end time"
+  // Check that end time is after start time. Only check if both are valid to begin with
+  if (new Date(data.startTime) > new Date(data.endTime) && 
+    !Validator.isEmpty(data.startTime) &&  !Validator.isEmpty(data.endTime)) {
+      errors.startTime = "End time before start"
   }
+
 
   return {
     errors,
