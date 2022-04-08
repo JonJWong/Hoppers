@@ -37,8 +37,9 @@ module.exports = function validateEventInput(data) {
   }
 
   if (new Date(data.startTime) > new Date(data.endTime) && !Validator.isEmpty(data.startTime)) {
-    errors.startTime = "Invalid start/end time"
+    errors.startTime = "End time before start"
   }
+
 
   return {
     errors,

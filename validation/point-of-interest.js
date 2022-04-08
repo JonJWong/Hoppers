@@ -1,10 +1,9 @@
 const Validator = require('validator');
 const validText = require('./valid-text');
 
-module.exports = function validatePointOfInterestInput(data, index) {
+module.exports = function validatePointOfInterestInput(data, index, startTime) {
   let errors = {};
   errors.index = index;
-  console.log(data)
   if(data.name === undefined || data.startTime === undefined || data.endTime === undefined )
   {
     errors.error = "Poi not formated properly"
@@ -31,18 +30,28 @@ module.exports = function validatePointOfInterestInput(data, index) {
     errors.name = "Description must be between 0 and 200 characters"
   }
 
-  // Validate Start Time
+  // Validate presence of Start Time
   if (Validator.isEmpty(data.startTime)) {
     errors.startTime = "Start time is required";
   }
 
-  // Validate End Time
+  // Validate presence of End Time
   if (Validator.isEmpty(data.endTime)) {
     errors.endTime = "End time is required";
   }
 
+  // Validates legitimate start and end time
   if (new Date(data.startTime) > new Date(data.endTime) && !Validator.isEmpty(data.startTime)) {
-    errors.startTime = "Invalid start/end time"
+    errors.startTime = "Invalid start time"
+    errors.endTime = "Invalid end time"
+  }
+
+  if (new Date(startTime) > new Date(data.startTime)){
+    errors.startTime = "Invalid start time"
+  }
+
+  if (new Date(endTime) > new Date(data.startTime)){
+    errors.endTime = "Invalid end time"
   }
   
   return {
