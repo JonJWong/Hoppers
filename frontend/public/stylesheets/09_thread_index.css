@@ -76,8 +76,6 @@
   /* border: 1px solid yellowgreen; */
   margin: 10px;
   margin-bottom: 20px;
-  overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .comment-index{
