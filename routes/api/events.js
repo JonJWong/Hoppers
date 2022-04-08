@@ -5,8 +5,9 @@ const mongoose = require('mongoose')
 const User = require('../../models/User')
 const Event = require('../../models/Event');
 const Thread = require('../../models/Thread');
-const validateEventInput = require('../../validation/events')
-const validatePointOfInterestInput = require('../../validation/point-of-interest')
+const validateEventInput = require('../../validation/events');
+const validatePointOfInterestInput = require('../../validation/point-of-interest');
+const validateStartEndDates = require('../../validation/start-end-dates');
 
 // GET route for all Event(index)
 router.get('/', (req, res) => {

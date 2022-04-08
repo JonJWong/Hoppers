@@ -32,6 +32,10 @@ module.exports = function validatePointOfInterestInput(data, index) {
   if (Validator.isEmpty(data.endTime)) {
     errors.endTime = "End time is required";
   }
+
+  if (new Date(data.startTime) > new Date(data.endTime) && !Validator.isEmpty(data.startTime)) {
+    errors.startTime = "Invalid start/end time"
+  }
   
   return {
     errors,

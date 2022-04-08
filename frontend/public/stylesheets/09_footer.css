@@ -1,0 +1,19 @@
+.footer {
+  /* display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  background-color: lightblue;
+  align-items: center;
+  height: 30px; */
+}
+
+.footer-links {
+  /* display: flex;
+  padding: 0px 10px 0px 10px; */
+}
+
+.some-shet {
+  border-radius: 50%;
+  /* height: 30px;
+  width: 50px; */
+}
