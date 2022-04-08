@@ -257,6 +257,7 @@ class FunctionalMap extends React.Component{
     this.placeMarkers = this.placeMarkers.bind(this);    
     this.sendPois = this.sendPois.bind(this);
     this.markers = {};
+    this.path = [];
     this.current = 0;
   }
 
@@ -270,7 +271,26 @@ class FunctionalMap extends React.Component{
 
     markers.forEach((point, i) => {
       this.placeMarker(point, i)
+      this.path.push(point.location)
     })
+
+    const hour = new Date().getHours();
+    let color;
+    if (hour < 7 || hour > 17) {
+      color = "#eeeeee"
+    } else {
+      color = "black"
+    }
+
+    this.poly = new window.google.maps.Polyline({
+      path: this.path,
+      geodesic: true,
+      strokeColor: color,
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    })
+
+    this.poly.setMap(this.map)
   }
 
   newMarker(point) {
@@ -293,7 +313,7 @@ class FunctionalMap extends React.Component{
       position: point,
       map: map,
       label: {
-        text: `#${this.current + 1}`,
+        text: `${this.current + 1}`,
         color: color
       },
       icon: icon
@@ -321,8 +341,12 @@ class FunctionalMap extends React.Component{
     // set marker id, assign to object attribute
     let id = this.current;
     this.current += 1;
-
+    
     this.markers[id] = marker;
+
+    this.path.push({ lat: point.lat(), lng: point.lng() });
+
+    this.poly.setPath(this.path);
 
     // add a listener for right-click to delete the marker that is right-clicked
     window.google.maps.event.addListener(marker, "rightclick", () => {
@@ -352,7 +376,7 @@ class FunctionalMap extends React.Component{
       position: position,
       map: map,
       label: {
-        text: `#${this.current + 1}`,
+        text: `${this.current + 1}`,
         color: color
       },
       icon: icon
@@ -424,6 +448,10 @@ class FunctionalMap extends React.Component{
     const marker = this.markers[id];
     const { event } = this.props;
     marker.setMap(null);
+
+    this.path.splice(id, 1);
+    this.poly.setPath(this.path);
+    
     delete this.markers[id];
     delete event.PointsOfInterest[id];
 
