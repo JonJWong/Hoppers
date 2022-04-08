@@ -1,7 +1,7 @@
 .poi-list-container{
   /* margin-top: 12px; */
   margin-bottom: 12px;
-  height: 380px;
+  max-height: 380px;
   overflow-y: auto;
   width: 100%;
 }

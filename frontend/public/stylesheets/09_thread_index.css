@@ -162,8 +162,12 @@
 }
 
 .comment-box{
-  margin-bottom: 6px;
+  padding-top: 6px;
   border-bottom: 1px solid #ccc;
+}
+
+.comment-box:hover{
+  background-color: #e8e8e8;
 }
 
 .comment-form{

@@ -144,6 +144,7 @@
 
 .comment-container{
   margin: 4px;
+  margin-top: 0;
 }
 
 .comment-title-container{
@@ -188,6 +189,19 @@
   padding-bottom: 5px;
 }
 
+.show-links-wrapper{
+  width: 100%;
+  display: flex;
+  /* padding-left: 20px; */
+  padding-top: 20px;
+  justify-content: center;
+}
+
+.show-links{
+  display: flex;
+  align-items: center;
+}
+
 .event-show-body, .event-show-content,
 .event-show-details, .event-date, .event-time {
   /* text-align: center; */
@@ -218,12 +232,14 @@
 .join-button{
   cursor: pointer;
   color: #537895;
-  padding-bottom: 15px;
 }
+
 
 .event-show-back-link{
   color: #537895;
-  padding-bottom: 15px;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
 }
 
 .attendee-list-name {

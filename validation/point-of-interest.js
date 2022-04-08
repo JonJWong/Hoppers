@@ -4,7 +4,6 @@ const validText = require('./valid-text');
 module.exports = function validatePointOfInterestInput(data, index) {
   let errors = {};
   errors.index = index;
-  console.log(data)
   if(data.name === undefined || data.startTime === undefined || data.endTime === undefined )
   {
     errors.error = "Poi not formated properly"

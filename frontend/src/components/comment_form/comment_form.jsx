@@ -9,7 +9,6 @@ class CommentForm extends React.Component{
   }
 
   componentDidMount(){
-    this.textarea.focus();
     autosize(this.textarea);
  }
 
@@ -57,12 +56,3 @@ class CommentForm extends React.Component{
 };
 
 export default CommentForm;
-
-
-const style = {
-  maxHeight:'75px',
-  minHeight:'38px',
-    resize:'none',
-    padding:'9px',
-    boxSizing:'border-box',
-    fontSize:'15px'};
