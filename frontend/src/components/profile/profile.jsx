@@ -12,12 +12,25 @@ class Profile extends React.Component {
 
   componentDidMount(){
     this.props.getUserEvents(this.props.currentUser.id);
-    window.scroll({top: 0, left: 0, behavior: 'smooth' })
+    window.scroll({ top: 0, left: 0, behavior: 'smooth' })
   }
 
   renderEventBar() {
+    const { currentUser } = this.props;
     return (
       <>
+        <div id="profile-header-bar">
+          <div id="profile-header-greeting">Your Profile</div>
+          <div id="profile-header-right">
+            <div id="profile-name">Logged in as:
+              <div id="profile-username">{currentUser.username}</div>
+            </div>
+            <Link to="/inbox">
+              <button id="profile-self-inbox">Your Inbox <i className="fa-solid fa-envelope"></i></button>
+            </Link>
+          </div>
+        </div>
+
         <div id="event-public-title" className="sb">
           Events you're hosting:         
           <div id="index-self-button-container">

@@ -25,10 +25,10 @@ class EventShow extends React.Component{
       let index = event.attendees.findIndex((attendee) => attendee.username === currentUser.username)
       if (index === -1) {
         joinButton = 
-          <div className="event-show-back-link" onClick={() => addNewAttendee(event._id, currentUser.id)}>RSVP Yes</div>
+          <div className="event-show-back-link" onClick={() => addNewAttendee(event._id, currentUser.id)}>RSVP</div>
       } else {
         joinButton =
-          <div className="event-show-back-link" onClick={() => deleteAttendee(event._id, currentUser.id)}>RSVP No</div>
+          <div className="event-show-back-link" onClick={() => deleteAttendee(event._id, currentUser.id)}>Leave Event</div>
       }
     }
     return joinButton

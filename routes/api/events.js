@@ -67,7 +67,7 @@ router.post('/',
        // // Check if it is a valid Point of Interest and is not null
       if(poi === null){return}
       const { errors, isValid } = validatePointOfInterestInput(poi, index, startTime, endTime);
-        console.log(startTime)
+        // console.log(startTime)
         if (!isValid) { 
           return fullErrors[errors.index + 1] = (errors.index + 1)}
         if (isValid) {

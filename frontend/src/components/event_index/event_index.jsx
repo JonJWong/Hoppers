@@ -31,6 +31,7 @@ class EventIndex extends React.Component{
           if (i < 3) {
             return <EventIndexItem key={event._id} event={event} />
           }
+          return null
         })}
         <div className="spacer">&nbsp;</div>
         <div className="spacer">&nbsp;</div>

@@ -1,0 +1,22 @@
+#inbox-wrapper {
+  padding: 20px;
+}
+
+#inbox-container {
+  width: 100%;
+}
+
+#inbox-title {
+  font-size: 22px;
+  padding-bottom: 10px;
+}
+
+#inbox-message-title {
+  font-size: 18px;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+#inbox-message-container {
+  margin: 20px;
+}

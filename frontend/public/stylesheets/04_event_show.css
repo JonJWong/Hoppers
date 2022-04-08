@@ -1,4 +1,4 @@
-.event-show-container{
+.event-show-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -7,7 +7,7 @@
   /* border: 1px solid blue; */
 }
 
-.event-show-body{
+.event-show-body {
   display: flex;
   width: 80%;
   height: 600px;
@@ -23,7 +23,7 @@
   /* box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; */
 }
 
-.event-show-details{
+.event-show-details {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -34,7 +34,7 @@
   /* overflow-y: scroll; */
 }
 
-#blur-background{
+#blur-background {
   position: absolute;
   content: url("https://img.evbuc.com/https%3A%2F%2Fcdn.evbuc.com%2Fimages%2F223899609%2F37045133340%2F1%2Foriginal.20220204-051702?w=50&auto=format%2Ccompress&q=75&sharp=10&rect=0%2C0%2C2400%2C1200&s=9b88fffdc9ef07d993f6709e4a3ea69c");
   filter: blur(50px) brightness(.9);
@@ -46,7 +46,7 @@
 }
 
 
-.event-show-content{
+.event-show-content {
   margin-right: 10px;
   width: 50%;
   height: 500px;
@@ -55,10 +55,7 @@
   justify-content: center;
 }
 
-
-
-
-.event-show-title{
+.event-show-title {
   padding-top: 10px;
   font-size: 32px;
   font-weight: 700;
@@ -70,10 +67,10 @@
   padding-bottom: 10px;
 }
 
-.description{
+.description {
   padding-bottom: 24px;
 }
-.details{
+.details {
   padding-bottom: 6px;
   font-size: 18px;
 }
@@ -105,26 +102,24 @@
   background:none !important;
 } */
 
-.date-time-container{
+.date-time-container {
   margin-bottom: 15px;
 }
 
-.attendee-list{
+.attendee-list {
+  outline: 3px #eeeeee solid;
   width: 30%;
   height: 70%;
   margin: 15px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
 }
 
-.attendee-list-container{
-  margin: 15px;
+.attendee-list-container {
+  width: 100%;
 }
 
-
-
-.comment-container .circle{
+.comment-container .circle {
   background: rgba(176, 174, 174, 0.482);
   border-radius: 50%;
   width: 20px;
@@ -137,38 +132,38 @@
   font-weight: 600;
 }
 
-.comment-profile{
+.comment-profile {
   display: flex;
   align-items: center;
 }
 
-.comment-container{
+.comment-container {
   margin: 4px;
   margin-top: 0;
 }
 
-.comment-title-container{
+.comment-title-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 4px;
 }
 
-.comment-username{
+.comment-username {
   color: #314758;
   font-style: italic;
   font-size: 14px;
   font-weight: 700;
 }
 
-.time-ago{
+.time-ago {
   font-size: 12px;
   display: flex;
   align-items: flex-start;
   height: auto;
 }
 
-.comment-header{
+.comment-header {
   display: flex;
 }
 
@@ -189,7 +184,7 @@
   padding-bottom: 5px;
 }
 
-.show-links-wrapper{
+.show-links-wrapper {
   width: 100%;
   display: flex;
   /* padding-left: 20px; */
@@ -197,9 +192,17 @@
   justify-content: center;
 }
 
-.show-links{
+.show-links {
   display: flex;
   align-items: center;
+}
+
+.show-links > * {
+  transition: color .2s ease-in-out;
+}
+
+.show-links > *:hover { 
+  color: #df7116
 }
 
 .event-show-body, .event-show-content,
@@ -217,6 +220,10 @@
 
 .attendee-list-title {
   font-size: 26px;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-decoration: underline;
 }
 
 .interaction-container{
@@ -230,13 +237,12 @@
   padding-bottom: 5px;
 }
 
-.join-button{
+.join-button {
   cursor: pointer;
   color: #537895;
 }
 
-
-.event-show-back-link{
+.event-show-back-link {
   color: #537895;
   font-size: 14px;
   text-align: center;
@@ -244,10 +250,19 @@
 }
 
 .attendee-list-name {
+  height: auto;
   font-style: italic;
   text-align: left;
+  padding-left: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 .thread-name-error {
   color: red;
+}
+
+.attendee-list-container:nth-child(1) {
+  padding-top: 10px;
+  background-color: red;
 }

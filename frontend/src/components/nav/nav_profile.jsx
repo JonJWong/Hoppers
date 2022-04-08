@@ -28,6 +28,9 @@ class NavProfile extends React.Component{
               <Link to={'/profile'} onClick={closeModal}><i className="fa-solid fa-address-card"></i> Your Events</Link>  
             </div>
             <div className="modal-link">
+              <Link to={'/inbox'} onClick={closeModal}><i className="fa-solid fa-envelope"></i> Your inbox</Link>  
+            </div>
+            <div className="modal-link">
               <Link to={'/'} onClick={closeModal}><i className="fa-solid fa-circle-info"></i>About Hoppers</Link>  
             </div>
             <button

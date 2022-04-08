@@ -278,7 +278,7 @@ class IndexMap extends React.Component{
       position: location,
       map: this.map,
       label: {
-        text: `#${i + 1}`,
+        text: `${i + 1}`,
         color: color
       },
       icon: icon

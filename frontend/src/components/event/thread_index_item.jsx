@@ -1,7 +1,6 @@
 import React from "react";
 // import CommentIndex from "./comment_index.jsx";
 import CommentIndexContainer from "./comment_index_container.js";
-import EditThreadContainer from "../thread_form/edit_thread_container.js";
 
 class ThreadIndexItem extends React.Component{
 
@@ -26,8 +25,8 @@ class ThreadIndexItem extends React.Component{
       </button> 
       : null 
 
-    const editForm = this.props.editCapability ? <EditThreadContainer 
-    thread = {this.props.thread}/> : null
+    // const editForm = this.props.editCapability ? <EditThreadContainer 
+    // thread = {this.props.thread}/> : null
     
     const {thread} = this.props
     return(

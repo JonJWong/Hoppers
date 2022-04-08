@@ -276,7 +276,7 @@ class ShowMap extends React.Component{
       position: position,
       map: map,
       label: {
-        text: `#${i + 1}`,
+        text: `${i + 1}`,
         color: color
       },
       icon: icon
@@ -284,8 +284,7 @@ class ShowMap extends React.Component{
 
     const infoWindowContent = 
     `<div class="marker-content">` +
-      `<h3 class="infowindow-title">Point of Interest ${i + 1}</h3>` +
-      `<div class="infowindow-name">Name: ${location.name}</div>` +
+      `<h3 class="infowindow-name">${location.name}</h3>` +
       `<div class="infowindow-start">Start: ${StringUtil.getTime(location.startTime)}</div>` +
       `<div class="infowindow-end">End: ${StringUtil.getTime(location.endTime)}</div>` +
       `<div class="infowindow-description">Description: ${location.description}</div>` +
