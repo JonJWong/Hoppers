@@ -50,9 +50,9 @@ class LoginPage extends React.Component {
   // Render the session errors if there are any
   renderErrors() {
     return(
-      <ul>
+      <ul className="error-messages">
         {Object.keys(this.props.errors).map((error, i) => (
-          <li key={`error-${i}`}>
+          <li className = "form-error" key={`error-${i}`}>
             {this.props.errors[error]}
           </li>
         ))}
@@ -93,6 +93,7 @@ class LoginPage extends React.Component {
             <Link
               to="/signup">
               <button
+                onClick={() => this.props.removeSessionErrors()}
                 id="login-page-bottom-signup-button">
                   Sign Up
               </button>
