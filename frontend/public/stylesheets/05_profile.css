@@ -38,6 +38,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   margin-top: 20px;
+  border-bottom: 4px #eeeeee solid;
 }
 
 #profile-self-top {
