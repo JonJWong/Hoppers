@@ -18,6 +18,7 @@
 }
 
 #splash-container {
+  border-radius: 4px;
   min-width: 730px;
   position: fixed;
   left: 17%;
@@ -26,12 +27,13 @@
   bottom: 0px;
   height: 800px;
   margin: 0 auto;
-  background: linear-gradient(0deg, #09203f, #537895);
+  /* background: linear-gradient(0deg, #09203f, #537895); */
+  background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 #splash-title {
-  color: #eeeeee;
+  color: #537895;
   font-size: 50px;
   font-weight: bold;
   text-align: center;
@@ -42,7 +44,7 @@
 #splash-contents {
   width: 85%;
   margin: 0 auto;
-  color: #eeeeee;
+  color: linear-gradient(0deg, #09203f, #537895);
   font-size: 28px;
   font-weight: 50%;
   text-align: center;
@@ -50,7 +52,7 @@
 }
 
 #splash-subcontent {
-  color: #eeeeee;
+  color: linear-gradient(0deg, #09203f, #537895);
   width: 85%;
   font-size: 22px;
   line-height: 1.5;
@@ -61,7 +63,7 @@
 
 #splash-entry-button {
   font-weight: bold;
-  padding: 20px;
+  padding: 15px;
   width: 460px;
   border-radius: 50px;
   color: #a8a8a8;
@@ -74,18 +76,18 @@
   left: 20%;
   right: 20%;
   background-color: #537895;
-  color: black;
+  color: white;
   cursor: pointer;
-  transition: background-color .4s ease-in-out, color .4s ease-in-out;
+  transition: background-color .3s ease-in-out, color .3s ease-in-out;
 }
 
 #splash-entry-button:hover {
   background-color: black;
-  color: #eeeeee;
+  color: #537895;
 }
 
 #splash-footer {
-  color: #eeeeee;
+  color: #537895;
   font-size: 10px;
   position: absolute;
   bottom: 15px;
