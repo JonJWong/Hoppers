@@ -16,8 +16,6 @@ class SignupForm extends React.Component {
     this.clearedErrors = false;
   }
 
-  // TODO: the demo code wanted to redirect to the login page after registering?
-  // Probably so that the user would then be prompted to login
   componentDidUpdate(){
     if(this.props.signedIn){
       this.props.history.replace('/login');
@@ -44,9 +42,9 @@ class SignupForm extends React.Component {
 
   renderErrors() {
     return(
-      <ul>
+      <ul className="error-messages">
         {Object.keys(this.props.errors).map((error, i) => (
-          <li key={`error-${i}`}>
+          <li className="form-error"key={`error-${i}`}>
             {this.props.errors[error]}
           </li>
         ))}

@@ -53,9 +53,9 @@ class SignupPage extends React.Component {
 
   renderErrors() {
     return(
-      <ul>
+      <ul className="error-messages">
         {Object.keys(this.props.errors).map((error, i) => (
-          <li key={`error-${i}`}>
+          <li className="form-error" key={`error-${i}`}>
             {this.props.errors[error]}
           </li>
         ))}
@@ -106,6 +106,7 @@ class SignupPage extends React.Component {
             <Link
               to="/login">
               <button
+                onClick={() => this.props.removeSessionErrors()}
                 id="signup-page-bottom-login-button">
                   Log In
               </button>

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
-import { logout, login } from '../../actions/session_actions';
+import { logout, login, removeSessionErrors } from '../../actions/session_actions';
 
 import NavBar from './navbar';
 
@@ -12,7 +12,8 @@ const mSTP = state => ({
 const mDTP = (dispatch) => {
   return {
     login: user => dispatch(login(user)),
-    logout: () => dispatch(logout())
+    logout: () => dispatch(logout()),
+    removeSessionErrors: () => dispatch(removeSessionErrors())
   }
 }
 
