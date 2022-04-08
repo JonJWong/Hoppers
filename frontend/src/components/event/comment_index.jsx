@@ -5,9 +5,10 @@ import CreateCommentFormContainer from "../comment_form/create_comment_form_cont
 class CommentIndex extends React.Component{
 
   render(){
-      const members = this.props.event.attendees.map(person => person.username)
-      const commentForm = members.includes(this.props.currentUserUsername)
-      ? <CreateCommentFormContainer threadId={this.props.threadId}/> : null
+    const members = this.props.event.attendees.map(person => person.username)
+    const commentForm = members.includes(this.props.currentUserUsername)
+      ? <CreateCommentFormContainer threadId={this.props.threadId}/> 
+      : <div className="no-comment-message">RSVP to join the conversation</div>
 
     const {comments} = this.props;
     if(!comments) {
