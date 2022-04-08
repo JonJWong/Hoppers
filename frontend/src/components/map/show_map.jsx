@@ -276,7 +276,7 @@ class ShowMap extends React.Component{
       position: position,
       map: map,
       label: {
-        text: `#${i + 1}`,
+        text: `${i + 1}`,
         color: color
       },
       icon: icon
