@@ -258,7 +258,6 @@ class FunctionalMap extends React.Component{
     this.sendPois = this.sendPois.bind(this);
     this.markers = {};
     this.path = [];
-    this.current = 0;
   }
 
   placeMarkers() {
@@ -308,12 +307,14 @@ class FunctionalMap extends React.Component{
       color = "#eeeeee"
     }
 
+    const current = Object.values(this.markers).length
+
     // create marker at the location of the click event
     const marker = new window.google.maps.Marker({
       position: point,
       map: map,
       label: {
-        text: `${this.current + 1}`,
+        text: `${current + 1}`,
         color: color
       },
       icon: icon
@@ -339,8 +340,7 @@ class FunctionalMap extends React.Component{
     this.map.panTo(point);
 
     // set marker id, assign to object attribute
-    let id = this.current;
-    this.current += 1;
+    let id = current;
     
     this.markers[id] = marker;
 
@@ -371,12 +371,14 @@ class FunctionalMap extends React.Component{
       color = "#eeeeee"
     }
 
+    const current = Object.values(this.markers).length || 0;
+
     // create marker at the location of the click event
     const marker = new window.google.maps.Marker({
       position: position,
       map: map,
       label: {
-        text: `${this.current + 1}`,
+        text: `${current + 1}`,
         color: color
       },
       icon: icon
@@ -426,8 +428,7 @@ class FunctionalMap extends React.Component{
     this.map.panTo(position);
 
     // set marker id, assign to object attribute
-    let id = this.current;
-    this.current += 1;
+    let id = current;
 
     this.markers[id] = marker;
 
@@ -454,12 +455,20 @@ class FunctionalMap extends React.Component{
     this.path.splice(index, 1);
     this.poly.setPath(this.path);
     
-    console.log(this.path);
-    
     delete this.markers[id];
     delete event.PointsOfInterest[id];
 
+    this.reassignLabels();
+
     this.props.accept("PointsOfInterest", event.PointsOfInterest)
+  }
+
+  reassignLabels() {
+    Object.values(this.markers).forEach((marker, i) => {
+      const label = marker.getLabel();
+      label.text = `${i + 1}`;
+      marker.setLabel(label);
+    })
   }
 
   sendPois(e) {
