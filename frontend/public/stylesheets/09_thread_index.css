@@ -78,19 +78,14 @@
 }
 
 .comment-index{
-  transition:transform 0.2s ease-out;
-  transform:scaleY(1);
-  transform-origin:top;
-  z-index: 5;
-  /* visibility: visible; */
-  display: block;
-
+  max-height: 500px;
+  transition: max-height 0.25s ease-in;
 }
 
 .hidden{
-  transform:scaleY(0);
-  /* visibility: hidden; */
-  display: none;
+  max-height: 0;
+  transition: max-height 0.15s ease-out;
+  overflow: hidden;
 }
 
 .comment-tools{
@@ -164,6 +159,7 @@
 .comment-box{
   padding-top: 6px;
   border-bottom: 1px solid #ccc;
+  transition: background-color .1s ease-in-out;
 }
 
 .comment-box:hover{
