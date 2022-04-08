@@ -120,7 +120,9 @@ class EventForm extends React.Component{
       : <div id="create-form-name">Name</div>
     
     let startTimeLabel = this.props.errors.includes('Start time is required') 
-      ? <div className="form-error">Start time is required!</div> 
+      ? <div className="form-error">Start time is required!</div>
+      : this.props.errors.includes('Invalid start/end time')
+      ? <div className="form-error">Invalid start/end time!</div>
       : <div id="create-form-start-time">Start Time</div>
     
     let endTimeLabel = this.props.errors.includes('End time is required') 
