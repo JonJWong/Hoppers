@@ -7,6 +7,14 @@ import ThreadIndex from "./thread_index";
 
 class EventShow extends React.Component{
 
+  constructor(props){
+    super(props);
+    this.state = {
+      deletedSucess: false
+    }
+    this.handleDelete = this.handleDelete.bind(this)
+  }
+
   componentDidMount(){
     this.props.fetchEvent(this.props.match.params.eventId)
   };
@@ -32,6 +40,10 @@ class EventShow extends React.Component{
       }
     }
     return joinButton
+  }
+
+  handleDelete(){
+    this.props.history.replace("/events")
   }
 
   render(){
@@ -94,7 +106,12 @@ class EventShow extends React.Component{
                       &nbsp;|&nbsp;
                       <span 
                         className="event-show-back-link"
-                        onClick={()=>this.props.deleteEvent()}
+                        onClick={
+                          ()=> {
+                            this.props.deleteCurrentEvent(event._id)
+                              .then(this.handleDelete)
+                          }
+                        }
                       >
                         Delete Event
                       </span>
