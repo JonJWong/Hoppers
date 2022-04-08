@@ -1,21 +1,19 @@
 import React from 'react'
 import FunctionalMap from '../map/functional_map';
 
-const getFormattedDatetime = (dateString) => {
+const formatTime = (dateString) => {
   const d = new Date(dateString);
   let month = '' + (d.getMonth() + 1);
   let day = '' + d.getDate();
   const year = d.getFullYear();
   let hour = '' + d.getHours();
   let min = '' + d.getMinutes();
-  let sec = '' + d.getSeconds();
   if (month.length < 2) month = '0' + month;
   if (day.length < 2) day = '0' + day;
   if (hour.length < 2) hour = '0' + hour;
   if (min.length < 2) min = '0' + min;
-  if (sec.length < 2) sec = '0' + sec;
-  return [year, month, day].join('-')+'T'+[hour,min,sec].join(':');
-} 
+  return [year, month, day].join('-')+'T'+[hour,min].join(':');
+}
 
 class EditEventForm extends React.Component{
   constructor(props){
@@ -100,15 +98,15 @@ class EditEventForm extends React.Component{
           <input
             type="datetime-local"
             onChange={(e) => this.updatePoi(e, i, point, "startTime")}
-            min={getFormattedDatetime(new Date().toLocaleString())}
-            value={getFormattedDatetime(point.startTime)}/>
+            min={formatTime(new Date())}
+            value={formatTime(point.startTime)}/>
 
           <div className="poi-end">End Time</div>
           <input
             type="datetime-local"
             onChange={(e) => this.updatePoi(e, i, point, "endTime")}
-            min={getFormattedDatetime(point.startTime)}
-            value={getFormattedDatetime(point.endTime)}/>
+            min={formatTime(point.startTime)}
+            value={formatTime(point.endTime)}/>
 
           <div className="poi-description">Description</div>
           <input
@@ -178,8 +176,8 @@ class EditEventForm extends React.Component{
             {startTimeLabel}
               <input 
                 type="datetime-local"
-                value={getFormattedDatetime(this.state.startTime)}
-                min={getFormattedDatetime(new Date().toLocaleString())}
+                value={formatTime(this.state.startTime)}
+                min={formatTime(new Date())}
                 onChange={(e) => this.update("startTime", e)}
               />
           </div>
@@ -188,8 +186,8 @@ class EditEventForm extends React.Component{
             {endTimeLabel}
               <input 
                 type="datetime-local"
-                value={getFormattedDatetime(this.state.endTime)}
-                min={getFormattedDatetime(this.state.startTime)}
+                value={formatTime(this.state.endTime)}
+                min={formatTime(this.state.startTime)}
                 onChange={(e) => this.update("endTime", e)}
               />
           </div>
