@@ -8,6 +8,7 @@
 }
 
 #splash-block {
+  filter: blur(50px) brightness(.9);
   position: fixed;
   top: 0;
   right: 0;
