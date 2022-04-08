@@ -21,10 +21,10 @@ class EditEventForm extends React.Component{
     this.state = this.props.event;
 
     this.accept = this.accept.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this)
-    this.update = this.update.bind(this)
-    this.renderPoiError = this.renderPoiError.bind(this)
-
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.update = this.update.bind(this);
+    this.renderPoiError = this.renderPoiError.bind(this);
+    this.getPois = this.getPois.bind(this);
   }
 
   componentDidMount() {
@@ -50,6 +50,10 @@ class EditEventForm extends React.Component{
     points[i] = newPoint;
 
     this.setState({ PointsOfInterest: points });
+  }
+
+  getPois() {
+    return this.state.PointsOfInterest
   }
   
   handleSubmit(e) {
@@ -195,6 +199,7 @@ class EditEventForm extends React.Component{
       {this.state ? (
         <FunctionalMap event={this.state} accept={this.accept}
           removeEventErrors = {this.props.removeEventErrors}
+          getPois={this.getPois}
         />
       ) : (
         null

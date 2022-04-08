@@ -456,9 +456,12 @@ class FunctionalMap extends React.Component{
     this.poly.setPath(this.path);
     
     delete this.markers[id];
-    delete event.PointsOfInterest[id];
+    event.PointsOfInterest = this.props.getPois();
+    event.PointsOfInterest.splice(index, 1);
 
     this.reassignLabels();
+
+    console.log(event.PointsOfInterest)
 
     this.props.accept("PointsOfInterest", event.PointsOfInterest)
   }
