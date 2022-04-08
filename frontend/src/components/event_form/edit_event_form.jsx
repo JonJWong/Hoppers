@@ -58,8 +58,28 @@ class EditEventForm extends React.Component{
   
   handleSubmit(e) {
     e.preventDefault();
+
+    let { _id, startTime, endTime, name, description, PointsOfInterest } = this.state;
+
+    startTime = new Date(startTime).toUTCString();
+    endTime = new Date(endTime).toUTCString();
+    PointsOfInterest = PointsOfInterest.map(point => {
+      point.startTime = new Date(point.startTime).toUTCString();
+      point.endTime = new Date(point.endTime).toUTCString();
+      return point;
+    });
+
+    const event = {
+      _id: _id,
+      startTime: startTime,
+      endTime: endTime,
+      name: name,
+      description: description,
+      PointsOfInterest: PointsOfInterest
+    };
+
     // Create new Event and then push to the Event's page if successfull
-    this.props.updateEvent(this.state).then((response) => {
+    this.props.updateEvent(event).then((response) => {
       if(response.type === "RECEIVE_EVENT_ERRORS"){return}
       return this.props.history.replace(`/events`)
     });
