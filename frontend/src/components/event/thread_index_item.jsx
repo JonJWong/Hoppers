@@ -42,7 +42,6 @@ class ThreadIndexItem extends React.Component{
             </h3>
           </div>
           {deleteButton}
-          {/* {editForm} */}
         </div>
         <div className="comment-index">
           <CommentIndexContainer 

@@ -13,9 +13,9 @@ class AttendeeIndex extends React.Component{
         </h3>
         
         <div className="attendee-list-container">
-          {attendees.map(person => (
+          {attendees.map((person,idx) => (
             <div
-              key={person?.username}
+              key={idx}
               className="attendee-list-name">
               {person?.username}
             </div>

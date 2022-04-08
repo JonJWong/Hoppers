@@ -37,13 +37,9 @@ class ThreadIndex extends React.Component{
       <div className="thread-index">
         <div className="thread-title-container">
           <h3 className="thread-index-title">Conversation Threads</h3>
-          {/* {this.props.editCapability ? ( */}
-            <div className="add-thread-button" onClick={() => this.toggleCreateThread()}>
-              <i className="fa-solid fa-square-plus"></i>
-            </div>
-          {/* ):(
-            null
-          )} */}
+          <div className="add-thread-button" onClick={() => this.toggleCreateThread()}>
+            <i className="fa-solid fa-square-plus"></i>
+          </div>
           <p className="confirmation-message" onClick={() => this.updateConfirmationMessage("")}>
             {this.state.confirmationMessage}
           </p>
@@ -54,7 +50,7 @@ class ThreadIndex extends React.Component{
             addThread={this.state.addThread}
           />
         <div className="thread-list-container">
-          {threads.length === 0 ? ( <div>Start a conversation to get the party started</div> ): null}
+          {threads.length === 0 ? ( <div>Start a conversation to get the party started! 🥳 Click the (+) above</div> ): null}
           {threads.map((thread,idx) => (
             <ThreadIndexItem key={`${thread._id}+${idx}`} thread={thread} 
               deleteThread = {this.props.deleteThread}

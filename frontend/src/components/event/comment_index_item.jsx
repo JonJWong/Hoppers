@@ -76,7 +76,9 @@ class CommentIndexItem extends React.Component{
                 threadId={this.props.threadId}
               />
             ):(
-              comment.body
+              <p className="comment-body-p">
+                {comment.body}
+              </p>
             )}
           </div> 
         </div>

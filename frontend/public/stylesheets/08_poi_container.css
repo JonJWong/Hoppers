@@ -1,7 +1,7 @@
 .poi-list-container{
   /* margin-top: 12px; */
   margin-bottom: 12px;
-  height: 340px;
+  max-height: 380px;
   overflow-y: auto;
   width: 100%;
 }
@@ -10,7 +10,7 @@
   margin: 12px;
   padding: 4px;
   border-radius: 2px;
-  width: 90%;
+  width: 95%;
 }
 .poi-container p{
   font-size: 15px;
@@ -33,6 +33,6 @@
   transition: box-shadow .2s ease-in-out;
 }
 
-.poi-contents{
-
+.poi-container{
+  width: 80%;
 }

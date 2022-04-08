@@ -8,7 +8,14 @@ class CommentIndex extends React.Component{
     const members = this.props.event.attendees.map(person => person.username)
     const commentForm = members.includes(this.props.currentUserUsername)
       ? <CreateCommentFormContainer threadId={this.props.threadId}/> 
-      : <div className="no-comment-message">RSVP to join the conversation</div>
+      : (
+        <div className="no-comment-message">
+          <span
+            className="rsvp"
+            onClick={()=>this.props.addAttendee(this.props.eventId,this.props.userId )}
+          >RSVP</span>&nbsp;to join the conversation
+        </div>  
+      )
 
     const {comments} = this.props;
     if(!comments) {

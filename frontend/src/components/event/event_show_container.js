@@ -16,7 +16,7 @@ const mDTP = dispatch => ({
   deleteThread: (threadId) => dispatch(deleteThread(threadId)),
   addNewAttendee: (eventId, userId) => dispatch(addNewAttendee(eventId, userId)),
   deleteAttendee: (eventId, userId) => dispatch(deleteAttendee(eventId, userId)),
-  removeThreadErrors: () => dispatch(removeThreadErrors())
+  removeThreadErrors: () => dispatch(removeThreadErrors()),
 });
 
 export default connect(mSTP, mDTP)(EventShow);

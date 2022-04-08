@@ -30,6 +30,7 @@
   height: fit-content;
   margin-left: 8px;
   max-height: 650px;
+  width: 100%;
   /* overflow-y: scroll; */
 }
 
@@ -46,7 +47,7 @@
 
 
 .event-show-content{
-  margin-right: 30px;
+  margin-right: 10px;
   width: 50%;
   height: 500px;
   /* border: 1px solid gray; */
@@ -55,24 +56,6 @@
 }
 
 
-.comment-input, textarea{
-  width: 98%;
-  overflow: auto;
-  padding: none;
-  margin-left: 2px;
-  /* line-height: 12px; */
-  /* margin-top: 6px; */
-  resize: none;
-  line-height: 1.5;
-  vertical-align: middle;
-  border-radius: 6px;
-  height: 1.5em;
-}
-
-.comment-submit{
-  /* margin-bottom: 8px; */
-  visibility: hidden;
-}
 
 
 .event-show-title{
@@ -129,7 +112,7 @@
 .attendee-list{
   width: 30%;
   height: 70%;
-  margin-bottom: 15px;
+  margin: 15px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -161,6 +144,7 @@
 
 .comment-container{
   margin: 4px;
+  margin-top: 0;
 }
 
 .comment-title-container{
@@ -184,16 +168,9 @@
   height: auto;
 }
 
-.comment-body{
-  font-size: 14px;
-  margin-left: 5px;
-}
-
 .comment-header{
   display: flex;
 }
-
-
 
 .show-map-wrapper {
   min-height: 500px;
@@ -212,6 +189,19 @@
   padding-bottom: 5px;
 }
 
+.show-links-wrapper{
+  width: 100%;
+  display: flex;
+  /* padding-left: 20px; */
+  padding-top: 20px;
+  justify-content: center;
+}
+
+.show-links{
+  display: flex;
+  align-items: center;
+}
+
 .event-show-body, .event-show-content,
 .event-show-details, .event-date, .event-time {
   /* text-align: center; */
@@ -225,20 +215,13 @@
                                 supported by Chrome, Edge, Opera and Firefox */
 }
 
-.attendee-list{
-  /* border: 1px solid green; */
-  margin-bottom: 15px;
-  height: 70%;
-}
-
 .attendee-list-title {
-  font-size: 18px;
-  padding-bottom: 10px;
-  text-decoration: underline;
+  font-size: 26px;
 }
 
 .interaction-container{
   display: flex;
+  justify-content: space-between;
   width: 80%;
   margin: 15px;
 }
@@ -250,18 +233,14 @@
 .join-button{
   cursor: pointer;
   color: #537895;
-  padding-bottom: 15px;
 }
+
 
 .event-show-back-link{
   color: #537895;
-  padding-bottom: 15px;
-}
-
-.attendee-list-title {
-  font-size: 18px;
-  padding-bottom: 10px;
-  text-decoration: underline;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
 }
 
 .attendee-list-name {

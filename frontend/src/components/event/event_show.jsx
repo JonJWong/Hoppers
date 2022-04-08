@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import {getDate, getTime, getTimeZone} from "../../util/string_util";
-import { editComment } from "../../util/thread_api_util";
 import ShowMap from "../map/show_map";
 import AttendeeIndex from "./attendee_index";
 import ThreadIndex from "./thread_index";
@@ -26,10 +25,10 @@ class EventShow extends React.Component{
       let index = event.attendees.findIndex((attendee) => attendee.username === currentUser.username)
       if (index === -1) {
         joinButton = 
-          <div className="join-button" onClick={() => addNewAttendee(event._id, currentUser.id)}>Join Event!</div>
+          <div className="event-show-back-link" onClick={() => addNewAttendee(event._id, currentUser.id)}>RSVP Yes</div>
       } else {
         joinButton =
-          <div className="join-button" onClick={() => deleteAttendee(event._id, currentUser.id)}>Leave Event!</div>
+          <div className="event-show-back-link" onClick={() => deleteAttendee(event._id, currentUser.id)}>RSVP No</div>
       }
     }
     return joinButton
@@ -73,13 +72,38 @@ class EventShow extends React.Component{
                   </div>
                 ))}
               </div>
-              {this.joinEventButton()}  
+              <div className="show-links-wrapper">
+                <div className="show-links">
+                  {this.joinEventButton()}  &nbsp;|&nbsp;
+                    
+                  <Link
+                    to="/events"
+                    className="event-show-back-link">
+                      More Events
+                  </Link>
 
-              <Link
-                to="/events"
-                className="event-show-back-link">
-                  See more events
-              </Link>
+                  {this.props.currentUser.id === event.owner._id ? (
+                    <>
+                      &nbsp;|&nbsp;
+                      <Link 
+                        to={`/events/${event._id}/edit`}
+                        className="event-show-back-link"
+                      >
+                        Edit Event
+                      </Link>
+                      &nbsp;|&nbsp;
+                      <span 
+                        className="event-show-back-link"
+                        onClick={()=>this.props.deleteEvent()}
+                      >
+                        Delete Event
+                      </span>
+                    </>
+                  ) : ( 
+                    null
+                  )}
+                </div>
+              </div>
 
             </div>
           </div>
@@ -95,16 +119,6 @@ class EventShow extends React.Component{
           />
           <AttendeeIndex attendees={event.attendees}/>
         </div>
-        
-        {this.props.currentUser.id === event.owner._id
-          ? (
-            <Link to={`/events/${event._id}/edit`}>
-              Edit Event
-            </Link>
-          ) : (
-            <>
-            </>
-          )}
       </div>
     );
   };
