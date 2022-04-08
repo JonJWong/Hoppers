@@ -346,6 +346,14 @@ class FunctionalMap extends React.Component{
 
     this.path.push({ lat: point.lat(), lng: point.lng() });
 
+    this.poly ||= new window.google.maps.Polyline({
+      path: this.path,
+      geodesic: true,
+      strokeColor: color,
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    })
+
     this.poly.setPath(this.path);
 
     // add a listener for right-click to delete the marker that is right-clicked
