@@ -255,6 +255,7 @@
   padding-left: 15px;
   padding-top: 5px;
   padding-bottom: 5px;
+  word-wrap: break-word;
 }
 
 .thread-name-error {
