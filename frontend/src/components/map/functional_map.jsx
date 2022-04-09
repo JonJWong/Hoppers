@@ -276,7 +276,6 @@ class FunctionalMap extends React.Component {
     // polyline to draw lines on
     markers.forEach((point, i) => {
       this.placeMarker(point, i)
-      this.path.push(point.location)
     })
   }
 
@@ -297,7 +296,7 @@ class FunctionalMap extends React.Component {
     }
 
     // get the current length of markers so that markers can be set later
-    const current = Object.values(this.markers).length
+    const current = Object.values(this.markers).length;
 
     // create marker at the location of the click event
     const marker = new window.google.maps.Marker({
@@ -435,6 +434,9 @@ class FunctionalMap extends React.Component {
     // set marker id, assign to object attribute
     let id = current;
 
+    // add marker to polyLine path attribute
+    this.path.push(position);
+
     // store reference to marker
     this.markers[id] = marker;
 
@@ -463,18 +465,18 @@ class FunctionalMap extends React.Component {
     // find the index of this marker within the markers attribute
     const index = Object.values(this.markers).indexOf(marker);
 
-    // remove the marker from the polyLine path
-    this.path.splice(index, 1);
-    // update polyLine path to exclude the removed marker
-    this.poly.setPath(this.path);
-    
     // remove marker reference
     delete this.markers[id];
-
+    
     // fetch pois from form, assign to event
     event.PointsOfInterest = this.props.getPois();
     // remove the poi attached to this marker from the event fetched from form
     event.PointsOfInterest.splice(index, 1);
+    
+    // remove the marker from the polyLine path
+    this.path.splice(index, 1);
+    // update polyLine path to exclude the removed marker
+    this.poly.setPath(this.path);
 
     // re-assign all markers in numeric order to fill in the gap from the
     // marker that has been removed

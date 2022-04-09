@@ -123,7 +123,7 @@ class EditEventForm extends React.Component {
     let points = this.state.PointsOfInterest;
     return points.map((point, i) => {
       return (
-        <div className="create-form-marker-input" key={i}>
+        <div className="create-form-marker-input" key={`${i} + ${point.location.lat}`}>
           {this.renderPoiError(i)}
           <div className="poi-name">Name</div>
           <input
