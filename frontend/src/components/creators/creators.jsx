@@ -15,8 +15,8 @@ const CREATORS = [
     name: "Nick",
     role: "Frontend Developer, Styling Specialist",
     git: "https://github.com/njpietrow/",
-    linked: "",
-    angel: "",
+    linked: "https://www.linkedin.com/in/nickpietrow/",
+    angel: "https://angel.co/u/nick-pietrow",
     img: "https://avatars.githubusercontent.com/u/25106777",
     desc: "Nick was in charge of most of the styling across the site, and his primary focus was on the Events and their show pages. He also integrated threads and comments within those pages, and coordinated with the back-end team to structure the databases and responses according to the team's needs. Thanks to his efforts, the site looks beautiful and the interface is smooth and intuitive.",
   },
@@ -47,14 +47,16 @@ class Creators extends React.Component {
         {CREATORS.map(creator => {
           return (
             <div className="creator-tile" key={creator.desc}>
-              <div className="creator-head">
-                <h3>{creator.name}</h3>
-                <h4>{creator.role}</h4>
-              </div>
+              <div>
+                <div className="creator-head">
+                  <h3>{creator.name}</h3>
+                  <h4>{creator.role}</h4>
+                </div>
                 <div className="creator-photo-wrapper">
                   <img src={creator.img} alt={creator.name + "image"} />
                 </div>
-              <p>{creator.desc}</p>
+              </div>
+              <p className="creator-desc">{creator.desc}</p>
               <div className="creator-links">
                 <a href={creator.git} className="creator-git" target="_blank" rel="noopener noreferrer">
                   <i className="fa-brands fa-github"></i>
