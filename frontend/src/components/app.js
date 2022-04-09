@@ -2,16 +2,18 @@ import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Route, Switch} from 'react-router-dom';
 import NavBarContainer from './nav/navbar_container';
+import Footer from './footer/footer';
 
-import MainPage from './main/main_page.jsx';
-import LoginPageContainer from './session/login_page_container';
-import SignupPageContainer from './session/signup_page_container';
-import ProfileContainer from './profile/profile_container';
-import EventIndexContainer from './event_index/event_index_container';
-import EventShowContainer from './event/event_show_container';
-import CreateEventFormContainer from './event_form/create_event_form_container';
+import MainPage from "./main/main_page.jsx";
+import LoginPageContainer from "./session/login_page_container";
+import SignupPageContainer from "./session/signup_page_container";
+import ProfileContainer from "./profile/profile_container";
+import EventIndexContainer from "./event_index/event_index_container";
+import EventShowContainer from "./event/event_show_container";
+import CreateEventFormContainer from "./event_form/create_event_form_container";
 import EditEventFormContainer from "./event_form/edit_event_form_container";
 import InboxContainer from "./inbox/inbox_container";
+import Creators from "./creators/creators";
 
 const App = () => (
   <div>
@@ -28,7 +30,9 @@ const App = () => (
       <ProtectedRoute exact path="/events/:eventId/edit" component={EditEventFormContainer} />
       <ProtectedRoute exact path="/events/:eventId" component={EventShowContainer} />
       <ProtectedRoute exact path="/inbox" component={InboxContainer} />
+      <ProtectedRoute exact path="/creators" component={Creators} />
     </Switch>
+    <Route path="/" component={Footer} />
   </div>
 );
 

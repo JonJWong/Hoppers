@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import ProfileEventItem from "./profile_event";
 import { fetchEvents } from "../../actions/event_actions";
-import { userEvents } from "../../actions/session_actions"
+import { userEvents } from "../../actions/session_actions";
 
 const mSTP = state => ({
   allEvents: Object.values(state.events.all),

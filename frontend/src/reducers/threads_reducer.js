@@ -1,4 +1,4 @@
-import { RECEIVE_EVENT } from "../actions/event_actions"
+import { RECEIVE_EVENT } from "../actions/event_actions";
 import { RECEIVE_THREAD, RECEIVE_NEW_THREAD, REMOVE_THREAD} from "../actions/thread_actions";
 
 const threadReducer = (state = [], action) => {
@@ -9,7 +9,7 @@ const threadReducer = (state = [], action) => {
       return action.event.data.threads
     case RECEIVE_THREAD:
       newState.forEach((thread,idx) => {
-        if (thread._id === action.thread.data._id){
+        if (thread._id === action.thread.data._id) {
           newState[idx] = action.thread.data
         }
       })
@@ -19,7 +19,7 @@ const threadReducer = (state = [], action) => {
       return newState;
     case REMOVE_THREAD:
       newState.forEach((thread,idx) => {
-        if (thread._id === action.threadId){
+        if (thread._id === action.threadId) {
           delete newState[idx]
         }
       })

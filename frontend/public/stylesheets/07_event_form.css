@@ -1,10 +1,9 @@
 #create-form-container {
   width: 90%;
   margin: 0 auto;
-  padding: 20px;
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  grid-template-rows: 250px auto 40px;
+  grid-template-columns: 600px auto;
+  grid-template-rows: 165px auto 40px;
 }
 
 #functional-map-container-wrapper {
@@ -16,6 +15,13 @@
   text-align: center;
   font-size: 14px;
   padding-top: 20px;
+}
+
+#form-map-header {
+  font-size: 12px;
+  color: #df7116;
+  text-align: center;
+  padding-bottom: 5px;
 }
 
 #functional-map-container {
@@ -51,13 +57,13 @@
 }
 
 #create-form-fields {
-  justify-self: start;
   grid-area: 1 / 2 / 2 / 3;
   width: 500px;
   display: grid;
   grid-template-columns: auto auto;
-  grid-template-rows: 52px 52px 52px;
-  padding: 20px;
+  grid-template-rows: auto;
+  height: 165px;
+  justify-self: center;
 }
 
 #create-form-name-wrapper {
@@ -83,11 +89,13 @@
 }
 
 .create-form-marker-input {
-  padding: 15px;
+  align-self: start;
+  justify-self: center;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  padding-bottom: 15px;
 }
 
 .poi-name, .poi-start, .poi-end, .poi-description, .poi-name {
@@ -107,7 +115,7 @@
 
 #create-form-description-wrapper > textarea {
   resize: none;
-  height: 130px;
+  height: 140px;
   width: 250px;
 }
 
@@ -115,7 +123,7 @@
   color: red;
 }
 
-#create-form-name-wrapper, #create-form-description-wrapper,
+#create-form-name-wrapper,
 #create-form-start-wrapper, #create-form-end-time-wrapper {
   padding: 5px;
 }

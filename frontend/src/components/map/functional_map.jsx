@@ -21,6 +21,7 @@ const DARK_CIRCLE = {
   strokeWeight: 0.4
 }
 
+// Hover circle marker params
 const HOVER_CIRCLE = {
   path: window.google.maps.SymbolPath.CIRCLE,
   scale: 15,
@@ -30,6 +31,7 @@ const HOVER_CIRCLE = {
   strokeWeight: 0.4
 }
 
+// Map styles to remove default POIs, and darken map
 const STYLES = {
   default: [
     {
@@ -246,8 +248,8 @@ const STYLES = {
 };
 
 
-class FunctionalMap extends React.Component{
-  constructor(props){
+class FunctionalMap extends React.Component {
+  constructor(props) {
     super(props)
     this.state = {
       style: "default"
@@ -260,41 +262,27 @@ class FunctionalMap extends React.Component{
     this.path = [];
   }
 
+  // helper to place initial markers from pois passed in.
   placeMarkers() {
+    // If there are no pois or locations, return
     if (!this.props.event.PointsOfInterest[0]?.location) {
       return
     }
-    const markers = this.props.event.PointsOfInterest.map(point => {
-      return point
-    })
 
+    // create variable from the pois passed in from form.
+    const markers = this.props.event.PointsOfInterest;
+
+    // iterate through pois, create a marker and add to path attribute for
+    // polyline to draw lines on
     markers.forEach((point, i) => {
       this.placeMarker(point, i)
-      this.path.push(point.location)
     })
-
-    const hour = new Date().getHours();
-    let color;
-    if (hour < 7 || hour > 17) {
-      color = "#eeeeee"
-    } else {
-      color = "black"
-    }
-
-    this.poly = new window.google.maps.Polyline({
-      path: this.path,
-      geodesic: true,
-      strokeColor: color,
-      strokeOpacity: 1.0,
-      strokeWeight: 2
-    })
-
-    this.poly.setMap(this.map)
   }
 
+  // this method is what is called on-click of the map to create markers
   newMarker(point) {
     const map = this.map;
-    // get time of day and set a styles var accordingly
+    // get time of day and set styles, line color accordingly
     const hour = new Date().getHours();
     let hoverColor = "#eeeeee";
     let color;
@@ -307,11 +295,12 @@ class FunctionalMap extends React.Component{
       color = "#eeeeee"
     }
 
-    const current = Object.values(this.markers).length
+    // get the current length of markers so that markers can be set later
+    const current = this.path.length;
 
     // create marker at the location of the click event
     const marker = new window.google.maps.Marker({
-      position: point,
+      position: {lat: point.lat(), lng: point.lng()},
       map: map,
       label: {
         text: `${current + 1}`,
@@ -320,6 +309,7 @@ class FunctionalMap extends React.Component{
       icon: icon
     })
 
+    // add a hover effect on mouseover to the marker
     marker.addListener("mouseover", () => {
       const label = marker.getLabel();
       label.color = hoverColor;
@@ -328,6 +318,7 @@ class FunctionalMap extends React.Component{
       marker.setIcon(HOVER_CIRCLE);
     })
 
+    // mouseout to remove hover effect when cursor is no longer over the marker
     marker.addListener("mouseout", () => {
       const label = marker.getLabel();
       label.color = color;
@@ -342,18 +333,13 @@ class FunctionalMap extends React.Component{
     // set marker id, assign to object attribute
     let id = current;
     
+    // add marker to this.markers object
     this.markers[id] = marker;
 
+    // add marker location to path attribute for polyline
     this.path.push({ lat: point.lat(), lng: point.lng() });
 
-    this.poly ||= new window.google.maps.Polyline({
-      path: this.path,
-      geodesic: true,
-      strokeColor: color,
-      strokeOpacity: 1.0,
-      strokeWeight: 2
-    })
-
+    // set this.path to polyline path (update polyline)
     this.poly.setPath(this.path);
 
     // add a listener for right-click to delete the marker that is right-clicked
@@ -362,11 +348,13 @@ class FunctionalMap extends React.Component{
     })
   }
 
-  placeMarker(point, i) {
+  // helper to place markers initially passed in as props from form.
+  // only called within this.placeMarkers
+  placeMarker(point) {
     const position = point.location;
     const map = this.map;
     const that = this;
-    // get time of day and set a styles var accordingly
+    // get time of day and set styles and line color accordingly
     const hour = new Date().getHours();
     let hoverColor = "#eeeeee";
     let color;
@@ -379,6 +367,7 @@ class FunctionalMap extends React.Component{
       color = "#eeeeee"
     }
 
+    // get text for marker icon based on length of current # of markers
     const current = Object.values(this.markers).length || 0;
 
     // create marker at the location of the click event
@@ -392,6 +381,7 @@ class FunctionalMap extends React.Component{
       icon: icon
     })
 
+    // Define what content shows up on the infowindow (appears on-click)
     const infoWindowContent = 
     `<div class="marker-content">` +
       `<h3 class="infowindow-name">${point.name}</h3>` +
@@ -400,13 +390,16 @@ class FunctionalMap extends React.Component{
       `<div class="infowindow-description">Description: ${point.description}</div>` +
     `</div>`
 
+    // Instantiate that content into an infoWindow object
     const infoWindow = new window.google.maps.InfoWindow({
       content: infoWindowContent,
       maxWidth: 200
     })
 
+    // add a reference to that infoWindow to the component in an attribute
     this.infoWindows.push(infoWindow);
 
+    // add hover effect to marker
     marker.addListener("mouseover", () => {
       const label = marker.getLabel();
       label.color = hoverColor;
@@ -415,6 +408,7 @@ class FunctionalMap extends React.Component{
       marker.setIcon(HOVER_CIRCLE);
     })
 
+    // remove hover effect when cursor is not over marker
     marker.addListener("mouseout", () => {
       const label = marker.getLabel();
       label.color = color;
@@ -423,6 +417,8 @@ class FunctionalMap extends React.Component{
       marker.setIcon(icon);
     })
 
+    // add on-click event listener that closes all other infoWindows, and
+    // opens the one assigned to the marker
     marker.addListener("click", () => {
       that.closeInfoWindows();
       infoWindow.open({
@@ -438,6 +434,10 @@ class FunctionalMap extends React.Component{
     // set marker id, assign to object attribute
     let id = current;
 
+    // add marker to polyLine path attribute
+    this.path.push(position);
+
+    // store reference to marker
     this.markers[id] = marker;
 
     // add a listener for right-click to delete the marker that is right-clicked
@@ -446,6 +446,7 @@ class FunctionalMap extends React.Component{
     })
   }
 
+  // helper to close all other infoWindows
   closeInfoWindows() {
     for (let window of this.infoWindows) {
       window.close();
@@ -454,24 +455,46 @@ class FunctionalMap extends React.Component{
 
   // helper to delete a marker at a set ID on the map
   deleteMarker(id) {
+    // find the marker in the references stored in attribute
     const marker = this.markers[id];
     const { event } = this.props;
+
+    // remove the marker from the map by changing its map assignment
     marker.setMap(null);
 
-    const index = Object.values(this.markers).indexOf(marker)
+    // find the index of this marker within the markers attribute
+    // the index here should be same as the marker's index on POI list since
+    // they are stored in order
+    const index = Object.values(this.markers).indexOf(marker);
 
-    this.path.splice(index, 1);
-    this.poly.setPath(this.path);
-    
+    // remove marker reference from markers object
     delete this.markers[id];
-    event.PointsOfInterest = this.props.getPois();
-    event.PointsOfInterest.splice(index, 1);
+    
+    // fetch pois from form, assign to event
+    const PointsOfInterest = this.props.getPois();
 
+    // remove the poi attached to this marker from the event fetched from form
+    // only remove if the pois are longer than path
+    // this checks for un-finalized markers as pois
+    if (PointsOfInterest.length <= this.path.length) {
+      PointsOfInterest.splice(index, 1);
+    }
+    
+    // remove the marker from the polyLine path
+    this.path.splice(index, 1);
+    // update polyLine path to exclude the removed marker
+    this.poly.setPath(this.path);
+
+    // re-assign all markers in numeric order to fill in the gap from the
+    // marker that has been removed
     this.reassignLabels();
 
+    // set the state of parent component with the new event's points of interest
+    // (marker has been removed, update parent)
     this.props.accept("PointsOfInterest", event.PointsOfInterest)
   }
 
+  // helper to set the markers in numerical order again after deleting
   reassignLabels() {
     Object.values(this.markers).forEach((marker, i) => {
       const label = marker.getLabel();
@@ -480,20 +503,33 @@ class FunctionalMap extends React.Component{
     })
   }
 
+  // helper to pass the markers into parent form as pois
   sendPois(e) {
     e.preventDefault();
     const points = this.props.event.PointsOfInterest;
 
+    // assign appropriate marker locations to each poi that has been passed in
     Object.values(this.markers).forEach((marker, i) => {
       const pos = {};
+      // if a POI exists at this index, fetch the other info like name, etc.
+      // otherwise, create new poi object
       const newPoint = points[i] || {};
+
+      // populate position object
       pos["lat"] = marker.position.lat();
       pos["lng"] = marker.position.lng();
+
+      // assign position to newly edited poi at this index
       newPoint["location"] = pos;
+
+      // assign new location to poi
       points[i] = newPoint
     })
 
+    // set state of parent component with newly updated pois
     this.props.accept("PointsOfInterest", points)
+
+    // clear errors that are on the page
     this.props.removeEventErrors();
   }
 
@@ -520,20 +556,22 @@ class FunctionalMap extends React.Component{
       }
     };
 
-    // we want to configure the map options to be able to display all of the 
-    // points of interest for an event. We can get the center (average)
-    // and then configure the radius to display all of the point within the bounds
+    // assigning reference of the map created to this.map
     this.map = new window.google.maps.Map(this.mapNode, MAP_OPTIONS);
 
     // get time of day and set a styles var accordingly
     const hour = new Date().getHours();
     let styles;
+    let color;
     if (hour < 7 || hour > 17) {
       styles = STYLES["dark"]
+      color = "#eeeeee";
     } else {
       styles = STYLES["default"]
+      color = "black";
     }
-    // apply styles by time of day
+
+    // apply styles to map based on time of day
     this.map.setOptions({ styles: styles });
 
     // add listener to map that creates markers on click
@@ -541,15 +579,33 @@ class FunctionalMap extends React.Component{
       this.newMarker(e.latLng)
     })
 
+    // create submit button to attach to map, place it in top center position
     const submitButton = document.getElementById("map-add-pois");
     this.map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(submitButton);
 
+    // place any markers that have been passed in from props in case an event
+    // is being edited
     this.placeMarkers();
+
+    // instantiate a new polyLine to connect the POIs in order
+    this.poly ||= new window.google.maps.Polyline({
+      path: this.path,
+      geodesic: true,
+      strokeColor: color,
+      strokeOpacity: 1.0,
+      strokeWeight: 2
+    })
+
+    // set the polyLine reference to this map
+    this.poly.setMap(this.map);
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div id="functional-map-container-wrapper">
+        <div id="form-map-header">
+          Please note: Please press "Confirm Points Of Interest" before making any changes to your Points of Interest, or there might be unexpected behavior.
+        </div>
         <button
           id="map-add-pois"
           onClick={e => this.sendPois(e)}>

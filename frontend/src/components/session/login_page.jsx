@@ -1,13 +1,13 @@
-import React from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import React from "react";
+import { withRouter, Link } from "react-router-dom";
 
 class LoginPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       errors: {}
     };
 
@@ -68,12 +68,12 @@ class LoginPage extends React.Component {
           <div id="login-page-inputs">
               <input type="text"
                 value={this.state.username}
-                onChange={this.update('username')}
+                onChange={this.update("username")}
                 placeholder="Username"
               />
               <input type="password"
                 value={this.state.password}
-                onChange={this.update('password')}
+                onChange={this.update("password")}
                 placeholder="Password"
               />
             <input type="submit" value="Submit" />

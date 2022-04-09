@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { addNewAttendee } from "../../actions/event_actions";
 
 const mSTP = (state, ownProps) => {
-  return{
+  return {
     currentUserUsername: state.session.user.username,
     userId: state.session.user.id,
     eventId: ownProps.event._id

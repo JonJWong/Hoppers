@@ -1,5 +1,5 @@
-import React from 'react'
-import FunctionalMap from '../map/functional_map';
+import React from "react";
+import FunctionalMap from "../map/functional_map";
 
 const formatTime = (dateString) => {
   const d = new Date(dateString);
@@ -15,9 +15,9 @@ const formatTime = (dateString) => {
   return [year, month, day].join('-')+'T'+[hour,min].join(':');
 }
 
-class EventForm extends React.Component{
-  constructor(props){
-    super(props)
+class EventForm extends React.Component {
+  constructor(props) {
+    super(props);
     this.state = {
       name: "",
       description: "",
@@ -34,14 +34,17 @@ class EventForm extends React.Component{
     this.renderPoiError = this.renderPoiError.bind(this);
   }
 
+  // helper to update slice of state when a form field changes
   update(field, e) {
     this.setState({[field]: e.currentTarget.value})
   }
 
+  // helper to pass down to map to get current state for pois
   getPois() {
     return this.state.PointsOfInterest
   }
 
+  // helper to key into a specific point of interest to change one field
   updatePoi(e, i, point, field) {
     e.preventDefault();
 
@@ -53,20 +56,48 @@ class EventForm extends React.Component{
     this.setState({ PointsOfInterest: points });
   }
   
+  // helper to send form contents to backend
   handleSubmit(e) {
     e.preventDefault();
-    // Create new Event and then push to the Event's page if successfull
-      this.props.createEvent(this.state).then((response) => {
-        if(response.type === "RECEIVE_EVENT_ERRORS"){return};
+
+    // deconstruct state
+    let { _id, startTime, endTime, name, description, PointsOfInterest } = this.state;
+
+    // adjust times passed to backend to be formatted in UTC for heroku
+    startTime = new Date(startTime).toUTCString();
+    endTime = new Date(endTime).toUTCString();
+    PointsOfInterest = PointsOfInterest.map(point => {
+      point.startTime = new Date(point.startTime).toUTCString();
+      point.endTime = new Date(point.endTime).toUTCString();
+      return point;
+    });
+
+    // reconstruct event to pass to backend
+    const event = {
+      _id: _id,
+      startTime: startTime,
+      endTime: endTime,
+      name: name,
+      description: description,
+      PointsOfInterest: PointsOfInterest
+    };
+
+    // Create new event and redirect to event index if successful
+      this.props.createEvent(event).then((response) => {
+        if (response.type === "RECEIVE_EVENT_ERRORS") {
+          return
+        }
         return this.props.history.replace(`/events`)
       })
   }
 
-  // helper to take in markers from map
+  // helper to allow map to set this component's state
   accept(key, value) {
     this.setState({ [key]: value })
   }
 
+  // helper to delete a point of interest
+  // deprecated, used in X button before
   deletePoi(i, e) {
     e.preventDefault();
     let points = this.state.PointsOfInterest;
@@ -74,13 +105,15 @@ class EventForm extends React.Component{
     this.setState({ PointsOfInterest: points });
   }
 
+  // helper to render errors above their respective pois
   renderPoiError(i){
     let poiError = this.props.errors.includes(i + 1) 
-      ? <div className= "form-error"> {`This poi is improperly formated.`} </div>
-      : <div className = "form-error"> </div>
+      ? <div className="form-error">This poi is improperly formatted</div>
+      : <div className="form-error"></div>
     return poiError
   }
 
+  // helper to render form inputs for each poi present in state
   renderPoiInputs() {
     let points = this.state.PointsOfInterest;
     return points.map((point, i) => {
@@ -91,7 +124,7 @@ class EventForm extends React.Component{
           <input
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "name")}
-            placeholder={`Point of Interest ${i + 1} name`}/>
+            placeholder={`Point ${i + 1} name`}/>
 
           <div className="poi-start">Start Time</div>
           <input
@@ -109,13 +142,14 @@ class EventForm extends React.Component{
           <input
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "description")}
-            placeholder={`Point of Interest ${i + 1} description`}/>
+            placeholder={`Point ${i + 1} description`}/>
         </div>
       )
     })
   }
 
-  render(){
+  render() {
+    // helpers to replace form labels with errors if errors are present
     let descriptionLabel = this.props.errors.includes('Description is required') 
       ? <div className="form-error">Description is required!</div> 
       : <div id="create-form-description">Description</div>
@@ -139,70 +173,72 @@ class EventForm extends React.Component{
     let poiLabel = this.props.errors.includes('Must have at least 1 point of interest') 
       ? <div className="form-error">Please select at least one Point of Interest!</div> 
       : <div> </div>
-    return( 
-    <div id="create-form-wrapper">
-      <h5 id="create-form-header">{this.props.formType}</h5>
-      <form
-        id="create-form-container"
-        onSubmit ={this.handleSubmit}>
 
-        <div id="create-form-fields">
-          <div id="create-form-name-wrapper">
-            {nameLabel}
-              <input
-                type="text"
-                value={this.state.name}
-                onChange={(e) => this.update("name", e)}
-                placeholder="Event Name"
-              />
-          </div>
-          
-          <div id="create-form-description-wrapper">
-            {descriptionLabel}
-              <textarea
-              value={this.state.description}
-              onChange={(e) => this.update("description", e)}
-              /> 
-          </div>
-          
-          <div id="create-form-start-wrapper">
-            {startTimeLabel}
-              <input 
-                type="datetime-local"
-                value={this.state.startTime}
-                min={formatTime(new Date())}
-                onChange={(e) => this.update("startTime", e)}
-              />
-          </div>
-          
-          <div id="create-form-end-time-wrapper">
-            {endTimeLabel}
-              <input 
-                type="datetime-local"
-                value={this.state.endTime}
-                min={formatTime(new Date())}
-                onChange = {(e) => this.update("endTime", e)}
-              />
-          </div>
-            {poiLabel}
-        </div>
+    return ( 
+      <div id="create-form-wrapper">
+        <h5 id="create-form-header">{this.props.formType}</h5>
+        <form
+          id="create-form-container"
+          onSubmit ={this.handleSubmit}>
 
-      <FunctionalMap event={this.state} accept={this.accept} 
-        removeEventErrors = {this.props.removeEventErrors}
-        getPois={this.getPois}
-      />
+          <div id="create-form-fields">
+            <div id="create-form-name-wrapper">
+              {nameLabel}
+                <input
+                  type="text"
+                  value={this.state.name}
+                  onChange={(e) => this.update("name", e)}
+                  placeholder="Event Name"
+                />
+            </div>
+            
+            <div id="create-form-description-wrapper">
+              {descriptionLabel}
+                <textarea
+                value={this.state.description}
+                onChange={(e) => this.update("description", e)}
+                placeholder="Write about your event! Describe the theme, the route, what the goal is..."
+                /> 
+            </div>
+            
+            <div id="create-form-start-wrapper">
+              {startTimeLabel}
+                <input 
+                  type="datetime-local"
+                  value={this.state.startTime}
+                  min={formatTime(new Date())}
+                  onChange={(e) => this.update("startTime", e)}
+                />
+            </div>
+            
+            <div id="create-form-end-time-wrapper">
+              {endTimeLabel}
+                <input 
+                  type="datetime-local"
+                  value={this.state.endTime}
+                  min={formatTime(new Date())}
+                  onChange = {(e) => this.update("endTime", e)}
+                />
+            </div>
+              {poiLabel}
+          </div>
 
-        <div id="poi-input-list">
-          {this.renderPoiInputs()}
-        </div>
+        <FunctionalMap event={this.state} accept={this.accept} 
+          removeEventErrors = {this.props.removeEventErrors}
+          getPois={this.getPois}
+        />
 
-        <button
-          type="Submit"
-          id="create-form-submit">
-            {this.props.formType}
-        </button>
-      </form>
-    </div>
+          <div id="poi-input-list">
+            {this.renderPoiInputs()}
+          </div>
+
+          <button
+            type="Submit"
+            id="create-form-submit">
+              {this.props.formType}
+          </button>
+        </form>
+      </div>
     )
   }
 }

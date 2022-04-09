@@ -6,7 +6,6 @@ export const RECEIVE_SESSION_ERRORS = "RECEIVE_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "RECEIVE_USER_LOGOUT";
 export const RECIEVE_CURRENT_USER_EVENTS = "RECIEVE_CURRENT_USER_EVENTS"
 export const REMOVE_SESSION_ERRORS = "REMOVE_SESSION_ERRORS"
-// export const RECEIVE_USER_SIGN_IN = "RECEIVE_USER_SIGN_IN";
 
 // We'll dispatch this when our user signs in
 export const receiveCurrentUser = currentUser => ({
@@ -14,11 +13,6 @@ export const receiveCurrentUser = currentUser => ({
   currentUser
 });
 
-// This will be used to redirect the user to the login page upon signup
-// export const receiveUserSignIn = () => ({
-//   type: RECEIVE_USER_SIGN_IN
-// });
-  
 // We dispatch this one to show authentication errors on the frontend
 export const receiveErrors = errors => ({
   type: RECEIVE_SESSION_ERRORS,
@@ -27,7 +21,7 @@ export const receiveErrors = errors => ({
 
 export const removeSessionErrors = () => ({
   type: REMOVE_SESSION_ERRORS
-})
+});
 
 // When our user is logged out, we will dispatch this action to set isAuthenticated to false
 export const logoutUser = () => ({
@@ -38,7 +32,7 @@ export const logoutUser = () => ({
 const currentUserEvents = (user) => ({
   type: RECIEVE_CURRENT_USER_EVENTS,
   user
-})
+});
 
 // Upon signup, dispatch the approporiate action depending on which type of response we receieve from the backend
 // if we sign up successfuly and insert a new user into the DB,
@@ -71,7 +65,7 @@ export const login = user => dispatch => (
   .catch(err => {
     dispatch(receiveErrors(err.response.data));
   })
-)
+);
 
 // All the logout function does is remove the webtoken from local storage
 // and set the default header web token to be blank again
@@ -85,4 +79,4 @@ export const logout = () => dispatch => {
 export const userEvents = (userId) => dispatch => {
   APIUtil.userEvents(userId)
     .then((user) => dispatch(currentUserEvents(user)))
-}
+};
