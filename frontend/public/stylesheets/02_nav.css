@@ -11,7 +11,7 @@
 
 .nav-filler{
   height: 98px;
-  z-index: 7;
+  z-index: -1;
 }
 
 .title h2 {

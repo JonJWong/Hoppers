@@ -16,22 +16,24 @@ import Creators from "./creators/creators";
 import Footer from "./footer/footer";
 
 const App = () => (
-  <div>
+  <div className="body">
     <NavBarContainer />
 
-    <Switch>
-      <Route exact path="/" component={MainPage} />
-      <AuthRoute exact path="/login" component={LoginPageContainer} />
-      <AuthRoute exact path="/signup" component={SignupPageContainer} />
+    <div className="content">
+      <Switch>
+        <Route exact path="/" component={MainPage} />
+        <AuthRoute exact path="/login" component={LoginPageContainer} />
+        <AuthRoute exact path="/signup" component={SignupPageContainer} />
 
-      <ProtectedRoute exact path="/events" component={EventIndexContainer} />
-      <ProtectedRoute exact path="/profile" component={ProfileContainer} />
-      <ProtectedRoute exact path="/events/create" component={CreateEventFormContainer} />
-      <ProtectedRoute exact path="/events/:eventId/edit" component={EditEventFormContainer} />
-      <ProtectedRoute exact path="/events/:eventId" component={EventShowContainer} />
-      <ProtectedRoute exact path="/inbox" component={InboxContainer} />
-      <Route exact path="/creators" component={Creators} />
-    </Switch>
+        <ProtectedRoute exact path="/events" component={EventIndexContainer} />
+        <ProtectedRoute exact path="/profile" component={ProfileContainer} />
+        <ProtectedRoute exact path="/events/create" component={CreateEventFormContainer} />
+        <ProtectedRoute exact path="/events/:eventId/edit" component={EditEventFormContainer} />
+        <ProtectedRoute exact path="/events/:eventId" component={EventShowContainer} />
+        <ProtectedRoute exact path="/inbox" component={InboxContainer} />
+        <Route exact path="/creators" component={Creators} />
+      </Switch>
+    </div>
     
     <Footer />
   </div>
