@@ -1,0 +1,11 @@
+.footer {
+  height: 50px;
+  margin-top: -50px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-image {
+  display: inline-block;
+  border-radius: 50%;
+}
