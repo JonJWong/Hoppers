@@ -161,10 +161,10 @@ Users would be able to direct-message each other in real-time.
 
 ### A team of four extremely talented and hard-working individuals put this together[^2]!
 
-  - <a href="https://github.com/JonJWong" target="_blank" rel="noopener noreferrer">Jonathan</a>: Team leader, and project coordinator / front-end designer (React.js).
-  - <a href="https://github.com/njpietrow" target="_blank" rel="noopener noreferrer">Nick</a>: Front-end designer, component manager / creator (React.js).
-  - <a href="https://github.com/CodyDegraffeNiles" target="_blank" rel="noopener noreferrer">Cody</a>: Back-end engineer (MongoDB / Express integration).
-  - <a href="https://github.com/KevinCh28" target="_blank" rel="noopener noreferrer">Kevin</a>: Back-end engineer (MongoDB / Express integration).
+  - <a href="https://github.com/JonJWong" target="_blank" rel="noopener noreferrer">Jonathan</a>: Project Lead / Frontend designer (React.js, Google Maps API).
+  - <a href="https://github.com/njpietrow" target="_blank" rel="noopener noreferrer">Nick</a>: Frontend designer, Styling Specialist (React.js).
+  - <a href="https://github.com/CodyDegraffeNiles" target="_blank" rel="noopener noreferrer">Cody</a>: Backend engineer (MongoDB / Express integration).
+  - <a href="https://github.com/KevinCh28" target="_blank" rel="noopener noreferrer">Kevin</a>: Backend engineer (MongoDB / Express integration).
 
 [^1]: Please note all features subject to changes. Hoppers can not guarantee the perfect night out. Also if you have a substance abuse problem please seek assistance by dialing a the SAMHSA hotline. 1-800-662-HELP
 
