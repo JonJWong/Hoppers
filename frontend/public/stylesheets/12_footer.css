@@ -1,12 +1,11 @@
 #footer-wrapper {
   background-color: #537895;
   width: 100%;
-  height: 100px;
-  padding: 20px;
   z-index: 5;
 }
 
 #footer-container {
+  padding: 20px;
   background-color: #537895;
   margin: 0 auto;
   height: 100px;
@@ -86,20 +85,67 @@
 }
 
 #footer-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+#footer-modal-content {
   position: absolute;
-  height: 100px;
-  width: 100px;
-  right: 20px;
-  left: auto;
-  top: auto;
-  bottom: 20px;
-  background-color: #eeeeee;
+  min-height: 150px;
+  min-width: 250px;
+  top: 40%;
+  bottom: 40%;
+  left: 40%;
+  right: 40%;
+  background-color: white;
+  z-index: 10;
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 40px;
 }
 
-#footer-modal-content > * {
-  color: black;
+#footer-modal-block {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(80, 80, 80, .8);
 }
 
-.footer-git > *, .footer-angel > *, .footer-linked > *, .footer-x {
-  color: black;
+#footer-modal-content > h3 {
+  font-size: 30px;
+  text-align: center;
+}
+
+h3 > h4 {
+  font-size: 16px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+#footer-modal-content > ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#footer-modal-content > ul > li > a {
+  display: block;
+  margin: 0 auto;
+  font-size: 30px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+#footer-modal-content > ul > li div {
+  padding-top: 10px;
+  font-size: 18px;
+  text-align: center;
 }

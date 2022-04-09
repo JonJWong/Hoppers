@@ -4,24 +4,28 @@ import { Link } from "react-router-dom";
 const CREATORS = {
   jonathan: {
     name: "Jonathan",
+    handle: "JonJWong",
     git: "https://github.com/JonJWong/",
     angel: "https://angel.co/u/jonathan-wong-75/",
     linked: "https://www.linkedin.com/in/jonjwong/",
   },
   nick: {
     name: "Nick",
+    handle: "njpietrow",
     git: "https://github.com/njpietrow/",
     angel: "https://angel.co/u/nick-pietrow",
     linked: "https://www.linkedin.com/in/nickpietrow/",
   },
   cody: {
     name: "Cody",
+    handle: "CodyDegraffeNiles",
     git: "https://github.com/CodyDegraffeNiles",
     angel: "",
     linked: "",
   },
   kevin: {
     name: "Kevin",
+    handle: "KevinCh28",
     git: "https://github.com/KevinCh28",
     angel: "",
     linked: "",
@@ -63,28 +67,28 @@ class Footer extends React.Component {
       return (
         <div id="footer-modal">
           <div id="footer-modal-content">
-            <h3>{creator.name}</h3>
+            <h3>{creator.name}
+              <h4>{creator.handle}</h4>
+            </h3>
             <ul>
               <li>
                 <a href={creator.git} className="footer-git" target="_blank" rel="noopener noreferrer">
-                  <i className="fa-brands fa-github"></i>
+                  <i className="fa-brands fa-github"></i><div>Github</div>
                 </a>
               </li>
               <li>
                 <a href={creator.angel} className="footer-angel" target="_blank" rel="noopener noreferrer">
-                  <i className="fa-brands fa-angellist"></i>
+                  <i className="fa-brands fa-angellist"></i><div>AngelList</div>
                 </a>
               </li>
               <li>
                 <a href={creator.linked} className="footer-linked" target="_blank" rel="noopener noreferrer">
-                  <i className="fa-brands fa-linkedin"></i>
+                  <i className="fa-brands fa-linkedin"></i><div>LinkedIn</div>
                 </a>
-              </li>
-              <li onClick={() => this.closeModal()} className="footer-x">
-                <i className="fa-solid fa-x"></i>
               </li>
             </ul>
           </div>
+          <div id="footer-modal-block" onClick={() => this.closeModal()}></div>
         </div>
       )
     }
@@ -158,9 +162,9 @@ class Footer extends React.Component {
                 </div>
               )
             })}
-            {this.renderModal()}
           </div>
         </div>
+          {this.renderModal()}
       </div>
     )
   }
