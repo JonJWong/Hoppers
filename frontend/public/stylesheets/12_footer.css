@@ -1,0 +1,169 @@
+#footer-wrapper {
+  background-color: #537895;
+  border-top: 3px black solid;
+  width: 100%;
+  position: sticky;
+  top: 100%;
+  bottom: 0;
+}
+
+#footer-container {
+  padding: 20px;
+  background-color: #537895;
+  margin: 0 auto;
+  height: 100px;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-list {
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.3;
+  padding-bottom: 20px;
+}
+
+.footer-list h3 {
+  font-size: 16px;
+  padding-bottom: 3px;
+  text-decoration: underline;
+}
+
+.footer-list * {
+  color: #eeeeee;
+}
+
+.footer-list > a > h3 {
+  transition: color .2s ease-out;
+  color: #eeeeee;
+}
+
+.footer-list > a:hover > h3 {
+  color: #df7116;
+}
+
+#footer-mongo, #footer-express, #footer-node, #footer-maps,
+.footer-creator-link {
+  transition: color .2s ease-in-out;
+}
+
+#footer-mongo:hover {
+  color: greenyellow;
+}
+
+#footer-express:hover {
+  color: yellow;
+}
+
+#footer-react {
+  display: flex;
+  justify-content: center;
+}
+
+#footer-react:hover > :first-child,
+#footer-react:hover > :last-child {
+  transition: color .4s ease-in-out;
+}
+
+#footer-react:hover > :first-child {
+  color: black;
+}
+
+#footer-react:hover > :last-child {
+  color: blue;
+}
+
+#footer-node:hover {
+  color: rgb(0, 175, 0);
+}
+
+#footer-maps:hover {
+  color: orangered;
+}
+
+.footer-creator-link:hover {
+  cursor: pointer;
+  color: #df7116;
+}
+
+#footer-modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+#footer-modal-content {
+  position: absolute;
+  min-height: 150px;
+  min-width: 250px;
+  top: 40%;
+  bottom: 40%;
+  left: 35%;
+  right: 35%;
+  background-color: white;
+  display: flex;
+  padding: 20px;
+  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 40px;
+  z-index: 5;
+}
+
+#footer-modal-block {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(80, 80, 80, .4);
+}
+
+#footer-modal-content > h3 {
+  font-size: 30px;
+  text-align: center;
+}
+
+h3 > h4 {
+  font-size: 16px;
+  padding-top: 10px;
+  text-align: center;
+}
+
+#footer-modal-content > ul {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#footer-modal-content > ul > li > a {
+  display: block;
+  margin: 0 auto;
+  font-size: 30px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+#footer-modal-content > ul > li div {
+  padding-top: 10px;
+  font-size: 18px;
+  text-align: center;
+}
+
+#footer-modal-content > ul > li div {
+  transition: background-color .4s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 30px;
+  background-color: white;
+}
+
+#footer-modal-content > ul > li:hover div {
+  background-color: #df7116;
+}
