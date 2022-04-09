@@ -9,6 +9,7 @@
 @import url("/stylesheets/08_poi_container.css");
 @import url("/stylesheets/09_thread_index.css");
 @import url("/stylesheets/10_inbox.css");
+@import url("/stylesheets/11_creators.css");
 
 #map-container {
   height: 500px;

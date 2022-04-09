@@ -25,13 +25,16 @@ class NavProfile extends React.Component {
               <Link to={'/events'} onClick={closeModal}><i className="fa-solid fa-calendar-days"></i> All Events</Link>
             </div>
             <div className="modal-link">
-              <Link to={'/profile'} onClick={closeModal}><i className="fa-solid fa-address-card"></i> Your Events</Link>  
+              <Link to={'/profile'} onClick={closeModal}><i className="fa-solid fa-address-card"></i> Your Events</Link>
             </div>
             <div className="modal-link">
-              <Link to={'/inbox'} onClick={closeModal}><i className="fa-solid fa-envelope"></i> Your Inbox</Link>  
+              <Link to={'/inbox'} onClick={closeModal}><i className="fa-solid fa-envelope"></i> Your Inbox</Link>
             </div>
             <div className="modal-link">
-              <Link to={'/'} onClick={closeModal}><i className="fa-solid fa-circle-info"></i>About Hoppers</Link>  
+              <Link to={'/'} onClick={closeModal}><i className="fa-solid fa-circle-info"></i>About Hoppers</Link>
+            </div>
+            <div className="modal-link">
+              <Link to={'/creators'} onClick={closeModal}><i className="fa-solid fa-computer"></i>Our Team</Link>
             </div>
             <button
               id="nav-modal-signout"
