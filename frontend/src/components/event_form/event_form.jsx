@@ -151,27 +151,27 @@ class EventForm extends React.Component {
   render() {
     // helpers to replace form labels with errors if errors are present
     let descriptionLabel = this.props.errors.includes('Description is required') 
-      ? <div className="form-error">Description is required!</div> 
+      ? <div className="form-error">Description is required</div> 
       : <div id="create-form-description">Description</div>
 
     let nameLabel = this.props.errors.includes('Name is required') 
-      ? <div className="form-error">Name too short!</div> 
+      ? <div className="form-error">Name is too short</div> 
       : <div id="create-form-name">Name</div>
     
     let startTimeLabel = this.props.errors.includes('Start time is required') 
-      ? <div className="form-error">Start time is required!</div>
+      ? <div className="form-error">Start time is required</div>
       : this.props.errors.includes('End time before start')
       ? <div className="form-error">End time before start</div>
       : <div id="create-form-start-time">Start Time</div>
     
     let endTimeLabel = this.props.errors.includes('End time is required') 
-      ? <div className="form-error">End time is required!</div> 
+      ? <div className="form-error">End time is required</div> 
       : this.props.errors.includes('End time before start')
       ? <div className="form-error">End time before start</div>
       : <div id="create-form-start-time">End Time</div>
 
     let poiLabel = this.props.errors.includes('Must have at least 1 point of interest') 
-      ? <div className="form-error">Please select at least one Point of Interest!</div> 
+      ? <div className="form-error">Please select at least one Point of Interest</div> 
       : <div> </div>
 
     return ( 
