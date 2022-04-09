@@ -2,11 +2,8 @@
 
 Hoppers is an app where users can design their plan for the perfect night out with friends[^1].
 
-Users will be able to design and customize their own story book event (could be anything from a pub crawl to a nice walk). After creating the perfect itinerary, those users can then invite other users to join their path of adventure and excitement.
-
-Once a user has joined an event, they can chat with each other to discuss any updates or plans.
-
-Additionally, event attendees can post about the night's events on the main event page, so they can have a history of their glorious deeds. Furthermore, event-owners can make their “plan’ public and have other users join their night out or they can join other “public” plans.
+Users will be able to design and customize their own story book event (could be anything from a pub crawl to a nice walk). After creating the perfect itinerary, other users can join in on the fun!
+Once a user has joined an event, they can chat with each other to discuss any updates or plans on the event page.
 
 <h2 id="table-of-contents">Table of Contents</h2>
 
