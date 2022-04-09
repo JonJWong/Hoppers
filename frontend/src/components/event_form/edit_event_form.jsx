@@ -130,7 +130,7 @@ class EditEventForm extends React.Component {
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "name")}
             value={point.name}
-            placeholder={`Point of Interest ${i + 1} name`}/>
+            placeholder={`Point ${i + 1} name`}/>
 
           <div className="poi-start">Start Time</div>
           <input
@@ -151,7 +151,7 @@ class EditEventForm extends React.Component {
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "description")}
             value={point.description}
-            placeholder={`Point of Interest ${i + 1} description`}/>
+            placeholder={`Point ${i + 1} description`}/>
         </div>
       )
     })
@@ -209,6 +209,7 @@ class EditEventForm extends React.Component {
               <textarea
               value={this.state.description}
               onChange={(e) => this.update("description", e)}
+              placeholder="Write about your event! Describe the theme, the route, what the goal is..."
               /> 
           </div>
           

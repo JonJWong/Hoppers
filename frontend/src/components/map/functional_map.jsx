@@ -296,7 +296,7 @@ class FunctionalMap extends React.Component {
     }
 
     // get the current length of markers so that markers can be set later
-    const current = Object.values(this.markers).length;
+    const current = this.path.length;
 
     // create marker at the location of the click event
     const marker = new window.google.maps.Marker({
@@ -463,15 +463,22 @@ class FunctionalMap extends React.Component {
     marker.setMap(null);
 
     // find the index of this marker within the markers attribute
+    // the index here should be same as the marker's index on POI list since
+    // they are stored in order
     const index = Object.values(this.markers).indexOf(marker);
 
-    // remove marker reference
+    // remove marker reference from markers object
     delete this.markers[id];
     
     // fetch pois from form, assign to event
-    event.PointsOfInterest = this.props.getPois();
+    const PointsOfInterest = this.props.getPois();
+
     // remove the poi attached to this marker from the event fetched from form
-    event.PointsOfInterest.splice(index, 1);
+    // only remove if the pois are longer than path
+    // this checks for un-finalized markers as pois
+    if (PointsOfInterest.length <= this.path.length) {
+      PointsOfInterest.splice(index, 1);
+    }
     
     // remove the marker from the polyLine path
     this.path.splice(index, 1);
@@ -596,6 +603,9 @@ class FunctionalMap extends React.Component {
   render() {
     return (
       <div id="functional-map-container-wrapper">
+        <div id="form-map-header">
+          Please note: Please press "Confirm Points Of Interest" before making any changes to your Points of Interest, or there might be unexpected behavior.
+        </div>
         <button
           id="map-add-pois"
           onClick={e => this.sendPois(e)}>
