@@ -529,8 +529,8 @@ class FunctionalMap extends React.Component {
     // set state of parent component with newly updated pois
     this.props.accept("PointsOfInterest", points)
 
-    // clear errors that are on the page
-    this.props.removeEventErrors();
+    // clear poiError  that are on the page
+    this.props.removePoiErrors();
   }
 
   componentDidMount() {

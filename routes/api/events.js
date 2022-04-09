@@ -45,9 +45,10 @@ router.post('/',
     const { errors, isValid } = validateEventInput(req.body);
     let fullErrors = {}
     if (!isValid) {
-      // Add Non-Poi errors to the error response
-      fullErrors = errors;
-      // Return earlyf if no Poi's
+      // Add Non-Poi errors to the error response in the 0 object
+      fullErrors[0] = Object.values(errors);
+      // Return early if no Poi's
+      console.log(req.body)
       if(req.body.PointsOfInterest.length === 0) {return res.status(400).json(fullErrors)}
     }
 
@@ -68,7 +69,8 @@ router.post('/',
       if(poi === null){return}
       const { errors, isValid } = validatePointOfInterestInput(poi, index, startTime, endTime);
         if (!isValid) { 
-          return fullErrors[errors.index + 1] = (errors.index + 1)}
+          console.log(errors)
+          return fullErrors[errors.index + 1] = (errors)}
         if (isValid) {
           // The new start time becomes the end of the last valid Poi.
           startTime = poi.endTime

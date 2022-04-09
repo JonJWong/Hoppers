@@ -7,6 +7,14 @@ module.exports = function validateEventInput(data) {
   data.name = validText(data.name) ? data.name : "";
   data.description = validText(data.description) ? data.description : "";
 
+
+
+  // Validate Poi(Point of interest)
+  if (data.PointsOfInterest.length < 1) {
+    errors.PointsOfInterest = "Must have at least 1 point of interest"
+  }
+
+
   // Validate Name
   if (!Validator.isLength(data.name, {min:2, max: 100 })){
     errors.name = "Name must be between 2 and 100 characters"
@@ -22,18 +30,13 @@ module.exports = function validateEventInput(data) {
   }
 
   // Validate Start Time
-  if (Validator.isEmpty(data.startTime)) {
+  if (Validator.isEmpty(data.startTime) || data.startTime === "Invalid Date") {
     errors.startTime = "Start time is required";
   }
 
   // Validate End Time
-  if (Validator.isEmpty(data.endTime)) {
+  if (Validator.isEmpty(data.endTime) || data.endTime === "Invalid Date") {
     errors.endTime = "End time is required";
-  }
-
-  // Validate Poi(Point of interest)
-  if (data.PointsOfInterest.length < 1) {
-    errors.PointsOfInterest = "Must have at least 1 point of interest"
   }
 
   // Check that end time is after start time. Only check if both are valid to begin with
@@ -41,7 +44,6 @@ module.exports = function validateEventInput(data) {
     !Validator.isEmpty(data.startTime) &&  !Validator.isEmpty(data.endTime)) {
       errors.startTime = "End time before start"
   }
-
 
   return {
     errors,

@@ -5,6 +5,7 @@ export const RECEIVE_EVENT = "RECEIVE_EVENT";
 export const REMOVE_EVENT = "REMOVE_EVENT";
 export const RECEIVE_EVENT_ERRORS = "RECEIVE_EVENT_ERRORS";
 export const REMOVE_EVENT_ERRORS = "REMOVE_EVENT_ERRORS";
+export const REMOVE_POI_ERRORS = "REMOVE_POI_ERRORS"
 
 export const receiveEvents = (events) => ({
   type: RECEIVE_EVENTS,
@@ -29,6 +30,10 @@ export const receiveEventErrors = (errors) => ({
 export const removeEventErrors = () => ({
   type: REMOVE_EVENT_ERRORS
 });
+
+export const removePoiErrors = () => ({
+  type: REMOVE_POI_ERRORS
+})
 
 export const fetchEvents = () => dispatch => (
   getEvents()

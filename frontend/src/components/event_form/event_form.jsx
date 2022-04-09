@@ -107,7 +107,7 @@ class EventForm extends React.Component {
 
   // helper to render errors above their respective pois
   renderPoiError(i){
-    let poiError = this.props.errors.includes(i + 1) 
+    let poiError = this.props.errors[i + 1]
       ? <div className="form-error">This poi is improperly formatted</div>
       : <div className="form-error"></div>
     return poiError
@@ -150,27 +150,27 @@ class EventForm extends React.Component {
 
   render() {
     // helpers to replace form labels with errors if errors are present
-    let descriptionLabel = this.props.errors.includes('Description is required') 
+    let descriptionLabel = this.props?.errors[0].includes('Description is required') 
       ? <div className="form-error">Description is required</div> 
       : <div id="create-form-description">Description</div>
 
-    let nameLabel = this.props.errors.includes('Name is required') 
+    let nameLabel = this.props?.errors[0].includes('Name is required') 
       ? <div className="form-error">Name is too short</div> 
       : <div id="create-form-name">Name</div>
     
-    let startTimeLabel = this.props.errors.includes('Start time is required') 
+    let startTimeLabel = this.props?.errors[0].includes('Start time is required') 
       ? <div className="form-error">Start time is required</div>
-      : this.props.errors.includes('End time before start')
+      : this.props?.errors[0].includes('End time before start')
       ? <div className="form-error">End time before start</div>
       : <div id="create-form-start-time">Start Time</div>
     
-    let endTimeLabel = this.props.errors.includes('End time is required') 
+    let endTimeLabel = this.props?.errors[0].includes('End time is required') 
       ? <div className="form-error">End time is required</div> 
-      : this.props.errors.includes('End time before start')
+      : this.props?.errors[0].includes('End time before start')
       ? <div className="form-error">End time before start</div>
       : <div id="create-form-start-time">End Time</div>
 
-    let poiLabel = this.props.errors.includes('Must have at least 1 point of interest') 
+    let poiLabel = this.props?.errors[0].includes('Must have at least 1 point of interest') 
       ? <div className="form-error">Please select at least one Point of Interest</div> 
       : <div> </div>
 
@@ -224,7 +224,7 @@ class EventForm extends React.Component {
           </div>
 
         <FunctionalMap event={this.state} accept={this.accept} 
-          removeEventErrors = {this.props.removeEventErrors}
+          removePoiErrors = {this.props.removePoiErrors}
           getPois={this.getPois}
         />
 
