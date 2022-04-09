@@ -84,7 +84,7 @@ class Creators extends React.Component {
 
           <div id="creator-content">
             <h3 id="creator-content-header">
-              Hoppers was created by these 4 talented developers
+              Hoppers was created by these four talented developers
             </h3>
 
             <div id="creator-content-body">
