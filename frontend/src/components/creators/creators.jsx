@@ -46,7 +46,7 @@ class Creators extends React.Component {
       <div id="creator-tile-wrapper">
         {CREATORS.map(creator => {
           return (
-            <div className="creator-tile">
+            <div className="creator-tile" key={creator.desc}>
               <div className="creator-head">
                 <h3>{creator.name}</h3>
                 <h4>{creator.role}</h4>
@@ -57,13 +57,13 @@ class Creators extends React.Component {
               <p>{creator.desc}</p>
               <div className="creator-links">
                 <a href={creator.git} className="creator-git" target="_blank" rel="noopener noreferrer">
-                  <i class="fa-brands fa-github"></i>
+                  <i className="fa-brands fa-github"></i>
                 </a>
                 <a href={creator.angel} className="creator-angel" target="_blank" rel="noopener noreferrer">
-                  <i class="fa-brands fa-angellist"></i>
+                  <i className="fa-brands fa-angellist"></i>
                 </a>
                 <a href={creator.linked} className="creator-linked" target="_blank" rel="noopener noreferrer">
-                  <i class="fa-brands fa-linkedin"></i>
+                  <i className="fa-brands fa-linkedin"></i>
                 </a>
               </div>
             </div>
