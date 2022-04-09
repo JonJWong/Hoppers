@@ -96,7 +96,7 @@ class SignupPage extends React.Component {
         {this.renderErrors()}
 
         <div id="demo-signup-container">
-          <h4 id="demo-signup-header">Don"t want to Sign Up?</h4>
+          <h4 id="demo-signup-header">Don't want to Sign Up?</h4>
           <div id="signup-page-buttons">
             <button
               id="signup-page-demo-login-button"

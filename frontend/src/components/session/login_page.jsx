@@ -83,7 +83,7 @@ class LoginPage extends React.Component {
         {this.renderErrors()}
 
         <div id="demo-login-container">
-          <h4 id="demo-login-header">Don"t want to Log In?</h4>
+          <h4 id="demo-login-header">Don't want to Log In?</h4>
           <div id="login-page-buttons">
             <button
               id="login-page-demo-login-button"

@@ -74,7 +74,7 @@ class LoginForm extends React.Component {
         {this.renderErrors()}
 
         <div id="demo-login-container">
-          <h4 id="demo-login-header">Don"t want to Log In?</h4>
+          <h4 id="demo-login-header">Don't want to Log In?</h4>
           <div id="demo-login-buttons">
             <button
               id="login-demo-login-button"
