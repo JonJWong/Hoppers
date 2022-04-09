@@ -17,17 +17,33 @@ class EventIndex extends React.Component {
     )
   }
 
+  // Use quick sort to order events by start date.
+  orderEvents(events){
+    if (events.length <= 1) return events;
+
+    let pivot = events[0];
+    let earlierEvents = events.slice(1).filter((event) => new Date(event.startTime) < new Date(pivot.startTime));
+    let laterEvents = events.slice(1).filter((event) => new Date(event.startTime) > new Date(pivot.startTime));
+    let earlier = this.orderEvents(earlierEvents);
+    let later = this.orderEvents(laterEvents);
+    return earlier.concat([pivot]).concat(later);
+  }
+
+  
+
   renderOwnEvents() {
     if (Object.values(this.props.allEvents).length === 0) return null;
     
     const ownEvents = this.props.allEvents.filter(
       event => event.owner === this.props.user)
+
+    let orderedOwnEvents = this.orderEvents(ownEvents)
   
     if (ownEvents.length === 0) return null;
 
     return (
       <ul id="self-event-list">
-        {ownEvents.map((event, i) => {
+        {orderedOwnEvents.map((event, i) => {
           if (i < 3) {
             return <EventIndexItem key={event._id} event={event} />
           }
@@ -44,9 +60,10 @@ class EventIndex extends React.Component {
     if (Object.values(this.props.allEvents).length === 0 ){
       return null
     }
+    let orderedEvents = this.orderEvents(this.props.allEvents)
     return (
       <ul id="event-list">
-        {this.props.allEvents?.map(event => {
+        {orderedEvents?.map(event => {
           return event.owner !== this.props.user
             ? <EventIndexItem key={event._id} event={event} />
             : null
