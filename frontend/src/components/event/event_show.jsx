@@ -1,13 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {getDate, getTime, getTimeZone} from "../../util/string_util";
+import { getDate, getTime, getTimeZone } from "../../util/string_util";
 import ShowMap from "../map/show_map";
 import AttendeeIndex from "./attendee_index";
 import ThreadIndex from "./thread_index";
 
-class EventShow extends React.Component{
-
-  constructor(props){
+class EventShow extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       deletedSucess: false
@@ -15,7 +14,7 @@ class EventShow extends React.Component{
     this.handleDelete = this.handleDelete.bind(this)
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.fetchEvent(this.props.match.params.eventId)
   };
 
@@ -42,20 +41,20 @@ class EventShow extends React.Component{
     return joinButton
   }
 
-  handleDelete(){
+  handleDelete() {
     this.props.history.replace("/events")
   }
 
-  render(){
+  render() {
     // check if current user is the owner. 
     const editCapability = this.props?.event?.owner?._id === this.props.currentUser.id
     const {event, threads} = this.props
 
-    if((!event)||(!event.attendees)) {
+    if ((!event) || (!event.attendees)) {
       return null
     }
     
-    return(
+    return (
       <div className="event-show-container">
         <div className="background">
           <img id="blur-background" alt="none"/>

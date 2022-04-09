@@ -1,18 +1,18 @@
 import React from "react";
-import autosize from 'autosize';
+import autosize from "autosize";
 
 class CommentForm extends React.Component{
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = this.props.comment;
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount(){
+  componentDidMount() {
     autosize(this.textarea);
  }
 
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault()
     if (this.state.body === '') {
       return
@@ -31,11 +31,11 @@ class CommentForm extends React.Component{
     }
   }
 
-  update(field){
+  update(field) {
     return e => this.setState({[field]: e.currentTarget.value})
   }
 
-  render(){
+  render() {
     return (
       <form onSubmit={this.handleSubmit} className="comment-form">
         <p className="comment-body-p">

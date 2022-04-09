@@ -248,8 +248,8 @@ const STYLES = {
 };
 
 
-class FunctionalMap extends React.Component{
-  constructor(props){
+class FunctionalMap extends React.Component {
+  constructor(props) {
     super(props)
     this.state = {
       style: "default"
@@ -591,8 +591,8 @@ class FunctionalMap extends React.Component{
     this.poly.setMap(this.map);
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div id="functional-map-container-wrapper">
         <button
           id="map-add-pois"

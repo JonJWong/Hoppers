@@ -1,13 +1,13 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import { withRouter } from "react-router-dom";
 
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       errors: {}
     };
 
@@ -59,12 +59,12 @@ class LoginForm extends React.Component {
           <div id="login-form-inputs">
               <input type="text"
                 value={this.state.username}
-                onChange={this.update('username')}
+                onChange={this.update("username")}
                 placeholder="Username"
               />
               <input type="password"
                 value={this.state.password}
-                onChange={this.update('password')}
+                onChange={this.update("password")}
                 placeholder="Password"
               />
             <input type="submit" value="Submit" />
@@ -74,7 +74,7 @@ class LoginForm extends React.Component {
         {this.renderErrors()}
 
         <div id="demo-login-container">
-          <h4 id="demo-login-header">Don't want to Log In?</h4>
+          <h4 id="demo-login-header">Don"t want to Log In?</h4>
           <div id="demo-login-buttons">
             <button
               id="login-demo-login-button"

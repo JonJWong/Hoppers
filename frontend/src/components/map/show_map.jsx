@@ -246,9 +246,9 @@ const STYLES = {
   ],
 };
 
-class ShowMap extends React.Component{
-  constructor(props){
-    super(props)
+class ShowMap extends React.Component {
+  constructor(props) {
+    super(props);
 
     this.infoWindows = [];
     this.markers = this.props.PointsOfInterest;
@@ -441,8 +441,8 @@ class ShowMap extends React.Component{
     })
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="show-map-container" ref={ map => this.mapNode = map }></div>
     )
   }

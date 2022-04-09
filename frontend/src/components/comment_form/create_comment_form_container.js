@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import CommentForm from "./comment_form";
 import { createComment } from "../../actions/thread_actions";
 
-const mSTP = (state, ownProps) => ({
+const mSTP = (state) => ({
   comment: {
     body: "",
     username: state.session.user.username,

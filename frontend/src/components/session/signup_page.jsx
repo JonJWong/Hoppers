@@ -1,14 +1,14 @@
-import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import React from "react";
+import { Link, withRouter } from "react-router-dom";
 
 class SignupPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      username: '',
-      password: '',
-      password2: '',
+      email: "",
+      username: "",
+      password: "",
+      password2: "",
       errors: {}
     };
 
@@ -18,9 +18,9 @@ class SignupPage extends React.Component {
 
   // TODO: the demo code wanted to redirect to the login page after registering?
   // Probably so that the user would then be prompted to login
-  componentDidUpdate(){
-    if(this.props.signedIn){
-      this.props.history.replace('/login');
+  componentDidUpdate() {
+    if (this.props.signedIn) {
+      this.props.history.replace("/login");
     }
   }
 
@@ -71,22 +71,22 @@ class SignupPage extends React.Component {
           <div id="signup-page-inputs">
               <input type="text"
                 value={this.state.email}
-                onChange={this.update('email')}
+                onChange={this.update("email")}
                 placeholder="Email"
               />
               <input type="text"
                 value={this.state.username}
-                onChange={this.update('username')}
+                onChange={this.update("username")}
                 placeholder="Username"
               />
               <input type="password"
                 value={this.state.password}
-                onChange={this.update('password')}
+                onChange={this.update("password")}
                 placeholder="Password"
               />
               <input type="password"
                 value={this.state.password2}
-                onChange={this.update('password2')}
+                onChange={this.update("password2")}
                 placeholder="Confirm Password"
               />
             <input type="submit" value="Submit" />
@@ -96,7 +96,7 @@ class SignupPage extends React.Component {
         {this.renderErrors()}
 
         <div id="demo-signup-container">
-          <h4 id="demo-signup-header">Don't want to Sign Up?</h4>
+          <h4 id="demo-signup-header">Don"t want to Sign Up?</h4>
           <div id="signup-page-buttons">
             <button
               id="signup-page-demo-login-button"

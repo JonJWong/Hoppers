@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const getEvents = () => {
-  return axios.get('/api/events')
+  return axios.get("/api/events")
 };
 
 export const getEvent = (eventId) => {
@@ -9,7 +9,7 @@ export const getEvent = (eventId) => {
 };
 
 export const makeEvent = (data) => {
-  return axios.post('/api/events', data)
+  return axios.post("/api/events", data)
 };
 
 export const editEvent = (data) => {

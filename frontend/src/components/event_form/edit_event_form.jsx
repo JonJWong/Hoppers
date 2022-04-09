@@ -1,5 +1,5 @@
-import React from 'react'
-import FunctionalMap from '../map/functional_map';
+import React from "react";
+import FunctionalMap from "../map/functional_map";
 
 const formatTime = (dateString) => {
   const d = new Date(dateString);
@@ -15,8 +15,8 @@ const formatTime = (dateString) => {
   return [year, month, day].join('-')+'T'+[hour,min].join(':');
 }
 
-class EditEventForm extends React.Component{
-  constructor(props){
+class EditEventForm extends React.Component {
+  constructor(props) {
     super(props)
     this.state = this.props.event;
 
@@ -27,6 +27,8 @@ class EditEventForm extends React.Component{
     this.getPois = this.getPois.bind(this);
   }
 
+  // fetch event and then set the state, if you are not the owner and somehow
+  // stumble on the edit URL, redirect back to events page
   componentDidMount() {
     this.props.fetchEvent(this.props.match.params.eventId)
       .then(action => {
@@ -37,10 +39,12 @@ class EditEventForm extends React.Component{
       })
   }
 
+  // helper to change slices of state
   update(field, e) {
     this.setState({[field]: e.currentTarget.value})
   }
 
+  // helper to key into a specific point of interest, and change 1 field
   updatePoi(e, i, point, field) {
     e.preventDefault();
 
@@ -52,15 +56,19 @@ class EditEventForm extends React.Component{
     this.setState({ PointsOfInterest: points });
   }
 
+  // helper to be passed into map to adjust poi edits being displayed
   getPois() {
     return this.state.PointsOfInterest
   }
   
+  // function to submit form contents to backend
   handleSubmit(e) {
     e.preventDefault();
 
+    // deconstruct state
     let { _id, startTime, endTime, name, description, PointsOfInterest } = this.state;
 
+    // adjust times to be UTC so it's standardized with heroku server
     startTime = new Date(startTime).toUTCString();
     endTime = new Date(endTime).toUTCString();
     PointsOfInterest = PointsOfInterest.map(point => {
@@ -69,6 +77,7 @@ class EditEventForm extends React.Component{
       return point;
     });
 
+    // reconstruct an event from modified state vars above
     const event = {
       _id: _id,
       startTime: startTime,
@@ -78,9 +87,11 @@ class EditEventForm extends React.Component{
       PointsOfInterest: PointsOfInterest
     };
 
-    // Create new Event and then push to the Event's page if successfull
+    // Create new event and redirect to events page if successful
     this.props.updateEvent(event).then((response) => {
-      if(response.type === "RECEIVE_EVENT_ERRORS"){return}
+      if (response.type === "RECEIVE_EVENT_ERRORS") {
+        return
+      }
       return this.props.history.replace(`/events`)
     });
   }
@@ -90,6 +101,8 @@ class EditEventForm extends React.Component{
     this.setState({ [key]: value })
   }
 
+  // helper to delete a point of interest
+  // deprecated, was used for X button before
   deletePoi(i, e) {
     e.preventDefault();
     let points = this.state.PointsOfInterest;
@@ -97,13 +110,15 @@ class EditEventForm extends React.Component{
     this.setState({ PointsOfInterest: points });
   }
 
+  // helper to render errors for a specific point of interest
   renderPoiError(i){
     let poiError = this.props.errors.includes(i + 1) 
-      ? <div className= "form-error"> {`This poi is improperly formated.`} </div>
-      : <div className = "form-error"> </div>
+      ? <div className="form-error">This poi is improperly formatted</div>
+      : <div className="form-error"></div>
     return poiError
   }
 
+  // helper to render input fields for each poi present in state
   renderPoiInputs() {
     let points = this.state.PointsOfInterest;
     return points.map((point, i) => {
@@ -142,8 +157,9 @@ class EditEventForm extends React.Component{
     })
   }
 
-  render(){
-      let descriptionLabel = this.props.errors.includes('Description is required') 
+  render() {
+    // setting vars for the error text to replace the form labels
+    let descriptionLabel = this.props.errors.includes('Description is required') 
       ? <div className="form-error">Description is required!</div> 
       : <div id="create-form-description">Description</div>
 
@@ -163,13 +179,14 @@ class EditEventForm extends React.Component{
       ? <div className="form-error">Please select at least one Point of Interest!</div> 
       : <div> </div>
 
+    // return nothing to avoid errors on initial load
     if (!this.state) {
       return (
         <>
         </>
       )
     }
-    return( 
+    return ( 
     <div id="create-form-wrapper">
       <h5 id="create-form-header">{this.props.formType}</h5>
       <form

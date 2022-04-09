@@ -1,22 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Root from './components/root';
-import configureStore from './store/store';
-import { logout } from './actions/session_actions';
+import React from "react";
+import ReactDOM from "react-dom";
+import Root from "./components/root";
+import configureStore from "./store/store";
+import { logout } from "./actions/session_actions";
 
-// We will use this to parse the user's session token
-import jwt_decode from 'jwt-decode';
+// We will use this to parse the user"s session token
+import jwt_decode from "jwt-decode";
 
 // The session utility we created to set the auth token header in all axios requests
-import { setAuthToken } from './util/session_api_util';
+import { setAuthToken } from "./util/session_api_util";
 
 // BEGIN TESTING
-import { getEvent, makeEvent, editEvent, deleteEvent, addPoi, editPoi, removePoi, addAttendee, removeAttendee} from "./util/event_api_util"
-import { getThreads, getThread, makeThread, editThread, deleteThread, makeComment, editComment, deleteComment } from "./util/thread_api_util"
-import { createComment, updateComment} from "./actions/thread_actions"
+// import { getEvent, makeEvent, editEvent, deleteEvent, addPoi, editPoi, removePoi, addAttendee, removeAttendee} from "./util/event_api_util";
+// import { getThreads, getThread, makeThread, editThread, deleteThread, makeComment, editComment, deleteComment } from "./util/thread_api_util";
+// import { createComment, updateComment} from "./actions/thread_actions";
 // END TESTING
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   let store;
 
   // If a returning user has a session token stored in localStorage
@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (decodedUser.exp < currentTime) {
       // Logout the user and redirect to the login page
       store.dispatch(logout());
-      window.location.href = '/login';
+      window.location.href = "/login";
     }
   } else {
     // If this is a first time user, start with an empty store
@@ -47,31 +47,31 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Render our root component and pass in the store as a prop
-  const root = document.getElementById('root');
+  const root = document.getElementById("root");
 
   ReactDOM.render(<Root store={store} />, root);
 
   // BEGIN TESTING
-  window.getEvent = getEvent;
-  window.makeEvent = makeEvent;
-  window.editEvent = editEvent;
-  window.deleteEvent = deleteEvent;
-  window.addPoi = addPoi;
-  window.editPoi = editPoi;
-  window.removePoi = removePoi;
-  window.addAttendee = addAttendee;
-  window.removeAttendee = removeAttendee;
+  // window.getEvent = getEvent;
+  // window.makeEvent = makeEvent;
+  // window.editEvent = editEvent;
+  // window.deleteEvent = deleteEvent;
+  // window.addPoi = addPoi;
+  // window.editPoi = editPoi;
+  // window.removePoi = removePoi;
+  // window.addAttendee = addAttendee;
+  // window.removeAttendee = removeAttendee;
 
-  window.getThreads = getThreads
-  window.getThread = getThread
-  window.makeThread = makeThread
-  window.editThread = editThread
-  window.deleteThread = deleteThread
-  window.makeComment = makeComment
-  window.editComment = editComment
-  window.deleteComment = deleteComment
+  // window.getThreads = getThreads
+  // window.getThread = getThread
+  // window.makeThread = makeThread
+  // window.editThread = editThread
+  // window.deleteThread = deleteThread
+  // window.makeComment = makeComment
+  // window.editComment = editComment
+  // window.deleteComment = deleteComment
 
-  window.createComment = createComment
-  window.updateComment = updateComment
-  window.dispatch = store.dispatch
+  // window.createComment = createComment
+  // window.updateComment = updateComment
+  // window.dispatch = store.dispatch
 });
