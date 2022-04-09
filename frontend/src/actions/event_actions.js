@@ -26,7 +26,7 @@ export const receiveEventErrors = (errors) => ({
   errors
 });
 
-export const removeEventErrors = (errors) => ({
+export const removeEventErrors = () => ({
   type: REMOVE_EVENT_ERRORS
 });
 
@@ -62,25 +62,25 @@ export const addNewPoi = (eventId, data) => dispatch => (
   addPoi(eventId, data)
     .then(event => dispatch(receiveEvent(event)))
     .catch(err => dispatch(receiveEventErrors(err.response.data)))
-)
+);
 
 export const updatePoi = (eventId, data) => dispatch => (
   editPoi(eventId, data)
     .then(event => dispatch(receiveEvent(event)))
     .catch(err => dispatch(receiveEventErrors(err.response.data)))
-)
+);
 
 export const deletePoi = (eventId, poiId) => dispatch => (
   removePoi(eventId, poiId)
     .then(event => dispatch(receiveEvent(event)))
-)
+);
 
 export const addNewAttendee = (eventId, userId) => dispatch => (
   addAttendee(eventId, userId)
     .then(event => dispatch(receiveEvent(event)))
-)
+);
 
 export const deleteAttendee = (eventId, userId) => dispatch => (
   removeAttendee(eventId, userId)
     .then(event => dispatch(receiveEvent(event)))
-)
+);

@@ -1,14 +1,14 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import { withRouter } from "react-router-dom";
 
 class SignupForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: '',
-      username: '',
-      password: '',
-      password2: '',
+      email: "",
+      username: "",
+      password: "",
+      password2: "",
       errors: {}
     };
 
@@ -18,7 +18,7 @@ class SignupForm extends React.Component {
 
   componentDidUpdate(){
     if(this.props.signedIn){
-      this.props.history.replace('/login');
+      this.props.history.replace("/login");
     }
   }
 
@@ -60,22 +60,22 @@ class SignupForm extends React.Component {
           <div id="signup-form-inputs">
               <input type="text"
                 value={this.state.email}
-                onChange={this.update('email')}
+                onChange={this.update("email")}
                 placeholder="Email"
               />
               <input type="text"
                 value={this.state.username}
-                onChange={this.update('username')}
+                onChange={this.update("username")}
                 placeholder="Username"
               />
               <input type="password"
                 value={this.state.password}
-                onChange={this.update('password')}
+                onChange={this.update("password")}
                 placeholder="Password"
               />
               <input type="password"
                 value={this.state.password2}
-                onChange={this.update('password2')}
+                onChange={this.update("password2")}
                 placeholder="Confirm Password"
               />
             <input type="submit" value="Submit" />

@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import EventShow from "./event_show";
 import { fetchEvent, addNewAttendee, deleteAttendee } from "../../actions/event_actions";
-import {deleteThread, removeThreadErrors} from "../../actions/thread_actions"
+import { deleteThread, removeThreadErrors } from "../../actions/thread_actions";
 import { deleteCurrentEvent } from "../../actions/event_actions";
 
 const mSTP = (state, ownProps) => {

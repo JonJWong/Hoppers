@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const getThreads = (eventId) => {
   return axios.get(`/api/threads/events/${eventId}`)
@@ -9,7 +9,7 @@ export const getThread = (threadId) => {
 };
 
 export const makeThread = (data) => {
-  return axios.post('/api/threads', data)
+  return axios.post("/api/threads", data)
 };
 
 export const editThread = (data) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import {getDate, getTime, getTimeZone} from "../../util/string_util"
+import { getDate, getTime, getTimeZone } from "../../util/string_util"
 import { Link } from "react-router-dom";
 import IndexMap from "../map/index_map";
 
