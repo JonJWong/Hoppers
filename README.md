@@ -20,8 +20,6 @@ Additionally, event attendees can post about the night's events on the main even
 
 Users can create events and select points of interest to include along their event-route.
 
-<img src="https://media.giphy.com/media/hJai6xoHx2C7KHFKic/giphy.gif" alt="event-poi-gif"></img>
-
 These events are then saved to the database, along with all their points of interest.
 These points of interest are then turned into a route on the map, where the general path is shown.
 
@@ -73,12 +71,14 @@ placeMarker(location, i) {
 }
 ```
 
-
 ### Event Editing, Point-of-Interest route
 
 Within the route of points of interest, the event owner can create new points of interest in the route, and then submit the changes through a form.
 
 Since the route and points of interest go in order, the route will be drawn according to the changes.
+
+<img src="https://media.giphy.com/media/hJai6xoHx2C7KHFKic/giphy.gif" alt="event-poi-gif"></img>
+
 
 ```javaScript
 // helper to take in markers from map
@@ -110,12 +110,20 @@ sendPois(e) {
 
 The main page will display all events currently open to the public, where anyone can join in to make new social connections or just have a nice day with the other attendees.
 
-<img src="https://media.giphy.com/media/xs3l47FQu2yrMSgEaI/giphy.gif" alt="event-index-gif"></img>
+<img src="https://media.giphy.com/media/xs3l47FQu2yrMSgEaI/giphy.gif"
+alt="event-index-gif"></img>
 
 After finding an event that interests them, Users are able to RSVP to place themselves into the event's attendee list.
 
 <img src="https://media.giphy.com/media/LS4zK20qBpOypG65Ub/giphy.gif"
 alt="event-join-gif"></img>
+
+### Conversation Threads
+
+Once a user joins an event, they can converse with other users through the threads at the bottom of the event page! Users can edit, and delete their own comments within a thread, but only the event owners can create new threads.
+
+<img src="https://media.giphy.com/media/MZ1HdNkY0AIB2BSGBK/giphy.gif" 
+alt="comment-thread-gif"></img>
 
 <h2 id="technologies-used">Technologies Used</h2>
 
