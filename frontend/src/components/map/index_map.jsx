@@ -244,14 +244,12 @@ const STYLES = {
   ],
 };
 
-// Object.values(this.props.PointsOfInterest).map(point => {
-//   return point.location;
-// }) || 
-
 class IndexMap extends React.Component{
   constructor(props){
     super(props)
 
+    // since pois will not be manipulated on this map, we only need the
+    // coordinates of each marker
     this.markers = this.props.PointsOfInterest?.map(point => {
       return point.location
     })
@@ -260,7 +258,7 @@ class IndexMap extends React.Component{
   }
 
   placeMarker(location, i) {
-    // get time of day and set a styles var accordingly
+    // get time of day and set the styles, color, and icon accordingly
     const hour = new Date().getHours();
     let hoverColor = "#eeeeee";
     let color;
@@ -284,6 +282,7 @@ class IndexMap extends React.Component{
       icon: icon
     })
 
+    // add event listener for mouse over that changes icon color
     marker.addListener("mouseover", () => {
       const label = marker.getLabel();
       label.color = hoverColor;
@@ -292,6 +291,8 @@ class IndexMap extends React.Component{
       marker.setIcon(HOVER_CIRCLE);
     })
 
+    // add event listener to change the color of the icon back if the mouse is
+    // no longer hovering over the marker
     marker.addListener("mouseout", () => {
       const label = marker.getLabel();
       label.color = color;
@@ -301,7 +302,9 @@ class IndexMap extends React.Component{
     })
   }
 
+  // helper method to draw polyline when map finishes loading
   drawLines() {
+    // set line color based on time of day
     const hour = new Date().getHours();
     let color;
     if (hour < 7 || hour > 17) {
@@ -310,7 +313,10 @@ class IndexMap extends React.Component{
       color = "black"
     }
 
+    // setting path variable to marker location references attribute
     const path = this.markers;
+
+    // instantiating a new polyLine with path above
     const line = new window.google.maps.Polyline({
       path: path,
       geodesic: true,
@@ -319,6 +325,7 @@ class IndexMap extends React.Component{
       strokeWeight: 2
     })
 
+    // setting reference to this map for the line above
     line.setMap(this.map)
   }
 
@@ -331,19 +338,27 @@ class IndexMap extends React.Component{
   }
 
   componentDidMount() {
+    // set initial average lat, lng to 0, instantiate variable for new center
     let avgLat = 0;
     let avgLng = 0;
     let newCenter;
+
+    // if pois are being passed in, add the position to the lat and lng variables
     if (this.props.PointsOfInterest[0]?.location !== undefined) {
       this.props.PointsOfInterest.forEach(point => {
         avgLat += point.location.lat;
         avgLng += point.location.lng;
       })
+
+      // divide by length to get the average after adding them all
       avgLat /= this.props.PointsOfInterest.length;
       avgLng /= this.props.PointsOfInterest.length;
+
+      // set the center of the map to be the average of all the locations
       newCenter = { lat: avgLat, lng: avgLng };
     }
     
+    // if there are no points, the center of the map will be SF
     const CENTER = newCenter || { lat: 37.7758, lng: -122.435 }; // this is SF
 
     const MAP_OPTIONS = {
@@ -359,9 +374,8 @@ class IndexMap extends React.Component{
       maxZoom: 18,
       minZoom: 13
     };
-    // we want to configure the map options to be able to display all of the 
-    // points of interest for an event. We can get the center (average)
-    // and then configure the radius to display all of the point within the bounds
+
+    // save reference to this map
     this.map = new window.google.maps.Map(this.mapNode, MAP_OPTIONS);
 
 
@@ -377,7 +391,7 @@ class IndexMap extends React.Component{
       this.map.setZoom(this.map.getZoom() + 1)
     })
 
-    // get time of day and set a styles var accordingly
+    // get time of day and set map styling accordingly
     const hour = new Date().getHours();
     let styles;
     if (hour < 7 || hour > 17) {
@@ -385,7 +399,8 @@ class IndexMap extends React.Component{
     } else {
       styles = STYLES["default"]
     }
-    // apply styles by time of day
+
+    // apply styles to map and place markers, this.placeMarkers() draws polyLine
     this.map.setOptions({ styles: styles });
     this.placeMarkers();
   }

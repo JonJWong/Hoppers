@@ -15,7 +15,7 @@ const formatTime = (dateString) => {
   return [year, month, day].join('-')+'T'+[hour,min].join(':');
 }
 
-class EventForm extends React.Component{
+class EventForm extends React.Component {
   constructor(props){
     super(props)
     this.state = {

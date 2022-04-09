@@ -20,6 +20,7 @@ const DARK_CIRCLE = {
   strokeWeight: 0.4
 }
 
+// Hover circle marker params
 const HOVER_CIRCLE = {
   path: window.google.maps.SymbolPath.CIRCLE,
   scale: 15,
@@ -29,6 +30,7 @@ const HOVER_CIRCLE = {
   strokeWeight: 0.4
 }
 
+// Styles constant for night mode and hiding default POIs
 const STYLES = {
   default: [
     {
@@ -282,6 +284,7 @@ class ShowMap extends React.Component{
       icon: icon
     })
 
+    // Create infoWindow content string
     const infoWindowContent = 
     `<div class="marker-content">` +
       `<h3 class="infowindow-name">${location.name}</h3>` +
@@ -290,13 +293,16 @@ class ShowMap extends React.Component{
       `<div class="infowindow-description">Description: ${location.description}</div>` +
     `</div>`
 
+    // instantiate new infoWindow with above content
     const infoWindow = new window.google.maps.InfoWindow({
       content: infoWindowContent,
       maxWidth: 200
     })
 
+    // save reference to infoWindow
     this.infoWindows.push(infoWindow);
 
+    // add listener for hover to change color of marker
     marker.addListener("mouseover", () => {
       const label = marker.getLabel();
       label.color = hoverColor;
@@ -305,6 +311,7 @@ class ShowMap extends React.Component{
       marker.setIcon(HOVER_CIRCLE);
     })
 
+    // add listener to remove color change when not hovering
     marker.addListener("mouseout", () => {
       const label = marker.getLabel();
       label.color = color;
@@ -313,6 +320,8 @@ class ShowMap extends React.Component{
       marker.setIcon(icon);
     })
 
+    // add listener to listen for click to close all other infoWindows,
+    // and to open this marker's infoWindow
     marker.addListener("click", () => {
       that.closeInfoWindows();
       infoWindow.open({
@@ -323,7 +332,9 @@ class ShowMap extends React.Component{
     })
   }
 
+  // helper to draw polyLine after markers draw
   drawLines() {
+    // set line color according to time of day
     const hour = new Date().getHours();
     let color;
     if (hour < 7 || hour > 17) {
@@ -332,7 +343,10 @@ class ShowMap extends React.Component{
       color = "black"
     }
 
+    // instantiate new math by getting location from markers passed in
     const path = this.markers.map(poi => poi.location)
+
+    // create a new polyLine with markers
     const line = new window.google.maps.Polyline({
       path: path,
       geodesic: true,
@@ -341,9 +355,11 @@ class ShowMap extends React.Component{
       strokeWeight: 2
     })
 
+    // set reference to this map for polyLine
     line.setMap(this.map)
   }
 
+  // helper to close all other infoWindows
   closeInfoWindows() {
     for (let window of this.infoWindows) {
       window.close();
@@ -355,23 +371,32 @@ class ShowMap extends React.Component{
     this.markers.forEach((location, i) => {
       this.placeMarker(location, i);
     })
+    // draw polyLine after placing markers
     this.drawLines()
   }
 
   componentDidMount() {
+    // set variables to calculate center of pois
     let avgLat = 0;
     let avgLng = 0;
     let newCenter;
+
+    // iterate through pois passed in (if any), and get the average position
     if (this.props.PointsOfInterest[0]?.location !== undefined) {
       this.props.PointsOfInterest.forEach(point => {
         avgLat += point.location.lat;
         avgLng += point.location.lng;
       })
+
+      // divide by length of markers after adding to get average
       avgLat /= this.props.PointsOfInterest.length;
       avgLng /= this.props.PointsOfInterest.length;
+
+      // create variable for new center
       newCenter = { lat: avgLat, lng: avgLng };
     }
     
+    // if there are no markers passed in, center will be SF
     const CENTER = newCenter || { lat: 37.7758, lng: -122.435 }; // this is SF
 
     const MAP_OPTIONS = {
@@ -393,9 +418,8 @@ class ShowMap extends React.Component{
         }
       }
     };
-    // we want to configure the map options to be able to display all of the 
-    // points of interest for an event. We can get the center (average)
-    // and then configure the radius to display all of the point within the bounds
+
+    // save reference to this map
     this.map = new window.google.maps.Map(this.mapNode, MAP_OPTIONS);
 
     // get time of day and set a styles var accordingly
@@ -408,8 +432,10 @@ class ShowMap extends React.Component{
     }
     // apply styles by time of day
     this.map.setOptions({ styles: styles });
+    // place markers and draw polyLine
     this.placeMarkers();
 
+    // add listener to map that closes infoWindows when empty space is clicked
     window.google.maps.event.addListener(this.map, "click", (e) => {
       this.closeInfoWindows();
     })
