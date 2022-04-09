@@ -42,7 +42,7 @@ class EventShow extends React.Component {
   }
 
   handleDelete() {
-    this.props.history.replace("/events")
+    this.props.history.replace("/profile")
   }
 
   render() {
