@@ -23,7 +23,10 @@ Users can create events and select points of interest to include along their eve
 These events are then saved to the database, along with all their points of interest.
 These points of interest are then turned into a route on the map, where the general path is shown.
 
-<img src="https://media.giphy.com/media/rb46Dl0AReltUxR5ED/giphy.gif" alt="event-create-gif"></img>
+<p align="center">
+  <img src="https://media.giphy.com/media/rb46Dl0AReltUxR5ED/giphy.gif"
+  alt="event-create-gif"></img>
+</p>
 
 ```javaScript
 drawLines() {
@@ -77,8 +80,10 @@ Within the route of points of interest, the event owner can create new points of
 
 Since the route and points of interest go in order, the route will be drawn according to the changes.
 
-<img src="https://media.giphy.com/media/hJai6xoHx2C7KHFKic/giphy.gif" alt="event-poi-gif"></img>
-
+<p align="center">
+  <img src="https://media.giphy.com/media/hJai6xoHx2C7KHFKic/giphy.gif"
+  alt="event-poi-gif"></img>
+</p>
 
 ```javaScript
 // helper to take in markers from map
@@ -110,20 +115,28 @@ sendPois(e) {
 
 The main page will display all events currently open to the public, where anyone can join in to make new social connections or just have a nice day with the other attendees.
 
-<img src="https://media.giphy.com/media/xs3l47FQu2yrMSgEaI/giphy.gif"
-alt="event-index-gif"></img>
+<p align="center">
+  <img src="https://media.giphy.com/media/xs3l47FQu2yrMSgEaI/giphy.gif"
+  alt="event-index-gif"></img>
+</p>
 
 After finding an event that interests them, Users are able to RSVP to place themselves into the event's attendee list.
 
-<img src="https://media.giphy.com/media/LS4zK20qBpOypG65Ub/giphy.gif"
-alt="event-join-gif"></img>
+<p align="center">
+  <img src="https://media.giphy.com/media/LS4zK20qBpOypG65Ub/giphy.gif"
+  alt="event-join-gif"></img>
+</p>
+
+On their user profile, the user will be shown a list of all events they're currently hosting, and another list of events they're currently an attendee.
 
 ### Conversation Threads
 
 Once a user joins an event, they can converse with other users through the threads at the bottom of the event page! Users can edit, and delete their own comments within a thread, but only the event owners can create new threads.
 
-<img src="https://media.giphy.com/media/MZ1HdNkY0AIB2BSGBK/giphy.gif" 
-alt="comment-thread-gif"></img>
+<p align="center">
+  <img src="https://media.giphy.com/media/MZ1HdNkY0AIB2BSGBK/giphy.gif" 
+  alt="comment-thread-gif"></img>
+</p>
 
 <h2 id="technologies-used">Technologies Used</h2>
 
