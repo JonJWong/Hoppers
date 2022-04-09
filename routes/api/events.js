@@ -45,7 +45,7 @@ router.post('/',
     const { errors, isValid } = validateEventInput(req.body);
     let fullErrors = {}
     if (!isValid) {
-      // Add Non-Poi errors to the error response in the 0 object
+      // Add Non-Poi errors to the error response in the 0 key
       fullErrors[0] = Object.values(errors);
       // Return early if no Poi's
       console.log(req.body)
@@ -135,8 +135,8 @@ router.patch('/:id',
         const { errors, isValid } = validateEventInput(req.body);
         let fullErrors = {}
         if (!isValid) { 
-          // Add Non-Poi errors to the error response
-          fullErrors = errors;
+          // Add Non-Poi errors to the error response in the 0 key
+            fullErrors[0] = Object.values(errors);
           // Return early if no Poi's
           if(req.body.PointsOfInterest.length === 0){return res.status(400).json(fullErrors)}
         }
@@ -155,7 +155,7 @@ router.patch('/:id',
           if(poi === null){return}
           const { errors, isValid } = validatePointOfInterestInput(poi, index, startTime, endTime);
             if (!isValid) { 
-              return fullErrors[errors.index + 1] = (errors.index + 1)}
+              return fullErrors[errors.index + 1] = (Object.values(errors))}
             if(isValid){
               // The new start time becomes the end of the last valid Poi.
               startTime = poi.endTime

@@ -107,6 +107,7 @@ class EventForm extends React.Component {
   // helper to render form inputs for each poi present in state
   renderPoiInputs(i) {
     let points = this.state.PointsOfInterest;
+    // Determine if errors should show up on pois
     return points.map((point, i) => {
       let descriptionLabel = this.props?.errors[i + 1]?.includes('Description is required') 
       ? <div className="poi-error">Description is required</div> 
