@@ -69,13 +69,8 @@
   border-radius: 50px;
   color: #a8a8a8;
   background: none;
-  margin: 0 auto;
   border-style: none;
   font-size: 40px;
-  position: absolute;
-  bottom: 60px;
-  left: 20%;
-  right: 20%;
   background-color: #537895;
   color: white;
   cursor: pointer;
@@ -94,5 +89,10 @@
   bottom: 15px;
   text-align: center;
   width: 90%;
-  padding-left: 5%;
+  height: 20%;
+  left: 5%;
+  right: 5%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
 }

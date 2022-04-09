@@ -1,7 +1,10 @@
 #footer-wrapper {
   background-color: #537895;
+  border-top: 3px black solid;
   width: 100%;
-  z-index: 5;
+  position: sticky;
+  top: 100%;
+  bottom: 0;
 }
 
 #footer-container {
@@ -98,16 +101,16 @@
   min-width: 250px;
   top: 40%;
   bottom: 40%;
-  left: 40%;
-  right: 40%;
+  left: 35%;
+  right: 35%;
   background-color: white;
-  z-index: 10;
   display: flex;
   padding: 20px;
   justify-content: space-between;
   flex-direction: column;
   align-items: center;
   border-radius: 40px;
+  z-index: 5;
 }
 
 #footer-modal-block {
@@ -116,7 +119,7 @@
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(80, 80, 80, .8);
+  background-color: rgba(80, 80, 80, .4);
 }
 
 #footer-modal-content > h3 {
@@ -148,4 +151,19 @@ h3 > h4 {
   padding-top: 10px;
   font-size: 18px;
   text-align: center;
+}
+
+#footer-modal-content > ul > li div {
+  transition: background-color .4s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 30px;
+  background-color: white;
+}
+
+#footer-modal-content > ul > li:hover div {
+  background-color: #df7116;
 }
