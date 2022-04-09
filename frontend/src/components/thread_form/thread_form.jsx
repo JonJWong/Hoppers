@@ -21,7 +21,7 @@ class ThreadForm extends React.Component{
 
   render(){  
     let nameLabel = this.props.errors.length > 0 
-      ? <span className="thread-name-error">Thread Name: Can"t be blank</span> 
+      ? <span className="thread-name-error">Thread Name can't be blank</span> 
       : <span id="thread-name">Thread Name:</span>
     return( 
       <div className= {this.props.addThread ? "thread-form-container visible" : "thread-form-container"}>

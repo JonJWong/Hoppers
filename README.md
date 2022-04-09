@@ -2,11 +2,10 @@
 
 Hoppers is an app where users can design their plan for the perfect night out with friends[^1].
 
-Users will be able to design and customize their own story book event (could be anything from a pub crawl to a nice walk). After creating the perfect itinerary, those users can then invite other users to join their path of adventure and excitement.
+Users will be able to design and customize their own story book event (could be anything from a pub crawl to a nice walk). After creating the perfect itinerary, other users can join in on the fun!
+Once a user has joined an event, they can chat with each other to discuss any updates or plans on the event page.
 
-Once a user has joined an event, they can chat with each other to discuss any updates or plans.
-
-Additionally, event attendees can post about the night's events on the main event page, so they can have a history of their glorious deeds. Furthermore, event-owners can make their “plan’ public and have other users join their night out or they can join other “public” plans.
+<a href="https://go-hoppers.herokuapp.com/#/" rel="noopener noreferrer" target="_blank">Live link!</a>
 
 <h2 id="table-of-contents">Table of Contents</h2>
 
@@ -20,10 +19,13 @@ Additionally, event attendees can post about the night's events on the main even
 
 Users can create events and select points of interest to include along their event-route.
 
-<img src="https://github.com/JonJWong/Hoppers/blob/main/images/eventcreate.png" alt="event-create-photo"></img>
-
 These events are then saved to the database, along with all their points of interest.
 These points of interest are then turned into a route on the map, where the general path is shown.
+
+<p align="center">
+  <img src="https://media.giphy.com/media/rb46Dl0AReltUxR5ED/giphy.gif"
+  alt="event-create-gif"></img>
+</p>
 
 ```javaScript
 drawLines() {
@@ -71,12 +73,16 @@ placeMarker(location, i) {
 }
 ```
 
-
 ### Event Editing, Point-of-Interest route
 
 Within the route of points of interest, the event owner can create new points of interest in the route, and then submit the changes through a form.
 
 Since the route and points of interest go in order, the route will be drawn according to the changes.
+
+<p align="center">
+  <img src="https://media.giphy.com/media/hJai6xoHx2C7KHFKic/giphy.gif"
+  alt="event-poi-gif"></img>
+</p>
 
 ```javaScript
 // helper to take in markers from map
@@ -108,7 +114,28 @@ sendPois(e) {
 
 The main page will display all events currently open to the public, where anyone can join in to make new social connections or just have a nice day with the other attendees.
 
-<img src="https://github.com/JonJWong/Hoppers/blob/main/images/eventindex.png" alt="event-index-photo"></img>
+<p align="center">
+  <img src="https://media.giphy.com/media/xs3l47FQu2yrMSgEaI/giphy.gif"
+  alt="event-index-gif"></img>
+</p>
+
+After finding an event that interests them, Users are able to RSVP to place themselves into the event's attendee list.
+
+<p align="center">
+  <img src="https://media.giphy.com/media/LS4zK20qBpOypG65Ub/giphy.gif"
+  alt="event-join-gif"></img>
+</p>
+
+On their user profile, the user will be shown a list of all events they're currently hosting, and another list of events they're currently an attendee.
+
+### Conversation Threads
+
+Once a user joins an event, they can converse with other users through the threads at the bottom of the event page! Users can edit, and delete their own comments within a thread, but only the event owners can create new threads.
+
+<p align="center">
+  <img src="https://media.giphy.com/media/MZ1HdNkY0AIB2BSGBK/giphy.gif" 
+  alt="comment-thread-gif"></img>
+</p>
 
 <h2 id="technologies-used">Technologies Used</h2>
 
@@ -133,10 +160,10 @@ Users would be able to direct-message each other in real-time.
 
 ### A team of four extremely talented and hard-working individuals put this together[^2]!
 
-  - <a href="https://github.com/JonJWong" target="_blank" rel="noopener noreferrer">Jonathan</a>: Team leader, and project coordinator / front-end designer (React.js).
-  - <a href="https://github.com/njpietrow" target="_blank" rel="noopener noreferrer">Nick</a>: Front-end designer, component manager / creator (React.js).
-  - <a href="https://github.com/CodyDegraffeNiles" target="_blank" rel="noopener noreferrer">Cody</a>: Back-end engineer (MongoDB / Express integration).
-  - <a href="https://github.com/KevinCh28" target="_blank" rel="noopener noreferrer">Kevin</a>: Back-end engineer (MongoDB / Express integration).
+  - <a href="https://github.com/JonJWong" target="_blank" rel="noopener noreferrer">Jonathan</a>: Project Lead / Frontend designer (React.js, Google Maps API).
+  - <a href="https://github.com/njpietrow" target="_blank" rel="noopener noreferrer">Nick</a>: Frontend designer, Styling Specialist (React.js).
+  - <a href="https://github.com/CodyDegraffeNiles" target="_blank" rel="noopener noreferrer">Cody</a>: Backend engineer (MongoDB / Express integration).
+  - <a href="https://github.com/KevinCh28" target="_blank" rel="noopener noreferrer">Kevin</a>: Backend engineer (MongoDB / Express integration).
 
 [^1]: Please note all features subject to changes. Hoppers can not guarantee the perfect night out. Also if you have a substance abuse problem please seek assistance by dialing a the SAMHSA hotline. 1-800-662-HELP
 

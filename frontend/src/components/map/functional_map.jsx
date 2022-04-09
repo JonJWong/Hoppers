@@ -276,7 +276,6 @@ class FunctionalMap extends React.Component {
     // polyline to draw lines on
     markers.forEach((point, i) => {
       this.placeMarker(point, i)
-      this.path.push(point.location)
     })
   }
 
@@ -297,7 +296,7 @@ class FunctionalMap extends React.Component {
     }
 
     // get the current length of markers so that markers can be set later
-    const current = Object.values(this.markers).length
+    const current = this.path.length;
 
     // create marker at the location of the click event
     const marker = new window.google.maps.Marker({
@@ -435,6 +434,9 @@ class FunctionalMap extends React.Component {
     // set marker id, assign to object attribute
     let id = current;
 
+    // add marker to polyLine path attribute
+    this.path.push(position);
+
     // store reference to marker
     this.markers[id] = marker;
 
@@ -461,20 +463,27 @@ class FunctionalMap extends React.Component {
     marker.setMap(null);
 
     // find the index of this marker within the markers attribute
+    // the index here should be same as the marker's index on POI list since
+    // they are stored in order
     const index = Object.values(this.markers).indexOf(marker);
 
+    // remove marker reference from markers object
+    delete this.markers[id];
+    
+    // fetch pois from form, assign to event
+    const PointsOfInterest = this.props.getPois();
+
+    // remove the poi attached to this marker from the event fetched from form
+    // only remove if the pois are longer than path
+    // this checks for un-finalized markers as pois
+    if (PointsOfInterest.length <= this.path.length) {
+      PointsOfInterest.splice(index, 1);
+    }
+    
     // remove the marker from the polyLine path
     this.path.splice(index, 1);
     // update polyLine path to exclude the removed marker
     this.poly.setPath(this.path);
-    
-    // remove marker reference
-    delete this.markers[id];
-
-    // fetch pois from form, assign to event
-    event.PointsOfInterest = this.props.getPois();
-    // remove the poi attached to this marker from the event fetched from form
-    event.PointsOfInterest.splice(index, 1);
 
     // re-assign all markers in numeric order to fill in the gap from the
     // marker that has been removed
@@ -594,6 +603,9 @@ class FunctionalMap extends React.Component {
   render() {
     return (
       <div id="functional-map-container-wrapper">
+        <div id="form-map-header">
+          Please note: Please press "Confirm Points Of Interest" before making any changes to your Points of Interest, or there might be unexpected behavior.
+        </div>
         <button
           id="map-add-pois"
           onClick={e => this.sendPois(e)}>

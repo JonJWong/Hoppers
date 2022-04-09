@@ -42,13 +42,13 @@ class EventShow extends React.Component {
   }
 
   handleDelete() {
-    this.props.history.replace("/events")
+    this.props.history.replace("/profile")
   }
 
   render() {
     // check if current user is the owner. 
     const editCapability = this.props?.event?.owner?._id === this.props.currentUser.id
-    const {event, threads} = this.props
+    const { event, threads } = this.props
 
     if ((!event) || (!event.attendees)) {
       return null
@@ -64,10 +64,10 @@ class EventShow extends React.Component {
             <div className="event-show-details">
               <div className="margin-left">
                 <h2 className="event-show-title">{event.name}</h2>
-                <h4 className="event-show-description">About this event </h4>
+                <h4 className="event-show-description">About this event</h4>
                 <p className="description">{event.description}</p>
                 <div className="date-time-container">
-                  <h4 className="details">Details </h4>
+                  <h4 className="details">Details</h4>
                   <div className="event-date">{getDate(event.startTime)}</div>
                   <div className="">{getTime(event.startTime)} - {getTime(event.endTime)} {getTimeZone(event.endTime)}</div>
                 </div>
