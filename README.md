@@ -20,12 +20,12 @@ Additionally, event attendees can post about the night's events on the main even
 
 Users can create events and select points of interest to include along their event-route.
 
-<img src="https://giphy.com/gifs/hJai6xoHx2C7KHFKic" alt="event-poi-gif"></img>
+<img src="https://giphy.com/gifs/hJai6xoHx2C7KHFKic/giphy.gif" alt="event-poi-gif"></img>
 
 These events are then saved to the database, along with all their points of interest.
 These points of interest are then turned into a route on the map, where the general path is shown.
 
-<img src="https://giphy.com/gifs/rb46Dl0AReltUxR5ED" alt="event-create-gif"></img>
+<img src="https://giphy.com/gifs/rb46Dl0AReltUxR5ED/giphy.gif" alt="event-create-gif"></img>
 
 ```javaScript
 drawLines() {
