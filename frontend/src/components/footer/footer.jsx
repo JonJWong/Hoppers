@@ -20,8 +20,8 @@ const CREATORS = {
     name: "Cody",
     handle: "CodyDegraffeNiles",
     git: "https://github.com/CodyDegraffeNiles",
-    angel: "",
-    linked: "",
+    angel: "https://angel.co/u/cody-degraffe-niles",
+    linked: "https://www.linkedin.com/in/cody-degraffe-niles-366310235/",
   },
   kevin: {
     name: "Kevin",
