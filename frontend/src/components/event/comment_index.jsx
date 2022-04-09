@@ -2,9 +2,9 @@ import React from "react";
 import CommentIndexItem from "./comment_index_item";
 import CreateCommentFormContainer from "../comment_form/create_comment_form_container";
 
-class CommentIndex extends React.Component{
+class CommentIndex extends React.Component {
 
-  render(){
+  render() {
     const members = this.props.event.attendees.map(person => person.username)
     const commentForm = members.includes(this.props.currentUserUsername)
       ? <CreateCommentFormContainer threadId={this.props.threadId}/> 
@@ -18,10 +18,10 @@ class CommentIndex extends React.Component{
       )
 
     const {comments} = this.props;
-    if(!comments) {
+    if (!comments) {
       return null
     }
-    return(
+    return (
       <div className={this.props.collapsed ? "comment-index hidden" : "comment-index"} >
         {Object.values(comments).map(comment => (
           <CommentIndexItem 

@@ -244,9 +244,9 @@ const STYLES = {
   ],
 };
 
-class IndexMap extends React.Component{
-  constructor(props){
-    super(props)
+class IndexMap extends React.Component {
+  constructor(props) {
+    super(props);
 
     // since pois will not be manipulated on this map, we only need the
     // coordinates of each marker
@@ -405,8 +405,8 @@ class IndexMap extends React.Component{
     this.placeMarkers();
   }
 
-  render(){
-    return(
+  render() {
+    return (
       <div className="index-map-container" ref={ map => this.mapNode = map }></div>
     )
   }

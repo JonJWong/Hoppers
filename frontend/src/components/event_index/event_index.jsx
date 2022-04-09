@@ -2,8 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import EventIndexItem from "./event_index_item";
 
-class EventIndex extends React.Component{
-  componentDidMount(){
+class EventIndex extends React.Component {
+  componentDidMount() {
     this.props.fetchEvents();
     this.props.getUserEvents(this.props.user);
     window.scroll({top: 0, left: 0, behavior: 'smooth' });
@@ -18,7 +18,7 @@ class EventIndex extends React.Component{
   }
 
   renderOwnEvents() {
-    if(Object.values(this.props.allEvents).length === 0) return null;
+    if (Object.values(this.props.allEvents).length === 0) return null;
     
     const ownEvents = this.props.allEvents.filter(
       event => event.owner === this.props.user)
@@ -57,7 +57,7 @@ class EventIndex extends React.Component{
   }
 
   render() {
-    return(
+    return (
       <div className="event-page-container">
         <div id="event-public-title" className="sb">
           Events you're hosting:           

@@ -1,19 +1,19 @@
 const express = require("express");
 const app = express();
-const mongoose = require('mongoose');
-const db = require('./config/keys').mongoURI;
-const bodyParser = require('body-parser');
-const passport = require('passport');
+const mongoose = require("mongoose");
+const db = require("./config/keys").mongoURI;
+const bodyParser = require("body-parser");
+const passport = require("passport");
 const path = require("path");
 
-const users = require('./routes/api/users');
-const events = require('./routes/api/events');
-const threads = require('./routes/api/threads');
+const users = require("./routes/api/users");
+const events = require("./routes/api/events");
+const threads = require("./routes/api/threads");
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('frontend/build'));
-  app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("frontend/build"));
+  app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
   })
 }
 
@@ -23,7 +23,7 @@ mongoose
   .catch(err => console.log(err));
 
 app.use(passport.initialize());
-require('./config/passport')(passport);
+require("./config/passport")(passport);
 
 
 // tells app to respond to other apps like postman

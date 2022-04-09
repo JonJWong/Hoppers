@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 import ProfileEventItem from "./profile_event_container";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Profile extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.getUserEvents(this.props.currentUser.id);
     window.scroll({ top: 0, left: 0, behavior: 'smooth' })
   }
@@ -78,7 +78,7 @@ class Profile extends React.Component {
     )
   }
 
-  renderNonOwnEvents(){
+  renderNonOwnEvents() {
     if (Object.values(this.props.userEvents).length === 0) {
       return null
     }

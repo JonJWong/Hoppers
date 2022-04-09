@@ -1,6 +1,6 @@
 import React from "react";
 import moment from "moment";
-import UpdateCommentForm from "../comment_form/update_comment_form_container"
+import UpdateCommentForm from "../comment_form/update_comment_form_container";
 
 moment.updateLocale('en', {
     relativeTime: {
@@ -21,17 +21,17 @@ moment.updateLocale('en', {
     }
   });
 
-class CommentIndexItem extends React.Component{
-  constructor(props){
+class CommentIndexItem extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       editForm: false
     }
   }
 
-  render(){
+  render() {
     const {comment} = this.props;
-    return(
+    return (
       <div className="comment-box">
         <div className="comment-container">
           <div className="comment-title-container">

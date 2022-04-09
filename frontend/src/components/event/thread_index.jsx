@@ -2,8 +2,8 @@ import React from "react";
 import ThreadIndexItem from "./thread_index_item";
 import CreateThreadContainer from "../thread_form/create_thread_container";
 
-class ThreadIndex extends React.Component{
-  constructor(props){
+class ThreadIndex extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       addThread: false,
@@ -13,27 +13,27 @@ class ThreadIndex extends React.Component{
     this.updateConfirmationMessage = this.updateConfirmationMessage.bind(this)
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearTimeout(this.clearTimeout);
   }
 
-  toggleCreateThread(){
-    this.setState({addThread: !this.state.addThread});
-    this.setState({confirmationMessage: ""});
+  toggleCreateThread() {
+    this.setState({ addThread: !this.state.addThread });
+    this.setState({ confirmationMessage: "" });
     this.props.removeThreadErrors();
   }
 
-  updateConfirmationMessage(message){
-    this.setState({confirmationMessage: message});
+  updateConfirmationMessage(message) {
+    this.setState({ confirmationMessage: message });
     this.clearTimeout = setTimeout(() => {
-      this.setState({confirmationMessage: ""});
+      this.setState({ confirmationMessage: "" });
     }, 3000);
   }
 
-  render(){
-    const {threads} = this.props;
-    if(!threads) return null
-    return(
+  render() {
+    const { threads } = this.props;
+    if (!threads) return null
+    return (
       <div className="thread-index">
         <div className="thread-title-container">
           <h3 className="thread-index-title">Conversation Threads</h3>

@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-class NavProfile extends React.Component{
-  render(){
-    const {user, modalLogout, closeModal} = this.props
-    return(
+class NavProfile extends React.Component {
+  render() {
+    const { user, modalLogout, closeModal } = this.props;
+    return (
       <div className='modal-content-container'>
         <div className="modal-profile-wrapper">
           <div className='modal-profile-container'>

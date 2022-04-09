@@ -1,6 +1,6 @@
-import { connect } from 'react-redux';
-import { signup, login, removeSessionErrors } from '../../actions/session_actions';
-import SignupPage from './signup_page.jsx';
+import { connect } from "react-redux";
+import { signup, login, removeSessionErrors } from "../../actions/session_actions";
+import SignupPage from "./signup_page.jsx";
 
 const mapStateToProps = (state) => {
   return {
@@ -17,7 +17,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(SignupPage);
+export default connect(mapStateToProps,mapDispatchToProps)(SignupPage);

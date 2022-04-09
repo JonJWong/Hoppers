@@ -1,12 +1,12 @@
 import React from "react";
 
-class AttendeeIndex extends React.Component{
-  render(){
+class AttendeeIndex extends React.Component {
+  render() {
     const {attendees} = this.props;
-    if(!attendees){
+    if(!attendees) {
       return null
     }
-    return(
+    return (
       <div className="attendee-list">
         <h3 className="attendee-list-title">
           Attendee List
