@@ -1,5 +1,6 @@
 import React from "react";
 import * as StringUtil from "../../util/string_util";
+
 // Circle marker params
 const LIGHT_CIRCLE = {
   path: window.google.maps.SymbolPath.CIRCLE,

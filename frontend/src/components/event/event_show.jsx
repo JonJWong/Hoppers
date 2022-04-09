@@ -48,7 +48,7 @@ class EventShow extends React.Component {
   render() {
     // check if current user is the owner. 
     const editCapability = this.props?.event?.owner?._id === this.props.currentUser.id
-    const {event, threads} = this.props
+    const { event, threads } = this.props
 
     if ((!event) || (!event.attendees)) {
       return null
