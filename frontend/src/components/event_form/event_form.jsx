@@ -116,14 +116,12 @@ class EventForm extends React.Component {
       ? <div className="poi-error">Name is required</div> 
       : <div id="poi-name">Name</div>
     
-    let startTimeLabel = this.props?.errors[i + 1]?.includes('Start time is required') 
-      ? <div className="poi-error">Start time is required</div>
-      : this.props?.errors[i + 1]?.includes('End time before start')
-      ? <div className="poi-error">End time before start</div>
+    let startTimeLabel = this.props?.errors[i + 1]?.includes('Invalid start time') 
+      ? <div className="poi-error">Invalid start time</div>
       : <div id="poi-start">Start Time</div>
     
-    let endTimeLabel = this.props?.errors[i + 1]?.includes('End time is required') 
-      ? <div className="poi-error">End time is required</div> 
+    let endTimeLabel = this.props?.errors[i + 1]?.includes('Invalid end time') 
+      ? <div className="poi-error">Invalid end time</div> 
       : this.props?.errors[i + 1]?.includes('End time before start')
       ? <div className="poi-error">End time before start</div>
       : <div id="poi-end">End Time</div>
