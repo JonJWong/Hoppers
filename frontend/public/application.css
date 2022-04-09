@@ -10,6 +10,7 @@
 @import url("/stylesheets/09_thread_index.css");
 @import url("/stylesheets/10_inbox.css");
 @import url("/stylesheets/11_creators.css");
+@import url("/stylesheets/12_footer.css");
 
 #map-container {
   height: 500px;

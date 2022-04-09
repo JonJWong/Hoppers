@@ -1,0 +1,169 @@
+import React from "react";
+import { Link } from "react-router-dom";
+
+const CREATORS = {
+  jonathan: {
+    name: "Jonathan",
+    git: "https://github.com/JonJWong/",
+    angel: "https://angel.co/u/jonathan-wong-75/",
+    linked: "https://www.linkedin.com/in/jonjwong/",
+  },
+  nick: {
+    name: "Nick",
+    git: "https://github.com/njpietrow/",
+    angel: "https://angel.co/u/nick-pietrow",
+    linked: "https://www.linkedin.com/in/nickpietrow/",
+  },
+  cody: {
+    name: "Cody",
+    git: "https://github.com/CodyDegraffeNiles",
+    angel: "",
+    linked: "",
+  },
+  kevin: {
+    name: "Kevin",
+    git: "https://github.com/KevinCh28",
+    angel: "",
+    linked: "",
+  }
+}
+
+class Footer extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      modal: false,
+      user: null
+    }
+
+    this.closeModal = this.closeModal.bind(this);
+    this.userOpen = this.userOpen.bind(this);
+    this.renderModal = this.renderModal.bind(this);
+  }
+
+  closeModal() {
+    this.setState({
+      modal: false,
+      user: null
+    })
+  }
+
+  userOpen(user) {
+    this.setState({
+      modal: true,
+      user: user
+    })
+  }
+
+  renderModal() {
+    const creator = CREATORS[this.state.user];
+
+    if (this.state.modal) {
+      return (
+        <div id="footer-modal">
+          <div id="footer-modal-content">
+            <h3>{creator.name}</h3>
+            <ul>
+              <li>
+                <a href={creator.git} className="footer-git" target="_blank" rel="noopener noreferrer">
+                  <i className="fa-brands fa-github"></i>
+                </a>
+              </li>
+              <li>
+                <a href={creator.angel} className="footer-angel" target="_blank" rel="noopener noreferrer">
+                  <i className="fa-brands fa-angellist"></i>
+                </a>
+              </li>
+              <li>
+                <a href={creator.linked} className="footer-linked" target="_blank" rel="noopener noreferrer">
+                  <i className="fa-brands fa-linkedin"></i>
+                </a>
+              </li>
+              <li onClick={() => this.closeModal()} className="footer-x">
+                <i className="fa-solid fa-x"></i>
+              </li>
+            </ul>
+          </div>
+        </div>
+      )
+    }
+  }
+
+  render() {
+    return (
+      <div id="footer-wrapper">
+        <div id="footer-container">
+          <div className="footer-list">
+            <Link
+              to="/creators">
+              <h3>About Us</h3>
+            </Link>
+          </div>
+          <div className="footer-list">
+            <h3>Technologies Used</h3>
+            <ul>
+              <li>
+                <a href="https://www.mongodb.com/atlas/database"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="footer-mongo">
+                    MongoDB Atlas
+                  </a>
+              </li>
+              <li>
+                <a href="https://expressjs.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="footer-express">
+                    Express
+                  </a>
+              </li>
+              <li>
+                <a href="https://reactjs.org/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="footer-react">
+                    <div>React</div> / <div>Redux</div>
+                  </a>
+              </li>
+              <li>
+                <a href="https://nodejs.org/en/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="footer-node">
+                    Node.js
+                  </a>
+              </li>
+              <li>
+                <a href="https://developers.google.com/maps/documentation/javascript/?_gl=1*ieznnv*_ga*MjA3Njk1NTYyNC4xNjQ5NTE2OTgw*_ga_NRWSTWS78N*MTY0OTUxNjk3OS4xLjEuMTY0OTUxNzAxMy4w"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  id="footer-maps">
+                    Google Maps JavaScript API
+                  </a>
+              </li>
+            </ul>
+          </div>
+          <div className="footer-list">
+            <h3>Contact Links</h3>
+            {Object.keys(CREATORS).map(creator => {
+              const person = CREATORS[creator]
+              return (
+                <div
+                  className="footer-creator-link"
+                  key={CREATORS[creator].name}
+                  onClick={() => this.userOpen(creator)}>
+                    {person.name}
+                </div>
+              )
+            })}
+            {this.renderModal()}
+          </div>
+        </div>
+      </div>
+    )
+  }
+}
+
+export default Footer;

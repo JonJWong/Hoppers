@@ -1,0 +1,105 @@
+#footer-wrapper {
+  background-color: #537895;
+  width: 100%;
+  height: 100px;
+  padding: 20px;
+  z-index: 5;
+}
+
+#footer-container {
+  background-color: #537895;
+  margin: 0 auto;
+  height: 100px;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-list {
+  font-size: 12px;
+  text-align: center;
+  line-height: 1.3;
+  padding-bottom: 20px;
+}
+
+.footer-list h3 {
+  font-size: 16px;
+  padding-bottom: 3px;
+  text-decoration: underline;
+}
+
+.footer-list * {
+  color: #eeeeee;
+}
+
+.footer-list > a > h3 {
+  transition: color .2s ease-out;
+  color: #eeeeee;
+}
+
+.footer-list > a:hover > h3 {
+  color: #df7116;
+}
+
+#footer-mongo, #footer-express, #footer-node, #footer-maps,
+.footer-creator-link {
+  transition: color .2s ease-in-out;
+}
+
+#footer-mongo:hover {
+  color: greenyellow;
+}
+
+#footer-express:hover {
+  color: yellow;
+}
+
+#footer-react {
+  display: flex;
+  justify-content: center;
+}
+
+#footer-react:hover > :first-child,
+#footer-react:hover > :last-child {
+  transition: color .4s ease-in-out;
+}
+
+#footer-react:hover > :first-child {
+  color: black;
+}
+
+#footer-react:hover > :last-child {
+  color: blue;
+}
+
+#footer-node:hover {
+  color: rgb(0, 175, 0);
+}
+
+#footer-maps:hover {
+  color: orangered;
+}
+
+.footer-creator-link:hover {
+  cursor: pointer;
+  color: #df7116;
+}
+
+#footer-modal {
+  position: absolute;
+  height: 100px;
+  width: 100px;
+  right: 20px;
+  left: auto;
+  top: auto;
+  bottom: 20px;
+  background-color: #eeeeee;
+}
+
+#footer-modal-content > * {
+  color: black;
+}
+
+.footer-git > *, .footer-angel > *, .footer-linked > *, .footer-x {
+  color: black;
+}
