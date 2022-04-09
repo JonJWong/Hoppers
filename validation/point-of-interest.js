@@ -38,12 +38,14 @@ module.exports = function validatePointOfInterestInput(data, index, startTime, e
       errors.endTime = "End time before start"
     }
 
-  // Only check if start time is within bounds
+  // Check if start time is within bounds
   if (startTime !== null) {
-    if (new Date(startTime) > new Date(data.startTime) || new Date(endTime) < new Date(data.startTime)){
-      errors.startTime = "Invalid start time"
+    if (new Date(startTime) > new Date(data.startTime))
+      {errors.startTime = "Premature start time"}
+    if (new Date(endTime) < new Date(data.startTime))
+      {errors.startTime = "Invalid start time"}
     }
-  }
+
   // Check if end time is within bounds
   if (endTime !== null) {
     if (new Date(startTime) > new Date(data.endTime) || new Date(endTime) < new Date(data.endTime)){
