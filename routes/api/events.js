@@ -69,8 +69,7 @@ router.post('/',
       if(poi === null){return}
       const { errors, isValid } = validatePointOfInterestInput(poi, index, startTime, endTime);
         if (!isValid) { 
-          console.log(errors)
-          return fullErrors[errors.index + 1] = (errors)}
+          return fullErrors[errors.index + 1] = (Object.values(errors))}
         if (isValid) {
           // The new start time becomes the end of the last valid Poi.
           startTime = poi.endTime

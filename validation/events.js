@@ -14,12 +14,6 @@ module.exports = function validateEventInput(data) {
     errors.PointsOfInterest = "Must have at least 1 point of interest"
   }
 
-
-  // Validate Name
-  if (!Validator.isLength(data.name, {min:2, max: 100 })){
-    errors.name = "Name must be between 2 and 100 characters"
-  }
-
   if (Validator.isEmpty(data.name)) {
     errors.name = 'Name is required'; 
   }

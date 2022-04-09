@@ -4,25 +4,16 @@ const validText = require('./valid-text');
 module.exports = function validatePointOfInterestInput(data, index, startTime, endTime) {
   let errors = {};
   errors.index = index;
-  if(data.name === undefined || data.startTime === undefined || data.endTime === undefined )
-  {
-    errors.error = "Poi not formated properly"
-    return {
-    errors,
-    isValid: false
-  }}
+  console.log(data)
+  if(data.name === undefined){data.name = ""}
 
   data.name = validText(data.name) ? data.name : '';
   data.description = validText(data.description) ? data.description : '';
 
   // Validate Name
 
-  if (!Validator.isLength(data.name, {min:2, max: 100 })){
-    errors.name = "Name must be between 2 and 100 characters"
-  }
-
   if (Validator.isEmpty(data.name)) {
-    errors.name = 'Name field is required'; 
+    errors.name = 'Name is required'; 
   }
 
   // Limit description to 200 characters.
@@ -31,12 +22,12 @@ module.exports = function validatePointOfInterestInput(data, index, startTime, e
   }
 
   // Validate presence of Start Time
-  if (Validator.isEmpty(data.startTime)) {
+  if (Validator.isEmpty(data.startTime) || data.startTime === "Invalid Date") {
     errors.startTime = "Start time is required";
   }
 
   // Validate presence of End Time
-  if (Validator.isEmpty(data.endTime)) {
+  if (Validator.isEmpty(data.endTime) || data.endTime === "Invalid Date") {
     errors.endTime = "End time is required";
   }
 
@@ -48,13 +39,13 @@ module.exports = function validatePointOfInterestInput(data, index, startTime, e
       errors.endTime = "Invalid end time"
     }
 
-  // Only check if start time is defined
+  // Only check if start time is within bounds
   if (startTime !== null) {
     if (new Date(startTime) > new Date(data.startTime) || new Date(endTime) < new Date(data.startTime)){
       errors.startTime = "Invalid start time"
     }
   }
-  // Check only if end time is defined
+  // Check if end time is within bounds
   if (endTime !== null) {
     if (new Date(startTime) > new Date(data.endTime) || new Date(endTime) < new Date(data.endTime)){
       errors.endTime = "Invalid end time"

@@ -31,7 +31,6 @@ class EventForm extends React.Component {
     this.accept = this.accept.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
-    this.renderPoiError = this.renderPoiError.bind(this);
   }
 
   // helper to update slice of state when a form field changes
@@ -105,40 +104,52 @@ class EventForm extends React.Component {
     this.setState({ PointsOfInterest: points });
   }
 
-  // helper to render errors above their respective pois
-  renderPoiError(i){
-    let poiError = this.props.errors[i + 1]
-      ? <div className="form-error">This poi is improperly formatted</div>
-      : <div className="form-error"></div>
-    return poiError
-  }
-
   // helper to render form inputs for each poi present in state
-  renderPoiInputs() {
+  renderPoiInputs(i) {
     let points = this.state.PointsOfInterest;
     return points.map((point, i) => {
+      let descriptionLabel = this.props?.errors[i + 1]?.includes('Description is required') 
+      ? <div className="poi-error">Description is required</div> 
+      : <div id="poi-description">Description</div>
+
+    let nameLabel = this.props?.errors[i + 1]?.includes('Name is required') 
+      ? <div className="poi-error">Name is required</div> 
+      : <div id="poi-name">Name</div>
+    
+    let startTimeLabel = this.props?.errors[i + 1]?.includes('Start time is required') 
+      ? <div className="poi-error">Start time is required</div>
+      : this.props?.errors[i + 1]?.includes('End time before start')
+      ? <div className="poi-error">End time before start</div>
+      : <div id="poi-start">Start Time</div>
+    
+    let endTimeLabel = this.props?.errors[i + 1]?.includes('End time is required') 
+      ? <div className="poi-error">End time is required</div> 
+      : this.props?.errors[i + 1]?.includes('End time before start')
+      ? <div className="poi-error">End time before start</div>
+      : <div id="poi-end">End Time</div>
+
+
       return (
         <div className="create-form-marker-input" key={i}>
-          {this.renderPoiError(i)}
-          <div className="poi-name">Name</div>
+          {nameLabel}
           <input
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "name")}
             placeholder={`Point ${i + 1} name`}/>
 
-          <div className="poi-start">Start Time</div>
+          {startTimeLabel}
           <input
             type="datetime-local"
             min={formatTime(new Date())}
             onChange={(e) => this.updatePoi(e, i, point, "startTime")}/>
 
-          <div className="poi-end">End Time</div>
+          {endTimeLabel}
           <input
             type="datetime-local"
             min={formatTime(new Date())}
             onChange={(e) => this.updatePoi(e, i, point, "endTime")}/>
 
-          <div className="poi-description">Description</div>
+          {descriptionLabel}
           <input
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "description")}
@@ -155,7 +166,7 @@ class EventForm extends React.Component {
       : <div id="create-form-description">Description</div>
 
     let nameLabel = this.props?.errors[0].includes('Name is required') 
-      ? <div className="form-error">Name is too short</div> 
+      ? <div className="form-error">Name is required</div> 
       : <div id="create-form-name">Name</div>
     
     let startTimeLabel = this.props?.errors[0].includes('Start time is required') 
