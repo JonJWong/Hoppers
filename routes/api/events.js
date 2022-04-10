@@ -48,7 +48,6 @@ router.post('/',
       // Add Non-Poi errors to the error response in the 0 key
       fullErrors[0] = Object.values(errors);
       // Return early if no Poi's
-      console.log(req.body)
       if(req.body.PointsOfInterest.length === 0) {return res.status(400).json(fullErrors)}
     }
 
@@ -153,7 +152,7 @@ router.patch('/:id',
         req.body.PointsOfInterest.forEach((poi, index) => {
         // // Check if it is a valid Point of Interest and is not null
           if(poi === null){return}
-          const { errors, isValid } = validatePointOfInterestInput(poi, index, startTime, endTime);
+          const { errors, isValid } = validatePointOfInterestInput(poi, index, startTime, endTime);            
             if (!isValid) { 
               return fullErrors[errors.index + 1] = (Object.values(errors))}
             if(isValid){

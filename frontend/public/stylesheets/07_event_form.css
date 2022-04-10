@@ -98,7 +98,7 @@
   padding-bottom: 15px;
 }
 
-.poi-name, .poi-start, .poi-end, .poi-description, .poi-name, .poi-error {
+.poi-name, .poi-start, .poi-end, .poi-description, .poi-name, .poi-error{
   font-size: 16px;
   padding-bottom: 5px;
   padding-top: 10px;

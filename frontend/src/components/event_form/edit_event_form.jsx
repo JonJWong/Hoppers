@@ -116,23 +116,23 @@ class EditEventForm extends React.Component {
       // Determine if errors should show on pois
       let descriptionLabel = this.props?.errors[i + 1]?.includes('Description is required') 
       ? <div className="poi-error">Description is required</div> 
-      : <div id="poi-description">Description</div>
+      : <div className="poi-description">Description</div>
 
     let nameLabel = this.props?.errors[i + 1]?.includes('Name is required') 
       ? <div className="poi-error">Name is required</div> 
-      : <div id="poi-name">Name</div>
+      : <div className="poi-name">Name</div>
     
     let startTimeLabel = this.props?.errors[i + 1]?.includes('Invalid start time') 
       ? <div className="poi-error">Invalid start time</div>
-      : this.props?.errors[i + 1]?.includes('Before previous start time')
+      : this.props?.errors[i + 1]?.includes('Premature start time')
       ? <div className="poi-error">Premature start time</div>
-      : <div id="poi-start">Start Time</div>
+      : <div className="poi-start">Start Time</div>
     
     let endTimeLabel = this.props?.errors[i + 1]?.includes('Invalid end time') 
       ? <div className="poi-error">Invalid end time</div> 
       : this.props?.errors[i + 1]?.includes('End time before start')
       ? <div className="poi-error">End time before start</div>
-      : <div id="poi-end">End Time</div>
+      : <div className="poi-end">End Time</div>
 
       return (
         <div className="create-form-marker-input" key={`${i} + ${point.location.lat}`}>
