@@ -68,7 +68,7 @@ class Footer extends React.Component {
         <div id="footer-modal">
           <div id="footer-modal-content">
             <h3>{creator.name}
-              <h4>{creator.handle}</h4>
+              <p>{creator.handle}</p>
             </h3>
             <ul>
               <li>
