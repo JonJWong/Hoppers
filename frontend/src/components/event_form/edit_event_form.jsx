@@ -23,7 +23,6 @@ class EditEventForm extends React.Component {
     this.accept = this.accept.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.update = this.update.bind(this);
-    this.renderPoiError = this.renderPoiError.bind(this);
     this.getPois = this.getPois.bind(this);
   }
 
@@ -110,43 +109,55 @@ class EditEventForm extends React.Component {
     this.setState({ PointsOfInterest: points });
   }
 
-  // helper to render errors for a specific point of interest
-  renderPoiError(i){
-    let poiError = this.props.errors.includes(i + 1) 
-      ? <div className="form-error">This poi is improperly formatted</div>
-      : <div className="form-error"></div>
-    return poiError
-  }
-
   // helper to render input fields for each poi present in state
   renderPoiInputs() {
     let points = this.state.PointsOfInterest;
     return points.map((point, i) => {
+      // Determine if errors should show on pois
+      let descriptionLabel = this.props?.errors[i + 1]?.includes('Description is required') 
+      ? <div className="poi-error">Description is required</div> 
+      : <div className="poi-description">Description</div>
+
+    let nameLabel = this.props?.errors[i + 1]?.includes('Name is required') 
+      ? <div className="poi-error">Name is required</div> 
+      : <div className="poi-name">Name</div>
+    
+    let startTimeLabel = this.props?.errors[i + 1]?.includes('Invalid start time') 
+      ? <div className="poi-error">Invalid start time</div>
+      : this.props?.errors[i + 1]?.includes('Premature start time')
+      ? <div className="poi-error">Premature start time</div>
+      : <div className="poi-start">Start Time</div>
+    
+    let endTimeLabel = this.props?.errors[i + 1]?.includes('Invalid end time') 
+      ? <div className="poi-error">Invalid end time</div> 
+      : this.props?.errors[i + 1]?.includes('End time before start')
+      ? <div className="poi-error">End time before start</div>
+      : <div className="poi-end">End Time</div>
+
       return (
         <div className="create-form-marker-input" key={`${i} + ${point.location.lat}`}>
-          {this.renderPoiError(i)}
-          <div className="poi-name">Name</div>
+          {nameLabel}
           <input
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "name")}
             value={point.name}
             placeholder={`Point ${i + 1} name`}/>
 
-          <div className="poi-start">Start Time</div>
+          {startTimeLabel}
           <input
             type="datetime-local"
             onChange={(e) => this.updatePoi(e, i, point, "startTime")}
             min={formatTime(new Date())}
             value={formatTime(point.startTime)}/>
 
-          <div className="poi-end">End Time</div>
+          {endTimeLabel}
           <input
             type="datetime-local"
             onChange={(e) => this.updatePoi(e, i, point, "endTime")}
             min={formatTime(point.startTime)}
             value={formatTime(point.endTime)}/>
 
-          <div className="poi-description">Description</div>
+          {descriptionLabel}
           <input
             type="text"
             onChange={(e) => this.updatePoi(e, i, point, "description")}
@@ -159,23 +170,27 @@ class EditEventForm extends React.Component {
 
   render() {
     // setting vars for the error text to replace the form labels
-    let descriptionLabel = this.props.errors.includes('Description is required') 
+    let descriptionLabel = this.props?.errors[0].includes('Description is required') 
       ? <div className="form-error">Description is required</div> 
       : <div id="create-form-description">Description</div>
 
-    let nameLabel = this.props.errors.includes('Name is required') 
-      ? <div className="form-error">Name is too short</div> 
+    let nameLabel = this.props?.errors[0].includes('Name is required') 
+      ? <div className="form-error">Name is required</div> 
       : <div id="create-form-name">Name</div>
     
-    let startTimeLabel = this.props.errors.includes('Start time is required') 
-      ? <div className="form-error">Start time is required</div> 
+    let startTimeLabel = this.props?.errors[0].includes('Start time is required') 
+      ? <div className="form-error">Start time is required</div>
+      : this.props?.errors[0].includes('End time before start')
+      ? <div className="form-error">End time before start</div>
       : <div id="create-form-start-time">Start Time</div>
     
-    let endTimeLabel = this.props.errors.includes('End time is required') 
+    let endTimeLabel = this.props?.errors[0].includes('End time is required') 
       ? <div className="form-error">End time is required</div> 
-      : <div id="create-form-end-time">End Time</div>
+      : this.props?.errors[0].includes('End time before start')
+      ? <div className="form-error">End time before start</div>
+      : <div id="create-form-start-time">End Time</div>
 
-    let poiLabel = this.props.errors.includes('Must have at least 1 point of interest') 
+    let poiLabel = this.props?.errors[0].includes('Must have at least 1 point of interest') 
       ? <div className="form-error">Please select at least one Point of Interest</div> 
       : <div> </div>
 
@@ -236,7 +251,7 @@ class EditEventForm extends React.Component {
         </div>
       {this.state ? (
         <FunctionalMap event={this.state} accept={this.accept}
-          removeEventErrors = {this.props.removeEventErrors}
+          removePoiErrors = {this.props.removePoiErrors}
           getPois={this.getPois}
         />
       ) : (

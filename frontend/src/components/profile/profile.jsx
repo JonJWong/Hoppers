@@ -7,12 +7,24 @@ class Profile extends React.Component {
     super(props);
 
     this.state = {
-    }
+      events: []}
+    
   }
 
   componentDidMount() {
     this.props.getUserEvents(this.props.currentUser.id);
     window.scroll({ top: 0, left: 0, behavior: 'smooth' })
+  }
+
+  orderEvents(events){
+    if (events.length <= 1) return events;
+
+    let pivot = events[0];
+    let earlierEvents = events.slice(1).filter((event) => new Date(event.startTime) < new Date(pivot.startTime));
+    let laterEvents = events.slice(1).filter((event) => new Date(event.startTime) > new Date(pivot.startTime));
+    let earlier = this.orderEvents(earlierEvents);
+    let later = this.orderEvents(laterEvents);
+    return earlier.concat([pivot]).concat(later);
   }
 
   renderEventBar() {
@@ -61,9 +73,12 @@ class Profile extends React.Component {
     if(Object.values(this.props.userEvents).length === 0) {
       return null
     }
+
+    let orderedEvents = this.orderEvents(this.props.userEvents)
+
     return (
       <ul id="profile-self-event-list">
-        {this.props.userEvents?.map(event => {
+        {orderedEvents?.map(event => {
           if (event.owner === this.props.currentUser.id) {
             return <ProfileEventItem key={event._id} event={event} />
           } else {
@@ -82,9 +97,12 @@ class Profile extends React.Component {
     if (Object.values(this.props.userEvents).length === 0) {
       return null
     }
+
+    let orderedEvents = this.orderEvents(this.props.userEvents)
+
     return (
       <ul id="event-list">
-        {this.props.userEvents?.map(event => {
+        {orderedEvents?.map(event => {
           return event.owner !== this.props.currentUser.id
             ? <ProfileEventItem key={event._id} event={event} />
             : null

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import EditEventForm from "./edit_event_form";
-import { updateEvent, fetchEvent, removeEventErrors } from "../../actions/event_actions";
+import { updateEvent, fetchEvent, removePoiErrors } from "../../actions/event_actions";
 import { withRouter } from "react-router-dom";
 
 const mapStateToProps = (state, ownProps) => {
@@ -15,7 +15,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => ({
   updateEvent: (event) => dispatch(updateEvent(event)),
   fetchEvent: (eventId) => dispatch(fetchEvent(eventId)),
-  removeEventErrors: () => dispatch(removeEventErrors())
+  removePoiErrors: () => dispatch(removePoiErrors())
 })
 
 

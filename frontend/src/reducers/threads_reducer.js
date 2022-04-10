@@ -6,6 +6,8 @@ const threadReducer = (state = [], action) => {
   let newState = Object.assign([], state);
   switch(action.type) {
     case RECEIVE_EVENT:
+      // Check if there are no threads in the event
+      if(action.event.data.threads === null){return []}
       return action.event.data.threads
     case RECEIVE_THREAD:
       newState.forEach((thread,idx) => {
