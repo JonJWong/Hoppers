@@ -15,14 +15,20 @@ const formatTime = (dateString) => {
   return [year, month, day].join('-')+'T'+[hour,min].join(':');
 }
 
+// eslint-disable-next-line no-extend-native
+Date.prototype.addHours= function(h){
+    this.setHours(this.getHours()+h);
+    return this;
+}
+
 class EventForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
       description: "",
-      startTime: formatTime(new Date()),
-      endTime: formatTime(new Date()),
+      startTime: formatTime(new Date().addHours(1)),
+      endTime: formatTime(new Date().addHours(2)),
       PointsOfInterest: [],
       owner: this.props.ownerId
     }
