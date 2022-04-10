@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import EventForm from "./event_form";
-import { createEvent, removeEventErrors } from "../../actions/event_actions";
+import { createEvent, removePoiErrors } from "../../actions/event_actions";
 import { withRouter } from "react-router-dom";
 
 const mSTP = (state) => ({
@@ -11,7 +11,7 @@ const mSTP = (state) => ({
 
 const mDTP = dispatch => ({
   createEvent: (event) => dispatch(createEvent(event)),
-  removeEventErrors: () => dispatch(removeEventErrors())
+  removePoiErrors: () => dispatch(removePoiErrors())
 })
 
 
