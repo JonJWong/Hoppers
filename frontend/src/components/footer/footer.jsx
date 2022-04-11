@@ -7,28 +7,28 @@ const CREATORS = {
     handle: "JonJWong",
     git: "https://github.com/JonJWong/",
     angel: "https://angel.co/u/jonathan-wong-75/",
-    linked: "https://www.linkedin.com/in/jonjwong/",
+    linked: "https://www.linkedin.com/in/jonjwong/"
   },
   nick: {
     name: "Nick",
     handle: "njpietrow",
     git: "https://github.com/njpietrow/",
     angel: "https://angel.co/u/nick-pietrow",
-    linked: "https://www.linkedin.com/in/nickpietrow/",
+    linked: "https://www.linkedin.com/in/nickpietrow/"
   },
   cody: {
     name: "Cody",
     handle: "CodyDegraffeNiles",
     git: "https://github.com/CodyDegraffeNiles",
     angel: "https://angel.co/u/cody-degraffe-niles",
-    linked: "https://www.linkedin.com/in/cody-degraffe-niles-366310235/",
+    linked: "https://www.linkedin.com/in/cody-degraffe-niles-366310235/"
   },
   kevin: {
     name: "Kevin",
     handle: "KevinCh28",
     git: "https://github.com/KevinCh28",
-    angel: "",
-    linked: "",
+    angel: "https://angel.co/u/kevin-chen-154",
+    linked: "https://www.linkedin.com/in/kevin-chen-b6843213a/"
   }
 }
 

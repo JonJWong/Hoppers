@@ -18,7 +18,7 @@ const CREATORS = [
     linked: "https://www.linkedin.com/in/nickpietrow/",
     angel: "https://angel.co/u/nick-pietrow",
     img: "https://avatars.githubusercontent.com/u/25106777",
-    desc: "Nick was in charge of most of the styling across the site, and his primary focus was on the Events and their show pages. He also integrated threads and comments within those pages, and coordinated with the back-end team to structure the databases and responses according to the team's needs. Thanks to his efforts, the site looks beautiful and the interface is smooth and intuitive.",
+    desc: "Nick was in charge of most of the styling across the site, and his primary focus was on the Events and their show pages. He also integrated threads and comments within those pages, and coordinated with the back-end team to structure the databases and responses according to the team's needs. Thanks to his efforts, the site looks beautiful and the interface is smooth and intuitive."
   },
   {
     name: "Cody",
@@ -27,16 +27,16 @@ const CREATORS = [
     linked: "https://www.linkedin.com/in/cody-degraffe-niles-366310235/",
     angel: "https://angel.co/u/cody-degraffe-niles",
     img: "https://avatars.githubusercontent.com/u/79245580",
-    desc: "Cody took the lead on the back-end development and worked with Kevin to create a robust database with proper validations, and helped the API in which the front end would interact with the database. He played a crucial role in making sure that everything ran smoothly, and coordinated with the front-end team to make sure that information was structured appropriately, and that the server and database would accept requests and respond accordingly.",
+    desc: "Cody took the lead on the back-end development and worked with Kevin to create a robust database with proper validations, and helped the API in which the front end would interact with the database. He played a crucial role in making sure that everything ran smoothly, and coordinated with the front-end team to make sure that information was structured appropriately, and that the server and database would accept requests and respond accordingly."
   },
   {
     name: "Kevin",
     role: "Backend Developer, Database Manager",
     git: "https://github.com/KevinCh28",
-    linked: "",
-    angel: "",
+    linked: "https://www.linkedin.com/in/kevin-chen-b6843213a/",
+    angel: "https://angel.co/u/kevin-chen-154",
     img: "https://avatars.githubusercontent.com/u/61332776",
-    desc: "Kevin set his sights on the back-end data validations, and played a critical part in making sure the database does not get corrupted with erroneous information that a user might send back. He worked closely with Cody to make sure that the database and it's information were robust. With his thorough approach, he also helped Cody with the site's error handling, making sure that the user receives proper feedback if any errors occured with their inputs.",
+    desc: "Kevin set his sights on the back-end data validations, and played a critical part in making sure the database does not get corrupted with erroneous information that a user might send back. He worked closely with Cody to make sure that the database and it's information were robust. With his thorough approach, he also helped Cody with the site's error handling, making sure that the user receives proper feedback if any errors occured with their inputs."
   }
 ]
 
