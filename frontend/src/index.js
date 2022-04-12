@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOMClient from 'react-dom/client';
 import Root from "./components/root";
 import configureStore from "./store/store";
 import { logout } from "./actions/session_actions";
@@ -47,9 +47,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Render our root component and pass in the store as a prop
-  const root = document.getElementById("root");
+  const rootElement = document.getElementById("root");
+  const root = ReactDOMClient.createRoot(rootElement)
+  root.render(<Root store={store} /> )
 
-  ReactDOM.render(<Root store={store} />, root);
 
   // BEGIN TESTING
   // window.getEvent = getEvent;
@@ -74,4 +75,5 @@ document.addEventListener("DOMContentLoaded", () => {
   // window.createComment = createComment
   // window.updateComment = updateComment
   // window.dispatch = store.dispatch
+  // END TESTING
 });
