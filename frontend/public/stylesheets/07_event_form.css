@@ -1,3 +1,7 @@
+#create-form-wrapper {
+  padding-bottom: 30px;
+}
+
 #create-form-container {
   width: 90%;
   margin: 0 auto;
@@ -15,13 +19,23 @@
   text-align: center;
   font-size: 14px;
   padding-top: 20px;
+  padding-bottom: 30px;
+  width: 90%;
+  margin: 0 auto;
+}
+
+#form-map-footer h3 {
+  font-size: 18px;
+  padding-bottom: 5px;
 }
 
 #form-map-header {
   font-size: 12px;
   color: #df7116;
   text-align: center;
-  padding-bottom: 5px;
+  padding-top: 5px;
+  width: 90%;
+  margin: 0 auto;
 }
 
 #functional-map-container {

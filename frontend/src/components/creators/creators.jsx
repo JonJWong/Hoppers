@@ -41,6 +41,10 @@ const CREATORS = [
 ]
 
 class Creators extends React.Component {
+  componentDidMount() {
+    window.scroll({top: 0, left: 0, behavior: 'smooth' });
+  }
+  
   renderCreators() {
     return (
       <div id="creator-tile-wrapper">

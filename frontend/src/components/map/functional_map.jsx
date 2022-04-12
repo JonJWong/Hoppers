@@ -603,8 +603,14 @@ class FunctionalMap extends React.Component {
   render() {
     return (
       <div id="functional-map-container-wrapper">
-        <div id="form-map-header">
-          Please note: Please press "Confirm Points Of Interest" before making any changes to your Points of Interest, or there might be unexpected behavior.
+        <div id="form-map-footer">
+          <h3>Directions:</h3>
+          To add a point of interest, left-click a location on the map.
+          To remove a point of interest, right-click the undesired marker to remove it.
+          To add the selected points to the form, please press "Confirm Points Of Interest"
+          <div id="form-map-header">
+            Please note: Please press "Confirm Points Of Interest" before making any changes to your Points of Interest, or there might be unexpected behavior.
+          </div>
         </div>
         <button
           id="map-add-pois"
@@ -612,11 +618,6 @@ class FunctionalMap extends React.Component {
             Confirm Points of Interest
         </button>
         <div id="functional-map-container" ref={ map => this.mapNode = map }></div> 
-        <div id="form-map-footer">
-          To add a point of interest, left-click a location on the map.
-          To remove a point of interest, right-click the undesired marker to remove it.
-          To add the selected points to the form, please press "Confirm Points Of Interest"
-        </div>
       </div>
     )
   }

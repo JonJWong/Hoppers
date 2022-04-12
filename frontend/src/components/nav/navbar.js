@@ -162,7 +162,7 @@ class NavBar extends React.Component {
                 onClick={() => this.openModal()}>
                 <i className="fa-solid fa-bars"></i>
               </button>
-              <Link to="/events">
+              <Link to={this.props.loggedIn ? "/events" : "/"}>
                 <div className='title select-none'>
                   <h2>Hoppers</h2>
                 </div>
