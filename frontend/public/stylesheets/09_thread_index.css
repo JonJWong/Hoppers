@@ -77,12 +77,12 @@
 
 .comment-index {
   max-height: 4000px;
-  transition: max-height 0.25s ease-in;
+  transition: max-height 0.45s ease-in;
 }
 
 .hidden {
   max-height: 0;
-  transition: max-height 0.15s ease-out;
+  transition: max-height 0.45s ease-out;
   overflow: hidden;
 }
 
