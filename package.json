@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "MERN Hoppers",
   "main": "app.js",
-  "engines": {
-    "node": "16.x"
-  },
   "scripts": {
     "start": "node app.js",
     "server": "nodemon app.js",
@@ -39,6 +36,7 @@
     "mongoose-seed": "^0.6.0",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
+    "react-router-redux": "^4.0.8",
     "validator": "^13.7.0"
   },
   "devDependencies": {
