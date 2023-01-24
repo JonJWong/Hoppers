@@ -5,7 +5,7 @@ Hoppers is an app where users can design their plan for the perfect night out wi
 Users will be able to design and customize their own story book event (could be anything from a pub crawl to a nice walk). After creating the perfect itinerary, other users can join in on the fun!
 Once a user has joined an event, they can chat with each other to discuss any updates or plans on the event page.
 
-<a href="https://go-hoppers.herokuapp.com/#/" rel="noopener noreferrer" target="_blank">Live link!</a>
+<a href="https://gohoppers.herokuapp.com/#/" rel="noopener noreferrer" target="_blank">Live link!</a>
 
 <h2 id="table-of-contents">Table of Contents</h2>
 
