@@ -160,7 +160,7 @@ Users would be able to direct-message each other in real-time.
 
 ### A team of four extremely talented and hard-working individuals put this together[^2]!
 
-  - <a href="https://github.com/JonJWong" target="_blank" rel="noopener noreferrer">Jonathan</a>: Project Lead / Frontend designer (React.js, Google Maps API).
+  - <a href="https://github.com/JonJWong" target="_blank" rel="noopener noreferrer">Jonathan</a>: Project Lead / Frontend developer (React.js, Google Maps API).
   - <a href="https://github.com/njpietrow" target="_blank" rel="noopener noreferrer">Nick</a>: Frontend designer, Styling Specialist (React.js).
   - <a href="https://github.com/CodyDegraffeNiles" target="_blank" rel="noopener noreferrer">Cody</a>: Backend engineer (MongoDB / Express integration).
   - <a href="https://github.com/KevinCh28" target="_blank" rel="noopener noreferrer">Kevin</a>: Backend engineer (MongoDB / Express integration).
